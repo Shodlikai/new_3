@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relative Clauses - Mukammal Qo'llanma</title>
+    <style>
+        /* Umumiy stilizatsiya (O'zgartirishsiz qoldirildi) */
+        :root {
+            --bg-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --text-primary: #333;
+            --header-bg: rgba(255, 255, 255, 0.1);
+            --header-text: white;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --card-border: rgba(255, 255, 255, 0.2);
+            --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            --h2-text-gradient: linear-gradient(135deg, #667eea, #764ba2);
+            --rule-section-bg: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            --rule-section-border-left: #667eea;
+            --code-bg: #e2e8f0;
+            --code-color: #c53030;
+            --table-th-bg: #e9ecef;
+            --table-th-color: #495057;
+            --table-td-bg: #fff;
+            --structure-card-bg: linear-gradient(135deg, #e0eafc, #cfdef3);
+            --structure-card-border: #667eea;
+            --formula-bg: white;
+            --example-category-bg: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            --example-item-bg: white;
+            --english-text: #2d3436;
+            --uzbek-text: #636e72;
+            --input-bg: #f8f9fa;
+            --input-border: #dee2e6;
+            --input-focus-shadow: rgba(102, 126, 234, 0.1);
+            --result-bg: linear-gradient(135deg, #ddd6fe, #c4b5fd);
+            --result-color: #5b21b6;
+            --correct-color: #28a745;
+            --wrong-color: #dc3545;
+            --progress-bg: rgba(255, 255, 255, 0.2);
+            --progress-bar-gradient: linear-gradient(90deg, #4CAF50, #45a049);
+            --tab-btn-bg: rgba(255, 255, 255, 0.2);
+            --tab-btn-hover-bg: rgba(255, 255, 255, 0.3);
+            --tab-btn-active-bg: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            --exercise-btn-bg: linear-gradient(135deg, #74b9ff, #0984e3);
+            --exercise-btn-active-bg: linear-gradient(135deg, #00b894, #00a085);
+            --word-bg: linear-gradient(135deg, #667eea, #764ba2);
+            --drop-zone-border: #dee2e6;
+            --drop-zone-bg: #f8f9fa;
+            --drop-zone-hover-bg: rgba(102, 126, 234, 0.1);
+        }
+
+        .dark-mode {
+            --bg-primary: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            --text-primary: #ecf0f1;
+            --header-bg: rgba(0, 0, 0, 0.2);
+            --header-text: #ecf0f1;
+            --card-bg: #3b506b;
+            --card-border: rgba(255, 255, 255, 0.1);
+            --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            --h2-text-gradient: linear-gradient(135deg, #a2ccff, #82b1ff);
+            --rule-section-bg: #4a6280;
+            --rule-section-border-left: #82b1ff;
+            --code-bg: #2f4358;
+            --code-color: #ff8c8c;
+            --table-th-bg: #4a6280;
+            --table-th-color: #ecf0f1;
+            --table-td-bg: #3b506b;
+            --structure-card-bg: linear-gradient(135deg, #4a6280, #5a7490);
+            --structure-card-border: #82b1ff;
+            --formula-bg: #2f4358;
+            --example-category-bg: #4a6280;
+            --example-item-bg: #3b506b;
+            --english-text: #ecf0f1;
+            --uzbek-text: #bdc3c7;
+            --input-bg: #2f4358;
+            --input-border: #5a7490;
+            --input-focus-shadow: rgba(130, 177, 255, 0.2);
+            --result-bg: linear-gradient(135deg, #4a2c7a, #6a3a9a);
+            --result-color: #e0e0e0;
+            --correct-color: #5cb85c;
+            --wrong-color: #d9534f;
+            --progress-bg: rgba(0, 0, 0, 0.3);
+            --progress-bar-gradient: linear-gradient(90deg, #5cb85c, #4cae4c);
+            --tab-btn-bg: rgba(0, 0, 0, 0.3);
+            --tab-btn-hover-bg: rgba(0, 0, 0, 0.4);
+            --tab-btn-active-bg: linear-gradient(135deg, #e74c3c, #c0392b);
+            --exercise-btn-bg: linear-gradient(135deg, #3498db, #2980b9);
+            --exercise-btn-active-bg: linear-gradient(135deg, #2ecc71, #27ae60);
+            --word-bg: linear-gradient(135deg, #3498db, #2980b9);
+            --drop-zone-border: #5a7490;
+            --drop-zone-bg: #2f4358;
+            --drop-zone-hover-bg: rgba(52, 152, 219, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            min-height: 100vh;
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--card-border);
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            color: var(--header-text);
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: bold;
+        }
+
+        .header p {
+            color: var(--header-text);
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        
+        .progress-container {
+            background: var(--progress-bg);
+            border-radius: 25px;
+            padding: 5px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(5px);
+        }
+
+        .progress-bar {
+            background: var(--progress-bar-gradient);
+            height: 30px;
+            border-radius: 20px;
+            transition: width 0.8s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 0%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-text {
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .theme-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .theme-switch input[type="checkbox"] {
+            height: 0;
+            width: 0;
+            visibility: hidden;
+        }
+
+        .theme-switch label {
+            cursor: pointer;
+            text-indent: -9999px;
+            width: 60px;
+            height: 30px;
+            background: #ccc;
+            display: block;
+            border-radius: 100px;
+            position: relative;
+            transition: background-color 0.3s ease;
+        }
+
+        .theme-switch label:after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background: #fff;
+            border-radius: 90px;
+            transition: 0.3s;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+
+        .theme-switch input:checked + label {
+            background: #82b1ff;
+        }
+
+        .theme-switch input:checked + label:after {
+            left: calc(100% - 3px);
+            transform: translateX(-100%);
+            background: #f1c40f;
+        }
+
+        .theme-switch .icon {
+            font-size: 1.5rem;
+            color: var(--header-text);
+            transition: color 0.3s ease;
+        }
+        .theme-switch input:checked ~ .icon.moon { display: block; }
+        .theme-switch input:not(:checked) ~ .icon.moon { display: none; }
+        .theme-switch input:checked ~ .icon.sun { display: none; }
+        .theme-switch input:not(:checked) ~ .icon.sun { display: block; }
+        .theme-switch .icon.sun { color: #f39c12; }
+        .theme-switch .icon.moon { color: #a2ccff; }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 10px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: var(--tab-btn-bg);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            color: var(--header-text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            font-weight: 500;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .tab-btn:hover {
+            background: var(--tab-btn-hover-bg);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .tab-btn.active {
+            background: var(--tab-btn-active-bg);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+        }
+
+        .card h2 {
+            color: var(--text-primary);
+            margin-bottom: 25px;
+            font-size: 2.2rem;
+            text-align: center;
+            background: var(--h2-text-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .rule-section, .diff-section {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: var(--rule-section-bg);
+            border-radius: 15px;
+            border-left: 5px solid var(--rule-section-border-left);
+        }
+
+        .rule-section h3, .diff-section h3 {
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .rule-section p, .rule-section li, .diff-section p, .diff-section li {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        
+        .rule-section code, .diff-section code {
+            background-color: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--code-color);
+        }
+
+        .diff-table-container { 
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch; 
+        }
+
+        .diff-table {
+            width: 100%; 
+            min-width: 600px;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        .diff-table th, .diff-table td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            text-align: left;
+            color: var(--text-primary);
+        }
+        .diff-table th {
+            background-color: var(--table-th-bg);
+            color: var(--table-th-color);
+        }
+        .diff-table td { background-color: var(--table-td-bg); }
+        .ok { color: var(--correct-color); font-weight: bold; }
+        .not-ok { color: var(--wrong-color); font-weight: bold; }
+
+
+        .structure-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .structure-card {
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            background: var(--structure-card-bg);
+            border: 2px solid var(--structure-card-border);
+        }
+        .structure-card:hover { transform: translateY(-5px); }
+
+        .structure-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            text-align: center;
+            color: var(--text-primary);
+        }
+         .structure-card p {
+            font-size: 1.1rem;
+         }
+
+        .formula {
+            background: var(--formula-bg); padding: 15px; border-radius: 10px;
+            margin-bottom: 15px; text-align: center; font-size: 1.1rem;
+            font-weight: 500; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            color: var(--text-primary);
+        }
+
+        .noun, .pronoun, .verb, .subject, .object {
+            padding: 5px 10px; border-radius: 5px; margin: 0 5px; color: white;
+        }
+        .noun { background: #fd79a8; }
+        .pronoun { background: #0984e3; }
+        .verb { background: #00b894; }
+        .subject { background: #ffeaa7; color: #333;}
+        .object { background: #6c5ce7; }
+        
+
+        .examples { background: rgba(255, 255, 255, 0.7); padding: 15px; border-radius: 10px; }
+        .examples p { margin-bottom: 8px; font-size: 1rem; color: var(--text-primary); }
+        
+        .structure-card .examples .uzbek {
+            color: var(--uzbek-text);
+            font-style: italic;
+            padding-left: 10px;
+            border-left: 3px solid #764ba2;
+            margin-top: 5px;
+        }
+
+
+        .examples-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 25px; margin-top: 25px;
+        }
+
+        .example-category {
+            background: var(--example-category-bg); padding: 25px;
+            border-radius: 15px; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        .example-category h3 {
+            color: var(--text-primary); margin-bottom: 20px; font-size: 1.4rem; text-align: center;
+            padding-bottom: 10px; border-bottom: 2px solid var(--rule-section-border-left);
+        }
+
+        .example-item {
+            background: var(--example-item-bg); padding: 15px; border-radius: 10px; margin-bottom: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease;
+        }
+        .example-item:hover { transform: translateX(5px); }
+        .english { color: var(--english-text); font-weight: 500; margin-bottom: 8px; font-size: 1.05rem; }
+        .uzbek { color: var(--uzbek-text); font-style: italic; padding-left: 20px; border-left: 3px solid var(--rule-section-border-left); }
+
+        .exercise-nav {
+            display: flex; justify-content: center; margin-bottom: 30px;
+            gap: 10px; flex-wrap: wrap;
+        }
+        .exercise-btn {
+            background: var(--exercise-btn-bg); color: white; border: none;
+            padding: 12px 20px; border-radius: 10px; cursor: pointer; transition: all 0.3s ease;
+            font-size: 14px; font-weight: 500; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .exercise-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); }
+        .exercise-btn.active {
+            background: var(--exercise-btn-active-bg);
+            box-shadow: 0 6px 20px rgba(0, 184, 148, 0.3);
+        }
+
+        .exercise-content { display: none; }
+        .exercise-content.active { display: block; animation: fadeIn 0.5s ease-in-out; }
+        .exercise-content h3 { color: var(--text-primary); margin-bottom: 25px; font-size: 1.6rem; text-align: center; }
+
+        .quiz-container, .fill-exercise, .combine-exercise, .correct-exercise, .omission-exercise, .order-exercise, .translation-exercise { margin-bottom: 25px; }
+        .question, .fill-question, .combine-question, .correct-question, .omission-question, .order-question, .translation-question {
+            background: var(--example-item-bg); padding: 20px; border-radius: 15px; margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); border-left: 5px solid var(--rule-section-border-left);
+        }
+        .question p, .fill-question p, .combine-question p, .correct-question p, .omission-question p, .order-question p, .translation-question p {
+            font-size: 1.2rem; margin-bottom: 15px; color: var(--english-text); font-weight: 500;
+        }
+        .correct-question p.incorrect { text-decoration: line-through; color: var(--wrong-color);}
+        .translation-question p.translate-me {
+            font-style: italic;
+            color: var(--uzbek-text);
+        }
+
+        .options { display: flex; flex-direction: column; gap: 10px; }
+        .options label {
+            display: flex; align-items: center; padding: 10px; border-radius: 8px;
+            background: var(--input-bg); cursor: pointer; transition: background 0.3s ease; font-size: 1rem;
+            color: var(--text-primary);
+        }
+        .options label:hover { background: var(--rule-section-bg); }
+        .options input[type="radio"] { margin-right: 10px; transform: scale(1.2); }
+
+        .fill-input, .combine-input, .correct-input, .transform-input, .translation-input {
+            width: 100%; background: var(--input-bg); border: 2px solid var(--input-border);
+            border-radius: 8px; padding: 12px; font-size: 1rem; transition: all 0.3s ease;
+            color: var(--text-primary);
+        }
+        .fill-input:focus, .combine-input:focus, .correct-input:focus, .transform-input:focus, .translation-input:focus {
+            outline: none; border-color: var(--rule-section-border-left); box-shadow: 0 0 0 3px var(--input-focus-shadow);
+        }
+
+        .check-btn {
+            background: var(--exercise-btn-active-bg); color: white; border: none;
+            padding: 15px 30px; border-radius: 10px; cursor: pointer; font-size: 1.1rem;
+            font-weight: 500; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: block; margin: 10px auto;
+        }
+        .check-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 184, 148, 0.3); }
+
+        .check-btn:active { transform: translateY(0); }
+
+        .result {
+            margin-top: 20px; padding: 15px; border-radius: 10px; text-align: center;
+            font-size: 1.2rem; font-weight: 500; background: var(--result-bg);
+            color: var(--result-color); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .correct-answer { color: var(--correct-color); margin: 5px 0; }
+        .wrong-answer { color: var(--wrong-color); margin: 5px 0; }
+        .final-score { margin-top: 10px; padding: 10px; background: var(--input-bg); border-radius: 5px; color: var(--text-primary); }
+
+        .explanation {
+            background: var(--input-bg);
+            border-left: 4px solid var(--rule-section-border-left);
+            padding: 10px;
+            margin: 10px 0 0 0;
+            border-radius: 0 8px 8px 0;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            text-align: left;
+        }
+
+        .word-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: var(--input-bg);
+            border-radius: 10px;
+            min-height: 60px;
+        }
+
+        .word {
+            background: var(--word-bg);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+
+        .word:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .drop-zone {
+            min-height: 60px;
+            border: 2px dashed var(--drop-zone-border);
+            border-radius: 10px;
+            padding: 15px;
+            background: var(--drop-zone-bg);
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            gap: 10px;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+        }
+
+        .drop-zone:hover, .word-container:hover {
+            border-color: var(--rule-section-border-left);
+            background: var(--drop-zone-hover-bg);
+        }
+
+        .drop-zone .word {
+             background: var(--exercise-btn-active-bg);
+        }
+        
+        .error-section {
+            background: var(--rule-section-bg);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-left: 5px solid var(--wrong-color);
+        }
+
+        .error-title {
+            color: var(--wrong-color);
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .wrong-example {
+            background: rgba(220, 53, 69, 0.1);
+            border: 2px solid var(--wrong-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0 10px 0;
+            position: relative;
+            color: var(--text-primary);
+        }
+
+        .wrong-example::before {
+            content: "❌ NOTO'G'RI";
+            position: absolute;
+            top: -12px;
+            left: 15px;
+            background: var(--wrong-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .correct-example {
+            background: rgba(40, 167, 69, 0.1);
+            border: 2px solid var(--correct-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0 10px 0;
+            position: relative;
+            color: var(--text-primary);
+        }
+
+        .correct-example::before {
+            content: "✅ TO'G'RI";
+            position: absolute;
+            top: -12px;
+            left: 15px;
+            background: var(--correct-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .explanation .explanation-title {
+            color: var(--rule-section-border-left);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .rule-box {
+            background: var(--exercise-btn-bg);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header h1 { font-size: 2rem; }
+            .card h2 { font-size: 1.8rem; }
+            .structure-grid, .examples-grid { grid-template-columns: 1fr; }
+            .nav-tabs, .exercise-nav { flex-direction: column; gap: 5px; }
+            .tab-btn, .exercise-btn { width: 100%; text-align: center; }
+            .theme-switch { top: 10px; right: 10px; }
+        }
+
+        @media (max-width: 480px) {
+            .header { padding: 20px; }
+            .header h1 { font-size: 1.5rem; }
+            .card { padding: 15px; }
+            .structure-card { padding: 20px; }
+            .example-category { padding: 20px; }
+            .question { padding: 15px; }
+            .word { padding: 6px 12px; font-size: 14px; }
+            .diff-table { min-width: 400px; }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .check-btn:hover { animation: bounce 0.6s ease; }
+
+        .card {
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideUp 0.6s ease forwards;
+        }
+
+        @keyframes slideUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(135deg, #764ba2, #667eea); }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Relative Clauses - Mukammal Qo'llanma</h1>
+            <p>Gaplarni bog'lash, otlarga ta'rif berish va nutqni boyitish san'ati</p>
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar">
+                    <span class="progress-text">0%</span>
+                </div>
+            </div>
+
+            <div class="theme-switch">
+                <i class="fas fa-sun icon sun"></i>
+                <input type="checkbox" id="themeToggle">
+                <label for="themeToggle"></label>
+                <i class="fas fa-moon icon moon"></i>
+            </div>
+        </div>
+
+        <nav class="nav-tabs">
+            <button class="tab-btn active" data-tab="rules">Asosiy Qoidalar</button>
+            <button class="tab-btn" data-tab="diffs">Farqlar</button>
+            <button class="tab-btn" data-tab="structure">Strukturalar</button>
+            <button class="tab-btn" data-tab="examples">Misollar</button>
+            <button class="tab-btn" data-tab="exercises">Mashqlar</button>
+            <button class="tab-btn" data-tab="errors">Muhim Qoidalar va Xatolar</button>
+        </nav>
+
+        <div id="rules" class="tab-content active">
+             <div class="card">
+                <h2>Relative Clause Asosiy Qoidalari</h2>
+                <div class="rule-section">
+                    <h3>Relative Clause nima va nima uchun kerak?</h3>
+                    <p><strong>Relative Clause</strong> (Nisbiy Ergash Gap) - bu gapdagi biror otga (<code>noun</code>) qo'shimcha ma'lumot beruvchi kichik bir gapcha. U "qaysi?" degan savolga javob beradi.</p>
+                    <ul>
+                        <li><strong>Maqsad:</strong> Ikki sodda gapni birlashtirib, bitta murakkab va ravon gap hosil qilish. Nutqni takrorlanishlardan xalos qilish.</li>
+                        <li><strong>Oddiy gaplar:</strong> The man was friendly. He lives next door. (Kishi xushmuomala edi. U qo'shni uyda yashaydi.)</li>
+                        <li><strong>Relative Clause bilan:</strong> The man <strong>who lives next door</strong> is friendly. (Qo'shni uyda yashaydigan kishi xushmuomala.)</li>
+                    </ul>
+                </div>
+                <div class="rule-section">
+                    <h3><code>Who</code> va <code>That</code> (Insonlar uchun)</h3>
+                    <p>Odamlarga ta'rif berishda <code>who</code> yoki <code>that</code> ishlatiladi. <code>who</code> biroz rasmiyroq hisoblanadi.</p>
+                    <ul>
+                        <li>I know a man <strong>who</strong> can speak five languages.</li>
+                        <li>The girl <strong>that</strong> works at the cafe is my cousin.</li>
+                        <li><strong>Muhim:</strong> Agar ot atoqli ot bo'lsa (masalan, <code>John</code>, <code>my mother</code>), odatda <code>that</code> ishlatilmaydi, faqat <code>who</code> ishlatiladi. Bunga "Farqlar" bo'limida batafsil to'xtalamiz.</li>
+                        <li>Masalan: My brother, <strong>who</strong> lives in London, is a doctor. (✅ To'g'ri)</li>
+                        <li>My brother, <strong>that</strong> lives in London, is a doctor. (❌ Odatda ishlatilmaydi)</li>
+                    </ul>
+                </div>
+                <div class="rule-section">
+                    <h3><code>Which</code> va <code>That</code> (Narsa va Hayvonlar uchun)</h3>
+                    <p>Narsalar yoki hayvonlarga ta'rif berishda <code>which</code> yoki <code>that</code> ishlatiladi.</p>
+                     <ul>
+                        <li>This is the book <strong>which</strong> I was telling you about.</li>
+                        <li>Where is the cheese <strong>that</strong> was in the fridge?</li>
+                        <li>The horse <strong>which</strong> won the race is very expensive.</li>
+                    </ul>
+                </div>
+                 <div class="rule-section">
+                    <h3><code>Whom</code> (Insonlar uchun - Obyekt)</h3>
+                    <p><code>whom</code> - <code>who</code> ning rasmiy va obyekt (to'ldiruvchi) shakli. Agar ta'riflanayotgan shaxs relative clause ichida harakatni bajarmasa, balki harakat unga qaratilgan bo'lsa, <code>whom</code> ishlatiladi.</p>
+                     <ul>
+                        <li><strong>Obyekt (To'ldiruvchi) nima degani?</strong> Bu shaxs yoki narsa gapdagi harakatni bajarmaydi, balki harakatning ta'sirini qabul qiladi. Masalan, "I met the man" gapida "the man" - to'ldiruvchi, chunki u "uchrashish" harakatini bajarmayapti, "men" uni uchratdim.</li>
+                        <li>The woman <strong>whom</strong> I met yesterday was very kind. (Men kecha uchratgan ayol juda mehribon edi.) - "uchratish" harakatini "men" bajardim, "ayol" esa to'ldiruvchi.</li>
+                        <li>This is the professor <strong>whom</strong> I admire. (Bu men hurmat qiladigan professor.) - "hurmat qilish" harakatini "men" bajaryapman.</li>
+                    </ul>
+                </div>
+                <div class="rule-section">
+                    <h3><code>Whose</code> (Qarashlilik uchun)</h3>
+                    <p>Biror narsaning kimga yoki nimaga tegishli ekanligini bildirish uchun <code>whose</code> ishlatiladi. U odamlarga ham, narsalarga ham tegishli bo'lishi mumkin.</p>
+                     <ul>
+                        <li><strong>Otga tegishli degani nima?</strong> Bu biror narsa (mashina, uy, fikr) boshqa bir otga (insonga, hayvonga) tegishli ekanligini, ya'ni uning bir qismi, mulki yoki qarindoshi ekanligini anglatadi.</li>
+                        <li>The boy <strong>whose</strong> bike was stolen went to the police. (Velosipedi o'g'irlangan bola politsiyaga bordi.) - Velosiped bolaga tegishli.</li>
+                        <li>I have a friend <strong>whose</strong> mother is a famous actress. (Mening onasi mashhur aktrisa bo'lgan do'stim bor.) - Ona do'stimga tegishli (uning onasi).</li>
+                         <li>It's a company <strong>whose</strong> products are sold worldwide. (Bu mahsulotlari butun dunyoda sotiladigan kompaniya.) - Mahsulotlar kompaniyaga tegishli.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="diffs" class="tab-content">
+            <div class="card">
+                <h2>Olmoshlar va Turlar orasidagi Farqlar</h2>
+                <div class="diff-section">
+                    <h3>Asosiy Farq: Defining vs. Non-Defining Clauses</h3>
+                    <p>Bu Relative Clause mavzusidagi eng muhim farq. Ular gapning ma'nosini butunlay o'zgartirishi mumkin.</p>
+                    <div class="diff-table-container">
+                        <table class="diff-table">
+                            <tr><th>Xususiyat</th><th>Defining (Aniqllovchi)</th><th>Non-Defining (Izohlovchi)</th></tr>
+                            <tr>
+                                <td><strong>Maqsadi</strong></td>
+                                <td>"Qaysi biri?" savoliga javob beradi, otni aniqlashtiradi. Bu qism muhim.</td>
+                                <td>Shundog'am aniq bo'lgan otga qo'shimcha ma'lumot beradi. Bu qism muhim emas.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Vergul (Comma)</strong></td>
+                                <td>Vergul <strong>qo'yilmaydi</strong></td>
+                                <td>Vergul bilan <strong>ajratiladi</strong></td>
+                            </tr>
+                             <tr>
+                                <td><strong><code>that</code> ishlatilishi</strong></td>
+                                <td>Ha, <code>who</code> va <code>which</code> o'rniga <strong>mumkin</strong></td>
+                                <td><strong>MUMKIN EMAS</strong></td>
+                            </tr>
+                             <tr>
+                                <td><strong>Olmoshni tushirish</strong></td>
+                                <td>Agar obyekt bo'lsa, <strong>mumkin</strong></td>
+                                <td><strong>MUMKIN EMAS</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Misol</strong></td>
+                                <td>The woman <strong>who lives next door</strong> is a doctor. (Aynan qo'shni uyda yashaydigan ayol - boshqasi emas).</td>
+                                <td>My brother, <strong>who lives next door</strong>, is a doctor. (Akam shifokor. Aytgancha, u qo'shni).</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                
+                 <div class="diff-section">
+                    <h3>Olmoshlar bo'yicha farqlar</h3>
+                     <div class="diff-table-container">
+                        <table class="diff-table">
+                            <tr><th>Olmosh</th><th>Ishlatilishi</th><th>Misol</th></tr>
+                            <tr>
+                                <td><strong>Who</strong></td>
+                                <td>Insonlar uchun (Subyekt/Obyekt). Eng keng tarqalgan.</td>
+                                <td>The person <strong>who</strong> called was polite.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Whom</strong></td>
+                                <td>Insonlar uchun (Faqat Obyekt). Rasmiy nutqda, predloglardan keyin.</td>
+                                <td>The client with <strong>whom</strong> I was speaking...</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Which</strong></td>
+                                <td>Narsa/Hayvonlar uchun (Subyekt/Obyekt). Defining va Non-defining'da kela oladi.</td>
+                                <td>This is the report <strong>which</strong> contains the data.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>That</strong></td>
+                                <td>Inson/Narsa/Hayvonlar uchun. Faqat Defining clause'da. Norasmiyroq.</td>
+                                <td>The key <strong>that</strong> I lost is on the table.</td>
+                            </tr>
+                             <tr>
+                                <td><strong>Whose</strong></td>
+                                <td>Qarashlilikni bildiradi (Inson/Narsa/Hayvonlar uchun).</td>
+                                <td>A child <strong>whose</strong> parents are supportive often succeeds.</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="structure" class="tab-content">
+            <div class="card">
+                <h2>Strukturalar: Olmoshning Gapdagi Vazifasi</h2>
+                <div class="structure-grid">
+                    <div class="structure-card">
+                        <h3>1. Olmosh - Subyekt (EGA)</h3>
+                        <p><strong>Subyekt (Ega) nima?</strong> Bu relative clause ichidagi harakatni bajaruvchi shaxs yoki narsadir. Agar olmoshdan keyin to'g'ridan-to'g'ri fe'l (<code>is, works, has, lives</code> kabi) kelsa, demak u subyekt vazifasini bajarmoqda.</p>
+                        <div class="formula">...<span class="noun">Ot</span> + <span class="pronoun">who/which/that</span> + <span class="verb">Fe'l</span> ...</div>
+                        <p class="rule-box"><strong>Oltin Qoida:</strong> Agar nisbiy olmosh (who, which, that) relative clause'ning <strong>subyekti (egasi)</strong> bo'lsa, uni <strong>HECH QACHON TUSHIRIB QOLDIRIB BO'LMAYDI!</strong></p>
+                        <div class="examples">
+                            <p><strong>Misol 1:</strong></p>
+                            <p>I met a woman <span class="pronoun">who</span> <span class="verb">works</span> as a chef.</p>
+                            <p class="uzbek"><strong>Tahlil:</strong> Relative clause: "who works as a chef". Bu gapchada kim ishlaydi? - "who" (ya'ni, "woman"). Demak, "who" subyekt. Uni olib tashlab bo'lmaydi.</p>
+                            <p class="not-ok"><s>I met a woman works as a chef.</s> (XATO)</p>
+                            <hr>
+                            <p><strong>Misol 2:</strong></p>
+                            <p>The car <span class="pronoun">that</span> <span class="verb">is</span> parked outside is mine.</p>
+                             <p class="uzbek"><strong>Tahlil:</strong> Relative clause: "that is parked outside". Nima park qilingan? - "that" (ya'ni, "car"). "that" bu yerda subyekt.</p>
+                             <p class="not-ok"><s>The car is parked outside is mine.</s> (XATO)</p>
+                        </div>
+                    </div>
+
+                    <div class="structure-card">
+                        <h3>2. Olmosh - Obyekt (TO'LDIRUVCHI)</h3>
+                        <p><strong>Obyekt (To'ldiruvchi) nima?</strong> Bu relative clause ichida harakatni bajarmaydigan, balki harakat unga qaratilgan shaxs yoki narsadir. Odatda, olmoshdan keyin boshqa bir ega (<code>I, you, he, they, the man</code> kabi) keladi.</p>
+                        <div class="formula">...<span class="noun">Ot</span> + <span class="pronoun">(whom/which/that)</span> + <span class="subject">Ega</span> + <span class="verb">Fe'l</span> ...</div>
+                        <p class="rule-box"><strong>Oltin Qoida:</strong> Agar nisbiy olmosh (who, whom, which, that) relative clause'ning <strong>obyekti (to'ldiruvchisi)</strong> bo'lsa, uni <strong>TUSHIRIB QOLDIRISH MUMKIN!</strong> Bu nutqni tabiiy va ravon qiladi.</p>
+                        <div class="examples">
+                           <p><strong>Misol 1:</strong></p>
+                            <p>The film <span class="pronoun">(which)</span> <span class="subject">we</span> <span class="verb">watched</span> was great.</p>
+                            <p class="uzbek"><strong>Tahlil:</strong> Relative clause: "(which) we watched". Kim ko'rdi? - "we" (subyekt). Nimani ko'rdi? - "which" (ya'ni, "film") (obyekt). Demak, "which" obyekt, uni tushirib qoldirsa bo'ladi.</p>
+                            <p class="ok">The film <strong>we watched</strong> was great. (✅ Juda keng tarqalgan va to'g'ri variant)</p>
+                            <hr>
+                            <p><strong>Misol 2:</strong></p>
+                            <p>The person <span class="pronoun">(whom)</span> <span class="subject">you</span> <span class="verb">should talk to</span> is Mr. Harris.</p>
+                             <p class="uzbek"><strong>Tahlil:</strong> Relative clause: "(whom) you should talk to". Kim gaplashishi kerak? - "you" (subyekt). Kim bilan? - "whom" (ya'ni, "person") (obyekt). "whom" - obyekt, uni tushirish mumkin.</p>
+                             <p class="ok">The person <strong>you should talk to</strong> is Mr. Harris. (✅ To'g'ri)</p>
+                        </div>
+                    </div>
+                     <div class="structure-card">
+                        <h3>3. Olmosh - Qarashlilik (`Whose`)</h3>
+                        <p><strong>Otga tegishli degani nima?</strong> Bu biror narsa (mashina, uy, fikr) boshqa bir otga (insonga, hayvonga) tegishli ekanligini, ya'ni uning bir qismi, mulki yoki qarindoshi ekanligini anglatadi.</p>
+                        <div class="formula">...<span class="noun">Ot</span> + <span class="pronoun">whose</span> + <span class="noun">Ot</span> + <span class="verb">Fe'l</span> ...</div>
+                        <p class="rule-box"><strong>Oltin Qoida:</strong> <code>whose</code> o'zidan keyin har doim ot (<code>noun</code>) bilan keladi va uni <strong>HECH QACHON TUSHIRIB QOLDIRIB BO'LMAYDI.</strong></p>
+                        <div class="examples">
+                           <p><strong>Misol 1:</strong></p>
+                            <p>She is the artist <span class="pronoun">whose</span> <span class="noun">paintings</span> are famous.</p>
+                            <p class="uzbek"><strong>Tahlil:</strong> "paintings" (rasmlar) kimga tegishli? - "artist"ga. Bu bog'liqlikni "whose" ta'minlaydi. Formula: Noun + whose + Noun.</p>
+                            <hr>
+                            <p><strong>Misol 2:</strong></p>
+                            <p>I have a dog <span class="pronoun">whose</span> <span class="noun">name</span> is Rex.</p>
+                             <p class="uzbek"><strong>Tahlil:</strong> "name" (ism) nimaga tegishli? - "dog"ga. "whose" bu yerda hayvonga nisbatan ham ishlatilmoqda.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="examples" class="tab-content">
+            <div class="card">
+                <h2>Maksimal Misollar To'plami</h2>
+                <div class="examples-grid">
+                    <div class="example-category"><h3>WHO (Subyekt sifatida)</h3>
+                        <div class="example-item"><p class="english">The scientist <strong>who</strong> discovered the vaccine is famous now.</p><p class="uzbek">Vaksinani kashf etgan olim hozir mashhur.</p></div>
+                        <div class="example-item"><p class="english">I want to thank the person <strong>who</strong> helped me change my tire.</p><p class="uzbek">G'ildiragimni almashtirishga yordam bergan odamga minnatdorchilik bildirmoqchiman.</p></div>
+                        <div class="example-item"><p class="english">The students <strong>who</strong> passed the exam can move to the next level.</p><p class="uzbek">Imtihondan o'tgan talabalar keyingi bosqichga o'tishlari mumkin.</p></div>
+                        <div class="example-item"><p class="english">The police are looking for the man <strong>who</strong> robbed the bank.</p><p class="uzbek">Politsiya bankni o'margan kishini qidirmoqda.</p></div>
+                    </div>
+                    <div class="example-category"><h3>WHICH (Subyekt sifatida)</h3>
+                        <div class="example-item"><p class="english">The river <strong>which</strong> flows through the city is very polluted.</p><p class="uzbek">Shahar orqali oqib o'tadigan daryo juda ifloslangan.</p></div>
+                        <div class="example-item"><p class="english">He gave me a book <strong>which</strong> was written a century ago.</p><p class="uzbek">U menga bir asr oldin yozilgan kitobni berdi.</p></div>
+                        <div class="example-item"><p class="english">The decision, <strong>which</strong> was unexpected, surprised everyone.</p><p class="uzbek">Kutilmagan bo'lgan qaror hammani hayratda qoldirdi.</p></div>
+                         <div class="example-item"><p class="english">A computer <strong>which</strong> runs slowly can be very frustrating.</p><p class="uzbek">Sekin ishlaydigan kompyuter juda asabga tegishi mumkin.</p></div>
+                    </div>
+                     <div class="example-category"><h3>Obyekt (Olmoshni tushirsa bo'ladi)</h3>
+                        <div class="example-item"><p class="english">The food <strong>(that)</strong> we ate was delicious.</p><p class="uzbek">Biz yegan ovqat mazali edi.</p></div>
+                        <div class="example-item"><p class="english">The woman <strong>(who)</strong> you were talking to is my boss.</p><p class="uzbek">Siz gaplashayotgan ayol mening boshlig'im.</p></div>
+                        <div class="example-item"><p class="english">Is this the movie <strong>(which)</strong> you wanted to see?</p><p class="uzbek">Bu siz ko'rmoqchi bo'lgan kino-mi?</p></div>
+                         <div class="example-item"><p class="english">The project <strong>(that)</strong> we are working on is very important.</p><p class="uzbek">Biz ishlayotgan loyiha juda muhim.</p></div>
+                    </div>
+                    <div class="example-category"><h3>WHOSE (Qarashlilik)</h3>
+                        <div class="example-item"><p class="english">I feel sorry for the family <strong>whose</strong> house burned down.</p><p class="uzbek">Uyi yonib ketgan oilaga achinaman.</p></div>
+                        <div class="example-item"><p class="english">This is a problem <strong>whose</strong> solution is not easy to find.</p><p class="uzbek">Bu yechimini topish oson bo'lmagan muammo.</p></div>
+                        <div class="example-item"><p class="english">The author, <strong>whose</strong> books are bestsellers, is visiting our city.</p><p class="uzbek">Kitoblari bestseller bo'lgan muallif shahrimizga tashrif buyurmoqda.</p></div>
+                        <div class="example-item"><p class="english">He's a musician <strong>whose</strong> talent is undeniable.</p><p class="uzbek">U iste'dodi shubhasiz bo'lgan musiqachi.</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="exercises" class="tab-content">
+            <div class="card">
+                <h2>Mashqlar To'plami</h2>
+                <nav class="exercise-nav">
+                    <button class="exercise-btn active" data-exercise="test">Test</button>
+                    <button class="exercise-btn" data-exercise="fill">Bo'sh joyni to'ldirish</button>
+                    <button class="exercise-btn" data-exercise="correction">Xatolarni Tuzatish</button>
+                    <button class="exercise-btn" data-exercise="transform">Gaplarni Birlashtirish</button>
+                    <button class="exercise-btn" data-exercise="translation">Tarjima Qilish</button>
+                    <button class="exercise-btn" data-exercise="order">So'zlarni Tartiblash</button>
+                </nav>
+
+                <div id="test" class="exercise-content active">
+                    <h3>To'g'ri variantni tanlang</h3>
+                    <div class="quiz-container">
+                        <div class="question" data-answer="b" data-explanation="'the man' insonga ishora qiladi va relative clause'da subyekt (ega) vazifasida kelgan. 'which' narsalar uchun, 'whose' egalik uchun ishlatiladi."><p>1. The man ___ lives next to me is a famous writer.</p><div class="options"><label><input type="radio" name="q1" value="a">a) which</label><label><input type="radio" name="q1" value="b">b) who</label><label><input type="radio" name="q1" value="c">c) whose</label></div></div>
+                        <div class="question" data-answer="c" data-explanation="Bu yerda 'car' (mashina) 'student'ga tegishli ekanligi aytilmoqda. Qarashlilik 'whose' orqali ifodalanadi."><p>2. She's the student ___ car was parked outside.</p><div class="options"><label><input type="radio" name="q2" value="a">a) who</slabel><label><input type="radio" name="q2" value="b">b) which</label><label><input type="radio" name="q2" value="c">c) whose</label></div></div>
+                        <div class="question" data-answer="a" data-explanation="Bu Non-defining clause (qo'shimcha ma'lumot). Bunday gaplarda vergul ishlatiladi va 'that' ishlatilmaydi. 'my car' narsa bo'lgani uchun 'which' ishlatiladi."><p>3. My car, ___ is very old, needs to be repaired.</p><div class="options"><label><input type="radio" name="q3" value="a">a) which</label><label><input type="radio" name="q3" value="b">b) that</label><label><input type="radio" name="q3" value="c">c) who</label></div></div>
+                        <div class="question" data-answer="b" data-explanation="Bu yerda olmosh to'ldiruvchi (obyekt) vazifasini bajargan (I met 'the woman'). Shuning uchun olmoshni tushirib qoldirish mumkin."><p>4. The woman ___ I met yesterday works at the bank. Qaysi variant grammatik to'g'ri?</p><div class="options"><label><input type="radio" name="q4" value="a">a) who</label><label><input type="radio" name="q4" value="b">b) Both 'who' and no pronoun are correct</label><label><input type="radio" name="q4" value="c">c) No pronoun is possible</label></div></div>
+                        <div class="question" data-answer="a" data-explanation="Olmosh relative clause'ning egasi (The key opens the door). Shuning uchun uni tushirib qoldirish mumkin emas."><p>5. This is the key ___ opens the front door.</p><div class="options"><label><input type="radio" name="q5" value="a">a) that</label><label><input type="radio" name="q5" value="b">b) --- (no pronoun)</label><label><input type="radio" name="q5" value="c">c) whom</label></div></div>
+                        <div class="question" data-answer="c" data-explanation="Gap rasmiy uslubda berilgan va 'the manager' to'ldiruvchi (I spoke to 'the manager'). To'ldiruvchi uchun odamlarga nisbatan 'whom' ishlatiladi."><p>6. The manager, to ___ I spoke, was very helpful.</p><div class="options"><label><input type="radio" name="q6" value="a">a) who</label><label><input type="radio" name="q6" value="b">b) that</label><label><input type="radio" name="q6" value="c">c) whom</label></div></div>
+                    </div>
+                    <button class="check-btn" onclick="checkTest()">Tekshirish</button>
+                    <div id="testResult" class="result"></div>
+                </div>
+
+                <div id="fill" class="exercise-content">
+                    <h3>Bo'sh joyni to'ldiring (who, which, that, whose, whom yoki bo'sh joy)</h3>
+                    <div class="fill-exercise">
+                         <div class="fill-question"><p>1. The book _______ I'm reading is very exciting.</p><input type="text" class="fill-input" data-answer="that|which| " data-explanation="Obyekt bo'lgani uchun 'that', 'which' yoki hech narsa ishlatish mumkin."></div>
+                        <div class="fill-question"><p>2. I know a man _______ father is a famous pilot.</p><input type="text" class="fill-input" data-answer="whose" data-explanation="Qarashlilik ('uning otasi') uchun 'whose' ishlatiladi."></div>
+                        <div class="fill-question"><p>3. The police arrested the man _______ robbed the bank.</p><input type="text" class="fill-input" data-answer="who|that" data-explanation="Subyekt (ega) bo'lgani uchun 'who' yoki 'that' ishlatiladi."></div>
+                        <div class="fill-question"><p>4. My sister, _______ you met last week, is getting married.</p><input type="text" class="fill-input" data-answer="who|whom" data-explanation="Non-defining clause. Obyekt bo'lgani uchun 'who' yoki rasmiy 'whom' ishlatiladi."></div>
+                        <div class="fill-question"><p>5. This is the restaurant _______ we had dinner last night.</p><input type="text" class="fill-input" data-answer="where" data-explanation="Joyga ishora qilganda 'where' ishlatiladi."></div>
+                        <div class="fill-question"><p>6. I'll never forget the day _______ I graduated.</p><input type="text" class="fill-input" data-answer="when" data-explanation="Vaqtga ishora qilganda 'when' ishlatiladi."></div>
+                        <div class="fill-question"><p>7. The reason _______ he is late is still a mystery.</p><input type="text" class="fill-input" data-answer="why" data-explanation="'The reason' dan keyin 'why' ishlatiladi."></div>
+                        <div class="fill-question"><p>8. This is the artist _______ paintings are sold for millions.</p><input type="text" class="fill-input" data-answer="whose" data-explanation="Qarashlilik ('uning rasmlari') uchun 'whose' ishlatiladi."></div>
+                    </div>
+                    <button class="check-btn" onclick="checkFill()">Tekshirish</button>
+                    <div id="fillResult" class="result"></div>
+                </div>
+                
+                <div id="correction" class="exercise-content">
+                   <h3>Xatolarni Tuzating</h3>
+                    <div class="correct-exercise">
+                        <div class="correct-question"><p class="incorrect">1. The girl lives next door is very smart.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="The girl who lives next door is very smart.|The girl that lives next door is very smart." data-explanation="Olmosh (who/that) subyekt bo'lganda uni tushirib qoldirib bo'lmaydi."></div>
+                        <div class="correct-question"><p class="incorrect">2. My teacher, that is very kind, helped me a lot.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="My teacher, who is very kind, helped me a lot." data-explanation="Non-defining clause'larda (vergul bilan ajratilgan) 'that' ishlatilmaydi."></div>
+                        <div class="correct-question"><p class="incorrect">3. This is the book who I bought yesterday.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="This is the book which I bought yesterday.|This is the book that I bought yesterday.|This is the book I bought yesterday." data-explanation="'book' narsa bo'lgani uchun 'who' emas, 'which' yoki 'that' ishlatiladi. Obyekt bo'lgani uchun tushirib qoldirsa ham bo'ladi."></div>
+                        <div class="correct-question"><p class="incorrect">4. The man who's car is red is my uncle.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="The man whose car is red is my uncle." data-explanation="'who's' bu 'who is' degani. Qarashlilik uchun 'whose' ishlatiladi."></div>
+                        <div class="correct-question"><p class="incorrect">5. I found the keys that you were looking for them.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I found the keys that you were looking for." data-explanation="Relative pronoun ('that') o'zi 'them' ning vazifasini bajarayapti, shuning uchun 'them' ni qayta ishlatish xato."></div>
+                    </div>
+                     <button class="check-btn" onclick="checkCorrection()">Tekshirish</button>
+                    <div id="correctionResult" class="result"></div>
+                </div>
+
+                <div id="transform" class="exercise-content">
+                    <h3>Gaplarni Birlashtiring</h3>
+                    <div class="transform-exercise">
+                        <div class="transform-question"><p>1. A girl won the competition. She is only 15.</p><input type="text" class="transform-input" placeholder="Gaplarni birlashtiring..." data-answer="The girl who won the competition is only 15." data-explanation="'She' o'rniga 'who' ishlatilib, gaplar birlashtiriladi."></div>
+                        <div class="transform-question"><p>2. I'm reading a book. It was recommended by my teacher.</p><input type="text" class="transform-input" placeholder="Gaplarni birlashtiring..." data-answer="I'm reading a book which was recommended by my teacher." data-explanation="'It' o'rniga 'which' yoki 'that' ishlatiladi."></div>
+                        <div class="transform-question"><p>3. This is Mr. Smith. I was telling you about him.</p><input type="text" class="transform-input" placeholder="Gaplarni birlashtiring..." data-answer="This is Mr. Smith, whom I was telling you about." data-explanation="'him' obyekt bo'lgani uchun 'whom' (yoki norasmiy 'who') ishlatiladi. Non-defining bo'lgani uchun vergul qo'yiladi."></div>
+                        <div class="transform-question"><p>4. The hotel was very expensive. We stayed there.</p><input type="text" class="transform-input" placeholder="Gaplarni birlashtiring..." data-answer="The hotel where we stayed was very expensive." data-explanation="'there' joyga ishora qilgani uchun 'where' ishlatiladi."></div>
+                        <div class="transform-question"><p>5. I met a woman. Her brother is a famous actor.</p><input type="text" class="transform-input" placeholder="Gaplarni birlashtiring..." data-answer="I met a woman whose brother is a famous actor." data-explanation="'Her brother' qarashlilikni bildiradi, shuning uchun 'whose' ishlatiladi."></div>
+                    </div>
+                     <button class="check-btn" onclick="checkTransform()">Tekshirish</button>
+                    <div id="transformResult" class="result"></div>
+                </div>
+                
+                <div id="translation" class="exercise-content">
+                    <h3>Tarjima Qilish</h3>
+                    <div class="translation-exercise">
+                        <div class="translation-question"><p class="translate-me">1. Men kecha sotib olgan ko'ylak juda qimmat.</p><input type="text" class="translation-input" placeholder="Ingliz tiliga tarjima qiling..." data-answer="The shirt which I bought yesterday is very expensive.|The shirt that I bought yesterday is very expensive.|The shirt I bought yesterday is very expensive." data-explanation="Obyektni ifodalovchi olmoshni ('which/that') tushirib qoldirish mumkin."></div>
+                        <div class="translation-question"><p class="translate-me">2. Bu - velosipedi o'g'irlangan bola.</p><input type="text" class="translation-input" placeholder="Ingliz tiliga tarjima qiling..." data-answer="This is the boy whose bike was stolen." data-explanation="Qarashlilikni ('uning velosipedi') ifodalash uchun 'whose' ishlatiladi."></div>
+                         <div class="translation-question"><p class="translate-me">3. Eshikni taqillatayotgan odam kim?</p><input type="text" class="translation-input" placeholder="Ingliz tiliga tarjima qiling..." data-answer="Who is the person who is knocking on the door?|Who is the person that is knocking on the door?" data-explanation="Subyektni ('kim taqillatyapti') ifodalash uchun 'who' yoki 'that' ishlatiladi."></div>
+                        <div class="translation-question"><p class="translate-me">4. The film, which stars Tom Hanks, is based on a true story.</p><input type="text" class="translation-input" placeholder="O'zbek tiliga tarjima qiling..." data-answer="Tom Hanks rol o'ynagan bu film haqiqiy voqeaga asoslangan." data-explanation="Non-defining clause qo'shimcha ma'lumot beradi."></div>
+                    </div>
+                     <button class="check-btn" onclick="checkTranslation()">Tekshirish</button>
+                    <div id="translationResult" class="result"></div>
+                </div>
+
+                <div id="order" class="exercise-content">
+                    <h3>So'zlarni Tartiblang</h3>
+                    <div class="order-exercise">
+                        <div class="order-question"><p>1. (who / the man / lives / is / next door / friendly)</p><div class="word-container"><div class="word">who</div><div class="word">the man</div><div class="word">lives</div><div class="word">is</div><div class="word">next door</div><div class="word">friendly</div></div><div class="drop-zone" data-answer="the man who lives next door is friendly"></div></div>
+                        <div class="order-question"><p>2. (I / the book / reading / is / which / am / boring)</p><div class="word-container"><div class="word">I</div><div class="word">the book</div><div class="word">reading</div><div class="word">is</div><div class="word">which</div><div class="word">am</div><div class="word">boring</div></div><div class="drop-zone" data-answer="the book which I am reading is boring"></div></div>
+                        <div class="order-question"><p>3. (whose / is / the woman / that / husband / a doctor?)</p><div class="word-container"><div class="word">whose</div><div class="word">is</div><div class="word">the woman</div><div class="word">that</div><div class="word">husband</div><div class="word">a doctor?</div></div><div class="drop-zone" data-answer="is that the woman whose husband is a doctor?"></div></div>
+                        <div class="order-question"><p>4. (stole / the man / who / was / the wallet / arrested)</p><div class="word-container"><div class="word">stole</div><div class="word">the man</div><div class="word">who</div><div class="word">was</div><div class="word">the wallet</div><div class="word">arrested</div></div><div class="drop-zone" data-answer="the man who stole the wallet was arrested"></div></div>
+                        <div class="order-question"><p>5. (we / is / where / the park / this / play / often)</p><div class="word-container"><div class="word">we</div><div class="word">is</div><div class="word">where</div><div class="word">the park</div><div class="word">this</div><div class="word">play</div><div class="word">often</div></div><div class="drop-zone" data-answer="this is the park where we often play"></div></div>
+                        <div class="order-question"><p>6. (I / met / the day / I'll / you / never / when / forget)</p><div class="word-container"><div class="word">I</div><div class="word">met</div><div class="word">the day</div><div class="word">I'll</div><div class="word">you</div><div class="word">never</div><div class="word">when</div><div class="word">forget</div></div><div class="drop-zone" data-answer="I'll never forget the day when I met you"></div></div>
+                        <div class="order-question"><p>7. (my phone / is / broken / last year / which / I / bought)</p><div class="word-container"><div class="word">my phone</div><div class="word">is</div><div class="word">broken</div><div class="word">last year</div><div class="word">which</div><div class="word">I</div><div class="word">bought</div></div><div class="drop-zone" data-answer="my phone which I bought last year is broken"></div></div>
+                        <div class="order-question"><p>8. (whose / the police / was / called / purse / the woman / stolen)</p><div class="word-container"><div class="word">whose</div><div class="word">the police</div><div class="word">was</div><div class="word">called</div><div class="word">purse</div><div class="word">the woman</div><div class="word">stolen</div></div><div class="drop-zone" data-answer="the woman whose purse was stolen called the police"></div></div>
+                        <div class="order-question"><p>9. (is / he / to / the boy / talking / who / Tom?)</p><div class="word-container"><div class="word">is</div><div class="word">he</div><div class="word">to</div><div class="word">the boy</div><div class="word">talking</div><div class="word">who</div><div class="word">Tom?</div></div><div class="drop-zone" data-answer="is he the boy who is talking to Tom?"></div></div>
+                        <div class="order-question"><p>10. (the reason / is / he / why / a secret / left)</p><div class="word-container"><div class="word">the reason</div><div class="word">is</div><div class="word">he</div><div class="word">why</div><div class="word">a secret</div><div class="word">left</div></div><div class="drop-zone" data-answer="the reason why he left is a secret"></div></div>
+                    </div>
+                    <button class="check-btn" onclick="checkOrder()">Tekshirish</button>
+                    <button class="check-btn" onclick="resetOrder()">Qayta tiklash</button>
+                    <div id="orderResult" class="result"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="errors" class="tab-content">
+             <div class="card">
+                <h2>10 ta Muhim Qoida va Keng Tarqalgan Xato</h2>
+                <div class="error-section"><div class="error-title">🚫 XATO 1: Subyekt Olmoshini Tushirib Qoldirish</div><div class="wrong-example">The man lives next door is very kind.</div><div class="correct-example">The man <strong>who/that</strong> lives next door is very kind.</div><div class="explanation"><div class="explanation-title">🔍 Sababi:</div><p>Relative clause ("...lives next door") ichida harakatni ("yashaydi") bajaruvchi ega (subyekt) yo'q. Bu vazifani <strong>who</strong> yoki <strong>that</strong> bajarishi kerak. Agar olmoshdan keyin to'g'ridan-to'g'ri fe'l (<code>lives, works, is, has</code>) kelsa, demak u subyekt va uni tushirib bo'lmaydi.</p></div></div>
+                <div class="error-section"><div class="error-title">❌ XATO 2: Non-Defining Clause'da `that` ishlatish</div><div class="wrong-example">My mother, <strong>that</strong> is a retired teacher, loves gardening.</div><div class="correct-example">My mother, <strong>who</strong> is a retired teacher, loves gardening.</div><div class="explanation"><div class="explanation-title">🔍 Sababi:</div><p>Vergullar bilan ajratilgan, qo'shimcha ma'lumot beruvchi (Non-defining) gaplarda <strong>hech qachon</strong> <code>that</code> ishlatilmaydi. Odamlar uchun faqat <code>who</code>, narsalar uchun esa faqat <code>which</code> ishlatiladi.</p></div></div>
+                <div class="error-section"><div class="error-title">🤔 XATO 3: Obyektni qayta takrorlash</div><div class="wrong-example">This is the book which I bought <strong>it</strong> yesterday.</div><div class="correct-example">This is the book which I bought yesterday. <br>This is the book I bought yesterday.</div><div class="explanation"><div class="explanation-title">🔍 Sababi:</div><p><code>which</code> (yoki <code>that</code>) olmoshi allaqachon "it" (ya'ni, "the book") ning vazifasini bajarmoqda. Gapga yana "it", "him", "her", "them" kabi olmoshlarni qo'shish ortiqcha takrorlanish bo'ladi va bu katta grammatik xatodir.</p></div></div>
+                <div class="error-section"><div class="error-title">⚙️ XATO 4: `whose` va `who's` ni adashtirish</div><div class="wrong-example">The boy <strong>who's</strong> bike was stolen is my friend.</div><div class="correct-example">The boy <strong>whose</strong> bike was stolen is my friend.</div><div class="explanation"><div class="explanation-title">🔍 Sababi:</div><p><code>who's</code> bu "who is" yoki "who has" ning qisqartmasi. Masalan: <em>Who's at the door? (Eshikda kim bor?)</em>. <br><code>whose</code> esa egalikni bildiruvchi olmosh ("-ning"). Masalan: <em>Whose book is this? (Bu kimning kitobi?)</em>. Qarashlilik haqida gap ketganda doim <strong>whose</strong> ishlatiladi.</p></div></div>
+                <div class="error-section"><div class="error-title">📍 XATO 5: `where` o'rniga `which` ishlatish</div><div class="wrong-example">This is the house <strong>which</strong> I grew up.</div><div class="correct-example">This is the house <strong>where</strong> I grew up. (yoki ...<strong>in which</strong> I grew up)</div><div class="explanation"><div class="explanation-title">🔍 Sababi:</div><p>Agar gapda joy (location) nazarda tutilsa va harakat shu joyning "ichida" sodir bo'lsa, <code>where</code> ishlatiladi. <code>where</code> aslida "in which", "at which" kabi predlogli birikmalarning o'rnini bosadi.</p></div></div>
+                <div class="error-section"><div class="error-title">🗓️ XATO 6: `when` o'rniga `which` ishlatish</div><div class="wrong-example">I remember the day <strong>which</strong> we first met.</div><div class="correct-example">I remember the day <strong>when</strong> we first met. (yoki ...<strong>on which</strong> we first met)</div><div class="explanation"><div class="explanation-title">🔍 Sababi:</div><p>Vaqtni bildiruvchi otlardan (day, year, time, moment) keyin odatda <code>when</code> ishlatiladi. <code>when</code> bu "on which" yoki "in which" ning qisqartmasi hisoblanadi.</p></div></div>
+                <div class="error-section"><div class="error-title">🧐 XATO 7: Predlogdan keyin `who` yoki `that` ishlatish</div><div class="wrong-example">The person with <strong>who</strong> I traveled was my friend.</div><div class="correct-example">The person with <strong>whom</strong> I traveled was my friend.</div><div class="explanation"><div class="explanation-title">🔍 Sababi:</div><p>Predloglardan (<code>with, for, about, to</code>) keyin insonlarga nisbatan faqat <strong>whom</strong> ishlatilishi mumkin. <code>who</code> va <code>that</code> predlogdan keyin kela olmaydi. Bu juda rasmiy qoidadir.</p></div></div>
+                <div class="error-section"><div class="error-title">❓ XATO 8: `what` ni `which/that` bilan adashtirish</div><div class="wrong-example">The things <strong>what</strong> you said were interesting.</div><div class="correct-example">The things <strong>that/which</strong> you said were interesting. (yoki "<strong>What</strong> you said was interesting.")</div><div class="explanation"><div class="explanation-title">🔍 Sababi:</div><p><code>what</code> "the thing(s) which" degan ma'noni anglatadi va o'z ichiga otni oladi. Agar gapda "the thing", "the stuff" kabi otlar bo'lsa, ulardan keyin <code>what</code> ishlatilmaydi, <code>that</code> yoki <code>which</code> ishlatiladi.</p></div></div>
+                <div class="error-section"><div class="error-title">🔢 XATO 9: Fe'lning sonini moslashtirmaslik</div><div class="wrong-example">He is one of the students who <strong>is</strong> always late.</div><div class="correct-example">He is one of the students who <strong>are</strong> always late.</div><div class="explanation"><div class="explanation-title">🔍 Sababi:</div><p>Relative clause'dagi fe'l (<code>are</code>) o'zidan oldingi olmoshga emas, balki shu olmosh ta'riflayotgan otga moslashishi kerak. Bu yerda "who" "he" ga emas, balki "students" (ko'plik) ga ishora qilmoqda. Shuning uchun fe'l ham ko'plikda bo'lishi kerak.</p></div></div>
+                <div class="error-section"><div class="error-title">🤷 XATO 10: `why` o'rniga `which/that` ishlatish</div><div class="wrong-example">The reason <strong>that</strong> he failed was obvious.</div><div class="correct-example">The reason <strong>why</strong> he failed was obvious.</div><div class="explanation"><div class="explanation-title">🔍 Sababi:</div><p>"The reason" so'zidan keyin deyarli har doim sababni ifodalovchi <strong>why</strong> ishlatiladi. Garchi ba'zi hollarda "that" ishlatilsa ham, "why" tabiiyroq va to'g'riroq hisoblanadi.</p></div></div>
+             </div>
+        </div>
+    </div>
+
+    <script>
+        let completedSections = 0;
+        const totalSections = 6;
+
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetTab = btn.dataset.tab;
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById(targetTab).classList.add('active');
+                updateProgress();
+            });
+        });
+
+        document.querySelectorAll('.exercise-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetExercise = btn.dataset.exercise;
+                document.querySelectorAll('.exercise-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.exercise-content').forEach(c => c.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById(targetExercise).classList.add('active');
+                if (targetExercise === 'order') {
+                    resetOrder();
+                }
+            });
+        });
+
+        function normalizeAnswer(answer) {
+            if (typeof answer !== 'string') return '';
+            return answer.toLowerCase().trim().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g,"").replace(/\s+/g, ' ');
+        }
+
+        function checkAnswerMatch(userAnswer, correctAnswer) {
+            const normalizedUser = normalizeAnswer(userAnswer);
+            const correctAnswers = correctAnswer.split('|').map(ans => normalizeAnswer(ans));
+            return correctAnswers.includes(normalizedUser);
+        }
+        
+        function checkTest() {
+            const questions = document.querySelectorAll('#test .question');
+            let score = 0;
+            let resultHTML = '';
+            questions.forEach((question, index) => {
+                const qNum = index + 1;
+                const correctAnswer = question.dataset.answer;
+                const explanation = question.dataset.explanation;
+                const selected = document.querySelector(`input[name="q${qNum}"]:checked`);
+
+                if (selected && selected.value === correctAnswer) {
+                    score++;
+                    resultHTML += `<div class="correct-answer">✓ ${qNum}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    const userAnswer = selected ? `Sizning javobingiz: '${selected.value}'` : "Siz javob tanlamadingiz.";
+                    resultHTML += `<div class="wrong-answer">✗ ${qNum}-savol: Noto'g'ri. ${userAnswer} <div class="explanation"><strong>To'g'ri javob '${correctAnswer}'.</strong> ${explanation}</div></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${score}/${questions.length} (${Math.round((score/questions.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('testResult').innerHTML = resultHTML;
+        }
+
+        function checkFill() {
+            const inputs = document.querySelectorAll('#fill .fill-input');
+            let correct = 0;
+            let resultHTML = '';
+            inputs.forEach((input, index) => {
+                const answer = input.dataset.answer;
+                 const explanation = input.dataset.explanation;
+                if (checkAnswerMatch(input.value.trim() === '' ? ' ' : input.value, answer)) {
+                    input.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                     resultHTML += `<div class="correct-answer">✓ ${index + 1}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    input.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savol: Noto'g'ri. <div class="explanation"><strong>To'g'ri javob: '${answer.split('|')[0]}'</strong>. ${explanation}</div></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${inputs.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('fillResult').innerHTML = resultHTML;
+        }
+
+        function checkCorrection() {
+            const inputs = document.querySelectorAll('#correction .correct-input');
+            let correct = 0;
+            let resultHTML = '';
+            inputs.forEach((input, index) => {
+                const answer = input.dataset.answer;
+                 const explanation = input.dataset.explanation;
+                if (checkAnswerMatch(input.value, answer)) {
+                    input.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                     resultHTML += `<div class="correct-answer">✓ ${index + 1}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    input.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savol: Noto'g'ri. <div class="explanation"><strong>To'g'ri javob: '${answer.split('|')[0]}'</strong>. ${explanation}</div></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${inputs.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('correctionResult').innerHTML = resultHTML;
+        }
+
+        function checkTransform() {
+            const inputs = document.querySelectorAll('#transform .transform-input');
+            let correct = 0;
+            let resultHTML = '';
+            inputs.forEach((input, index) => {
+                const answer = input.dataset.answer;
+                const explanation = input.dataset.explanation;
+                if (checkAnswerMatch(input.value, answer)) {
+                    input.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                     resultHTML += `<div class="correct-answer">✓ ${index + 1}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    input.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savol: Noto'g'ri. <div class="explanation"><strong>To'g'ri javob: '${answer.split('|')[0]}'</strong>. ${explanation}</div></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${inputs.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('transformResult').innerHTML = resultHTML;
+        }
+
+        function checkTranslation() {
+            const inputs = document.querySelectorAll('#translation .translation-input');
+            let correct = 0;
+            let resultHTML = '';
+            inputs.forEach((input, index) => {
+                const answer = input.dataset.answer;
+                const explanation = input.dataset.explanation;
+                if (checkAnswerMatch(input.value, answer)) {
+                    input.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                     resultHTML += `<div class="correct-answer">✓ ${index + 1}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    input.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savol: Noto'g'ri. <div class="explanation"><strong>To'g'ri javob: '${answer.split('|')[0]}'</strong>. ${explanation}</div></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${inputs.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('translationResult').innerHTML = resultHTML;
+        }
+        
+        function checkOrder() {
+            const dropZones = document.querySelectorAll('#order .drop-zone');
+            let correct = 0;
+            let resultHTML = '';
+            dropZones.forEach((zone, index) => {
+                const answer = zone.dataset.answer;
+                const userAnswer = Array.from(zone.children).map(child => child.textContent).join(' ');
+                if (checkAnswerMatch(userAnswer, answer)) {
+                    zone.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                } else {
+                    zone.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savolning to'g'ri javobi: <strong>${answer.split('|')[0]}</strong></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${dropZones.length} (${Math.round((correct/dropZones.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('orderResult').innerHTML = resultHTML;
+        }
+
+        function handleWordClick(event) {
+            const word = event.target;
+            if (word.classList.contains('word')) {
+                const currentContainer = word.parentElement;
+                let targetContainer;
+
+                if (currentContainer.classList.contains('word-container')) {
+                    targetContainer = currentContainer.nextElementSibling;
+                } else if (currentContainer.classList.contains('drop-zone')) {
+                    targetContainer = currentContainer.previousElementSibling;
+                }
+
+                if (targetContainer) {
+                    targetContainer.appendChild(word);
+                }
+            }
+        }
+        document.getElementById('order').addEventListener('click', handleWordClick);
+
+        function shuffleChildren(parent) {
+            let children = Array.from(parent.children);
+            for (let i = children.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [children[i], children[j]] = [children[j], children[i]];
+            }
+            children.forEach(child => parent.appendChild(child));
+        }
+
+        function resetOrder() {
+            document.querySelectorAll('#order .order-question').forEach(question => {
+                const wordContainer = question.querySelector('.word-container');
+                const dropZone = question.querySelector('.drop-zone');
+                Array.from(dropZone.children).forEach(child => wordContainer.appendChild(child));
+                shuffleChildren(wordContainer);
+                dropZone.style.border = '2px dashed var(--drop-zone-border)';
+            });
+            document.getElementById('orderResult').innerHTML = '';
+        }
+
+        function updateProgress() {
+            const tabStates = { 'rules': 1, 'diffs': 2, 'structure': 3, 'examples': 4, 'exercises': 5, 'errors': 6 };
+            const activeTab = document.querySelector('.tab-btn.active').dataset.tab;
+            completedSections = tabStates[activeTab] || 0;
+            const percentage = (completedSections / totalSections) * 100;
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = percentage + '%';
+            progressBar.querySelector('.progress-text').textContent = Math.round(percentage) + '%';
+        }
+
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            themeToggle.checked = true;
+        }
+        themeToggle.addEventListener('change', () => {
+            if (themeToggle.checked) {
+                body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateProgress();
+            resetOrder();
+        });
+    </script>
+</body>
+</html>
