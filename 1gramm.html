@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Causative Form: "Have Something Done" - To'liq Qo'llanma</title>
+    <style>
+        /* Umumiy stilizatsiya (O'zgartirishsiz qoldirildi) */
+        :root {
+            --bg-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --text-primary: #333;
+            --header-bg: rgba(255, 255, 255, 0.1);
+            --header-text: white;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --card-border: rgba(255, 255, 255, 0.2);
+            --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            --h2-text-gradient: linear-gradient(135deg, #667eea, #764ba2);
+            --rule-section-bg: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            --rule-section-border-left: #667eea;
+            --code-bg: #e2e8f0;
+            --code-color: #c53030;
+            --table-th-bg: #e9ecef;
+            --table-th-color: #495057;
+            --table-td-bg: #fff;
+            --structure-card-bg: linear-gradient(135deg, #e0eafc, #cfdef3);
+            --structure-card-border: #667eea;
+            --formula-bg: white;
+            --example-category-bg: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            --example-item-bg: white;
+            --english-text: #2d3436;
+            --uzbek-text: #636e72;
+            --input-bg: #f8f9fa;
+            --input-border: #dee2e6;
+            --input-focus-shadow: rgba(102, 126, 234, 0.1);
+            --result-bg: linear-gradient(135deg, #ddd6fe, #c4b5fd);
+            --result-color: #5b21b6;
+            --correct-color: #28a745;
+            --wrong-color: #dc3545;
+            --progress-bg: rgba(255, 255, 255, 0.2);
+            --progress-bar-gradient: linear-gradient(90deg, #4CAF50, #45a049);
+            --tab-btn-bg: rgba(255, 255, 255, 0.2);
+            --tab-btn-hover-bg: rgba(255, 255, 255, 0.3);
+            --tab-btn-active-bg: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            --exercise-btn-bg: linear-gradient(135deg, #74b9ff, #0984e3);
+            --exercise-btn-active-bg: linear-gradient(135deg, #00b894, #00a085);
+            --word-bg: linear-gradient(135deg, #667eea, #764ba2);
+            --drop-zone-border: #dee2e6;
+            --drop-zone-bg: #f8f9fa;
+            --drop-zone-hover-bg: rgba(102, 126, 234, 0.1);
+        }
+
+        .dark-mode {
+            --bg-primary: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            --text-primary: #ecf0f1;
+            --header-bg: rgba(0, 0, 0, 0.2);
+            --header-text: #ecf0f1;
+            --card-bg: #3b506b;
+            --card-border: rgba(255, 255, 255, 0.1);
+            --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            --h2-text-gradient: linear-gradient(135deg, #a2ccff, #82b1ff);
+            --rule-section-bg: #4a6280;
+            --rule-section-border-left: #82b1ff;
+            --code-bg: #2f4358;
+            --code-color: #ff8c8c;
+            --table-th-bg: #4a6280;
+            --table-th-color: #ecf0f1;
+            --table-td-bg: #3b506b;
+            --structure-card-bg: linear-gradient(135deg, #4a6280, #5a7490);
+            --structure-card-border: #82b1ff;
+            --formula-bg: #2f4358;
+            --example-category-bg: #4a6280;
+            --example-item-bg: #3b506b;
+            --english-text: #ecf0f1;
+            --uzbek-text: #bdc3c7;
+            --input-bg: #2f4358;
+            --input-border: #5a7490;
+            --input-focus-shadow: rgba(130, 177, 255, 0.2);
+            --result-bg: linear-gradient(135deg, #4a2c7a, #6a3a9a);
+            --result-color: #e0e0e0;
+            --correct-color: #5cb85c;
+            --wrong-color: #d9534f;
+            --progress-bg: rgba(0, 0, 0, 0.3);
+            --progress-bar-gradient: linear-gradient(90deg, #5cb85c, #4cae4c);
+            --tab-btn-bg: rgba(0, 0, 0, 0.3);
+            --tab-btn-hover-bg: rgba(0, 0, 0, 0.4);
+            --tab-btn-active-bg: linear-gradient(135deg, #e74c3c, #c0392b);
+            --exercise-btn-bg: linear-gradient(135deg, #3498db, #2980b9);
+            --exercise-btn-active-bg: linear-gradient(135deg, #2ecc71, #27ae60);
+            --word-bg: linear-gradient(135deg, #3498db, #2980b9);
+            --drop-zone-border: #5a7490;
+            --drop-zone-bg: #2f4358;
+            --drop-zone-hover-bg: rgba(52, 152, 219, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            min-height: 100vh;
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--card-border);
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            color: var(--header-text);
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: bold;
+        }
+
+        .header p {
+            color: var(--header-text);
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        
+        .progress-container {
+            background: var(--progress-bg);
+            border-radius: 25px;
+            padding: 5px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(5px);
+        }
+
+        .progress-bar {
+            background: var(--progress-bar-gradient);
+            height: 30px;
+            border-radius: 20px;
+            transition: width 0.8s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 0%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-text {
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .theme-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .theme-switch input[type="checkbox"] {
+            height: 0;
+            width: 0;
+            visibility: hidden;
+        }
+
+        .theme-switch label {
+            cursor: pointer;
+            text-indent: -9999px;
+            width: 60px;
+            height: 30px;
+            background: #ccc;
+            display: block;
+            border-radius: 100px;
+            position: relative;
+            transition: background-color 0.3s ease;
+        }
+
+        .theme-switch label:after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background: #fff;
+            border-radius: 90px;
+            transition: 0.3s;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+
+        .theme-switch input:checked + label {
+            background: #82b1ff;
+        }
+
+        .theme-switch input:checked + label:after {
+            left: calc(100% - 3px);
+            transform: translateX(-100%);
+            background: #f1c40f;
+        }
+
+        .theme-switch .icon {
+            font-size: 1.5rem;
+            color: var(--header-text);
+            transition: color 0.3s ease;
+        }
+        .theme-switch input:checked ~ .icon.moon { display: block; }
+        .theme-switch input:not(:checked) ~ .icon.moon { display: none; }
+        .theme-switch input:checked ~ .icon.sun { display: none; }
+        .theme-switch input:not(:checked) ~ .icon.sun { display: block; }
+        .theme-switch .icon.sun { color: #f39c12; }
+        .theme-switch .icon.moon { color: #a2ccff; }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 10px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: var(--tab-btn-bg);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            color: var(--header-text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            font-weight: 500;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .tab-btn:hover {
+            background: var(--tab-btn-hover-bg);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .tab-btn.active {
+            background: var(--tab-btn-active-bg);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+        }
+
+        .card h2 {
+            color: var(--text-primary);
+            margin-bottom: 25px;
+            font-size: 2.2rem;
+            text-align: center;
+            background: var(--h2-text-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .rule-section, .diff-section {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: var(--rule-section-bg);
+            border-radius: 15px;
+            border-left: 5px solid var(--rule-section-border-left);
+        }
+
+        .rule-section h3, .diff-section h3 {
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .rule-section p, .rule-section li, .diff-section p, .diff-section li {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        
+        .rule-section code, .diff-section code {
+            background-color: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--code-color);
+        }
+
+        .diff-table-container { 
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch; 
+        }
+
+        .diff-table {
+            width: 100%; 
+            min-width: 600px;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        .diff-table th, .diff-table td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            text-align: left;
+            color: var(--text-primary);
+        }
+        .diff-table th {
+            background-color: var(--table-th-bg);
+            color: var(--table-th-color);
+        }
+        .diff-table td { background-color: var(--table-td-bg); }
+        .ok { color: var(--correct-color); font-weight: bold; }
+        .not-ok { color: var(--wrong-color); font-weight: bold; }
+
+
+        .structure-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .structure-card {
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            background: var(--structure-card-bg);
+            border: 2px solid var(--structure-card-border);
+        }
+        .structure-card:hover { transform: translateY(-5px); }
+
+        .structure-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            text-align: center;
+            color: var(--text-primary);
+        }
+
+        .formula {
+            background: var(--formula-bg); padding: 15px; border-radius: 10px;
+            margin-bottom: 15px; text-align: center; font-size: 1.1rem;
+            font-weight: 500; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            color: var(--text-primary);
+        }
+
+        .noun, .pronoun, .verb, .subject, .object {
+            padding: 5px 10px; border-radius: 5px; margin: 0 5px; color: white;
+        }
+        .noun { background: #fd79a8; }
+        .pronoun { background: #0984e3; }
+        .verb { background: #00b894; }
+        .subject { background: #ffeaa7; color: #333;}
+        .object { background: #6c5ce7; }
+        
+
+        .examples { background: rgba(255, 255, 255, 0.7); padding: 15px; border-radius: 10px; }
+        .examples p { margin-bottom: 8px; font-size: 1rem; color: var(--text-primary); }
+        
+        .structure-card .examples .uzbek {
+            color: var(--uzbek-text);
+            font-style: italic;
+            padding-left: 10px;
+            border-left: 3px solid #764ba2;
+            margin-top: 5px;
+        }
+
+
+        .examples-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px; margin-top: 25px;
+        }
+
+        .example-category {
+            background: var(--example-category-bg); padding: 25px;
+            border-radius: 15px; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        .example-category h3 {
+            color: var(--text-primary); margin-bottom: 20px; font-size: 1.4rem; text-align: center;
+            padding-bottom: 10px; border-bottom: 2px solid var(--rule-section-border-left);
+        }
+
+        .example-item {
+            background: var(--example-item-bg); padding: 15px; border-radius: 10px; margin-bottom: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease;
+        }
+        .example-item:hover { transform: translateX(5px); }
+        .english { color: var(--english-text); font-weight: 500; margin-bottom: 8px; font-size: 1.05rem; }
+        .uzbek { color: var(--uzbek-text); font-style: italic; padding-left: 20px; border-left: 3px solid var(--rule-section-border-left); }
+
+        .exercise-nav {
+            display: flex; justify-content: center; margin-bottom: 30px;
+            gap: 10px; flex-wrap: wrap;
+        }
+        .exercise-btn {
+            background: var(--exercise-btn-bg); color: white; border: none;
+            padding: 12px 20px; border-radius: 10px; cursor: pointer; transition: all 0.3s ease;
+            font-size: 14px; font-weight: 500; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .exercise-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); }
+        .exercise-btn.active {
+            background: var(--exercise-btn-active-bg);
+            box-shadow: 0 6px 20px rgba(0, 184, 148, 0.3);
+        }
+
+        .exercise-content { display: none; }
+        .exercise-content.active { display: block; animation: fadeIn 0.5s ease-in-out; }
+        .exercise-content h3 { color: var(--text-primary); margin-bottom: 25px; font-size: 1.6rem; text-align: center; }
+
+        .quiz-container, .fill-exercise, .combine-exercise, .correct-exercise, .omission-exercise, .order-exercise { margin-bottom: 25px; }
+        .question, .fill-question, .combine-question, .correct-question, .omission-question, .order-question {
+            background: var(--example-item-bg); padding: 20px; border-radius: 15px; margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); border-left: 5px solid var(--rule-section-border-left);
+        }
+        .question p, .fill-question p, .combine-question p, .correct-question p, .omission-question p, .order-question p {
+            font-size: 1.2rem; margin-bottom: 15px; color: var(--english-text); font-weight: 500;
+        }
+        .correct-question p.incorrect { text-decoration: line-through; color: var(--wrong-color);}
+
+        .options { display: flex; flex-direction: column; gap: 10px; }
+        .options label {
+            display: flex; align-items: center; padding: 10px; border-radius: 8px;
+            background: var(--input-bg); cursor: pointer; transition: background 0.3s ease; font-size: 1rem;
+            color: var(--text-primary);
+        }
+        .options label:hover { background: var(--rule-section-bg); }
+        .options input[type="radio"] { margin-right: 10px; transform: scale(1.2); }
+
+        .fill-input, .combine-input, .correct-input, .transform-input {
+            width: 100%; background: var(--input-bg); border: 2px solid var(--input-border);
+            border-radius: 8px; padding: 12px; font-size: 1rem; transition: all 0.3s ease;
+            color: var(--text-primary);
+        }
+        .fill-input:focus, .combine-input:focus, .correct-input:focus, .transform-input:focus {
+            outline: none; border-color: var(--rule-section-border-left); box-shadow: 0 0 0 3px var(--input-focus-shadow);
+        }
+
+        .check-btn {
+            background: var(--exercise-btn-active-bg); color: white; border: none;
+            padding: 15px 30px; border-radius: 10px; cursor: pointer; font-size: 1.1rem;
+            font-weight: 500; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: block; margin: 10px auto;
+        }
+        .check-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 184, 148, 0.3); }
+
+        .check-btn:active { transform: translateY(0); }
+
+        .result {
+            margin-top: 20px; padding: 15px; border-radius: 10px; text-align: center;
+            font-size: 1.2rem; font-weight: 500; background: var(--result-bg);
+            color: var(--result-color); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .correct-answer { color: var(--correct-color); margin: 5px 0; }
+        .wrong-answer { color: var(--wrong-color); margin: 5px 0; }
+        .final-score { margin-top: 10px; padding: 10px; background: var(--input-bg); border-radius: 5px; color: var(--text-primary); }
+
+        .explanation {
+            background: var(--input-bg);
+            border-left: 4px solid var(--rule-section-border-left);
+            padding: 10px;
+            margin: 10px 0 0 0;
+            border-radius: 0 8px 8px 0;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            text-align: left;
+        }
+
+        .word-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: var(--input-bg);
+            border-radius: 10px;
+            min-height: 60px;
+        }
+
+        .word {
+            background: var(--word-bg);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer; /* O'zgartirildi */
+            transition: all 0.3s ease;
+            font-weight: 500;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+
+        .word:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .drop-zone {
+            min-height: 60px;
+            border: 2px dashed var(--drop-zone-border);
+            border-radius: 10px;
+            padding: 15px;
+            background: var(--drop-zone-bg);
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            gap: 10px;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+        }
+
+        .drop-zone:hover, .word-container:hover {
+            border-color: var(--rule-section-border-left);
+            background: var(--drop-zone-hover-bg);
+        }
+
+        .drop-zone .word {
+             background: var(--exercise-btn-active-bg);
+        }
+
+        .transform-question {
+            background: var(--example-item-bg);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--structure-card-border);
+            transition: all 0.3s ease;
+        }
+
+        .transform-question:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        }
+
+        .transform-question p {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .transform-question p b {
+            color: var(--header-text);
+            background: var(--word-bg);
+            padding: 3px 9px;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .transform-input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .transform-input-wrapper .fa-pen-to-square {
+            position: absolute;
+            left: 15px;
+            color: var(--uzbek-text);
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .transform-input {
+            padding-left: 45px; 
+            background-image: linear-gradient(to right, var(--input-bg), var(--card-bg));
+            font-weight: 500;
+        }
+
+        .transform-input:focus {
+            background-image: none;
+        }
+
+        .transform-input-wrapper:hover .fa-pen-to-square {
+            color: var(--rule-section-border-left);
+        }
+        
+        .error-section {
+            background: var(--rule-section-bg);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-left: 5px solid var(--wrong-color);
+        }
+
+        .error-title {
+            color: var(--wrong-color);
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .wrong-example {
+            background: rgba(220, 53, 69, 0.1);
+            border: 2px solid var(--wrong-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0 10px 0;
+            position: relative;
+            color: var(--text-primary);
+        }
+
+        .wrong-example::before {
+            content: "❌ NOTO'G'RI";
+            position: absolute;
+            top: -12px;
+            left: 15px;
+            background: var(--wrong-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .correct-example {
+            background: rgba(40, 167, 69, 0.1);
+            border: 2px solid var(--correct-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0 10px 0;
+            position: relative;
+            color: var(--text-primary);
+        }
+
+        .correct-example::before {
+            content: "✅ TO'G'RI";
+            position: absolute;
+            top: -12px;
+            left: 15px;
+            background: var(--correct-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .explanation .explanation-title {
+            color: var(--rule-section-border-left);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .rule-box {
+            background: var(--exercise-btn-bg);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-weight: 500;
+        }
+
+        .situation-example {
+            background: var(--example-item-bg);
+            border: 1px solid var(--input-border);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            color: var(--text-primary);
+        }
+
+        .context {
+            color: var(--correct-color);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .error-section.general-tips {
+             border-left-color: var(--correct-color);
+        }
+        .error-section.general-tips .error-title {
+             color: var(--correct-color);
+        }
+        .error-section.general-tips .rule-box {
+            background: var(--exercise-btn-active-bg);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header h1 { font-size: 2rem; }
+            .card h2 { font-size: 1.8rem; }
+            .structure-grid, .examples-grid { grid-template-columns: 1fr; }
+            .nav-tabs, .exercise-nav { flex-direction: column; gap: 5px; }
+            .tab-btn, .exercise-btn { width: 100%; text-align: center; }
+            .theme-switch { top: 10px; right: 10px; }
+        }
+
+        @media (max-width: 480px) {
+            .header { padding: 20px; }
+            .header h1 { font-size: 1.5rem; }
+            .card { padding: 15px; }
+            .structure-card { padding: 20px; }
+            .example-category { padding: 20px; }
+            .question { padding: 15px; }
+            .word { padding: 6px 12px; font-size: 14px; }
+            .diff-table { min-width: 400px; }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .check-btn:hover { animation: bounce 0.6s ease; }
+
+        .card {
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideUp 0.6s ease forwards;
+        }
+
+        @keyframes slideUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(135deg, #764ba2, #667eea); }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Causative Form: "Have Something Done" - To'liq Qo'llanma</h1>
+            <p>Biror ishni o'zingiz emas, boshqa birovga bajartirganingizni ifodalash</p>
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar">
+                    <span class="progress-text">0%</span>
+                </div>
+            </div>
+
+            <div class="theme-switch">
+                <i class="fas fa-sun icon sun"></i>
+                <input type="checkbox" id="themeToggle">
+                <label for="themeToggle"></label>
+                <i class="fas fa-moon icon moon"></i>
+            </div>
+        </div>
+
+        <nav class="nav-tabs">
+            <button class="tab-btn active" data-tab="rules">Qoidalar</button>
+            <button class="tab-btn" data-tab="diffs">Zamonlar va Farqlar</button>
+            <button class="tab-btn" data-tab="structure">Strukturalar</button>
+            <button class="tab-btn" data-tab="examples">Misollar</button>
+            <button class="tab-btn" data-tab="exercises">Mashqlar</button>
+            <button class="tab-btn" data-tab="errors">Muhim Qoidalar va Xatolar</button>
+        </nav>
+
+        <div id="rules" class="tab-content active">
+             <div class="card">
+                <h2>"Have Something Done" Qoidalari</h2>
+                <div class="rule-section">
+                    <h3>Asosiy G'oya Nima?</h3>
+                    <p>Bu qolip biror ish-harakatni <strong>o'zimiz emas</strong>, balki boshqa bir kishiga (odatda professionalga) pul evaziga yoki iltimos qilib bajartirganimizda ishlatiladi.</p>
+                    <ul>
+                        <li><strong>Ma'nosi:</strong> Ishni o'zim qilmadim, kimdir men uchun qildi.</li>
+                        <li><strong>Fokus:</strong> Natijaga, ish-harakatning o'ziga e'tibor qaratiladi, uni kim bajargani muhim emas.</li>
+                    </ul>
+                    <div class="example">
+                        <p><strong>I had my hair cut.</strong> (Men sochimni oldirdim.) - Ya'ni, sartarosh sochimni oldi.</p>
+                        <p><strong>She had her car repaired.</strong> (U mashinasini tuzattirdi.) - Ya'ni, usta mashinasini tuzatdi.</p>
+                    </div>
+                </div>
+                <div class="rule-section">
+                    <h3>Asosiy Formula</h3>
+                    <p>Bu strukturani yasash juda oson va u deyarli barcha zamonlarda bir xil qolipga tushadi:</p>
+                    <p style="text-align:center; font-size: 1.3rem; font-weight: bold;">
+                        <code>Ega + HAVE (zamonlarda o'zgaradi) + Obyekt + Fe'l 3 (V3)</code>
+                    </p>
+                     <div class="example">
+                        <p>I <strong>have</strong> my house <strong>cleaned</strong> every month. (Men har oy uyimni tozalattiraman.)</p>
+                        <p>We <strong>had</strong> the documents <strong>delivered</strong> yesterday. (Biz kecha hujjatlarni yetkaztirib berdik.)</p>
+                    </div>
+                </div>
+                <div class="rule-section">
+                    <h3><code>Have</code> vs <code>Get</code></h3>
+                    <p><code>Have something done</code> o'rniga ba'zan <code>get something done</code> ham ishlatiladi. Ma'nosi deyarli bir xil, ammo kichik farqi bor.</p>
+                     <ul>
+                        <li><strong>Have something done:</strong> Neytral va standart forma. Yozma va og'zaki nutqda keng qo'llaniladi.</li>
+                        <li><strong>Get something done:</strong> Ko'proq og'zaki nutqda ishlatiladigan norasmiy (informal) shakl.</li>
+                    </ul>
+                    <div class="example">
+                        <p>I need to <strong>have my watch repaired</strong>. (Standart)</p>
+                        <p>I need to <strong>get my watch repaired</strong>. (Norasmiy)</p>
+                    </div>
+                </div>
+                 <div class="rule-section">
+                    <h3>Salbiy Hodisalar Uchun Ishlatilishi</h3>
+                    <p>Bu qolip faqat xizmatlar uchun emas, balki biz bilan sodir bo'lgan yoqimsiz, salbiy hodisalarni aytish uchun ham ishlatiladi.</p>
+                    <div class="example">
+                        <p>He <strong>had his wallet stolen</strong> on the bus. (Avtobusda uning hamyonini o'g'irlatib qo'yishdi.)</p>
+                        <p>She <strong>had her arm broken</strong> while skiing. (U chang'i uchayotganda qo'lini sindirib oldi.)</p>
+                    </div>
+                     <p>Bu yerda ham ishni o'zi bajarmagani, balki boshqa birov yoki vaziyat sababli shu holatga tushgani nazarda tutiladi.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="diffs" class="tab-content">
+            <div class="card">
+                <h2>Zamonlar va Farqlar</h2>
+                <div class="diff-section">
+                    <h3>Active vs. Causative ("O'zi qildi" vs "Qildirdi")</h3>
+                    <p>Eng asosiy farq - ishni kim bajarganida.</p>
+                    <div class="diff-table-container">
+                        <table class="diff-table">
+                            <tr><th>Turi</th><th>Gap</th><th>Ma'nosi</th></tr>
+                            <tr>
+                                <td><code>Active</code></td>
+                                <td>I painted my room.</td>
+                                <td>Men xonamni o'zim bo'yadim. Bo'yoqchi menman.</td>
+                            </tr>
+                            <tr>
+                                <td><code>Causative</code></td>
+                                <td>I <strong>had my room painted</strong>.</td>
+                                <td>Men xonamni bo'yattirdim. Boshqa odam (bo'yoqchi) men uchun bo'yadi.</td>
+                            </tr>
+                             <tr>
+                                <td><code>Active</code></td>
+                                <td>She fixed the computer.</td>
+                                <td>U kompyuterni o'zi tuzatdi.</td>
+                            </tr>
+                             <tr>
+                                <td><code>Causative</code></td>
+                                <td>She <strong>had the computer fixed</strong>.</td>
+                                <td>U kompyuterni tuzattirdi (ustaga).</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="diff-section">
+                    <h3>"Have something done" vs "Have someone do something"</h3>
+                    <p>Bu ikki struktura o'xshash, lekin fokusi har xil.</p>
+                     <div class="diff-table-container">
+                        <table class="diff-table">
+                            <tr><th>Struktura</th><th>Misol</th><th>Fokus (e'tibor)</th></tr>
+                            <tr>
+                                <td><code>Have + Obyekt + V3</code></td>
+                                <td>I <strong>had the car repaired</strong>.</td>
+                                <td>Natijaga (mashina tuzatildi). Kim tuzatgani muhim emas.</td>
+                            </tr>
+                            <tr>
+                                <td><code>Have + Bajaruvchi + V1</code></td>
+                                <td>I <strong>had the mechanic repair</strong> the car.</td>
+                                <td>Bajaruvchiga (usta tuzatdi). Kim qilgani aytib o'tilgan.</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="diff-section">
+                    <h3>Turli Zamonlarda Qo'llanilishi</h3>
+                    <p>Bu qolipdagi <strong><code>have</code></strong> fe'li zamonlarga qarab o'zgaradi. <strong><code>V3</code></strong> esa hech qachon o'zgarmaydi!</p>
+                    <div class="diff-table-container">
+                        <table class="diff-table">
+                            <tr><th>Zamon</th><th>Struktura</th><th>Misol</th></tr>
+                            <tr>
+                                <td>Present Simple</td>
+                                <td>have/has + object + V3</td>
+                                <td>She <strong>has</strong> her car <strong>serviced</strong> every year.</td>
+                            </tr>
+                            <tr>
+                                <td>Past Simple</td>
+                                <td>had + object + V3</td>
+                                <td>I <strong>had</strong> my photo <strong>taken</strong> yesterday.</td>
+                            </tr>
+                            <tr>
+                                <td>Future Simple</td>
+                                <td>will have + object + V3</td>
+                                <td>We <strong>will have</strong> the goods <strong>delivered</strong> next week.</td>
+                            </tr>
+                            <tr>
+                                <td>Present Perfect</td>
+                                <td>have/has had + object + V3</td>
+                                <td>She <strong>has just had</strong> her hair <strong>done</strong>.</td>
+                            </tr>
+                            <tr>
+                                <td>Past Perfect</td>
+                                <td>had had + object + V3</td>
+                                <td>He <strong>had had</strong> his suit <strong>cleaned</strong> before the party.</td>
+                            </tr>
+                            <tr>
+                                <td>Present Continuous</td>
+                                <td>am/is/are having + object + V3</td>
+                                <td>I'<strong>m having</strong> a new window <strong>installed</strong> right now.</td>
+                            </tr>
+                            <tr>
+                                <td>Past Continuous</td>
+                                <td>was/were having + object + V3</td>
+                                <td>They <strong>were having</strong> their house <strong>painted</strong> when I called.</td>
+                            </tr>
+                             <tr>
+                                <td>'be going to'</td>
+                                <td>be going to have + object + V3</td>
+                                <td>I'<strong>m going to have</strong> my eyes <strong>checked</strong>.</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="structure" class="tab-content">
+            <div class="card">
+                <h2>"Have Something Done" Strukturalari</h2>
+                <div class="structure-grid">
+                    <div class="structure-card">
+                        <h3>Present Simple</h3>
+                        <div class="formula"><span class="subject">Ega</span> + <span class="verb">have/has</span> + <span class="object">obyekt</span> + <span class="noun">V3</span></div>
+                        <div class="examples">
+                            <p>1. I <b>have</b> my car <b>washed</b> every week.</p>
+                            <p class="uzbek">Men har hafta mashinamni yuvdiraman.</p>
+                            <p>2. She <b>has</b> her nails <b>done</b> twice a month.</p>
+                            <p class="uzbek">U oyiga ikki marta tirnoqlarini qildiradi.</p>
+                        </div>
+                    </div>
+                    <div class="structure-card">
+                        <h3>Past Simple</h3>
+                        <div class="formula"><span class="subject">Ega</span> + <span class="verb">had</span> + <span class="object">obyekt</span> + <span class="noun">V3</span></div>
+                        <div class="examples">
+                            <p>1. We <b>had</b> our house <b>painted</b> last year.</p>
+                            <p class="uzbek">Biz o'tgan yili uyimizni bo'yattirdik.</p>
+                            <p>2. He <b>had</b> his passport <b>stolen</b>.</p>
+                            <p class="uzbek">U pasportini o'g'irlatib qo'ydi.</p>
+                        </div>
+                    </div>
+                    <div class="structure-card">
+                        <h3>Future Simple</h3>
+                        <div class="formula"><span class="subject">Ega</span> + <span class="verb">will have</span> + <span class="object">obyekt</span> + <span class="noun">V3</span></div>
+                        <div class="examples">
+                            <p>1. I <b>will have</b> this letter <b>sent</b> tomorrow.</p>
+                            <p class="uzbek">Men ertaga bu xatni jo'nattiraman.</p>
+                            <p>2. They <b>will have</b> the report <b>finished</b> by Friday.</p>
+                            <p class="uzbek">Ular juma kunigacha hisobotni tugattirishadi.</p>
+                        </div>
+                    </div>
+                     <div class="structure-card">
+                        <h3>Present Perfect</h3>
+                        <div class="formula"><span class="subject">Ega</span> + <span class="verb">have/has had</span> + <span class="object">obyekt</span> + <span class="noun">V3</span></div>
+                        <div class="examples">
+                            <p>1. I'<b>ve just had</b> my hair <b>cut</b>.</p>
+                            <p class="uzbek">Men hozirgina sochimni oldirdim.</p>
+                            <p>2. She <b>has had</b> two books <b>published</b> so far.</p>
+                            <p class="uzbek">U hozirgacha ikkita kitobini nashr ettirdi.</p>
+                        </div>
+                    </div>
+                    <div class="structure-card">
+                        <h3>Present Continuous</h3>
+                        <div class="formula"><span class="subject">Ega</span> + <span class="verb">am/is/are having</span> + <span class="object">obyekt</span> + <span class="noun">V3</span></div>
+                        <div class="examples">
+                             <p>1. Sorry for the noise, we <b>are having</b> a new AC <b>installed</b>.</p>
+                            <p class="uzbek">Shovqin uchun uzr, biz yangi konditsioner o'rnattiryapmiz.</p>
+                            <p>2. She <b>is having</b> her portrait <b>painted</b>.</p>
+                            <p class="uzbek">U o'z portretini chizdiryapti.</p>
+                        </div>
+                    </div>
+                    <div class="structure-card">
+                        <h3>Modals bilan</h3>
+                        <div class="formula"><span class="subject">Ega</span> + <span class="verb">modal + have</span> + <span class="object">obyekt</span> + <span class="noun">V3</span></div>
+                        <div class="examples">
+                            <p>1. You <b>should have</b> your eyes <b>tested</b>.</p>
+                            <p class="uzbek">Siz ko'zlaringizni tekshirtirishingiz kerak.</p>
+                            <p>2. We <b>must have</b> this problem <b>solved</b> immediately.</p>
+                            <p class="uzbek">Biz bu muammoni zudlik bilan hal qildirishimiz shart.</p>
+                        </div>
+                    </div>
+                    <div class="structure-card">
+                        <h3>So'roq Shakli</h3>
+                        <div class="formula"><span class="subject">Do/Did/Will</span> + <span class="verb">ega + have</span> + <span class="object">obyekt</span> + <span class="noun">V3?</span></div>
+                        <div class="examples">
+                            <p>1. <b>Did</b> you <b>have</b> your car <b>repaired</b>?</p>
+                            <p class="uzbek">Mashinangizni tuzattirdingizmi?</p>
+                            <p>2. <b>Where do</b> you usually <b>have</b> your hair <b>cut</b>?</p>
+                            <p class="uzbek">Odatda sochingizni qayerda oldirasiz?</p>
+                        </div>
+                    </div>
+                    <div class="structure-card">
+                        <h3>Inkor Shakli</h3>
+                        <div class="formula"><span class="subject">Ega</span> + <span class="verb">don't/didn't + have</span> + <span class="object">obyekt</span> + <span class="noun">V3</span></div>
+                        <div class="examples">
+                            <p>1. I <b>didn't have</b> the package <b>delivered</b> on time.</p>
+                            <p class="uzbek">Men jo'natmani o'z vaqtida yetkaztira olmadim.</p>
+                            <p>2. She <b>doesn't have</b> her house <b>cleaned</b> by anyone.</p>
+                            <p class="uzbek">U uyini hech kimga tozalattirmaydi (o'zi tozalaydi).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="examples" class="tab-content">
+            <div class="card">
+                <h2>"Have Something Done" Misollari</h2>
+                <div class="examples-grid">
+                    <div class="example-category">
+                        <h3>Xizmatlar Uchun</h3>
+                        <div class="example-item">
+                            <p class="english">I'm going to <strong>have my suit cleaned</strong> for the wedding.</p>
+                            <p class="uzbek">Men to'y uchun kostyumimni tozalattirmoqchiman.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">She <strong>has her groceries delivered</strong> every Friday.</p>
+                            <p class="uzbek">U har juma oziq-ovqat mahsulotlarini yetkaztirib beradi.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">We need to <strong>have our passports renewed</strong>.</p>
+                            <p class="uzbek">Biz pasportlarimizni yangilatishimiz kerak.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">He is famous. He <strong>has his biography written</strong> by a professional writer.</p>
+                            <p class="uzbek">U mashhur. U o'z tarjimai holini professional yozuvchiga yozdirgan.</p>
+                        </div>
+                    </div>
+                    <div class="example-category">
+                        <h3>Salbiy Hodisalar Uchun</h3>
+                        <div class="example-item">
+                            <p class="english">My friend <strong>had his phone stolen</strong> at the concert.</p>
+                            <p class="uzbek">Do'stimning telefonini konsertda o'g'irlatib qo'yishdi.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">How did you <strong>have your leg broken</strong>?</p>
+                            <p class="uzbek">Qanday qilib oyog'ingizni sindirib oldingiz?</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">The politician <strong>had his reputation damaged</strong> by the scandal.</p>
+                            <p class="uzbek">Siyosatchining obro'si janjal tufayli putur yetkazildi.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">We <strong>had our flight cancelled</strong> due to bad weather.</p>
+                            <p class="uzbek">Yomon ob-havo tufayli bizning reysimiz bekor qilindi.</p>
+                        </div>
+                    </div>
+                    <div class="example-category">
+                        <h3>"GET" bilan (Norasmiy)</h3>
+                        <div class="example-item">
+                            <p class="english">I really need to <strong>get my hair cut</strong>. It's too long.</p>
+                            <p class="uzbek">Sochimni oldirishim kerak. Juda uzun bo'lib ketdi.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">Can we <strong>get this pizza delivered</strong> to our address?</p>
+                            <p class="uzbek">Shu pitsani manzilimizga yetkazib bera olamizmi?</p>
+                        </div>
+                         <div class="example-item">
+                            <p class="english">He finally <strong>got his car fixed</strong>.</p>
+                            <p class="uzbek">U nihoyat mashinasini tuzattirdi.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="exercises" class="tab-content">
+            <div class="card">
+                <h2>Mashqlar (5 xil turdagi)</h2>
+                <nav class="exercise-nav">
+                    <button class="exercise-btn active" data-exercise="test">Test</button>
+                    <button class="exercise-btn" data-exercise="fill">Bo'sh joyni to'ldirish</button>
+                    <button class="exercise-btn" data-exercise="correction">Xatolarni Tuzating</button>
+                    <button class="exercise-btn" data-exercise="order">So'zlarni Tartiblang</button>
+                    <button class="exercise-btn" data-exercise="transform">Gaplarni o'zgartirish</button>
+                </nav>
+
+                <div id="test" class="exercise-content active">
+                    <h3>To'g'ri variantni tanlang</h3>
+                    <div class="quiz-container">
+                        <div class="question" data-answer="b" data-explanation="Gap o'tgan zamonda va ishni o'zi qilmagan, kimdir u uchun qilgan. Shuning uchun 'had...repaired' to'g'ri."><p>1. My car wasn't working, so I ___ yesterday.</p><div class="options"><label><input type="radio" name="q1" value="a">a) had repaired it</label><label><input type="radio" name="q1" value="b">b) had it repaired</label><label><input type="radio" name="q1" value="c">c) have it repaired</label></div></div>
+                        <div class="question" data-answer="c" data-explanation="Hozirgi davomli zamon kerak, chunki 'at the moment' (ayni paytda) ishlatilgan. To'g'ri struktura: am/is/are + having + object + V3."><p>2. We ___ a new kitchen installed at the moment.</p><div class="options"><label><input type="radio" name="q2" value="a">a) have</label><label><input type="radio" name="q2" value="b">b) had</label><label><input type="radio" name="q2" value="c">c) are having</label></div></div>
+                        <div class="question" data-answer="a" data-explanation="'Every year' Present Simple zamonini bildiradi. Uchinchi shaxs (She) uchun 'has' ishlatiladi."><p>3. She ___ her eyes tested every year.</p><div class="options"><label><input type="radio" name="q3" value="a">a) has</label><label><input type="radio" name="q3" value="b">b) had</label><label><input type="radio" name="q3" value="c">c) have</label></div></div>
+                        <div class="question" data-answer="c" data-explanation="Bu salbiy hodisa. Uning sumkasi o'g'irlandi (kimdir o'g'irladi). Shuning uchun Causative 'had her bag stolen' ishlatiladi."><p>4. She was very upset because she ___ on the train.</p><div class="options"><label><input type="radio" name="q4" value="a">a) stole her bag</label><label><input type="radio" name="q4" value="b">b) had stolen her bag</label><label><input type="radio" name="q4" value="c">c) had her bag stolen</label></div></div>
+                        <div class="question" data-answer="b" data-explanation="Gap kelasi zamon haqida. Kelasi zamon uchun 'will have... V3' ishlatiladi."><p>5. We ___ the documents delivered by 5 PM tomorrow.</p><div class="options"><label><input type="radio" name="q5" value="a">a) had</label><label><input type="radio" name="q5" value="b">b) will have</label><label><input type="radio" name="q5" value="c">c) are having</label></div></div>
+                    </div>
+                    <button class="check-btn" onclick="checkTest()">Tekshirish</button>
+                    <div id="testResult" class="result"></div>
+                </div>
+
+                <div id="fill" class="exercise-content">
+                    <h3>Bo'sh joyni to'ldiring ('have' fe'lini to'g'ri zamonda qo'ying)</h3>
+                    <div class="fill-exercise">
+                        <div class="fill-question"><p>1. I need to _______ my hair cut. (Infinitive)</p><input type="text" class="fill-input" data-answer="have" data-explanation="'to' dan keyin fe'lning boshlang'ich shakli 'have' ishlatiladi."></div>
+                        <div class="fill-question"><p>2. We _______ our house painted last summer. (Past Simple)</p><input type="text" class="fill-input" data-answer="had" data-explanation="'Last summer' o'tgan zamonni ko'rsatadi, shuning uchun 'had' ishlatiladi."></div>
+                        <div class="fill-question"><p>3. She _______ her car serviced every six months. (Present Simple)</p><input type="text" class="fill-input" data-answer="has" data-explanation="'Every six months' odatiy harakatni, Present Simple'ni bildiradi. 'She' uchun 'has' ishlatiladi."></div>
+                        <div class="fill-question"><p>4. I think I _______ my phone stolen! It's not in my pocket. (Present Perfect)</p><input type="text" class="fill-input" data-answer="have had" data-explanation="Natija hozir ko'rinib turibdi (telefon yo'q), shuning uchun Present Perfect 'have had' ishlatiladi."></div>
+                        <div class="fill-question"><p>5. He is going to _______ a pizza delivered for dinner. (be going to)</p><input type="text" class="fill-input" data-answer="have" data-explanation="'going to' dan keyin fe'lning boshlang'ich shakli 'have' ishlatiladi."></div>
+                    </div>
+                    <button class="check-btn" onclick="checkFill()">Tekshirish</button>
+                    <div id="fillResult" class="result"></div>
+                </div>
+
+                <div id="correction" class="exercise-content">
+                    <h3>Xatolarni tuzating</h3>
+                    <div class="correct-exercise">
+                        <div class="correct-question"><p class="incorrect">1. She will has her dress made.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="She will have her dress made." data-explanation="'will' modal fe'lidan keyin 'have' ning boshlang'ich shakli ishlatiladi, 'has' emas."></div>
+                        <div class="correct-question"><p class="incorrect">2. I had my car repair yesterday.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I had my car repaired yesterday." data-explanation="Causative qolipida doim fe'lning 3-shakli (Past Participle - V3) ishlatiladi. 'repair' emas, 'repaired'."></div>
+                        <div class="correct-question"><p class="incorrect">3. He is having installed a new TV.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="He is having a new TV installed." data-explanation="Struktura: have + OBYEKT + V3. Obyekt ('a new TV') 'have' va 'V3' (installed) o'rtasida bo'lishi kerak."></div>
+                        <div class="correct-question"><p class="incorrect">4. They their house painted last year.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="They had their house painted last year." data-explanation="Gapda 'have' fe'li tushib qolgan. O'tgan zamon uchun 'had' kerak."></div>
+                        <div class="correct-question"><p class="incorrect">5. I have my hair cutted every month.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I have my hair cut every month." data-explanation="'cut' fe'lining barcha 3 shakli bir xil: cut-cut-cut. 'cutted' degan so'z yo'q."></div>
+                    </div>
+                    <button class="check-btn" onclick="checkCorrection()">Tekshirish</button>
+                    <div id="correctionResult" class="result"></div>
+                </div>
+                
+                <div id="order" class="exercise-content">
+                    <h3>So'zlarni to'g'ri tartibda joylashtiring</h3>
+                    <div class="order-exercise">
+                        <div class="order-question">
+                            <p>1. (had / his / photo / he / taken)</p>
+                            <div class="word-container">
+                                <div class="word">had</div>
+                                <div class="word">his</div>
+                                <div class="word">photo</div>
+                                <div class="word">he</div>
+                                <div class="word">taken</div>
+                            </div>
+                            <div class="drop-zone" data-answer="he had his photo taken"></div>
+                        </div>
+                        <div class="order-question">
+                            <p>2. (her / every / nails / has / done / she / month)</p>
+                            <div class="word-container">
+                                <div class="word">her</div>
+                                <div class="word">every</div>
+                                <div class="word">nails</div>
+                                <div class="word">has</div>
+                                <div class="word">done</div>
+                                <div class="word">she</div>
+                                <div class="word">month</div>
+                            </div>
+                            <div class="drop-zone" data-answer="she has her nails done every month"></div>
+                        </div>
+                        <div class="order-question">
+                            <p>3. (I / will / delivered / have / the package)</p>
+                            <div class="word-container">
+                                <div class="word">I</div>
+                                <div class="word">will</div>
+                                <div class="word">delivered</div>
+                                <div class="word">have</div>
+                                <div class="word">the package</div>
+                            </div>
+                            <div class="drop-zone" data-answer="I will have the package delivered"></div>
+                        </div>
+                        <div class="order-question">
+                            <p>4. (you / did / your / have / car / washed?)</p>
+                            <div class="word-container">
+                                <div class="word">you</div>
+                                <div class="word">did</div>
+                                <div class="word">your</div>
+                                <div class="word">have</div>
+                                <div class="word">car</div>
+                                <div class="word">washed?</div>
+                            </div>
+                            <div class="drop-zone" data-answer="did you have your car washed?"></div>
+                        </div>
+                    </div>
+                    <button class="check-btn" onclick="checkOrder()">Tekshirish</button>
+                    <button class="check-btn" onclick="resetOrder()">Qayta tiklash</button>
+                    <div id="orderResult" class="result"></div>
+                </div>
+
+                <div id="transform" class="exercise-content">
+                    <h3>Gaplarni "Have something done" qolipidan foydalanib qayta yozing</h3>
+                    <div class="transform-exercise">
+                        <div class="transform-question">
+                            <p>1. A mechanic is repairing my car.</p>
+                            <div class="transform-input-wrapper">
+                                <i class="fas fa-pen-to-square"></i>
+                                <input type="text" class="transform-input" placeholder="O'zgartirilgan gapni shu yerga yozing..." data-answer="I am having my car repaired." data-explanation="Active gap Present Continuous'da, shuning uchun Causative ham shu zamonda bo'lishi kerak: I am having my car repaired.">
+                            </div>
+                        </div>
+                        <div class="transform-question">
+                            <p>2. Someone cleans her house every Friday.</p>
+                             <div class="transform-input-wrapper">
+                                <i class="fas fa-pen-to-square"></i>
+                                <input type="text" class="transform-input" placeholder="O'zgartirilgan gapni shu yerga yozing..." data-answer="She has her house cleaned every Friday." data-explanation="Active gap Present Simple'da. Shuning uchun Causative ham shu zamonda bo'lishi kerak: She has her house cleaned.">
+                            </div>
+                        </div>
+                        <div class="transform-question">
+                            <p>3. I will ask a developer to build a website for me.</p>
+                             <div class="transform-input-wrapper">
+                                <i class="fas fa-pen-to-square"></i>
+                                <input type="text" class="transform-input" placeholder="O'zgartirilgan gapni shu yerga yozing..." data-answer="I will have a website built." data-explanation="Active gap Future Simple'da. Causative ham kelasi zamonda bo'ladi: I will have a website built.">
+                            </div>
+                        </div>
+                        <div class="transform-question">
+                            <p>4. A famous artist painted her portrait.</p>
+                             <div class="transform-input-wrapper">
+                                <i class="fas fa-pen-to-square"></i>
+                                <input type="text" class="transform-input" placeholder="O'zgartirilgan gapni shu yerga yozing..." data-answer="She had her portrait painted." data-explanation="Active gap Past Simple'da. Causative ham o'tgan zamonda bo'ladi: She had her portrait painted.">
+                            </div>
+                        </div>
+                    </div>
+                    <button class="check-btn" onclick="checkTransform()">Tekshirish</button>
+                    <div id="transformResult" class="result"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="errors" class="tab-content">
+             <div class="card">
+                <h2>Muhim Qoidalar va Xatolar</h2>
+                
+                <div class="error-section">
+                    <div class="error-title">🔄 XATO 1: Active va Causative ma'nolarini adashtirish</div>
+                    <div class="wrong-example">
+                        I am a hairdresser. Yesterday, I had my hair cut.
+                        <div class="uzbek">Men sartaroshman. Kecha men sochimni oldirdim. (Bu gapda ma'no xatosi bor)</div>
+                    </div>
+                    <div class="correct-example">
+                        I am a hairdresser. Yesterday, I cut my hair.
+                        <div class="uzbek">Men sartaroshman. Kecha men sochimni oldim. (O'zi kesgan)</div>
+                    </div>
+                    <div class="explanation">
+                        <div class="explanation-title">🔍 Tushuntirish:</div>
+                        <p>Agar ishni <strong>o'zingiz</strong> bajarsangiz, oddiy aktiv gap ishlatasiz (I cut my hair). Agar kimdir siz <strong>uchun</strong> bajarsa, causative ishlatasiz (I had my hair cut).</p>
+                    </div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🔢 XATO 2: Noto'g'ri fe'l shaklini ishlatish</div>
+                    <div class="wrong-example">
+                        She had her car <strong>repair</strong>.
+                    </div>
+                    <div class="correct-example">
+                        She had her car <strong>repaired</strong>.
+                    </div>
+                     <div class="explanation">
+                        <div class="explanation-title">🔍 Tushuntirish:</div>
+                        <p>Bu qolipda <strong>DOIM</strong> fe'lning 3-shakli, ya'ni <strong>Past Participle (V3)</strong> ishlatiladi. 'have' fe'lining zamoni o'zgarsa ham, V3 o'zgarmaydi.</p>
+                    </div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">📍 XATO 3: So'z tartibini buzish</div>
+                    <div class="wrong-example">
+                        I am having installed a new window.
+                    </div>
+                    <div class="correct-example">
+                        I am having <strong>a new window</strong> installed.
+                    </div>
+                    <div class="explanation">
+                        <div class="explanation-title">🔍 Tushuntirish:</div>
+                        <p>Obyekt (ish bajarilayotgan narsa) doim <code>have</code> va <code>V3</code> ning <strong>o'rtasida</strong> keladi.</p>
+                        <p><strong>Formula:</strong> ...have + <span style="color:var(--correct-color)">OBYEKT</span> + V3</p>
+                    </div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">⏰ XATO 4: Zamonni noto'g'ri o'zgartirish</div>
+                    <div class="wrong-example">
+                        I <strong>have</strong> my car repaired <strong>yesterday</strong>.
+                    </div>
+                    <div class="correct-example">
+                        I <strong>had</strong> my car repaired <strong>yesterday</strong>.
+                    </div>
+                    <div class="explanation">
+                        <div class="explanation-title">🔍 Tushuntirish:</div>
+                        <p>Zamonni ifodalash uchun asosiy fe'l (V3) emas, balki <strong>'have' fe'li o'zgartiriladi</strong>. 'yesterday' bo'lsa, 'have' -> 'had' ga aylanadi.</p>
+                    </div>
+                </div>
+
+                <div class="error-section general-tips">
+                    <div class="error-title">💡 ESDA SAQLANG</div>
+                    <div class="rule-box">
+                        <strong>Bu qolipni ishlatish uchun o'zingizga savol bering:</strong><br>
+                        "Ishni o'zim qildimmi yoki kimdir men uchun qildimi?"
+                    </div>
+                    <div class="situation-example">
+                        <div class="context">Tez tekshirish usuli:</div>
+                        <p>1. <strong>Zamonni aniqlang</strong> (now, yesterday, every day...)</p>
+                        <p>2. Shu zamonga qarab <strong>'have' ni o'zgartiring</strong> (am having, had, have/has...)</p>
+                        <p>3. Obyektni qo'ying.</p>
+                        <p>4. Asosiy fe'lni <strong>V3 shaklida</strong> qo'shing.</p>
+                    </div>
+                </div>
+             </div>
+        </div>
+    </div>
+
+    <script>
+        // Progress tracking
+        let completedSections = 0;
+        const totalSections = 6;
+
+        // Tab functionality
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetTab = btn.dataset.tab;
+                
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                btn.classList.add('active');
+                document.getElementById(targetTab).classList.add('active');
+                
+                updateProgress();
+            });
+        });
+
+        // Exercise navigation
+        document.querySelectorAll('.exercise-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetExercise = btn.dataset.exercise;
+                
+                document.querySelectorAll('.exercise-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.exercise-content').forEach(c => c.classList.remove('active'));
+                
+                btn.classList.add('active');
+                document.getElementById(targetExercise).classList.add('active');
+
+                if (targetExercise === 'order') {
+                    resetOrder();
+                }
+            });
+        });
+
+        function normalizeAnswer(answer) {
+            if (typeof answer !== 'string') return '';
+            return answer.toLowerCase().trim()
+                .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g,"")
+                .replace(/\s+/g, ' ');
+        }
+
+        function checkAnswerMatch(userAnswer, correctAnswer) {
+            const normalizedUser = normalizeAnswer(userAnswer);
+            const correctAnswers = correctAnswer.split('|').map(ans => normalizeAnswer(ans));
+            return correctAnswers.includes(normalizedUser);
+        }
+        
+        function checkTest() {
+            const questions = document.querySelectorAll('#test .question');
+            let score = 0;
+            let resultHTML = '';
+            questions.forEach((question, index) => {
+                const qNum = index + 1;
+                const correctAnswer = question.dataset.answer;
+                const explanation = question.dataset.explanation;
+                const selected = document.querySelector(`input[name="q${qNum}"]:checked`);
+
+                if (selected && selected.value === correctAnswer) {
+                    score++;
+                    resultHTML += `<div class="correct-answer">✓ ${qNum}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    const userAnswer = selected ? `Sizning javobingiz: '${selected.value}'` : "Siz javob tanlamadingiz.";
+                    resultHTML += `<div class="wrong-answer">✗ ${qNum}-savol: Noto'g'ri. ${userAnswer} <div class="explanation"><strong>To'g'ri javob '${correctAnswer}'.</strong> ${explanation}</div></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${score}/${questions.length} (${Math.round((score/questions.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('testResult').innerHTML = resultHTML;
+        }
+
+
+        function checkFill() {
+            const inputs = document.querySelectorAll('#fill .fill-input');
+            let correct = 0;
+            let resultHTML = '';
+            inputs.forEach((input, index) => {
+                const answer = input.dataset.answer;
+                const explanation = input.dataset.explanation;
+                if (checkAnswerMatch(input.value, answer)) {
+                    input.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                    resultHTML += `<div class="correct-answer">✓ ${index + 1}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    input.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savol: Noto'g'ri. <div class="explanation"><strong>To'g'ri javob: '${answer.split('|')[0]}'</strong>. ${explanation}</div></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${inputs.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('fillResult').innerHTML = resultHTML;
+        }
+
+        function checkCorrection() {
+            const inputs = document.querySelectorAll('#correction .correct-input');
+            let correct = 0;
+            let resultHTML = '';
+            inputs.forEach((input, index) => {
+                const answer = input.dataset.answer;
+                 const explanation = input.dataset.explanation;
+                if (checkAnswerMatch(input.value, answer)) {
+                    input.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                     resultHTML += `<div class="correct-answer">✓ ${index + 1}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    input.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savol: Noto'g'ri. <div class="explanation"><strong>To'g'ri javob: '${answer.split('|')[0]}'</strong>. ${explanation}</div></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${inputs.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('correctionResult').innerHTML = resultHTML;
+        }
+
+        function checkOrder() {
+            const dropZones = document.querySelectorAll('#order .drop-zone');
+            let correct = 0;
+            let resultHTML = '';
+            dropZones.forEach((zone, index) => {
+                const answer = zone.dataset.answer;
+                const userAnswer = Array.from(zone.children).map(child => child.textContent).join(' ');
+                if (checkAnswerMatch(userAnswer, answer)) {
+                    zone.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                } else {
+                    zone.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savolning to'g'ri javobi: <strong>${answer.split('|')[0]}</strong></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${dropZones.length} (${Math.round((correct/dropZones.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('orderResult').innerHTML = resultHTML;
+        }
+
+        function checkTransform() {
+            const inputs = document.querySelectorAll('#transform .transform-input');
+            let correct = 0;
+            let resultHTML = '';
+            inputs.forEach((input, index) => {
+                const answer = input.dataset.answer;
+                const explanation = input.dataset.explanation;
+                if (checkAnswerMatch(input.value, answer)) {
+                    input.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                     resultHTML += `<div class="correct-answer">✓ ${index + 1}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    input.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savol: Noto'g'ri. <div class="explanation"><strong>To'g'ri javob: '${answer.split('|')[0]}'</strong>. ${explanation}</div></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${inputs.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('transformResult').innerHTML = resultHTML;
+        }
+
+        // YANGI FUNKSIYA: So'zlarni bosish orqali harakatlantirish
+        function handleWordClick(event) {
+            const word = event.target;
+            // Bosilgan element ".word" classiga ega ekanligini tekshirish
+            if (word.classList.contains('word')) {
+                const currentContainer = word.parentElement;
+                let targetContainer;
+
+                // Agar so'z .word-container ichida bo'lsa, uni .drop-zone ga o'tkazish
+                if (currentContainer.classList.contains('word-container')) {
+                    targetContainer = currentContainer.nextElementSibling; // .drop-zone ni topish
+                } 
+                // Aksincha, agar so'z .drop-zone ichida bo'lsa, uni .word-container ga qaytarish
+                else if (currentContainer.classList.contains('drop-zone')) {
+                    targetContainer = currentContainer.previousElementSibling; // .word-container ni topish
+                }
+
+                if (targetContainer) {
+                    targetContainer.appendChild(word);
+                }
+            }
+        }
+        
+        // "So'zlarni Tartiblang" mashqining umumiy maydoniga "click" hodisasini qo'shish
+        // Bu har bir so'zga alohida listener qo'shishdan samaraliroq
+        document.getElementById('order').addEventListener('click', handleWordClick);
+
+        function shuffleChildren(parent) {
+            let children = Array.from(parent.children);
+            for (let i = children.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [children[i], children[j]] = [children[j], children[i]];
+            }
+            children.forEach(child => parent.appendChild(child));
+        }
+
+        function resetOrder() {
+            document.querySelectorAll('#order .order-question').forEach(question => {
+                const wordContainer = question.querySelector('.word-container');
+                const dropZone = question.querySelector('.drop-zone');
+                
+                // Javoblar maydonidagi barcha so'zlarni asl joyiga qaytarish
+                Array.from(dropZone.children).forEach(child => wordContainer.appendChild(child));
+                
+                // So'zlarni aralashtirish
+                shuffleChildren(wordContainer);
+
+                dropZone.style.border = '2px dashed var(--drop-zone-border)';
+            });
+            document.getElementById('orderResult').innerHTML = '';
+        }
+
+        function updateProgress() {
+            const tabStates = { 'rules': 1, 'diffs': 2, 'structure': 3, 'examples': 4, 'exercises': 5, 'errors': 6 };
+            const activeTab = document.querySelector('.tab-btn.active').dataset.tab;
+            completedSections = tabStates[activeTab] || 0;
+            const percentage = (completedSections / totalSections) * 100;
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = percentage + '%';
+            progressBar.querySelector('.progress-text').textContent = Math.round(percentage) + '%';
+        }
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            themeToggle.checked = true;
+        }
+        themeToggle.addEventListener('change', () => {
+            if (themeToggle.checked) {
+                body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateProgress();
+            resetOrder();
+        });
+    </script>
+</body>
+</html>
