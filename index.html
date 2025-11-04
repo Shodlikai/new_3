@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Time</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            overflow-x: hidden;
+            transition: background-color 0.5s ease;
+        }
+
+        /* Day/Night Mode Backgrounds */
+        body.day-mode .gradient-bg {
+            background: linear-gradient(-45deg, #89CFF0, #A7C7E7, #B4E4FF, #87CEEB);
+        }
+
+        body.night-mode .gradient-bg {
+            background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #1a1a40);
+        }
+
+        body.sunset-mode .gradient-bg {
+            background: linear-gradient(-45deg, #FF6B6B, #FFB347, #FFA07A, #FF7F50);
+        }
+
+        body.sunrise-mode .gradient-bg {
+            background: linear-gradient(-45deg, #FFD700, #FFA07A, #FFB6C1, #87CEEB);
+        }
+        
+        /* Animated Gradient Background */
+        .gradient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -3;
+            background-size: 400% 400%;
+            animation: gradientShift 20s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            animation: float linear infinite;
+            will-change: transform, opacity;
+        }
+
+        body.day-mode .particle {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        body.night-mode .particle {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        body.sunset-mode .particle {
+            background: rgba(255, 215, 0, 0.3);
+        }
+
+        body.sunrise-mode .particle {
+            background: rgba(255, 255, 255, 0.35);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;  
+            top: 0;
+            left: 0;
+            width: 100%;     
+            padding: 1px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            text-align: center;
+            transition: all 0.5s ease;
+        }
+
+        body.day-mode nav {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        body.night-mode nav {
+            background: rgba(20, 20, 40, 0.6);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        body.sunset-mode nav {
+            background: rgba(255, 107, 107, 0.3);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 200, 100, 0.4);
+        }
+
+        body.sunrise-mode nav {
+            background: rgba(255, 215, 0, 0.25);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            animation: pulse 3s ease-in-out infinite;
+            transition: color 0.5s ease;
+            cursor: pointer; /* Qo'lda o'zgartirish uchun kursor qo'shildi */
+            user-select: none;
+        }
+
+        body.day-mode .logo {
+            color: #2c3e50;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        body.night-mode .logo {
+            color: #ffffff;
+            text-shadow: 2px 2px 8px rgba(100, 150, 255, 0.5);
+        }
+
+        body.sunset-mode .logo {
+            color: #ffffff;
+            text-shadow: 2px 2px 6px rgba(255, 100, 0, 0.6);
+        }
+
+        body.sunrise-mode .logo {
+            color: #2c3e50;
+            text-shadow: 2px 2px 4px rgba(255, 200, 0, 0.4);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        
+        /* Lesson buttons */
+        .lesson-buttons {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .lesson-btn {
+            padding: 20px 20px;
+            font-size: 14px;
+            width: 100px;
+            height: 50px;
+            cursor: pointer;
+            border-radius: 20px;
+            transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, background 0.3s ease;
+            min-width: 80px;
+            min-height: 40px;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+            border: none;
+            will-change: transform;
+        }
+
+        body.day-mode .lesson-btn {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            color: #2c3e50;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 
+                        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+        }
+
+        body.night-mode .lesson-btn {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 
+                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        body.sunset-mode .lesson-btn {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(100, 0, 0, 0.5);
+            box-shadow: 0 4px 12px rgba(255, 100, 0, 0.2), 
+                        inset 0 1px 0 rgba(255, 200, 100, 0.4);
+        }
+
+        body.sunrise-mode .lesson-btn {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(10px);
+            color: #2c3e50;
+            text-shadow: 1px 1px 2px rgba(255, 200, 0, 0.3);
+            box-shadow: 0 4px 12px rgba(255, 200, 0, 0.2), 
+                        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+        }
+        
+        .lesson-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            transition: left 0.5s ease;
+            will-change: left;
+        }
+
+        body.day-mode .lesson-btn::before {
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+        }
+
+        body.night-mode .lesson-btn::before {
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        }
+
+        body.sunset-mode .lesson-btn::before {
+            background: linear-gradient(90deg, transparent, rgba(255, 200, 100, 0.4), transparent);
+        }
+
+        body.sunrise-mode .lesson-btn::before {
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+        }
+
+        .lesson-btn:hover::before {
+            left: 100%;
+        }
+        
+        /* Tugma animatsiyasini tezlashtirish */
+        .lesson-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            transition: transform 0.2s ease-out, box-shadow 0.2s ease-out; 
+        }
+
+        body.day-mode .lesson-btn:hover {
+            background: rgba(255, 255, 255, 0.7);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        body.night-mode .lesson-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 20px rgba(100, 150, 255, 0.3);
+        }
+
+        body.sunset-mode .lesson-btn:hover {
+            background: rgba(255, 255, 255, 0.35);
+            box-shadow: 0 8px 20px rgba(255, 100, 0, 0.3);
+        }
+
+        body.sunrise-mode .lesson-btn:hover {
+            background: rgba(255, 255, 255, 0.55);
+            box-shadow: 0 8px 20px rgba(255, 200, 0, 0.3);
+        }
+        
+        .lesson-btn:active {
+            transform: translateY(-2px) scale(1.02);
+            transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
+        }
+
+        /* Modal oyna */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+            z-index: 1001;
+            animation: fadeInModal 0.3s ease;
+        }
+
+        @keyframes fadeInModal {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            padding: 40px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            color: white;
+            max-width: 500px;
+            width: 90%;
+            animation: scaleIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: background 0.5s ease;
+        }
+
+        body.day-mode .modal-content {
+            background: linear-gradient(135deg, #89CFF0 0%, #A7C7E7 100%);
+        }
+
+        body.night-mode .modal-content {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        body.sunset-mode .modal-content {
+            background: linear-gradient(135deg, #FF6B6B 0%, #FFB347 100%);
+        }
+
+        body.sunrise-mode .modal-content {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA07A 100%);
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .modal-content h3 {
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        .modal button {
+            display: block;
+            width: 100%;
+            margin: 15px 0;
+            padding: 18px;
+            font-size: 18px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modal button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.5s, height 0.5s;
+        }
+
+        .modal button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        #option1-btn { background: linear-gradient(135deg, #667eea, #764ba2); }
+        #option2-btn { background: linear-gradient(135deg, #f093fb, #f5576c); }
+        #option3-btn { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+        #option4-btn { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+        #option5-btn { background: linear-gradient(135deg, #fa709a, #fee140); }
+        #close-btn { background: linear-gradient(135deg, #868f96, #596164); }
+        
+        .modal button:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Floating Words Animation */
+        .floating-words {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .floating-word {
+            position: absolute;
+            font-family: 'Dancing Script', cursive;
+            font-size: 22px;
+            animation: floatWord linear infinite;
+            white-space: nowrap;
+            transition: color 0.5s ease;
+            will-change: transform, opacity;
+        }
+
+        body.day-mode .floating-word {
+            color: rgba(0, 0, 0, 0.15);
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+        }
+
+        body.night-mode .floating-word {
+            color: rgba(255, 255, 255, 0.2);
+            text-shadow: 1px 1px 3px rgba(100, 150, 255, 0.3);
+        }
+
+        body.sunset-mode .floating-word {
+            color: rgba(255, 255, 255, 0.3);
+            text-shadow: 1px 1px 3px rgba(255, 100, 0, 0.4);
+        }
+
+        body.sunrise-mode .floating-word {
+            color: rgba(50, 50, 50, 0.2);
+            text-shadow: 1px 1px 2px rgba(255, 200, 0, 0.4);
+        }
+        
+        @keyframes floatWord {
+            0% {
+                transform: translateY(110vh) rotate(0deg);
+                opacity: 0;
+            }
+            5% {
+                opacity: 1;
+            }
+            95% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) rotate(180deg);
+                opacity: 0;
+            }
+        }
+
+        /* Time Display */
+        .time-display {
+            position: fixed;
+            top: 50px;
+            right: 20px;
+            padding: 10px 20px;
+            border-radius: 15px;
+            font-size: 14px;
+            font-weight: 600;
+            z-index: 999;
+            transition: all 0.5s ease;
+        }
+
+        body.day-mode .time-display {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(10px);
+            color: #2c3e50;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        body.night-mode .time-display {
+            background: rgba(20, 20, 40, 0.5);
+            backdrop-filter: blur(10px);
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        body.sunset-mode .time-display {
+            background: rgba(255, 107, 107, 0.3);
+            backdrop-filter: blur(10px);
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(255, 100, 0, 0.2);
+        }
+
+        body.sunrise-mode .time-display {
+            background: rgba(255, 215, 0, 0.3);
+            backdrop-filter: blur(10px);
+            color: #2c3e50;
+            box-shadow: 0 4px 12px rgba(255, 200, 0, 0.2);
+        }
+
+        /* Moslashuvchanlik */
+        @media screen and (max-width: 768px) {
+            .lesson-buttons { max-width: 90%; grid-template-columns: repeat(3, 1fr); }
+            .lesson-btn { width: 28vw; height: 7vh; font-size: 1.6vw; }
+            .time-display { font-size: 12px; padding: 8px 15px; }
+        }
+        @media screen and (max-width: 480px) {
+            .lesson-buttons { max-width: 95%; grid-template-columns: repeat(3, 1fr); }
+            .lesson-btn { width: 30vw; height: 7vh; font-size: 2.8vw; }
+            .time-display { font-size: 11px; padding: 6px 12px; top: 40px; }
+        }
+    </style>
+</head>
+<body class="day-mode">
+    <div class="gradient-bg"></div>
+    <div class="particles" id="particles"></div>
+    <div class="floating-words" id="floatingWords"></div>
+
+    <div class="time-display" id="timeDisplay">
+        <span id="currentTime"></span>
+        <span id="currentMode"></span>
+    </div>
+
+    <nav>
+        <div class="logo" onclick="toggleTheme()"><h2>Learning Time</h2></div>
+    </nav>
+    
+    <header class="hero">
+        <div class="lesson-buttons">
+            <button class="lesson-btn" onclick="showOptions(1)">Lesson 1</button>
+            <button class="lesson-btn" onclick="showOptions(2)">Lesson 2</button>
+            <button class="lesson-btn" onclick="showOptions(3)">Lesson 3</button>
+            <button class="lesson-btn" onclick="showOptions(4)">Lesson 4</button>
+            <button class="lesson-btn" onclick="showOptions(5)">Lesson 5</button>
+            <button class="lesson-btn" onclick="showOptions(6)">Lesson 6</button>
+            <button class="lesson-btn" onclick="showOptions(7)">Lesson 7</button>
+            <button class="lesson-btn" onclick="showOptions(8)">Lesson 8</button>
+            <button class="lesson-btn" onclick="showOptions(9)">Lesson 9</button>
+            <button class="lesson-btn" onclick="showOptions(10)">Lesson 10</button>
+            <button class="lesson-btn" onclick="showOptions(11)">Lesson 11</button>
+            <button class="lesson-btn" onclick="showOptions(12)">Lesson 12</button>
+            <button class="lesson-btn" onclick="showOptions(13)">Lesson 13</button>
+            <button class="lesson-btn" onclick="showOptions(14)">Lesson 14</button>
+            <button class="lesson-btn" onclick="showOptions(15)">Lesson 15</button>
+            <button class="lesson-btn" onclick="showOptions(16)">Lesson 16</button>
+            <button class="lesson-btn" onclick="showOptions(17)">Lesson 17</button>
+            <button class="lesson-btn" onclick="showOptions(18)">Lesson 18</button>
+            <button class="lesson-btn" onclick="showOptions(19)">Lesson 19</button>
+            <button class="lesson-btn" onclick="showOptions(20)">Lesson 20</button>
+            <button class="lesson-btn" onclick="showOptions(21)">Lesson 21</button>
+            <button class="lesson-btn" onclick="showOptions(22)">Lesson 22</button>
+            <button class="lesson-btn" onclick="showOptions(23)">Lesson 23</button>
+            <button class="lesson-btn" onclick="showDasturchi()">Dastur</button>
+        </div>
+    </header>
+    
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h3>Qaysi turdagi darsni tanlaysiz?</h3>
+            <button id="option1-btn">📇 Fleshcard</button>
+            <button id="option2-btn">🎧 Listening</button>
+            <button id="option3-btn">📘 Grammar</button>
+            <button id="option4-btn">📖 Reading</button>
+            <button id="option5-btn">✍️ Writing</button>
+            <button id="close-btn">❌ Bekor qilish</button>
+        </div>
+    </div>
+
+    <script>
+        // Modal oyna
+        const modal = document.getElementById("modal");
+        const option1Btn = document.getElementById("option1-btn");
+        const option2Btn = document.getElementById("option2-btn");
+        const option3Btn = document.getElementById("option3-btn");
+        const option4Btn = document.getElementById("option4-btn");
+        const option5Btn = document.getElementById("option5-btn");
+        const closeBtn = document.getElementById("close-btn");
+        let selectedLesson = 1;
+
+        function showOptions(lessonNumber) {
+            selectedLesson = lessonNumber;
+            modal.style.display = "flex";
+            setupOptionButtons();
+        }
+
+        function setupOptionButtons() {
+            option1Btn.onclick = () => redirectToLesson(`index${selectedLesson}.html`);
+            option2Btn.onclick = () => redirectToLesson(`${selectedLesson}pod.html`);
+            option3Btn.onclick = () => redirectToLesson(`${selectedLesson}gramm.html`);
+            option4Btn.onclick = () => redirectToLesson(`${selectedLesson}read.html`);
+            option5Btn.onclick = () => redirectToLesson(`index-${selectedLesson}.html`);
+        }
+
+        function redirectToLesson(url) {
+            modal.style.display = "none";
+            window.location.href = url;
+        }
+
+        closeBtn.addEventListener("click", () => { 
+            modal.style.display = "none"; 
+        });
+
+        function showDasturchi() { 
+            window.location.href = "dastur.html"; 
+        }
+        
+        // ===================================
+        // KUN/TUN REJIMINI O'ZGARTIRISH FUNKSIYALARI
+        // ===================================
+
+        const body = document.body;
+        // Foydalanuvchi qo'lda rejimni o'zgartirganligini kuzatish uchun o'zgaruvchi
+        let manualMode = localStorage.getItem('themeMode') || 'auto'; 
+        const modes = ['day-mode', 'night-mode', 'sunset-mode', 'sunrise-mode'];
+        let currentManualIndex = modes.indexOf(localStorage.getItem('manualThemeClass')) !== -1 ? modes.indexOf(localStorage.getItem('manualThemeClass')) : 0;
+        
+        // Zarrachalarni yaratish
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            particlesContainer.innerHTML = '';
+            const count = 30; // Standart zarrachalar soni
+            for (let i = 0; i < count; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                const size = Math.random() * 4 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${Math.random() * 100}%`;
+                const duration = Math.random() * 15 + 15;
+                particle.style.animationDuration = `${duration}s`;
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Rejim sinfini o'rnatish
+        function setThemeClass(modeClass, modeText) {
+            body.className = modeClass;
+            document.getElementById('currentMode').textContent = modeText;
+            createParticles(); // Yangi rejim uchun zarralarni yangilash
+        }
+
+        // Vaqtga asoslangan rejimni aniqlash
+        function getAutoTheme() {
+            const now = new Date();
+            const options = { timeZone: 'Asia/Tashkent', hour12: false };
+            const namanganTime = new Date(now.toLocaleString('en-US', options));
+            const hour = namanganTime.getHours();
+            
+            if (hour >= 5 && hour < 7) {
+                return { class: 'sunrise-mode', text: '🌅 Tong' };
+            } else if (hour >= 7 && hour < 18) {
+                return { class: 'day-mode', text: '☀️ Kun' };
+            } else if (hour >= 18 && hour < 20) {
+                return { class: 'sunset-mode', text: '🌇 Quyosh botishi' };
+            } else {
+                return { class: 'night-mode', text: '🌙 Tun' };
+            }
+        }
+
+        // Qo'lda rejimni o'zgartirish (logo ustiga bosilganda)
+        function toggleTheme() {
+            // Agar avtomatik rejimda bo'lsa, qo'lda rejimga o'tish
+            if (manualMode === 'auto') {
+                manualMode = 'manual';
+                // Hozirgi avtomatik rejimdan boshlash
+                const autoTheme = getAutoTheme();
+                currentManualIndex = modes.indexOf(autoTheme.class);
+            }
+
+            // Keyingi rejimga o'tish
+            currentManualIndex = (currentManualIndex + 1) % modes.length;
+            const newModeClass = modes[currentManualIndex];
+            
+            // Matnni yangilash
+            let newModeText = '';
+            if (newModeClass === 'day-mode') newModeText = '☀️ Kun (Manual)';
+            else if (newModeClass === 'night-mode') newModeText = '🌙 Tun (Manual)';
+            else if (newModeClass === 'sunset-mode') newModeText = '🌇 Quyosh botishi (Manual)';
+            else if (newModeClass === 'sunrise-mode') newModeText = '🌅 Tong (Manual)';
+
+            // Rejimni o'rnatish
+            setThemeClass(newModeClass, newModeText);
+            
+            // LocalStorage'ni yangilash
+            localStorage.setItem('themeMode', 'manual');
+            localStorage.setItem('manualThemeClass', newModeClass);
+        }
+
+        // Vaqtga asoslangan rejimga o'tish
+        function updateTheme() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('uz-UZ', { 
+                hour: '2-digit', 
+                minute: '2-digit',
+                timeZone: 'Asia/Tashkent'
+            });
+            document.getElementById('currentTime').textContent = timeString + ' ';
+            
+            if (manualMode === 'manual') {
+                // Agar qo'lda rejimda bo'lsa, vaqt o'zgarishiga e'tibor bermaydi, faqat vaqtni yangilaydi.
+                const manualClass = localStorage.getItem('manualThemeClass') || 'day-mode';
+                 let manualText = '';
+                if (manualClass === 'day-mode') manualText = '☀️ Kun (Manual)';
+                else if (manualClass === 'night-mode') manualText = '🌙 Tun (Manual)';
+                else if (manualClass === 'sunset-mode') manualText = '🌇 Quyosh botishi (Manual)';
+                else if (manualClass === 'sunrise-mode') manualText = '🌅 Tong (Manual)';
+
+                setThemeClass(manualClass, manualText);
+                return;
+            }
+            
+            // Avtomatik rejim
+            const autoTheme = getAutoTheme();
+            setThemeClass(autoTheme.class, autoTheme.text);
+        }
+
+
+        // Floating words
+        const words = [
+            { uz: "Olg'a", en: "Forward" }, { uz: "Harakat", en: "Action" },
+            { uz: "G'alaba", en: "Victory" }, { uz: "Maqsad", en: "Goal" },
+            { uz: "Ishonch", en: "Belief" }, { uz: "Kuch", en: "Strength" },
+            { uz: "Sabr", en: "Patience" }, { uz: "Orzu", en: "Dream" },
+            { uz: "Niyat", en: "Intention" }, { uz: "Ilhom", en: "Inspiration" },
+            { uz: "Rivojlanish", en: "Development" }, { uz: "Muvaffaqiyat", en: "Success" },
+            { uz: "Imkoniyat", en: "Opportunity" }, { uz: "Jasorat", en: "Courage" }
+        ];
+
+        function createFloatingWord(isInitial = false) {
+            const container = document.getElementById('floatingWords');
+            const word = document.createElement('div');
+            word.classList.add('floating-word');
+            const wordPair = words[Math.floor(Math.random() * words.length)];
+            word.textContent = `${wordPair.uz} / ${wordPair.en}`;
+            word.style.left = `${Math.random() * 100}%`;
+            const duration = Math.random() * 15 + 25; 
+            word.style.animationDuration = `${duration}s`;
+            
+            if (isInitial) {
+                word.style.animationDelay = `${-(Math.random() * duration)}s`;
+            }
+            
+            container.appendChild(word);
+            setTimeout(() => word.remove(), (duration + Math.abs(parseFloat(word.style.animationDelay || 0))) * 1000);
+        }
+
+        
+        // Initialize
+        updateTheme();
+        setInterval(updateTheme, 60000); 
+        
+        // Zarralarni ishga tushirish (agar avtomatik rejim bo'lsa)
+        createParticles();
+
+        // Floating words
+        for (let i = 0; i < 12; i++) {
+            createFloatingWord(true);
+        }
+        
+        setInterval(() => createFloatingWord(false), 2000); 
+    </script>
+</body>
+</html>
