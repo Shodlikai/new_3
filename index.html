@@ -148,9 +148,9 @@
             font-size: 24px;
             font-weight: bold;
             text-transform: uppercase;
-            animation: pulse 3s ease-in-out infinite;
+            /* animation: pulse 3s ease-in-out infinite; */ /* Logotip "pirillashi" o'chirildi */
             transition: color 0.5s ease;
-            cursor: pointer; /* Qo'lda o'zgartirish uchun kursor qo'shildi */
+            cursor: pointer; 
             user-select: none;
         }
 
@@ -285,7 +285,6 @@
             left: 100%;
         }
         
-        /* Tugma animatsiyasini tezlashtirish */
         .lesson-btn:hover {
             transform: translateY(-5px) scale(1.05);
             transition: transform 0.2s ease-out, box-shadow 0.2s ease-out; 
@@ -316,7 +315,7 @@
             transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
         }
 
-        /* Modal oyna */
+        /* Modal oyna (O'ZGARTIRILDI) */
         .modal {
             display: none;
             position: fixed;
@@ -326,17 +325,11 @@
             height: 100%;
             background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(5px);
-            justify-content: center;
-            align-items: center;
+            /* justify-content va align-items o'chirildi */
             z-index: 1001;
-            animation: fadeInModal 0.3s ease;
         }
 
-        @keyframes fadeInModal {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
+        /* Modal kontenti (O'ZGARTIRILDI) */
         .modal-content {
             padding: 40px;
             border-radius: 30px;
@@ -345,8 +338,23 @@
             color: white;
             max-width: 500px;
             width: 90%;
-            animation: scaleIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            transition: background 0.5s ease;
+            
+            /* Yangi qatorlar: "Sakrash" muammosini hal qilish uchun */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            
+            transition: background 0.3s ease, transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.15s ease-out;
+            
+            /* Boshlang'ich holat (O'ZGARTIRILDI) */
+            transform: translate(-50%, -50%) scale(0.85);
+            opacity: 0;
+        }
+
+        /* Modal ochiq bo'lganda (O'ZGARTIRILDI) */
+        .modal.is-open .modal-content {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
         }
 
         body.day-mode .modal-content {
@@ -363,17 +371,6 @@
 
         body.sunrise-mode .modal-content {
             background: linear-gradient(135deg, #FFD700 0%, #FFA07A 100%);
-        }
-
-        @keyframes scaleIn {
-            from {
-                transform: scale(0.8);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
         }
 
         .modal-content h3 {
@@ -443,10 +440,13 @@
             position: absolute;
             font-family: 'Dancing Script', cursive;
             font-size: 22px;
-            animation: floatWord linear infinite;
             white-space: nowrap;
             transition: color 0.5s ease;
             will-change: transform, opacity;
+        }
+
+        .floating-word-animation {
+            animation: floatWord linear; 
         }
 
         body.day-mode .floating-word {
@@ -598,6 +598,7 @@
     <script>
         // Modal oyna
         const modal = document.getElementById("modal");
+        const modalContent = modal.querySelector(".modal-content"); 
         const option1Btn = document.getElementById("option1-btn");
         const option2Btn = document.getElementById("option2-btn");
         const option3Btn = document.getElementById("option3-btn");
@@ -608,8 +609,13 @@
 
         function showOptions(lessonNumber) {
             selectedLesson = lessonNumber;
-            modal.style.display = "flex";
             setupOptionButtons();
+            
+            modal.style.display = "flex"; 
+            
+            setTimeout(() => {
+                modal.classList.add("is-open"); 
+            }, 10);
         }
 
         function setupOptionButtons() {
@@ -622,11 +628,16 @@
 
         function redirectToLesson(url) {
             modal.style.display = "none";
+            modal.classList.remove("is-open"); 
             window.location.href = url;
         }
 
         closeBtn.addEventListener("click", () => { 
-            modal.style.display = "none"; 
+            modal.classList.remove("is-open"); 
+
+            setTimeout(() => {
+                modal.style.display = "none"; 
+            }, 150);
         });
 
         function showDasturchi() { 
@@ -638,16 +649,14 @@
         // ===================================
 
         const body = document.body;
-        // Foydalanuvchi qo'lda rejimni o'zgartirganligini kuzatish uchun o'zgaruvchi
         let manualMode = localStorage.getItem('themeMode') || 'auto'; 
         const modes = ['day-mode', 'night-mode', 'sunset-mode', 'sunrise-mode'];
         let currentManualIndex = modes.indexOf(localStorage.getItem('manualThemeClass')) !== -1 ? modes.indexOf(localStorage.getItem('manualThemeClass')) : 0;
         
-        // Zarrachalarni yaratish
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
             particlesContainer.innerHTML = '';
-            const count = 30; // Standart zarrachalar soni
+            const count = 30;
             for (let i = 0; i < count; i++) {
                 const particle = document.createElement('div');
                 particle.classList.add('particle');
@@ -662,14 +671,14 @@
             }
         }
         
-        // Rejim sinfini o'rnatish
         function setThemeClass(modeClass, modeText) {
-            body.className = modeClass;
+            if (body.className !== modeClass) {
+                body.className = modeClass;
+                createParticles(); 
+            }
             document.getElementById('currentMode').textContent = modeText;
-            createParticles(); // Yangi rejim uchun zarralarni yangilash
         }
 
-        // Vaqtga asoslangan rejimni aniqlash
         function getAutoTheme() {
             const now = new Date();
             const options = { timeZone: 'Asia/Tashkent', hour12: false };
@@ -687,36 +696,28 @@
             }
         }
 
-        // Qo'lda rejimni o'zgartirish (logo ustiga bosilganda)
         function toggleTheme() {
-            // Agar avtomatik rejimda bo'lsa, qo'lda rejimga o'tish
             if (manualMode === 'auto') {
                 manualMode = 'manual';
-                // Hozirgi avtomatik rejimdan boshlash
                 const autoTheme = getAutoTheme();
                 currentManualIndex = modes.indexOf(autoTheme.class);
             }
 
-            // Keyingi rejimga o'tish
             currentManualIndex = (currentManualIndex + 1) % modes.length;
             const newModeClass = modes[currentManualIndex];
             
-            // Matnni yangilash
             let newModeText = '';
             if (newModeClass === 'day-mode') newModeText = '☀️ Kun (Manual)';
             else if (newModeClass === 'night-mode') newModeText = '🌙 Tun (Manual)';
             else if (newModeClass === 'sunset-mode') newModeText = '🌇 Quyosh botishi (Manual)';
             else if (newModeClass === 'sunrise-mode') newModeText = '🌅 Tong (Manual)';
 
-            // Rejimni o'rnatish
             setThemeClass(newModeClass, newModeText);
             
-            // LocalStorage'ni yangilash
             localStorage.setItem('themeMode', 'manual');
             localStorage.setItem('manualThemeClass', newModeClass);
         }
 
-        // Vaqtga asoslangan rejimga o'tish
         function updateTheme() {
             const now = new Date();
             const timeString = now.toLocaleTimeString('uz-UZ', { 
@@ -727,7 +728,6 @@
             document.getElementById('currentTime').textContent = timeString + ' ';
             
             if (manualMode === 'manual') {
-                // Agar qo'lda rejimda bo'lsa, vaqt o'zgarishiga e'tibor bermaydi, faqat vaqtni yangilaydi.
                 const manualClass = localStorage.getItem('manualThemeClass') || 'day-mode';
                  let manualText = '';
                 if (manualClass === 'day-mode') manualText = '☀️ Kun (Manual)';
@@ -739,13 +739,15 @@
                 return;
             }
             
-            // Avtomatik rejim
             const autoTheme = getAutoTheme();
             setThemeClass(autoTheme.class, autoTheme.text);
         }
 
 
-        // Floating words
+        // ===================================
+        // FLOATING WORDS (OPTIMALLASHTIRILDI)
+        // ===================================
+        const wordsContainer = document.getElementById('floatingWords');
         const words = [
             { uz: "Olg'a", en: "Forward" }, { uz: "Harakat", en: "Action" },
             { uz: "G'alaba", en: "Victory" }, { uz: "Maqsad", en: "Goal" },
@@ -756,38 +758,48 @@
             { uz: "Imkoniyat", en: "Opportunity" }, { uz: "Jasorat", en: "Courage" }
         ];
 
-        function createFloatingWord(isInitial = false) {
-            const container = document.getElementById('floatingWords');
+        function resetFloatingWord(wordElement) {
+            const wordPair = words[Math.floor(Math.random() * words.length)];
+            wordElement.textContent = `${wordPair.uz} / ${wordPair.en}`;
+            wordElement.style.left = `${Math.random() * 100}%`;
+            
+            const duration = Math.random() * 15 + 25; 
+            wordElement.style.animationDuration = `${duration}s`;
+            
+            wordElement.style.animationDelay = '0s';
+
+            wordElement.classList.remove('floating-word-animation');
+            void wordElement.offsetWidth; 
+            wordElement.classList.add('floating-word-animation');
+        }
+
+        for (let i = 0; i < 12; i++) {
             const word = document.createElement('div');
             word.classList.add('floating-word');
+            
             const wordPair = words[Math.floor(Math.random() * words.length)];
             word.textContent = `${wordPair.uz} / ${wordPair.en}`;
             word.style.left = `${Math.random() * 100}%`;
             const duration = Math.random() * 15 + 25; 
             word.style.animationDuration = `${duration}s`;
             
-            if (isInitial) {
-                word.style.animationDelay = `${-(Math.random() * duration)}s`;
-            }
-            
-            container.appendChild(word);
-            setTimeout(() => word.remove(), (duration + Math.abs(parseFloat(word.style.animationDelay || 0))) * 1000);
-        }
+            word.style.animationDelay = `${-(Math.random() * duration)}s`;
 
+            word.classList.add('floating-word-animation'); 
+
+            word.addEventListener('animationend', () => {
+                resetFloatingWord(word); 
+            });
+            
+            wordsContainer.appendChild(word);
+        }
         
+        // ===================================
         // Initialize
+        // ===================================
         updateTheme();
         setInterval(updateTheme, 60000); 
-        
-        // Zarralarni ishga tushirish (agar avtomatik rejim bo'lsa)
-        createParticles();
 
-        // Floating words
-        for (let i = 0; i < 12; i++) {
-            createFloatingWord(true);
-        }
-        
-        setInterval(() => createFloatingWord(false), 2000); 
     </script>
 </body>
 </html>
