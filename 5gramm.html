@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adverbs (Ravishlar) - Mukammal Qo'llanma</title>
+    <style>
+        /* Umumiy stilizatsiya */
+        :root {
+            --bg-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --text-primary: #333;
+            --header-bg: rgba(255, 255, 255, 0.1);
+            --header-text: white;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --card-border: rgba(255, 255, 255, 0.2);
+            --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            --h2-text-gradient: linear-gradient(135deg, #667eea, #764ba2);
+            --rule-section-bg: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            --rule-section-border-left: #667eea;
+            --code-bg: #e2e8f0;
+            --code-color: #c53030;
+            --table-th-bg: #e9ecef;
+            --table-th-color: #495057;
+            --table-td-bg: #fff;
+            --structure-card-bg: linear-gradient(135deg, #e0eafc, #cfdef3);
+            --structure-card-border: #667eea;
+            --formula-bg: white;
+            --example-category-bg: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            --example-item-bg: white;
+            --english-text: #2d3436;
+            --uzbek-text: #636e72;
+            --input-bg: #f8f9fa;
+            --input-border: #dee2e6;
+            --input-focus-shadow: rgba(102, 126, 234, 0.1);
+            --result-bg: linear-gradient(135deg, #ddd6fe, #c4b5fd);
+            --result-color: #5b21b6;
+            --correct-color: #28a745;
+            --wrong-color: #dc3545;
+            --progress-bg: rgba(255, 255, 255, 0.2);
+            --progress-bar-gradient: linear-gradient(90deg, #4CAF50, #45a049);
+            --tab-btn-bg: rgba(255, 255, 255, 0.2);
+            --tab-btn-hover-bg: rgba(255, 255, 255, 0.3);
+            --tab-btn-active-bg: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            --exercise-btn-bg: linear-gradient(135deg, #74b9ff, #0984e3);
+            --exercise-btn-active-bg: linear-gradient(135deg, #00b894, #00a085);
+            --word-bg: linear-gradient(135deg, #667eea, #764ba2);
+            --drop-zone-border: #dee2e6;
+            --drop-zone-bg: #f8f9fa;
+            --drop-zone-hover-bg: rgba(102, 126, 234, 0.1);
+        }
+
+        .dark-mode {
+            --bg-primary: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            --text-primary: #ecf0f1;
+            --header-bg: rgba(0, 0, 0, 0.2);
+            --header-text: #ecf0f1;
+            --card-bg: #3b506b;
+            --card-border: rgba(255, 255, 255, 0.1);
+            --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            --h2-text-gradient: linear-gradient(135deg, #a2ccff, #82b1ff);
+            --rule-section-bg: #4a6280;
+            --rule-section-border-left: #82b1ff;
+            --code-bg: #2f4358;
+            --code-color: #ff8c8c;
+            --table-th-bg: #4a6280;
+            --table-th-color: #ecf0f1;
+            --table-td-bg: #3b506b;
+            --structure-card-bg: linear-gradient(135deg, #4a6280, #5a7490);
+            --structure-card-border: #82b1ff;
+            --formula-bg: #2f4358;
+            --example-category-bg: #4a6280;
+            --example-item-bg: #3b506b;
+            --english-text: #ecf0f1;
+            --uzbek-text: #bdc3c7;
+            --input-bg: #2f4358;
+            --input-border: #5a7490;
+            --input-focus-shadow: rgba(130, 177, 255, 0.2);
+            --result-bg: linear-gradient(135deg, #4a2c7a, #6a3a9a);
+            --result-color: #e0e0e0;
+            --correct-color: #5cb85c;
+            --wrong-color: #d9534f;
+            --progress-bg: rgba(0, 0, 0, 0.3);
+            --progress-bar-gradient: linear-gradient(90deg, #5cb85c, #4cae4c);
+            --tab-btn-bg: rgba(0, 0, 0, 0.3);
+            --tab-btn-hover-bg: rgba(0, 0, 0, 0.4);
+            --tab-btn-active-bg: linear-gradient(135deg, #e74c3c, #c0392b);
+            --exercise-btn-bg: linear-gradient(135deg, #3498db, #2980b9);
+            --exercise-btn-active-bg: linear-gradient(135deg, #2ecc71, #27ae60);
+            --word-bg: linear-gradient(135deg, #3498db, #2980b9);
+            --drop-zone-border: #5a7490;
+            --drop-zone-bg: #2f4358;
+            --drop-zone-hover-bg: rgba(52, 152, 219, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            min-height: 100vh;
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Sarlavha qismi */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--card-border);
+            position: relative; /* For theme toggle positioning */
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            color: var(--header-text);
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: bold;
+        }
+
+        .header p {
+            color: var(--header-text);
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Progress Bar */
+        .progress-container {
+            background: var(--progress-bg);
+            border-radius: 25px;
+            padding: 5px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(5px);
+        }
+
+        .progress-bar {
+            background: var(--progress-bar-gradient);
+            height: 30px;
+            border-radius: 20px;
+            transition: width 0.8s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 0%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-text {
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Theme Toggle Switch */
+        .theme-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .theme-switch input[type="checkbox"] {
+            height: 0;
+            width: 0;
+            visibility: hidden;
+        }
+
+        .theme-switch label {
+            cursor: pointer;
+            text-indent: -9999px;
+            width: 60px;
+            height: 30px;
+            background: #ccc;
+            display: block;
+            border-radius: 100px;
+            position: relative;
+            transition: background-color 0.3s ease;
+        }
+
+        .theme-switch label:after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background: #fff;
+            border-radius: 90px;
+            transition: 0.3s;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+
+        .theme-switch input:checked + label {
+            background: #82b1ff; /* Dark mode toggle background */
+        }
+
+        .theme-switch input:checked + label:after {
+            left: calc(100% - 3px);
+            transform: translateX(-100%);
+            background: #f1c40f; /* Sun color */
+        }
+
+        .theme-switch .icon {
+            font-size: 1.5rem;
+            color: var(--header-text);
+            transition: color 0.3s ease;
+        }
+        .theme-switch input:checked ~ .icon.moon { display: block; }
+        .theme-switch input:not(:checked) ~ .icon.moon { display: none; }
+        .theme-switch input:checked ~ .icon.sun { display: none; }
+        .theme-switch input:not(:checked) ~ .icon.sun { display: block; }
+        .theme-switch .icon.sun { color: #f39c12; }
+        .theme-switch .icon.moon { color: #a2ccff; }
+
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 10px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: var(--tab-btn-bg);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            color: var(--header-text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            font-weight: 500;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .tab-btn:hover {
+            background: var(--tab-btn-hover-bg);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .tab-btn.active {
+            background: var(--tab-btn-active-bg);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Card Styles */
+        .card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+        }
+
+        .card h2 {
+            color: var(--text-primary);
+            margin-bottom: 25px;
+            font-size: 2.2rem;
+            text-align: center;
+            background: var(--h2-text-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Rules Section */
+        .rule-section, .diff-section {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: var(--rule-section-bg);
+            border-radius: 15px;
+            border-left: 5px solid var(--rule-section-border-left);
+        }
+
+        .rule-section h3, .diff-section h3 {
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .rule-section p, .rule-section li, .diff-section p, .diff-section li {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        
+        .rule-section code, .diff-section code {
+            background-color: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--code-color);
+        }
+
+        .diff-table-container { /* Added for responsive table */
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
+        }
+
+        .diff-table {
+            width: 100%; /* Ensure table takes full width of its container */
+            min-width: 600px; /* Minimum width to prevent excessive squishing on small screens */
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        .diff-table th, .diff-table td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            text-align: left;
+            color: var(--text-primary); /* Ensure text color changes with theme */
+        }
+        .diff-table th {
+            background-color: var(--table-th-bg);
+            color: var(--table-th-color);
+        }
+        .diff-table td { background-color: var(--table-td-bg); }
+        .ok { color: var(--correct-color); font-weight: bold; }
+        .not-ok { color: var(--wrong-color); font-weight: bold; }
+
+
+        .structure-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .structure-card {
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            background: var(--structure-card-bg);
+            border: 2px solid var(--structure-card-border);
+        }
+        .structure-card:hover { transform: translateY(-5px); }
+
+        .structure-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            text-align: center;
+            color: var(--text-primary);
+        }
+
+        .formula {
+            background: var(--formula-bg); padding: 15px; border-radius: 10px;
+            margin-bottom: 15px; text-align: center; font-size: 1.1rem;
+            font-weight: 500; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            color: var(--text-primary);
+        }
+
+        .noun, .pronoun, .verb, .subject, .object, .adjective, .adverb {
+            padding: 5px 10px; border-radius: 5px; margin: 0 5px; color: white;
+        }
+        .noun { background: #fd79a8; }
+        .pronoun { background: #0984e3; }
+        .verb { background: #00b894; }
+        .subject { background: #ffeaa7; color: #333;}
+        .object { background: #6c5ce7; }
+        .adjective { background: #f39c12; }
+        .adverb { background: #e74c3c; }
+        
+
+        .examples { background: rgba(255, 255, 255, 0.7); padding: 15px; border-radius: 10px; }
+        .examples p { margin-bottom: 8px; font-size: 1rem; color: var(--text-primary); }
+        /* Added for Uzbek translations in Structure section */
+        .structure-card .examples .uzbek {
+            color: var(--uzbek-text);
+            font-style: italic;
+            padding-left: 10px; /* Adjusted for smaller indentation */
+            border-left: 3px solid #764ba2; /* Slightly different border color */
+            margin-top: 5px; /* Small margin between English and Uzbek */
+        }
+
+
+        .examples-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px; margin-top: 25px;
+        }
+
+        .example-category {
+            background: var(--example-category-bg); padding: 25px;
+            border-radius: 15px; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        .example-category h3 {
+            color: var(--text-primary); margin-bottom: 20px; font-size: 1.4rem; text-align: center;
+            padding-bottom: 10px; border-bottom: 2px solid var(--rule-section-border-left);
+        }
+
+        .example-item {
+            background: var(--example-item-bg); padding: 15px; border-radius: 10px; margin-bottom: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease;
+        }
+        .example-item:hover { transform: translateX(5px); }
+        .english { color: var(--english-text); font-weight: 500; margin-bottom: 8px; font-size: 1.05rem; }
+        .uzbek { color: var(--uzbek-text); font-style: italic; padding-left: 20px; border-left: 3px solid var(--rule-section-border-left); }
+
+        .exercise-nav {
+            display: flex; justify-content: center; margin-bottom: 30px;
+            gap: 10px; flex-wrap: wrap;
+        }
+        .exercise-btn {
+            background: var(--exercise-btn-bg); color: white; border: none;
+            padding: 12px 20px; border-radius: 10px; cursor: pointer; transition: all 0.3s ease;
+            font-size: 14px; font-weight: 500; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .exercise-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); }
+        .exercise-btn.active {
+            background: var(--exercise-btn-active-bg);
+            box-shadow: 0 6px 20px rgba(0, 184, 148, 0.3);
+        }
+
+        .exercise-content { display: none; }
+        .exercise-content.active { display: block; animation: fadeIn 0.5s ease-in-out; }
+        .exercise-content h3 { color: var(--text-primary); margin-bottom: 25px; font-size: 1.6rem; text-align: center; }
+
+        .quiz-container, .fill-exercise, .combine-exercise, .correct-exercise, .omission-exercise, .order-exercise { margin-bottom: 25px; }
+        .question, .fill-question, .combine-question, .correct-question, .omission-question, .order-question {
+            background: var(--example-item-bg); padding: 20px; border-radius: 15px; margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); border-left: 5px solid var(--rule-section-border-left);
+        }
+        .question p, .fill-question p, .combine-question p, .correct-question p, .omission-question p, .order-question p {
+            font-size: 1.2rem; margin-bottom: 15px; color: var(--english-text); font-weight: 500;
+        }
+        .correct-question p.incorrect { text-decoration: line-through; color: var(--wrong-color);}
+
+        .options { display: flex; flex-direction: column; gap: 10px; }
+        .options label {
+            display: flex; align-items: center; padding: 10px; border-radius: 8px;
+            background: var(--input-bg); cursor: pointer; transition: background 0.3s ease; font-size: 1rem;
+            color: var(--text-primary);
+        }
+        .options label:hover { background: var(--rule-section-bg); }
+        .options input[type="radio"] { margin-right: 10px; transform: scale(1.2); }
+
+        .fill-input, .combine-input, .correct-input, .transform-input {
+            width: 100%; background: var(--input-bg); border: 2px solid var(--input-border);
+            border-radius: 8px; padding: 12px; font-size: 1rem; transition: all 0.3s ease;
+            color: var(--text-primary);
+        }
+        .fill-input:focus, .combine-input:focus, .correct-input:focus, .transform-input:focus {
+            outline: none; border-color: var(--rule-section-border-left); box-shadow: 0 0 0 3px var(--input-focus-shadow);
+        }
+
+        .check-btn {
+            background: var(--exercise-btn-active-bg); color: white; border: none;
+            padding: 15px 30px; border-radius: 10px; cursor: pointer; font-size: 1.1rem;
+            font-weight: 500; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: block; margin: 10px auto;
+        }
+        .check-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 184, 148, 0.3); }
+
+        .check-btn:active { transform: translateY(0); }
+
+        .result {
+            margin-top: 20px; padding: 15px; border-radius: 10px; text-align: center;
+            font-size: 1.2rem; font-weight: 500; background: var(--result-bg);
+            color: var(--result-color); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .correct-answer { color: var(--correct-color); margin: 5px 0; }
+        .wrong-answer { color: var(--wrong-color); margin: 5px 0; }
+        .final-score { margin-top: 10px; padding: 10px; background: var(--input-bg); border-radius: 5px; color: var(--text-primary); }
+
+        /* Yangi stil: Izohlar uchun */
+        .explanation {
+            background: var(--input-bg);
+            border-left: 4px solid var(--rule-section-border-left);
+            padding: 10px;
+            margin: 10px 0 0 0;
+            border-radius: 0 8px 8px 0;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            text-align: left;
+        }
+
+        /* Word Order Exercise Specifics */
+        .word-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: var(--input-bg);
+            border-radius: 10px;
+            min-height: 60px; /* Ensure visibility even if empty */
+        }
+
+        .word {
+            background: var(--word-bg);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: inline-block; /* Ensure display is correct */
+        }
+
+        .word:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .drop-zone {
+            min-height: 60px;
+            border: 2px dashed var(--drop-zone-border);
+            border-radius: 10px;
+            padding: 15px;
+            background: var(--drop-zone-bg);
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            gap: 10px;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+        }
+
+        .drop-zone:hover, .word-container:hover {
+            border-color: var(--rule-section-border-left);
+            background: var(--drop-zone-hover-bg);
+        }
+
+        .drop-zone .word {
+             background: var(--exercise-btn-active-bg);
+        }
+
+        /* --- Styles for Sentence Transformation Exercise (START) --- */
+        .transform-question {
+            background: var(--example-item-bg);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--structure-card-border);
+            transition: all 0.3s ease;
+        }
+
+        .transform-question:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        }
+
+        .transform-question p {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .transform-question p b {
+            color: var(--header-text);
+            background: var(--word-bg);
+            padding: 3px 9px;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .transform-input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .transform-input-wrapper .fa-pen-to-square {
+            position: absolute;
+            left: 15px;
+            color: var(--uzbek-text);
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .transform-input {
+            padding-left: 45px; /* Make space for the icon */
+            background-image: linear-gradient(to right, var(--input-bg), var(--card-bg));
+            font-weight: 500;
+        }
+
+        .transform-input:focus {
+            background-image: none;
+        }
+
+        .transform-input-wrapper:hover .fa-pen-to-square {
+            color: var(--rule-section-border-left);
+        }
+        /* --- Styles for Sentence Transformation Exercise (END) --- */
+        
+        /* --- Styles for Muhim Qoidalar Section (START) --- */
+        .error-section {
+            background: var(--rule-section-bg);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-left: 5px solid var(--wrong-color);
+        }
+
+        .error-title {
+            color: var(--wrong-color);
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .wrong-example {
+            background: rgba(220, 53, 69, 0.1);
+            border: 2px solid var(--wrong-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0 10px 0;
+            position: relative;
+            color: var(--text-primary);
+        }
+
+        .wrong-example::before {
+            content: "❌ NOTO'G'RI";
+            position: absolute;
+            top: -12px;
+            left: 15px;
+            background: var(--wrong-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .correct-example {
+            background: rgba(40, 167, 69, 0.1);
+            border: 2px solid var(--correct-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0 10px 0;
+            position: relative;
+            color: var(--text-primary);
+        }
+
+        .correct-example::before {
+            content: "✅ TO'G'RI";
+            position: absolute;
+            top: -12px;
+            left: 15px;
+            background: var(--correct-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .explanation .explanation-title {
+            color: var(--rule-section-border-left);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .rule-box {
+            background: var(--exercise-btn-bg);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-weight: 500;
+        }
+
+        .situation-example {
+            background: var(--example-item-bg);
+            border: 1px solid var(--input-border);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            color: var(--text-primary);
+        }
+
+        .context {
+            color: var(--correct-color);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .error-section.general-tips {
+             border-left-color: var(--correct-color);
+        }
+        .error-section.general-tips .error-title {
+             color: var(--correct-color);
+        }
+        .error-section.general-tips .rule-box {
+            background: var(--exercise-btn-active-bg);
+        }
+        /* --- Styles for Muhim Qoidalar Section (END) --- */
+
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header h1 { font-size: 2rem; }
+            .card h2 { font-size: 1.8rem; }
+            .structure-grid, .examples-grid { grid-template-columns: 1fr; }
+            .nav-tabs, .exercise-nav { flex-direction: column; gap: 5px; }
+            .tab-btn, .exercise-btn { width: 100%; text-align: center; }
+            .theme-switch { top: 10px; right: 10px; }
+        }
+
+        @media (max-width: 480px) {
+            .header { padding: 20px; }
+            .header h1 { font-size: 1.5rem; }
+            .card { padding: 15px; }
+            .structure-card { padding: 20px; }
+            .example-category { padding: 20px; }
+            .question { padding: 15px; }
+            .word { padding: 6px 12px; font-size: 14px; }
+            .diff-table { min-width: 400px; } /* Adjust for very small screens */
+        }
+
+        /* Animation Effects */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .check-btn:hover { animation: bounce 0.6s ease; }
+
+        /* Scroll Animations */
+        .card {
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideUp 0.6s ease forwards;
+        }
+
+        @keyframes slideUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(135deg, #764ba2, #667eea); }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Adverbs (Ravishlar) - Mukammal Qo'llanma</h1>
+            <p>Fe'llar, sifatlar va boshqa ravishlarni tasvirlash qoidalari</p>
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar">
+                    <span class="progress-text">0%</span>
+                </div>
+            </div>
+
+            <div class="theme-switch">
+                <i class="fas fa-sun icon sun"></i>
+                <input type="checkbox" id="themeToggle">
+                <label for="themeToggle"></label>
+                <i class="fas fa-moon icon moon"></i>
+            </div>
+        </div>
+
+        <nav class="nav-tabs">
+            <button class="tab-btn active" data-tab="rules">Qoidalar</button>
+            <button class="tab-btn" data-tab="diffs">Farqlar</button>
+            <button class="tab-btn" data-tab="structure">Strukturalar</button>
+            <button class="tab-btn" data-tab="examples">Misollar</button>
+            <button class="tab-btn" data-tab="exercises">Mashqlar</button>
+            <button class="tab-btn" data-tab="errors">Muhim Qoidalar va Xatolar</button>
+        </nav>
+
+        <div id="rules" class="tab-content active">
+             <div class="card">
+                <h2>Ravishlar (Adverbs) Qoidalari</h2>
+                <div class="rule-section">
+                    <h3>Ravish nima va uning vazifasi</h3>
+                    <p>Sifat (adjective) otni (noun) tasvirlasa, ravish (adverb) asosan fe'lni (verb) tasvirlaydi. U harakatning <strong>qanday</strong>, <strong>qayerda</strong>, <strong>qachon</strong> yoki <strong>qanchalik</strong> tez-tez sodir bo'lishini ko'rsatadi. Shuningdek, ravishlar sifatlarni va boshqa ravishlarni ham tasvirlashi mumkin.</p>
+                    <ul>
+                        <li><strong>Fe'lni tasvirlaydi:</strong> He walks <strong>slowly</strong>. (U sekin yuradi.)</li>
+                        <li><strong>Sifatni tasvirlaydi:</strong> She is <strong>very</strong> beautiful. (U juda chiroyli.)</li>
+                        <li><strong>Boshqa ravishni tasvirlaydi:</strong> He walks <strong>too</strong> slowly. (U juda ham sekin yuradi.)</li>
+                    </ul>
+                </div>
+                <div class="rule-section">
+                    <h3>Ravish yasalishi: <code>-ly</code> qo'shimchasi</h3>
+                    <p>Ko'pgina ravishlar sifatga <code>-ly</code> qo'shimchasini qo'shish orqali yasaladi.</p>
+                    <p><strong>Imlo qoidalari:</strong></p>
+                    <ul>
+                        <li>Agar sifat <strong>-y</strong> bilan tugasa, <strong>y</strong> harfi <strong>i</strong> ga o'zgaradi va <code>-ly</code> qo'shiladi: happ<strong>y</strong> &rarr; happ<strong>ily</strong>.</li>
+                        <li>Agar sifat <strong>-le</strong> bilan tugasa, <strong>e</strong> harfi tushib qolib, <code>-y</code> qo'shiladi: possib<strong>le</strong> &rarr; possib<strong>ly</strong>.</li>
+                        <li>Agar sifat <strong>-ic</strong> bilan tugasa, odatda <code>-ally</code> qo'shiladi: dramat<strong>ic</strong> &rarr; dramat<strong>ically</strong>.</li>
+                    </ul>
+                </div>
+                 <div class="rule-section">
+                    <h3>Sifat va Ravish shakli bir xil so'zlar</h3>
+                    <p>Ba'zi so'zlarning sifat va ravish shakli bir xil bo'ladi va ularga <code>-ly</code> qo'shilmaydi. Eng ko'p uchraydiganlari: <strong>fast, hard, early, late, high, low, straight.</strong></p>
+                    <div class="example">
+                        <p>This is a <strong>fast</strong> car. (sifat) / He drives <strong>fast</strong>. (ravish)</p>
+                        <p>It was a <strong>hard</strong> exam. (sifat) / She works <strong>hard</strong>. (ravish)</p>
+                    </div>
+                </div>
+                <div class="rule-section">
+                    <h3>Ravishlarning darajalari (Degrees of Adverbs)</h3>
+                    <p>Sifatlar kabi, ravishlar ham 3 ta darajaga ega: oddiy (positive), qiyosiy (comparative) va orttirma (superlative).</p>
+                    <ul>
+                        <li><strong>Qiyosiy daraja:</strong> Ikki ish-harakatni solishtirish uchun ishlatiladi. Ko'pincha <code>more ... than</code> yoki <code>-er ... than</code> bilan yasaladi: He runs fast<strong>er than</strong> me. She speaks <strong>more slowly than</strong> her sister.</li>
+                        <li><strong>Orttirma daraja:</strong> Bir ish-harakatni boshqa barcha shu turdagi harakatlar bilan solishtirish uchun ishlatiladi. Ko'pincha <code>the most ...</code> yoki <code>the -est</code> bilan yasaladi: He runs <strong>the fastest</strong>. She speaks <strong>the most slowly</strong> of all.</li>
+                        <li><strong>Tenglik:</strong> <code>as ... as</code> strukturasi yordamida harakatlarning tengligini ko'rsatish mumkin: He speaks English <strong>as well as</strong> his teacher.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="diffs" class="tab-content">
+            <div class="card">
+                <h2>Farqlar: Sifatlar, Ravishlar va Maxsus holatlar</h2>
+                <div class="diff-section">
+                    <h3>Sifat (Adjective) vs. Ravish (Adverb)</h3>
+                    <div class="diff-table-container">
+                        <table class="diff-table">
+                            <tr><th>Xususiyat</th><th>Sifat (Adjective)</th><th>Ravish (Adverb)</th></tr>
+                            <tr>
+                                <td><strong>Nima qiladi?</strong></td>
+                                <td>Otni (noun) tasvirlaydi. "Qanday?" degan savolga javob beradi.</td>
+                                <td>Fe'l, sifat yoki boshqa ravishni tasvirlaydi. "Qanday qilib?", "Qachon?", "Qayerda?" savollariga javob beradi.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Misol</strong></td>
+                                <td>She is a <strong>beautiful</strong> dancer. <br/>(U <strong>chiroyli</strong> raqqosa.)</td>
+                                <td>She dances <strong>beautifully</strong>. <br/>(U <strong>chiroyli</strong> raqsga tushadi.)</td>
+                            </tr>
+                             <tr>
+                                <td><strong>Misol 2</strong></td>
+                                <td>He is a <strong>slow</strong> walker. <br/>(U <strong>sekin</strong> yuruvchi.)</td>
+                                <td>He walks <strong>slowly</strong>. <br/>(U <strong>sekin</strong> yuradi.)</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                 <div class="diff-section">
+                    <h3>Ma'nosi o'zgaradigan ravishlar</h3>
+                    <p>Ba'zi ravishlar <code>-ly</code> qo'shimchasini olganda ma'nosi butunlay o'zgaradi.</p>
+                     <div class="diff-table-container">
+                        <table class="diff-table">
+                            <tr><th>So'z</th><th>Ravish (ma'no 1)</th><th>Ravish + ly (ma'no 2)</th></tr>
+                            <tr>
+                                <td><strong>Hard</strong></td>
+                                <td>qattiq, ko'p (She works <strong>hard</strong>.)</td>
+                                <td><strong>Hardly</strong> - zo'rg'a, deyarli... emas (I can <strong>hardly</strong> see.)</td>
+                            </tr>
+                             <tr>
+                                <td><strong>Late</strong></td>
+                                <td>kech (He arrived <strong>late</strong>.)</td>
+                                <td><strong>Lately</strong> - yaqinda, so'nggi paytlarda (Have you seen him <strong>lately</strong>?)</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="structure" class="tab-content">
+            <div class="card">
+                <h2>Ravishlar Strukturalari</h2>
+                <div class="structure-grid">
+                    <div class="structure-card">
+                        <h3>Fe'l + Ravish</h3>
+                        <div class="formula"><span class="subject">Ega</span> + <span class="verb">Fe'l</span> + <span class="adverb">Ravish</span></div>
+                        <div class="examples">
+                            <p>He walks <b>slowly</b>.</p>
+                            <p class="uzbek">U sekin yuradi.</p>
+                            <p>She speaks English <b>fairly well</b>.</p>
+                            <p class="uzbek">U ingliz tilida ancha yaxshi gapiradi.</p>
+                        </div>
+                    </div>
+                    <div class="structure-card">
+                        <h3>Ravish + Sifat</h3>
+                        <div class="formula">... <span class="adverb">Ravish</span> + <span class="adjective">Sifat</span></div>
+                        <div class="examples">
+                            <p>Grace Kelly was a <b>very beautiful</b> woman.</p>
+                            <p class="uzbek">Grace Kelly juda chiroyli ayol edi.</p>
+                             <p>This problem is <b>extremely</b> difficult.</p>
+                            <p class="uzbek">Bu muammo o'ta qiyin.</p>
+                        </div>
+                    </div>
+                    <div class="structure-card">
+                        <h3>Qiyosiy Daraja (Comparative)</h3>
+                        <div class="formula">... <span class="adverb">ravish-er / more ravish</span> + than ...</div>
+                        <div class="examples">
+                            <p>A black horse runs <b>faster than</b> a white horse.</p>
+                            <p class="uzbek">Qora ot oq otdan tezroq yuguradi.</p>
+                             <p>Bobby speaks <b>more clearly than</b> his friends.</p>
+                             <p class="uzbek">Bobby do'stlaridan ko'ra aniqroq gapiradi.</p>
+                        </div>
+                    </div>
+                    <div class="structure-card">
+                        <h3>Orttirma Daraja (Superlative)</h3>
+                        <div class="formula">... the <span class="adverb">ravish-est / most ravish</span> ...</div>
+                        <div class="examples">
+                            <p>Tom goes <b>the slowest</b>.</p>
+                            <p class="uzbek">Tom eng sekin boradi.</p>
+                             <p>Michelle smiled <b>the most happily</b>.</p>
+                             <p class="uzbek">Michelle eng baxtiyor tabassum qildi.</p>
+                        </div>
+                    </div>
+                    <div class="structure-card">
+                        <h3>Tenglik darajasi (as...as)</h3>
+                        <div class="formula">... as <span class="adverb">ravish</span> as ...</div>
+                        <div class="examples">
+                            <p>Do they speak English <b>as well as</b> their teachers?</p>
+                            <p class="uzbek">Ular o'qituvchilari kabi ingliz tilida yaxshi gapirishadimi?</p>
+                             <p>That star is shining <b>as brightly as</b> the sun.</p>
+                             <p class="uzbek">Ana bu yulduz quyoshdek yorqin porlayapti.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="examples" class="tab-content">
+            <div class="card">
+                <h2>Ravishlar Misollari</h2>
+                <div class="examples-grid">
+                    <div class="example-category">
+                        <h3>Shakli o'zgarmaydigan ravishlar</h3>
+                        <div class="example-item">
+                            <p class="english">My dad is a <strong>hard</strong> worker. He works <strong>hard</strong>.</p>
+                            <p class="uzbek">Mening dadam qattiq ishchi. U qattiq ishlaydi.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">The bus came ten minutes <strong>late</strong>.</p>
+                            <p class="uzbek">Avtobus o'n minut kech keldi.</p>
+                        </div>
+                         <div class="example-item">
+                            <p class="english">Is that plane flying <strong>fast</strong>?</p>
+                            <p class="uzbek">Ana bu samolyot tez uchayaptimi?</p>
+                        </div>
+                         <div class="example-item">
+                            <p class="english">He bent <strong>low</strong> over the engine.</p>
+                            <p class="uzbek">U dvigatel ustidan pastga egildi.</p>
+                        </div>
+                    </div>
+                    <div class="example-category">
+                        <h3>Oddiy daraja (Positive Degree)</h3>
+                        <div class="example-item">
+                            <p class="english">She speaks English <strong>fairly well</strong>.</p>
+                            <p class="uzbek">U ingliz tilida ancha yaxshi gapiradi.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">He answered me <strong>very rudely</strong>.</p>
+                            <p class="uzbek">U menga juda qo'pol javob berdi.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">The soldiers fought <strong>bravely</strong>.</p>
+                            <p class="uzbek">Askerlar mardlarcha jang qildilar.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">Both cars were <strong>badly</strong> damaged in the accident.</p>
+                            <p class="uzbek">Ikkala mashina ham halokatda jiddiy shikastlangan edi.</p>
+                        </div>
+                    </div>
+                    <div class="example-category">
+                        <h3>Qiyosiy daraja (Comparative Degree)</h3>
+                        <div class="example-item">
+                            <p class="english">A black horse runs <strong>faster than</strong> a white horse.</p>
+                            <p class="uzbek">Qora ot oq otdan tezroq yuguradi.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">When will we talk <strong>more seriously</strong>?</p>
+                            <p class="uzbek">Qachon biz jiddiyroq gaplashamiz?</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">Will she sing <strong>worse than</strong> my singer?</p>
+                            <p class="uzbek">U mening qo'shiqchimdan yomonroq kuylaydimi?</p>
+                        </div>
+                         <div class="example-item">
+                            <p class="english">Bobby speaks <strong>more clearly than</strong> his friends.</p>
+                            <p class="uzbek">Bobby do'stlaridan ko'ra aniqroq gapiradi.</p>
+                        </div>
+                    </div>
+                     <div class="example-category">
+                        <h3>Orttirma daraja (Superlative Degree)</h3>
+                        <div class="example-item">
+                            <p class="english">A black horse runs <strong>the fastest</strong>.</p>
+                            <p class="uzbek">Qora ot eng tez yuguradi.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">Michelle smiled <strong>the most happily</strong>.</p>
+                            <p class="uzbek">Michelle eng baxtiyor tabassum qildi.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">Will he speak <strong>the loudest</strong>?</p>
+                            <p class="uzbek">U eng baland gapiradimi?</p>
+                        </div>
+                         <div class="example-item">
+                            <p class="english">Jana is doing <strong>the most poorly</strong> in school.</p>
+                            <p class="uzbek">Jana maktabda eng yomon o'qiydi.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<div id="exercises" class="tab-content">
+    <div class="card">
+      <h2>Mashqlar (Adverbs)</h2>
+                <nav class="exercise-nav">
+                    <button class="exercise-btn active" data-exercise="test">Test</button>
+                    <button class="exercise-btn" data-exercise="fill">Bo'sh joyni to'ldirish</button>
+                    <button class="exercise-btn" data-exercise="correction">Xatolarni Tuzatish</button>
+                    <button class="exercise-btn" data-exercise="order">So'zlarni Tartiblash</button>
+                    <button class="exercise-btn" data-exercise="transform">Gaplarni O'zgartirish</button>
+                </nav>
+
+                <div id="test" class="exercise-content active">
+                    <h3>To'g'ri variantni tanlang (Sifat yoki Ravish)</h3>
+                    <div class="quiz-container">
+                        <div class="question" data-answer="b" data-explanation="'drives' fe'lini tasvirlash uchun 'carefully' ravishi kerak."><p>1. He is a careful driver. He drives very ___.</p><div class="options"><label><input type="radio" name="q1" value="a">a) careful</label><label><input type="radio" name="q1" value="b">b) carefully</label><label><input type="radio" name="q1" value="c">c) care</label></div></div>
+                        <div class="question" data-answer="a" data-explanation="Fe'l 'sings' bo'lgani uchun, uni tasvirlovchi ravish 'well' bo'ladi. 'Good' sifatdir."><p>2. She is a good singer. She sings ___.</p><div class="options"><label><input type="radio" name="q2" value="a">a) well</label><label><input type="radio" name="q2" value="b">b) good</label><label><input type="radio" name="q2" value="c">c) goodly</label></div></div>
+                        <div class="question" data-answer="c" data-explanation="Zo'rg'a, deyarli uxlay olmadim ma'nosini 'hardly' beradi. 'Hard' - qattiq degani."><p>3. The music was so loud, I could ___ sleep.</p><div class="options"><label><input type="radio" name="q3" value="a">a) hard</label><label><input type="radio" name="q3" value="b">b) harder</label><label><input type="radio" name="q3" value="c">c) hardly</label></div></div>
+                        <div class="question" data-answer="a" data-explanation="'Fast' so'zining ravish shakli o'zgarmaydi. 'Fastly' degan so'z yo'q."><p>4. A cheetah can run very ___.</p><div class="options"><label><input type="radio" name="q4" value="a">a) fast</label><label><input type="radio" name="q4" value="b">b) fastly</label><label><input type="radio" name="q4" value="c">c) faster</label></div></div>
+                        <div class="question" data-answer="b" data-explanation="Ikki ish-harakat solishtirilganda qiyosiy daraja ishlatiladi. 'Clearly' -> 'more clearly'."><p>5. Please speak ___ so I can understand you.</p><div class="options"><label><input type="radio" name="q5" value="a">a) clear</label><label><input type="radio" name="q5" value="b">b) more clearly</label><label><input type="radio" name="q5" value="c">c) most clearly</label></div></div>
+                        <div class="question" data-answer="b" data-explanation="Yaqinda, so'nggi paytlarda ma'nosida 'lately' ishlatiladi."><p>6. I haven't seen her ___.</p><div class="options"><label><input type="radio" name="q6" value="a">a) late</label><label><input type="radio" name="q6" value="b">b) lately</label><label><input type="radio" name="q6" value="c">c) later</label></div></div>
+                        <div class="question" data-answer="a" data-explanation="'taste' fe'li holat fe'li bo'lgani uchun undan keyin sifat (adjective) keladi."><p>7. The soup tastes ___.</p><div class="options"><label><input type="radio" name="q7" value="a">a) delicious</label><label><input type="radio" name="q7" value="b">b) deliciously</label><label><input type="radio" name="q7" value="c">c) more delicious</label></div></div>
+                        <div class="question" data-answer="c" data-explanation="'Badly' ravishining orttirma darajasi 'worst' hisoblanadi."><p>8. Of all the students, he performed the ___.</p><div class="options"><label><input type="radio" name="q8" value="a">a) bad</label><label><input type="radio" name="q8" value="b">b) worse</label><label><input type="radio" name="q8" value="c">c) worst</label></div></div>
+                        <div class="question" data-answer="b" data-explanation="Sifatni ('beautiful') tasvirlash uchun ravish ('incredibly') kerak."><p>9. The sunset was ___ beautiful.</p><div class="options"><label><input type="radio" name="q9" value="a">a) incredible</label><label><input type="radio" name="q9" value="b">b) incredibly</label><label><input type="radio" name="q9" value="c">c) more incredible</label></div></div>
+                        <div class="question" data-answer="a" data-explanation="'Friendly' -ly bilan tugaydigan sifatdir. Undan ravish yasab bo'lmaydi. 'in a friendly way' to'g'ri."><p>10. He spoke to me ___.</p><div class="options"><label><input type="radio" name="q10" value="a">a) in a friendly way</label><label><input type="radio" name="q10" value="b">b) friendly</label><label><input type="radio" name="q10" value="c">c) friendlily</label></div></div>
+                    </div>
+                    <button class="check-btn" onclick="checkTest()">Tekshirish</button>
+                    <div id="testResult" class="result"></div>
+                </div>
+
+                <div id="fill" class="exercise-content">
+                    <h3>Bo'sh joyni qavs ichidagi so'zning to'g'ri shakli bilan to'ldiring.</h3>
+                    <div class="fill-exercise">
+                        <div class="fill-question"><p>1. She closed the door ___. (quiet)</p><input type="text" class="fill-input" data-answer="quietly" data-explanation="'quiet' sifatidan 'quietly' ravishi yasaladi."></div>
+                        <div class="fill-question"><p>2. He plays the piano ___. (beautiful)</p><input type="text" class="fill-input" data-answer="beautifully" data-explanation="'beautiful' sifatidan 'beautifully' ravishi yasaladi."></div>
+                        <div class="fill-question"><p>3. You must speak ___ than this. (loud)</p><input type="text" class="fill-input" data-answer="louder" data-explanation="'loud' ravishining qiyosiy darajasi 'louder'."></div>
+                        <div class="fill-question"><p>4. Ronaldo plays football ___. (good)</p><input type="text" class="fill-input" data-answer="well" data-explanation="'good' sifatining ravish shakli 'well'dir."></div>
+                        <div class="fill-question"><p>5. She learns new things very ___. (quick)</p><input type="text" class="fill-input" data-answer="quickly" data-explanation="'quick' sifatidan 'quickly' ravishi yasaladi."></div>
+                        <div class="fill-question"><p>6. Please drive ___. (slow)</p><input type="text" class="fill-input" data-answer="slowly" data-explanation="'slow' sifatidan 'slowly' ravishi yasaladi."></div>
+                        <div class="fill-question"><p>7. He answered my question ___. (honest)</p><input type="text" class="fill-input" data-answer="honestly" data-explanation="'honest' sifatidan 'honestly' ravishi yasaladi."></div>
+                        <div class="fill-question"><p>8. She sings even ___ than her sister. (bad)</p><input type="text" class="fill-input" data-answer="worse" data-explanation="'badly' ravishining qiyosiy darajasi 'worse'."></div>
+                        <div class="fill-question"><p>9. The children were playing ___. (happy)</p><input type="text" class="fill-input" data-answer="happily" data-explanation="'-y' bilan tugagan sifat '-ily' ga o'zgaradi."></div>
+                        <div class="fill-question"><p>10. He arrived ___ for the meeting. (late)</p><input type="text" class="fill-input" data-answer="late" data-explanation="'late' ravishining shakli o'zgarmaydi."></div>
+                    </div>
+                    <button class="check-btn" onclick="checkFill()">Tekshirish</button>
+                    <div id="fillResult" class="result"></div>
+                </div>
+
+                <div id="correction" class="exercise-content">
+                    <h3>Xatolarni Tuzatish</h3>
+                    <div class="correct-exercise">
+                        <div class="correct-question"><p class="incorrect">1. She speaks English very good.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="She speaks English very well." data-explanation="'speaks' fe'lini tasvirlash uchun 'good' sifatining ravish shakli bo'lgan 'well' ishlatiladi."></div>
+                        <div class="correct-question"><p class="incorrect">2. He runs very fastly.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="He runs very fast." data-explanation="'fast' so'zining ravish shakli o'zgarmaydi. 'fastly' degan so'z ingliz tilida yo'q."></div>
+                        <div class="correct-question"><p class="incorrect">3. She is a beautifully dancer.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="She is a beautiful dancer." data-explanation="'dancer' otini tasvirlash uchun 'beautiful' sifati kerak."></div>
+                        <div class="correct-question"><p class="incorrect">4. I did the test easy.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I did the test easily." data-explanation="'did' fe'lini tasvirlash uchun 'easy' sifatidan yasalgan 'easily' ravishi kerak."></div>
+                        <div class="correct-question"><p class="incorrect">5. He works very hardly.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="He works very hard." data-explanation="'hardly' 'zo'rg'a' degani. 'Qattiq' ishlash ma'nosida 'hard' ishlatiladi."></div>
+                        <div class="correct-question"><p class="incorrect">6. She cooks more better than me.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="She cooks better than me." data-explanation="'better' so'zining o'zi 'well'ning qiyosiy darajasi, shuning uchun oldidan 'more' kerak emas."></div>
+                        <div class="correct-question"><p class="incorrect">7. The team played bad today.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="The team played badly today." data-explanation="'played' fe'lini tasvirlash uchun 'badly' ravishi kerak."></div>
+                        <div class="correct-question"><p class="incorrect">8. He shouted at me angry.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="He shouted at me angrily." data-explanation="'shouted' fe'lini tasvirlash uchun 'angrily' ravishi kerak."></div>
+                        <div class="correct-question"><p class="incorrect">9. I feel terribly about the accident.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I feel terrible about the accident." data-explanation="'feel' kabi holat fe'llaridan keyin sifat (terrible) ishlatiladi."></div>
+                        <div class="correct-question"><p class="incorrect">10. He explained the situation clear.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="He explained the situation clearly." data-explanation="'explained' fe'lini tasvirlash uchun 'clearly' ravishi kerak."></div>
+                    </div>
+                    <button class="check-btn" onclick="checkCorrection()">Tekshirish</button>
+                    <div id="correctionResult" class="result"></div>
+                </div>
+                
+                <div id="order" class="exercise-content">
+                    <h3>So'zlarni to'g'ri tartibda joylashtiring</h3>
+                    <div class="order-exercise">
+                        <div class="order-question"><p>1. (speaks / he / very / quietly)</p><div class="word-container"><div class="word">he</div><div class="word">quietly</div><div class="word">very</div><div class="word">speaks</div></div><div class="drop-zone" data-answer="he speaks very quietly"></div></div>
+                        <div class="order-question"><p>2. (English / she / fluently / speaks)</p><div class="word-container"><div class="word">she</div><div class="word">fluently</div><div class="word">English</div><div class="word">speaks</div></div><div class="drop-zone" data-answer="she speaks English fluently"></div></div>
+                        <div class="order-question"><p>3. (the children / happily / were playing)</p><div class="word-container"><div class="word">happily</div><div class="word">were playing</div><div class="word">the children</div></div><div class="drop-zone" data-answer="the children were playing happily"></div></div>
+                        <div class="order-question"><p>4. (drives / than / he / me / faster)</p><div class="word-container"><div class="word">faster</div><div class="word">drives</div><div class="word">me</div><div class="word">he</div><div class="word">than</div></div><div class="drop-zone" data-answer="he drives faster than me"></div></div>
+                        <div class="order-question"><p>5. (always / arrives / she / late)</p><div class="word-container"><div class="word">she</div><div class="word">late</div><div class="word">always</div><div class="word">arrives</div></div><div class="drop-zone" data-answer="she always arrives late"></div></div>
+                        <div class="order-question"><p>6. (well / very / he / sings / doesn't)</p><div class="word-container"><div class="word">doesn't</div><div class="word">very</div><div class="word">well</div><div class="word">he</div><div class="word">sings</div></div><div class="drop-zone" data-answer="he doesn't sing very well"></div></div>
+                        <div class="order-question"><p>7. (carefully / you / should / listen)</p><div class="word-container"><div class="word">should</div><div class="word">you</div><div class="word">listen</div><div class="word">carefully</div></div><div class="drop-zone" data-answer="you should listen carefully"></div></div>
+                        <div class="order-question"><p>8. (the race / easily / she / won)</p><div class="word-container"><div class="word">she</div><div class="word">easily</div><div class="word">the race</div><div class="word">won</div></div><div class="drop-zone" data-answer="she won the race easily"></div></div>
+                        <div class="order-question"><p>9. (speaks / the most / of all / clearly / he)</p><div class="word-container"><div class="word">of all</div><div class="word">the most</div><div class="word">clearly</div><div class="word">speaks</div><div class="word">he</div></div><div class="drop-zone" data-answer="he speaks the most clearly of all"></div></div>
+                        <div class="order-question"><p>10. (is / he / a / driver / very / careful)</p><div class="word-container"><div class="word">is</div><div class="word">a</div><div class="word">careful</div><div class="word">he</div><div class="word">driver</div><div class="word">very</div></div><div class="drop-zone" data-answer="he is a very careful driver"></div></div>
+                    </div>
+                    <button class="check-btn" onclick="checkOrder()">Tekshirish</button>
+                    <button class="check-btn" onclick="resetOrder()">Qayta tiklash</button>
+                    <div id="orderResult" class="result"></div>
+                </div>
+
+                <div id="transform" class="exercise-content">
+                    <h3>Gaplarni ravish yordamida qayta yozing</h3>
+                    <div class="transform-exercise">
+                        <div class="transform-question"><p>1. He is a <b>slow</b> worker. &rarr; He works ______.</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Qayta yozilgan gapni kiriting..." data-answer="He works slowly." data-explanation="'slow' (sifat) 'slowly' (ravish) ga o'zgaradi."></div></div>
+                        <div class="transform-question"><p>2. She has a <b>beautiful</b> voice. &rarr; She sings ______.</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Qayta yozilgan gapni kiriting..." data-answer="She sings beautifully." data-explanation="'beautiful' (sifat) 'beautifully' (ravish) ga o'zgaradi."></div></div>
+                        <div class="transform-question"><p>3. It was a <b>quick</b> response. &rarr; He responded ______.</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Qayta yozilgan gapni kiriting..." data-answer="He responded quickly." data-explanation="'quick' (sifat) 'quickly' (ravish) ga o'zgaradi."></div></div>
+                        <div class="transform-question"><p>4. He gave a <b>fluent</b> speech. &rarr; He spoke ______.</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Qayta yozilgan gapni kiriting..." data-answer="He spoke fluently." data-explanation="'fluent' (sifat) 'fluently' (ravish) ga o'zgaradi."></div></div>
+                        <div class="transform-question"><p>5. They had a <b>happy</b> celebration. &rarr; They celebrated ______.</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Qayta yozilgan gapni kiriting..." data-answer="They celebrated happily." data-explanation="'happy' (sifat) 'happily' (ravish) ga o'zgaradi."></div></div>
+                        <div class="transform-question"><p>6. It was a <b>terrible</b> performance. &rarr; They performed ______.</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Qayta yozilgan gapni kiriting..." data-answer="They performed terribly." data-explanation="'terrible' (sifat) 'terribly' (ravish) ga o'zgaradi."></div></div>
+                        <div class="transform-question"><p>7. She is a <b>good</b> piano player. &rarr; She plays the piano ______.</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Qayta yozilgan gapni kiriting..." data-answer="She plays the piano well." data-explanation="'good' (sifat) ning ravish shakli 'well'."></div></div>
+                        <div class="transform-question"><p>8. The question was <b>easy</b>. &rarr; We answered the question ______.</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Qayta yozilgan gapni kiriting..." data-answer="We answered the question easily." data-explanation="'easy' (sifat) 'easily' (ravish) ga o'zgaradi."></div></div>
+                        <div class="transform-question"><p>9. His English is <b>perfect</b>. &rarr; He speaks English ______.</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Qayta yozilgan gapni kiriting..." data-answer="He speaks English perfectly." data-explanation="'perfect' (sifat) 'perfectly' (ravish) ga o'zgaradi."></div></div>
+                        <div class="transform-question"><p>10. It was a <b>loud</b> explosion. &rarr; It exploded ______.</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Qayta yozilgan gapni kiriting..." data-answer="It exploded loudly." data-explanation="'loud' (sifat) 'loudly' (ravish) ga o'zgaradi."></div></div>
+                    </div>
+                    <button class="check-btn" onclick="checkTransform()">Tekshirish</button>
+                    <div id="transformResult" class="result"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="errors" class="tab-content">
+             <div class="card">
+                <h2>Muhim Qoidalar va Xatolar (Ravishlar)</h2>
+                
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 1: Sifat o'rnida ravish ishlatish</div>
+                    <div class="wrong-example">He drives very <strong>slow</strong>.</div>
+                    <div class="correct-example">He drives very <strong>slowly</strong>.</div>
+                    <div class="explanation"><p><strong>Qoida:</strong> Fe'lni ('drives') tasvirlash uchun sifat ('slow') emas, ravish ('slowly') ishlatiladi.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 2: 'good' va 'well'ni adashtirish</div>
+                    <div class="wrong-example">She speaks English <strong>good</strong>.</div>
+                    <div class="correct-example">She speaks English <strong>well</strong>.</div>
+                    <div class="explanation"><p><strong>Qoida:</strong> 'Good' - sifat (a good student). 'Well' - ravish (she speaks well). Ish-harakatni tasvirlash uchun 'well' ishlatiladi.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 3: 'hard' va 'hardly'ni adashtirish</div>
+                    <div class="wrong-example">He works very <strong>hardly</strong>.</div>
+                    <div class="correct-example">He works very <strong>hard</strong>.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> 'Hard' - "qattiq, ko'p" (ishlash). 'Hardly' - "zo'rg'a, deyarli...emas" (I can hardly see).</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 4: 'late' va 'lately'ni adashtirish</div>
+                    <div class="wrong-example">I haven't seen him <strong>late</strong>.</div>
+                    <div class="correct-example">I haven't seen him <strong>lately</strong>.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> 'Late' - "kech, kechqurun". 'Lately' - "yaqinda, so'nggi paytlarda".</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 5: Orttirma darajada xato</div>
+                    <div class="wrong-example">He runs <strong>more fast</strong> than me.</div>
+                    <div class="correct-example">He runs <strong>faster</strong> than me.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> 'Fast' kabi bir bo'g'inli ravishlarga 'more' emas, '-er' qo'shimchasi qo'shiladi.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 6: 'Fastly' so'zini ishlatish</div>
+                    <div class="wrong-example">She finished the race <strong>fastly</strong>.</div>
+                    <div class="correct-example">She finished the race <strong>fast</strong>.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> 'Fastly' degan so'z ingliz tilida mavjud emas. 'Fast' so'zining o'zi ham sifat, ham ravish bo'lib kela oladi.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 7: Holat fe'llaridan keyin ravish</div>
+                    <div class="wrong-example">The food smells <strong>deliciously</strong>.</div>
+                    <div class="correct-example">The food smells <strong>delicious</strong>.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> 'smell', 'taste', 'feel', 'look', 'seem' kabi holat fe'llaridan keyin odatda ravish emas, sifat ishlatiladi.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 8: Qiyosiy darajada qo'sh xato</div>
+                    <div class="wrong-example">She sings <strong>more better</strong> than him.</div>
+                    <div class="correct-example">She sings <strong>better</strong> than him.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> 'Better' allaqachon 'well'ning qiyosiy darajasi hisoblanadi. Uning oldidan 'more' ishlatish ortiqcha va xato.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 9: 'friendly', 'lonely' kabi so'zlardan ravish yasash</div>
+                    <div class="wrong-example">He greeted me <strong>friendly</strong>.</div>
+                    <div class="correct-example">He greeted me <strong>in a friendly way</strong>.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> 'Friendly', 'lonely', 'lovely' kabi -ly bilan tugaydigan so'zlar sifatlardir. Ulardan ravish yasash uchun "in a ... way/manner" iborasi ishlatiladi.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 10: 'hardly' bilan qo'sh inkor</div>
+                    <div class="wrong-example">I <strong>can't hardly</strong> hear you.</div>
+                    <div class="correct-example">I <strong>can hardly</strong> hear you.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> 'Hardly' so'zining o'zi inkor ma'nosini beradi ("deyarli...emas"). Shuning uchun undan oldin 'not' (can't, don't) ishlatilmaydi.</p></div>
+                </div>
+                
+             </div>
+        </div>
+        
+    </div>
+
+    <script>
+        // Progress tracking
+        let completedSections = 0;
+        const totalSections = 6; // Qoidalar, Farqlar, Strukturalar, Misollar, Mashqlar, Xatolar
+
+        // Tab functionality
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetTab = btn.dataset.tab;
+                
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                btn.classList.add('active');
+                document.getElementById(targetTab).classList.add('active');
+                
+                updateProgress();
+            });
+        });
+
+        // Exercise navigation
+        document.querySelectorAll('.exercise-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetExercise = btn.dataset.exercise;
+                
+                document.querySelectorAll('.exercise-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.exercise-content').forEach(c => c.classList.remove('active'));
+                
+                btn.classList.add('active');
+                document.getElementById(targetExercise).classList.add('active');
+
+                if (targetExercise === 'order') {
+                    resetOrder();
+                }
+            });
+        });
+
+        function normalizeAnswer(answer) {
+            if (typeof answer !== 'string') return '';
+            return answer.toLowerCase().trim()
+                .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")
+                .replace(/\s+/g, ' ');
+        }
+
+        function checkAnswerMatch(userAnswer, correctAnswer) {
+            const normalizedUser = normalizeAnswer(userAnswer);
+            const correctAnswers = correctAnswer.split('|').map(ans => normalizeAnswer(ans));
+            return correctAnswers.includes(normalizedUser);
+        }
+
+        function checkTest() {
+            const questions = document.querySelectorAll('#test .question');
+            let score = 0;
+            let resultHTML = '';
+            questions.forEach((question, index) => {
+                const qNum = index + 1;
+                const correctAnswer = question.dataset.answer;
+                const explanation = question.dataset.explanation;
+                const selected = document.querySelector(`input[name="q${qNum}"]:checked`);
+
+                if (selected && selected.value === correctAnswer) {
+                    score++;
+                    resultHTML += `<div class="correct-answer">✓ ${qNum}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    resultHTML += `<div class="wrong-answer">✗ ${qNum}-savol: Noto'g'ri. <div class="explanation">${explanation}</div></div>`;
+                }
+            });
+            resultHTML += `<div class="final-score"><strong>Natija: ${score}/${questions.length} (${Math.round((score/questions.length)*100)}%)</strong></div>`;
+            document.getElementById('testResult').innerHTML = resultHTML;
+        }
+
+        function checkFill() {
+            const inputs = document.querySelectorAll('#fill .fill-input');
+            let correct = 0;
+            let resultHTML = '';
+            inputs.forEach((input, index) => {
+                const answer = input.dataset.answer;
+                const explanation = input.dataset.explanation;
+                if (checkAnswerMatch(input.value, answer)) {
+                    input.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                    resultHTML += `<div class="correct-answer">✓ ${index + 1}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    input.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savol: Noto'g'ri. To'g'ri javob: <strong>${answer.split('|')[0]}</strong> <div class="explanation">${explanation}</div></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${inputs.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('fillResult').innerHTML = resultHTML;
+        }
+
+        function checkCorrection() {
+            const inputs = document.querySelectorAll('#correction .correct-input');
+            let correct = 0;
+            let resultHTML = '';
+            inputs.forEach((input, index) => {
+                const answer = input.dataset.answer;
+                 const explanation = input.dataset.explanation;
+                if (checkAnswerMatch(input.value, answer)) {
+                    input.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                     resultHTML += `<div class="correct-answer">✓ ${index + 1}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    input.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savol: Noto'g'ri. To'g'ri javob: <strong>${answer.split('|')[0]}</strong> <div class="explanation">${explanation}</div></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${inputs.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('correctionResult').innerHTML = resultHTML;
+        }
+
+        function checkOrder() {
+            const dropZones = document.querySelectorAll('#order .drop-zone');
+            let correct = 0;
+            let resultHTML = '';
+            dropZones.forEach((zone, index) => {
+                const answer = zone.dataset.answer;
+                const userAnswer = Array.from(zone.children).map(child => child.textContent).join(' ');
+                if (checkAnswerMatch(userAnswer, answer)) {
+                    zone.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                } else {
+                    zone.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savolning to'g'ri javobi: <strong>${answer.split('|')[0]}</strong></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${dropZones.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('orderResult').innerHTML = resultHTML;
+        }
+
+        function checkTransform() {
+            const inputs = document.querySelectorAll('#transform .transform-input');
+            let correct = 0;
+            let resultHTML = '';
+            inputs.forEach((input, index) => {
+                const answer = input.dataset.answer;
+                const explanation = input.dataset.explanation;
+                if (checkAnswerMatch(input.value, answer)) {
+                    input.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                     resultHTML += `<div class="correct-answer">✓ ${index + 1}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    input.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savol: Noto'g'ri. To'g'ri javob: <strong>${answer.split('|')[0]}</strong> <div class="explanation">${explanation}</div></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${inputs.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('transformResult').innerHTML = resultHTML;
+        }
+
+        // Click-based word order functionality
+        function handleWordClick(event) {
+            const word = event.target;
+            if (word.classList.contains('word')) {
+                const currentContainer = word.parentElement;
+                let targetContainer;
+
+                if (currentContainer.classList.contains('word-container')) {
+                    targetContainer = currentContainer.nextElementSibling;
+                } else if (currentContainer.classList.contains('drop-zone')) {
+                    targetContainer = currentContainer.previousElementSibling;
+                }
+
+                if (targetContainer) {
+                    targetContainer.appendChild(word);
+                }
+            }
+        }
+        document.getElementById('order').addEventListener('click', handleWordClick);
+
+        // So'zlarni aralashtirish funksiyasi
+        function shuffleChildren(parent) {
+            let children = Array.from(parent.children);
+            for (let i = children.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [children[i], children[j]] = [children[j], children[i]];
+            }
+            children.forEach(child => parent.appendChild(child));
+        }
+
+        // So'zlarni tartiblash mashqini qayta tiklash
+        function resetOrder() {
+            document.querySelectorAll('#order .order-question').forEach(question => {
+                const wordContainer = question.querySelector('.word-container');
+                const dropZone = question.querySelector('.drop-zone');
+                
+                // Barcha so'zlarni wordContainer ga qaytarish
+                Array.from(dropZone.children).forEach(child => wordContainer.appendChild(child));
+                
+                // So'zlarni aralashtirish
+                shuffleChildren(wordContainer);
+
+                dropZone.style.border = '2px dashed var(--drop-zone-border)';
+            });
+            document.getElementById('orderResult').innerHTML = '';
+        }
+
+        // Progressni yangilash
+        function updateProgress() {
+            const tabStates = { 'rules': 1, 'diffs': 2, 'structure': 3, 'examples': 4, 'exercises': 5, 'errors': 6 };
+            const activeTab = document.querySelector('.tab-btn.active').dataset.tab;
+            completedSections = tabStates[activeTab] || 0;
+            const percentage = (completedSections / totalSections) * 100;
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = percentage + '%';
+            progressBar.querySelector('.progress-text').textContent = Math.round(percentage) + '%';
+        }
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            themeToggle.checked = true;
+        }
+        themeToggle.addEventListener('change', () => {
+            if (themeToggle.checked) {
+                body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Sahifa yuklanganda
+        document.addEventListener('DOMContentLoaded', () => {
+            updateProgress();
+            resetOrder(); // So'zlarni birinchi yuklashda aralashtirish
+        });
+    </script>
+</body>
+</html>
