@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Can, Could, Be able to & Would - Chuqurlashtirilgan Qo'llanma</title>
+    <style>
+        /* Umumiy stilizatsiya (O'zgartirishsiz qoldirildi) */
+        :root {
+            --bg-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --text-primary: #333;
+            --header-bg: rgba(255, 255, 255, 0.1);
+            --header-text: white;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --card-border: rgba(255, 255, 255, 0.2);
+            --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            --h2-text-gradient: linear-gradient(135deg, #667eea, #764ba2);
+            --rule-section-bg: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            --rule-section-border-left: #667eea;
+            --code-bg: #e2e8f0;
+            --code-color: #c53030;
+            --table-th-bg: #e9ecef;
+            --table-th-color: #495057;
+            --table-td-bg: #fff;
+            --structure-card-bg: linear-gradient(135deg, #e0eafc, #cfdef3);
+            --structure-card-border: #667eea;
+            --formula-bg: white;
+            --example-category-bg: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            --example-item-bg: white;
+            --english-text: #2d3436;
+            --uzbek-text: #636e72;
+            --input-bg: #f8f9fa;
+            --input-border: #dee2e6;
+            --input-focus-shadow: rgba(102, 126, 234, 0.1);
+            --result-bg: linear-gradient(135deg, #ddd6fe, #c4b5fd);
+            --result-color: #5b21b6;
+            --correct-color: #28a745;
+            --wrong-color: #dc3545;
+            --progress-bg: rgba(255, 255, 255, 0.2);
+            --progress-bar-gradient: linear-gradient(90deg, #4CAF50, #45a049);
+            --tab-btn-bg: rgba(255, 255, 255, 0.2);
+            --tab-btn-hover-bg: rgba(255, 255, 255, 0.3);
+            --tab-btn-active-bg: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            --exercise-btn-bg: linear-gradient(135deg, #74b9ff, #0984e3);
+            --exercise-btn-active-bg: linear-gradient(135deg, #00b894, #00a085);
+            --word-bg: linear-gradient(135deg, #667eea, #764ba2);
+            --drop-zone-border: #dee2e6;
+            --drop-zone-bg: #f8f9fa;
+            --drop-zone-hover-bg: rgba(102, 126, 234, 0.1);
+        }
+
+        .dark-mode {
+            --bg-primary: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            --text-primary: #ecf0f1;
+            --header-bg: rgba(0, 0, 0, 0.2);
+            --header-text: #ecf0f1;
+            --card-bg: #3b506b;
+            --card-border: rgba(255, 255, 255, 0.1);
+            --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            --h2-text-gradient: linear-gradient(135deg, #a2ccff, #82b1ff);
+            --rule-section-bg: #4a6280;
+            --rule-section-border-left: #82b1ff;
+            --code-bg: #2f4358;
+            --code-color: #ff8c8c;
+            --table-th-bg: #4a6280;
+            --table-th-color: #ecf0f1;
+            --table-td-bg: #3b506b;
+            --structure-card-bg: linear-gradient(135deg, #4a6280, #5a7490);
+            --structure-card-border: #82b1ff;
+            --formula-bg: #2f4358;
+            --example-category-bg: #4a6280;
+            --example-item-bg: #3b506b;
+            --english-text: #ecf0f1;
+            --uzbek-text: #bdc3c7;
+            --input-bg: #2f4358;
+            --input-border: #5a7490;
+            --input-focus-shadow: rgba(130, 177, 255, 0.2);
+            --result-bg: linear-gradient(135deg, #4a2c7a, #6a3a9a);
+            --result-color: #e0e0e0;
+            --correct-color: #5cb85c;
+            --wrong-color: #d9534f;
+            --progress-bg: rgba(0, 0, 0, 0.3);
+            --progress-bar-gradient: linear-gradient(90deg, #5cb85c, #4cae4c);
+            --tab-btn-bg: rgba(0, 0, 0, 0.3);
+            --tab-btn-hover-bg: rgba(0, 0, 0, 0.4);
+            --tab-btn-active-bg: linear-gradient(135deg, #e74c3c, #c0392b);
+            --exercise-btn-bg: linear-gradient(135deg, #3498db, #2980b9);
+            --exercise-btn-active-bg: linear-gradient(135deg, #2ecc71, #27ae60);
+            --word-bg: linear-gradient(135deg, #3498db, #2980b9);
+            --drop-zone-border: #5a7490;
+            --drop-zone-bg: #2f4358;
+            --drop-zone-hover-bg: rgba(52, 152, 219, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            min-height: 100vh;
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--card-border);
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            color: var(--header-text);
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: bold;
+        }
+
+        .header p {
+            color: var(--header-text);
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        
+        .progress-container {
+            background: var(--progress-bg);
+            border-radius: 25px;
+            padding: 5px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(5px);
+        }
+
+        .progress-bar {
+            background: var(--progress-bar-gradient);
+            height: 30px;
+            border-radius: 20px;
+            transition: width 0.8s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 0%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-text {
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .theme-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .theme-switch input[type="checkbox"] {
+            height: 0;
+            width: 0;
+            visibility: hidden;
+        }
+
+        .theme-switch label {
+            cursor: pointer;
+            text-indent: -9999px;
+            width: 60px;
+            height: 30px;
+            background: #ccc;
+            display: block;
+            border-radius: 100px;
+            position: relative;
+            transition: background-color 0.3s ease;
+        }
+
+        .theme-switch label:after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background: #fff;
+            border-radius: 90px;
+            transition: 0.3s;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+
+        .theme-switch input:checked + label {
+            background: #82b1ff;
+        }
+
+        .theme-switch input:checked + label:after {
+            left: calc(100% - 3px);
+            transform: translateX(-100%);
+            background: #f1c40f;
+        }
+
+        .theme-switch .icon {
+            font-size: 1.5rem;
+            color: var(--header-text);
+            transition: color 0.3s ease;
+        }
+        .theme-switch input:checked ~ .icon.moon { display: block; }
+        .theme-switch input:not(:checked) ~ .icon.moon { display: none; }
+        .theme-switch input:checked ~ .icon.sun { display: none; }
+        .theme-switch input:not(:checked) ~ .icon.sun { display: block; }
+        .theme-switch .icon.sun { color: #f39c12; }
+        .theme-switch .icon.moon { color: #a2ccff; }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 10px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: var(--tab-btn-bg);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            color: var(--header-text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            font-weight: 500;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .tab-btn:hover {
+            background: var(--tab-btn-hover-bg);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .tab-btn.active {
+            background: var(--tab-btn-active-bg);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+        }
+
+        .card h2 {
+            color: var(--text-primary);
+            margin-bottom: 25px;
+            font-size: 2.2rem;
+            text-align: center;
+            background: var(--h2-text-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .rule-section, .diff-section {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: var(--rule-section-bg);
+            border-radius: 15px;
+            border-left: 5px solid var(--rule-section-border-left);
+        }
+
+        .rule-section h3, .diff-section h3 {
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .rule-section p, .rule-section li, .diff-section p, .diff-section li {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        
+        .rule-section code, .diff-section code {
+            background-color: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--code-color);
+        }
+
+        .diff-table-container { 
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch; 
+        }
+
+        .diff-table {
+            width: 100%; 
+            min-width: 600px;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        .diff-table th, .diff-table td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            text-align: left;
+            color: var(--text-primary);
+        }
+        .diff-table th {
+            background-color: var(--table-th-bg);
+            color: var(--table-th-color);
+        }
+        .diff-table td { background-color: var(--table-td-bg); }
+        .ok { color: var(--correct-color); font-weight: bold; }
+        .not-ok { color: var(--wrong-color); font-weight: bold; }
+
+
+        .structure-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .structure-card {
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            background: var(--structure-card-bg);
+            border: 2px solid var(--structure-card-border);
+        }
+        .structure-card:hover { transform: translateY(-5px); }
+
+        .structure-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            text-align: center;
+            color: var(--text-primary);
+        }
+
+        .formula {
+            background: var(--formula-bg); padding: 15px; border-radius: 10px;
+            margin-bottom: 15px; text-align: center; font-size: 1.1rem;
+            font-weight: 500; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            color: var(--text-primary);
+        }
+
+        .noun, .pronoun, .verb, .subject, .object {
+            padding: 5px 10px; border-radius: 5px; margin: 0 5px; color: white;
+        }
+        .noun { background: #fd79a8; }
+        .pronoun { background: #0984e3; }
+        .verb { background: #00b894; }
+        .subject { background: #ffeaa7; color: #333;}
+        .object { background: #6c5ce7; }
+        
+
+        .examples { background: rgba(255, 255, 255, 0.7); padding: 15px; border-radius: 10px; }
+        .examples p { margin-bottom: 8px; font-size: 1rem; color: var(--text-primary); }
+        
+        .structure-card .examples .uzbek {
+            color: var(--uzbek-text);
+            font-style: italic;
+            padding-left: 10px;
+            border-left: 3px solid #764ba2;
+            margin-top: 5px;
+        }
+
+
+        .examples-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 25px; margin-top: 25px;
+        }
+
+        .example-category {
+            background: var(--example-category-bg); padding: 25px;
+            border-radius: 15px; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        .example-category h3 {
+            color: var(--text-primary); margin-bottom: 20px; font-size: 1.4rem; text-align: center;
+            padding-bottom: 10px; border-bottom: 2px solid var(--rule-section-border-left);
+        }
+
+        .example-item {
+            background: var(--example-item-bg); padding: 15px; border-radius: 10px; margin-bottom: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease;
+        }
+        .example-item:hover { transform: translateX(5px); }
+        .english { color: var(--english-text); font-weight: 500; margin-bottom: 8px; font-size: 1.05rem; }
+        .uzbek { color: var(--uzbek-text); font-style: italic; padding-left: 20px; border-left: 3px solid var(--rule-section-border-left); }
+
+        .exercise-nav {
+            display: flex; justify-content: center; margin-bottom: 30px;
+            gap: 10px; flex-wrap: wrap;
+        }
+        .exercise-btn {
+            background: var(--exercise-btn-bg); color: white; border: none;
+            padding: 12px 20px; border-radius: 10px; cursor: pointer; transition: all 0.3s ease;
+            font-size: 14px; font-weight: 500; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .exercise-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); }
+        .exercise-btn.active {
+            background: var(--exercise-btn-active-bg);
+            box-shadow: 0 6px 20px rgba(0, 184, 148, 0.3);
+        }
+
+        .exercise-content { display: none; }
+        .exercise-content.active { display: block; animation: fadeIn 0.5s ease-in-out; }
+        .exercise-content h3 { color: var(--text-primary); margin-bottom: 25px; font-size: 1.6rem; text-align: center; }
+
+        .quiz-container, .fill-exercise, .combine-exercise, .correct-exercise, .omission-exercise, .order-exercise { margin-bottom: 25px; }
+        .question, .fill-question, .combine-question, .correct-question, .omission-question, .order-question {
+            background: var(--example-item-bg); padding: 20px; border-radius: 15px; margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); border-left: 5px solid var(--rule-section-border-left);
+        }
+        .question p, .fill-question p, .combine-question p, .correct-question p, .omission-question p, .order-question p {
+            font-size: 1.2rem; margin-bottom: 15px; color: var(--english-text); font-weight: 500;
+        }
+        .correct-question p.incorrect { text-decoration: line-through; color: var(--wrong-color);}
+
+        .options { display: flex; flex-direction: column; gap: 10px; }
+        .options label {
+            display: flex; align-items: center; padding: 10px; border-radius: 8px;
+            background: var(--input-bg); cursor: pointer; transition: background 0.3s ease; font-size: 1rem;
+            color: var(--text-primary);
+        }
+        .options label:hover { background: var(--rule-section-bg); }
+        .options input[type="radio"] { margin-right: 10px; transform: scale(1.2); }
+
+        .fill-input, .combine-input, .correct-input, .transform-input {
+            width: 100%; background: var(--input-bg); border: 2px solid var(--input-border);
+            border-radius: 8px; padding: 12px; font-size: 1rem; transition: all 0.3s ease;
+            color: var(--text-primary);
+        }
+        .fill-input:focus, .combine-input:focus, .correct-input:focus, .transform-input:focus {
+            outline: none; border-color: var(--rule-section-border-left); box-shadow: 0 0 0 3px var(--input-focus-shadow);
+        }
+
+        .check-btn {
+            background: var(--exercise-btn-active-bg); color: white; border: none;
+            padding: 15px 30px; border-radius: 10px; cursor: pointer; font-size: 1.1rem;
+            font-weight: 500; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: block; margin: 10px auto;
+        }
+        .check-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 184, 148, 0.3); }
+
+        .check-btn:active { transform: translateY(0); }
+
+        .result {
+            margin-top: 20px; padding: 15px; border-radius: 10px; text-align: center;
+            font-size: 1.2rem; font-weight: 500; background: var(--result-bg);
+            color: var(--result-color); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .correct-answer { color: var(--correct-color); margin: 5px 0; }
+        .wrong-answer { color: var(--wrong-color); margin: 5px 0; }
+        .final-score { margin-top: 10px; padding: 10px; background: var(--input-bg); border-radius: 5px; color: var(--text-primary); }
+
+        .explanation {
+            background: var(--input-bg);
+            border-left: 4px solid var(--rule-section-border-left);
+            padding: 10px;
+            margin: 10px 0 0 0;
+            border-radius: 0 8px 8px 0;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            text-align: left;
+        }
+
+        .word-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: var(--input-bg);
+            border-radius: 10px;
+            min-height: 60px;
+        }
+
+        .word {
+            background: var(--word-bg);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+
+        .word:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .drop-zone {
+            min-height: 60px;
+            border: 2px dashed var(--drop-zone-border);
+            border-radius: 10px;
+            padding: 15px;
+            background: var(--drop-zone-bg);
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            gap: 10px;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+        }
+
+        .drop-zone:hover, .word-container:hover {
+            border-color: var(--rule-section-border-left);
+            background: var(--drop-zone-hover-bg);
+        }
+
+        .drop-zone .word {
+             background: var(--exercise-btn-active-bg);
+        }
+
+        .transform-question {
+            background: var(--example-item-bg);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--structure-card-border);
+            transition: all 0.3s ease;
+        }
+
+        .transform-question:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        }
+
+        .transform-question p {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .transform-question p b {
+            color: var(--header-text);
+            background: var(--word-bg);
+            padding: 3px 9px;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .transform-input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .transform-input-wrapper .fa-pen-to-square {
+            position: absolute;
+            left: 15px;
+            color: var(--uzbek-text);
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .transform-input {
+            padding-left: 45px; 
+            background-image: linear-gradient(to right, var(--input-bg), var(--card-bg));
+            font-weight: 500;
+        }
+
+        .transform-input:focus {
+            background-image: none;
+        }
+
+        .transform-input-wrapper:hover .fa-pen-to-square {
+            color: var(--rule-section-border-left);
+        }
+        
+        .error-section {
+            background: var(--rule-section-bg);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-left: 5px solid var(--wrong-color);
+        }
+
+        .error-title {
+            color: var(--wrong-color);
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .wrong-example {
+            background: rgba(220, 53, 69, 0.1);
+            border: 2px solid var(--wrong-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0 10px 0;
+            position: relative;
+            color: var(--text-primary);
+        }
+
+        .wrong-example::before {
+            content: "❌ NOTO'G'RI";
+            position: absolute;
+            top: -12px;
+            left: 15px;
+            background: var(--wrong-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .correct-example {
+            background: rgba(40, 167, 69, 0.1);
+            border: 2px solid var(--correct-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0 10px 0;
+            position: relative;
+            color: var(--text-primary);
+        }
+
+        .correct-example::before {
+            content: "✅ TO'G'RI";
+            position: absolute;
+            top: -12px;
+            left: 15px;
+            background: var(--correct-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .explanation .explanation-title {
+            color: var(--rule-section-border-left);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .rule-box {
+            background: var(--exercise-btn-bg);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-weight: 500;
+        }
+
+        .situation-example {
+            background: var(--example-item-bg);
+            border: 1px solid var(--input-border);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            color: var(--text-primary);
+        }
+
+        .context {
+            color: var(--correct-color);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .error-section.general-tips {
+             border-left-color: var(--correct-color);
+        }
+        .error-section.general-tips .error-title {
+             color: var(--correct-color);
+        }
+        .error-section.general-tips .rule-box {
+            background: var(--exercise-btn-active-bg);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header h1 { font-size: 2rem; }
+            .card h2 { font-size: 1.8rem; }
+            .structure-grid, .examples-grid { grid-template-columns: 1fr; }
+            .nav-tabs, .exercise-nav { flex-direction: column; gap: 5px; }
+            .tab-btn, .exercise-btn { width: 100%; text-align: center; }
+            .theme-switch { top: 10px; right: 10px; }
+        }
+
+        @media (max-width: 480px) {
+            .header { padding: 20px; }
+            .header h1 { font-size: 1.5rem; }
+            .card { padding: 15px; }
+            .structure-card { padding: 20px; }
+            .example-category { padding: 20px; }
+            .question { padding: 15px; }
+            .word { padding: 6px 12px; font-size: 14px; }
+            .diff-table { min-width: 400px; }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .check-btn:hover { animation: bounce 0.6s ease; }
+
+        .card {
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideUp 0.6s ease forwards;
+        }
+
+        @keyframes slideUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(135deg, #764ba2, #667eea); }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Can, Could, Be able to & Would - Chuqurlashtirilgan Qo'llanma</h1>
+            <p>Qobiliyat, Iltimos, Ruxsat va Ehtimollikning Barcha Nozik Jihatlari</p>
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar">
+                    <span class="progress-text">0%</span>
+                </div>
+            </div>
+
+            <div class="theme-switch">
+                <i class="fas fa-sun icon sun"></i>
+                <input type="checkbox" id="themeToggle">
+                <label for="themeToggle"></label>
+                <i class="fas fa-moon icon moon"></i>
+            </div>
+        </div>
+
+        <nav class="nav-tabs">
+            <button class="tab-btn active" data-tab="rules">Asosiy Qoidalar</button>
+            <button class="tab-btn" data-tab="diffs">Zamonlar va Farqlar</button>
+            <button class="tab-btn" data-tab="structure">Strukturalar</button>
+            <button class="tab-btn" data-tab="examples">Misollar</button>
+            <button class="tab-btn" data-tab="exercises">Mashqlar</button>
+            <button class="tab-btn" data-tab="errors">Muhim Qoidalar va Xatolar</button>
+        </nav>
+
+        <div id="rules" class="tab-content active">
+             <div class="card">
+                <h2>Asosiy Qoidalar</h2>
+                <div class="rule-section">
+                    <h3><code>Can</code></h3>
+                    <p>Hozirgi zamondagi qobiliyat, umumiy imkoniyat, ruxsat va norasmiy iltimoslar uchun ishlatiladi.</p>
+                    <ul>
+                        <li><strong>Qobiliyat:</strong> I <strong>can</strong> play the guitar. (Men gitara chala olaman.)</li>
+                        <li><strong>Umumiy imkoniyat/haqiqat:</strong> It <strong>can</strong> be very cold here in winter. (Bu yerda qishda juda sovuq bo'lishi mumkin.)</li>
+                        <li><strong>Ruxsat:</strong> <strong>Can</strong> I borrow your book? (Kitobingizni olib tursam maylimi?)</li>
+                        <li><strong>Iltimos (norasmiy):</strong> <strong>Can</strong> you pass the salt? (Tuzni uzatib yubora olasizmi?)</li>
+                    </ul>
+                </div>
+                <div class="rule-section">
+                    <h3><code>Could</code></h3>
+                    <p>O'tgan zamondagi umumiy qobiliyat, xushmuomalali iltimos, taklif va ehtimollikni bildiradi.</p>
+                     <ul>
+                        <li><strong>O'tgan qobiliyat (umumiy):</strong> I <strong>could</strong> swim when I was five. (Besh yoshimda suza olardim.)</li>
+                        <li><strong>Iltimos (xushmuomalali):</strong> <strong>Could</strong> you please speak more slowly? (Iltimos, sekinroq gapira olasizmi?)</li>
+                        <li><strong>Ehtimollik:</strong> This <strong>could</strong> be the house we're looking for. (Bu biz qidirayotgan uy bo'lishi mumkin.)</li>
+                        <li><strong>Taklif:</strong> We <strong>could</strong> try that new restaurant. (Ana u yangi restoranni sinab ko'rsak bo'ladi.)</li>
+                    </ul>
+                </div>
+                 <div class="rule-section">
+                    <h3><code>Be able to</code> (va uning kelasi zamon shakli <code>Will/Shall be able to</code>)</h3>
+                    <p><code>be able to</code> - <code>can/could</code> ishlatib bo'lmaydigan barcha holatlar uchun "qutqaruvchi" hisoblanadi.</p>
+                     <ul>
+                        <li><strong>Kelasi zamon:</strong>
+                            <p><code>will be able to</code> barcha shaxslar uchun ishlatiladi va eng keng tarqalgan shakldir. <code>shall be able to</code> asosan <code>I</code> va <code>we</code> bilan rasmiy yoki British English uslubida ishlatiladi.</p>
+                            <p>I <strong>will be able to</strong> help you tomorrow. (Ertaga senga yordam bera olaman.)</p>
+                            <p>We <strong>shall be able to</strong> complete the task as scheduled. (Biz vazifani reja bo'yicha bajara olamiz. - rasmiy)</p>
+                        </li>
+                        <li><strong>Perfect Zamonlar:</strong> I haven't <strong>been able to</strong> finish my work. (Ishimni tugata olmadim.)</li>
+                        <li><strong>Modal fe'llardan keyin:</strong> You must <strong>be able to</strong> work on weekends. (Siz dam olish kunlari ishlay olishingiz kerak.)</li>
+                    </ul>
+                </div>
+                <div class="rule-section">
+                    <h3><code>Would</code> (Iltimoslar uchun)</h3>
+                    <p><code>Would</code> asosan juda xushmuomalali iltimoslar uchun ishlatiladi va bu holatda <code>could</code> ga juda yaqin ma'no beradi.</p>
+                     <ul>
+                        <li><strong>Juda xushmuomalali iltimos:</strong> <strong>Would</strong> you mind closing the door? (Eshikni yopib qo'ysangiz qarshi emasmisiz?)</li>
+                         <li><strong>Solishtirma:</strong> <code>Could you help me?</code> (Yordam bera olasizmi? - qobiliyatga urg'u). <code>Would you help me?</code> (Yordam berasizmi? - xohishga urg'u). Amalda ikkalasi ham bir xil darajada xushmuomalali hisoblanadi.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="diffs" class="tab-content">
+            <div class="card">
+                <h2>Zamonlar va Chuqur Farqlar</h2>
+                <div class="diff-section">
+                    <h3><code>Could</code> vs <code>Was/Were able to</code> (O'tgan zamon)</h3>
+                    <p>Bu eng muhim va ko'p adashtiriladigan farq. Ikkalasi ham o'tgan zamon, lekin ma'nolari har xil.</p>
+                    <div class="diff-table-container">
+                        <table class="diff-table">
+                            <tr><th>Turi</th><th>Qo'llanilishi</th><th>Misol va Tushuntirish</th></tr>
+                            <tr>
+                                <td><code>Could</code></td>
+                                <td><strong>UMUMIY QOBILIYAT.</strong> O'tmishda biror ishni qilish qobiliyatiga ega bo'lganingizni bildiradi. Bu qobiliyatdan foydalanib biror natijaga erishganingiz aytilmaydi.</td>
+                                <td>My grandfather <strong>could</strong> speak five languages. (Mening bobom beshta tilda gapira olardi.) - Bu uning umumiy qobiliyati edi.</td>
+                            </tr>
+                            <tr>
+                                <td><code>Was/Were able to</code></td>
+                                <td><strong>ANİQ VAZIYATDAGI YUTUQ.</strong> Bir martalik, qiyin vaziyatda biror ishni uddalaganlik, eplaganlik. ("epladi", "uddaladi" deb tarjima qilinadi).</td>
+                                <td>The dictionary was in German, but I <strong>was able to</strong> understand the word. (Lug'at nemis tilida edi, lekin men so'zni tushuna oldim / tushunishni epladim.)</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <p><strong>ISTISNO (Eng Muhim Qoida):</strong> Inkor shaklda bu farq yo'qoladi. Ikkalasi ham bir xil ma'noni beradi. Odatda <code>couldn't</code> ko'proq ishlatiladi.</p>
+                    <p><code>I couldn't find my keys.</code> = <code>I wasn't able to find my keys.</code> (Kalitlarimni topa olmadim.)</p>
+                </div>
+                
+                 <div class="diff-section">
+                    <h3>Iltimoslar: <code>Could you...?</code> vs <code>Would you...?</code></h3>
+                    <p>Ikkalasi ham juda xushmuomalali iltimoslar uchun ishlatiladi va ko'p hollarda bir-birining o'rnida keladi.</p>
+                    <div class="diff-table-container">
+                        <table class="diff-table">
+                            <tr><th>Struktura</th><th>Asl Ma'nosi</th><th>Misol</th></tr>
+                            <tr>
+                                <td><code>Could you...?</code></td>
+                                <td>"Shuni qilishga <strong>qodirmisiz/imkoningiz bormi?</strong>"</td>
+                                <td><strong>Could you</strong> pass me the water? (Suvni uzatib yubora olasizmi?)</td>
+                            </tr>
+                            <tr>
+                                <td><code>Would you...?</code></td>
+                                <td>"Shuni qilishga <strong>xohishingiz bormi?</strong>"</td>
+                                <td><strong>Would you</strong> pass me the water? (Suvni uzatib yuborsangiz?)</td>
+                            </tr>
+                        </table>
+                    </div>
+                     <p><strong>Xulosa:</strong> Kundalik nutqda ikkalasi ham bir xil darajada xushmuomalali hisoblanadi. Sizdan biror narsa so'rashganda "Ha, albatta" deb javob berasiz, "Ha, qodirman" yoki "Ha, xohlayman" deb emas.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="structure" class="tab-content">
+            <div class="card">
+                <h2>Strukturalar</h2>
+                <div class="structure-grid">
+                    <div class="structure-card">
+                        <h3>Qobiliyat (Hozirgi/O'tgan)</h3>
+                        <div class="formula"><span class="subject">Ega</span> + <span class="verb">can / could</span> + <span class="object">V1</span></div>
+                        <div class="examples">
+                            <p>1. She <b>can</b> solve complex problems.</p>
+                            <p class="uzbek">U murakkab muammolarni yecha oladi.</p>
+                            <p>2. I <b>couldn't</b> hear anything.</p>
+                            <p class="uzbek">Men hech narsa eshita olmadim.</p>
+                        </div>
+                    </div>
+                     <div class="structure-card">
+                        <h3>Qobiliyat (Kelasi Zamon)</h3>
+                        <div class="formula"><span class="subject">Ega</span> + <span class="verb">will/shall be able to</span> + <span class="object">V1</span></div>
+                        <div class="examples">
+                            <p>1. He <b>will be able to</b> join us later.</p>
+                            <p class="uzbek">U bizga keyinroq qo'shila oladi.</p>
+                            <p>2. We <b>shall be able to</b> provide a response by Monday. (Rasmiy)</p>
+                            <p class="uzbek">Dushanbagacha javob taqdim eta olamiz.</p>
+                        </div>
+                    </div>
+                    <div class="structure-card">
+                        <h3>Iltimos (Polite Requests)</h3>
+                        <div class="formula"><span class="subject">Could/Would</span> + <span class="verb">you</span> + <span class="object">V1</span>...?</div>
+                        <div class="examples">
+                            <p>1. <b>Could you</b> possibly help me?</p>
+                            <p class="uzbek">Iloji bo'lsa, menga yordam bera olasizmi?</p>
+                            <p>2. <b>Would you</b> mind if I opened the window?</p>
+                            <p class="uzbek">Derazani ochsam qarshi emasmisiz?</p>
+                        </div>
+                    </div>
+                    <div class="structure-card">
+                        <h3>Infinitive & Modal fe'llar bilan</h3>
+                        <div class="formula"><span class="subject">...to be able to</span> / <span class="verb">modal + be able to</span></div>
+                        <div class="examples">
+                             <p>1. It's nice <b>to be able to</b> relax on weekends.</p>
+                             <p class="uzbek">Dam olish kunlari dam ola bilish yaxshi.</p>
+                            <p>2. You might <b>be able to</b> get a cheaper ticket online.</p>
+                            <p class="uzbek">Siz onlayn arzonroq chipta ola bilishingiz mumkin.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="examples" class="tab-content">
+            <div class="card">
+                <h2>Misollar To'plami</h2>
+                <div class="examples-grid">
+                    <div class="example-category"><h3>CAN bilan misollar</h3>
+                        <div class="example-item"><p class="english">I <strong>can</strong> speak basic Japanese.</p><p class="uzbek">Men oddiy yapon tilida gaplasha olaman.</p></div>
+                        <div class="example-item"><p class="english"><strong>Can</strong> you see that bird in the tree?</p><p class="uzbek">Daraxtdagi anavi qushni ko'ra olyapsizmi?</p></div>
+                        <div class="example-item"><p class="english">You <strong>can</strong> buy tickets online.</p><p class="uzbek">Chiptalarni onlayn sotib olsa bo'ladi.</p></div>
+                        <div class="example-item"><p class="english">I'm busy now, but I <strong>can</strong> call you back in an hour.</p><p class="uzbek">Hozir bandman, lekin bir soatdan keyin sizga qayta qo'ng'iroq qila olaman.</p></div>
+                        <div class="example-item"><p class="english">She <strong>can't</strong> come to the phone right now.</p><p class="uzbek">U hozir telefonga kela olmaydi.</p></div>
+                    </div>
+                    <div class="example-category"><h3>COULD bilan misollar</h3>
+                        <div class="example-item"><p class="english">He <strong>could</strong> run a marathon when he was younger.</p><p class="uzbek">U yoshroq paytida marafon yugura olardi.</p></div>
+                        <div class="example-item"><p class="english"><strong>Could you</strong> please repeat that?</p><p class="uzbek">Iltimos, shuni takrorlay olasizmi?</p></div>
+                        <div class="example-item"><p class="english">From my window, I <strong>could</strong> see the entire city.</p><p class="uzbek">Derazamdan butun shaharni ko'ra olardim.</p></div>
+                        <div class="example-item"><p class="english">She said she <strong>couldn't</strong> hear me.</p><p class="uzbek">U meni eshita olmayotganini aytdi.</p></div>
+                        <div class="example-item"><p class="english">That noise <strong>could</strong> be a fox.</p><p class="uzbek">Bu shovqin tulki bo'lishi mumkin.</p></div>
+                    </div>
+                     <div class="example-category"><h3>WAS/WERE ABLE TO bilan misollar</h3>
+                        <div class="example-item"><p class="english">The firefighters <strong>were able to</strong> put out the fire before it spread.</p><p class="uzbek">O't o'chiruvchilar yong'in tarqalishidan oldin uni o'chira oldilar.</p></div>
+                        <div class="example-item"><p class="english">He fell into the river but <strong>was able to</strong> swim to the side.</p><p class="uzbek">U daryoga yiqildi, lekin qirg'oqqa suzib chiqa oldi.</p></div>
+                        <div class="example-item"><p class="english">I lost my password, but luckily I <strong>was able to</strong> reset it.</p><p class="uzbek">Parolimni yo'qotib qo'ydim, lekin xayriyatki, uni tiklay oldim.</p></div>
+                        <div class="example-item"><p class="english">How <strong>were you able to</strong> convince him?</p><p class="uzbek">Qanday qilib uni ko'ndira oldingiz?</p></div>
+                        <div class="example-item"><p class="english">They missed the train, but they <strong>were able to</strong> catch the next one.</p><p class="uzbek">Ular poyezddan qolib ketishdi, lekin keyingisiga ulgura oldilar.</p></div>
+                    </div>
+                    <div class="example-category"><h3>WILL/SHALL BE ABLE TO bilan misollar</h3>
+                        <div class="example-item"><p class="english">Soon, you <strong>will be able to</strong> speak English without a dictionary.</p><p class="uzbek">Tez orada siz lug'atsiz ingliz tilida gapira oladigan bo'lasiz.</p></div>
+                        <div class="example-item"><p class="english">I'm sorry, I <strong>won't be able to</strong> attend the meeting tomorrow.</p><p class="uzbek">Kechirasiz, men ertaga yig'ilishda qatnasha olmayman.</p></div>
+                        <div class="example-item"><p class="english">Per our agreement, we <strong>shall be able to</strong> start the project on May 1st.</p><p class="uzbek">Kelishuvimizga binoan, biz loyihani 1-mayda boshlay olamiz (rasmiy).</p></div>
+                        <div class="example-item"><p class="english"><strong>Will you be able to</strong> finish this work by Friday?</p><p class="uzbek">Jumagacha bu ishni tugata olasizmi?</p></div>
+                        <div class="example-item"><p class="english">After this course, I <strong>will be able to</strong> build my own website.</p><p class="uzbek">Bu kursdan so'ng men o'z veb-saytimni yarata oladigan bo'laman.</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="exercises" class="tab-content">
+            <div class="card">
+                <h2>Mashqlar To'plami</h2>
+                <nav class="exercise-nav">
+                    <button class="exercise-btn active" data-exercise="test">Test</button>
+                    <button class="exercise-btn" data-exercise="fill">Bo'sh joyni to'ldirish</button>
+                    <button class="exercise-btn" data-exercise="correction">Xatolarni Tuzatish</button>
+                    <button class="exercise-btn" data-exercise="transform">Gaplarni O'zgartirish</button>
+                    <button class="exercise-btn" data-exercise="order">So'zlarni Tartiblash</button>
+                </nav>
+
+                <div id="test" class="exercise-content active">
+                    <h3>To'g'ri variantni tanlang</h3>
+                    <div class="quiz-container">
+                         <div class="question" data-answer="b" data-explanation="Kelasi zamon qobiliyati uchun 'will can' emas, balki 'will be able to' ishlatiladi."><p>1. If you study hard, you ___ pass the exam.</p><div class="options"><label><input type="radio" name="q1" value="a">a) will can</label><label><input type="radio" name="q1" value="b">b) will be able to</label><label><input type="radio" name="q1" value="c">c) can</label></div></div>
+                        <div class="question" data-answer="b" data-explanation="Bu yerda o'tgan zamondagi aniq bir vaziyatdagi yutuq (qochib qolish) haqida gap ketyapti. Umumiy qobiliyat emas. Shuning uchun 'was able to' to'g'ri."><p>2. The house was on fire, but the family ___ escape.</p><div class="options"><label><input type="radio" name="q2" value="a">a) could</label><label><input type="radio" name="q2" value="b">b) was able to</label><label><input type="radio" name="q2" value="c">c) can</label></div></div>
+                        <div class="question" data-answer="c" data-explanation="Infinitive (to bilan) kerak. 'to can' yoki 'to could' ishlatilmaydi. To'g'ri shakl: 'to be able to'."><p>3. I would love ___ travel to Japan next year.</p><div class="options"><label><input type="radio" name="q3" value="a">a) can</label><label><input type="radio" name="q3" value="b">b) could</label><label><input type="radio" name="q3" value="c">c) to be able to</label></div></div>
+                        <div class="question" data-answer="a" data-explanation="Bu umumiy o'tgan zamon qobiliyati haqida. Aniq bir yutuq emas. Shuning uchun 'could' ishlatiladi."><p>4. When he was young, he ___ run much faster than now.</p><div class="options"><label><input type="radio" name="q4" value="a">a) could</label><label><input type="radio" name="q4" value="b">b) was able to</label><label><input type="radio" name="q4" value="c">c) has been able to</label></div></div>
+                        <div class="question" data-answer="b" data-explanation="'must' modal fe'lidan keyin yana bir modal fe'l ('can') kela olmaydi. To'g'ri yechim 'be able to' dan foydalanish."><p>5. To get this job, you must ___ speak English fluently.</p><div class="options"><label><input type="radio" name="q5" value="a">a) can</label><label><input type="radio" name="q5" value="b">b) be able to</label><label><input type="radio" name="q5" value="c">c) could</label></div></div>
+                        <div class="question" data-answer="b" data-explanation="Present Perfect zamonida qobiliyat 'have/has been able to' orqali ifodalanadi."><p>6. I'm sorry, I haven't ___ finish the report yet.</p><div class="options"><label><input type="radio" name="q6" value="a">a) could</label><label><input type="radio" name="q6" value="b">b) been able to</label><label><input type="radio" name="q6" value="c">c) can</label></div></div>
+                        <div class="question" data-answer="c" data-explanation="Xushmuomalali iltimos uchun 'Could you' yoki 'Would you' ishlatiladi. Bu yerda 'Would' variantlarda bor."><p>7. ___ you mind helping me with these boxes?</p><div class="options"><label><input type="radio" name="q7" value="a">a) Can</label><label><input type="radio" name="q7" value="b">b) Do</label><label><input type="radio" name="q7" value="c">c) Would</label></div></div>
+                        <div class="question" data-answer="a" data-explanation="O'tgan zamondagi inkor gaplarda 'couldn't' va 'wasn't/weren't able to' bir xil ma'noda keladi va 'couldn't' keng tarqalgan."><p>8. We looked everywhere, but we ___ find him.</p><div class="options"><label><input type="radio" name="q8" value="a">a) couldn't</label><label><input type="radio" name="q8" value="b">b) can't</label><label><input type="radio" name="q8" value="c">c) would not</label></div></div>
+                    </div>
+                    <button class="check-btn" onclick="checkTest()">Tekshirish</button>
+                    <div id="testResult" class="result"></div>
+                </div>
+
+                <div id="fill" class="exercise-content">
+                    <h3>Bo'sh joyni to'ldiring</h3>
+                    <div class="fill-exercise">
+                        <div class="fill-question"><p>1. It was dark, but I _______ see the path with my phone's light. (specific past success)</p><input type="text" class="fill-input" data-answer="was able to" data-explanation="Qorong'uda yo'lni ko'ra olish - bir martalik yutuq, shuning uchun 'was able to' ishlatiladi."></div>
+                        <div class="fill-question"><p>2. _______ you please tell me what time it is? (polite request)</p><input type="text" class="fill-input" data-answer="Could|Would" data-explanation="Xushmuomalali iltimos uchun 'Could' yoki 'Would' ishlatiladi."></div>
+                        <div class="fill-question"><p>3. I _______ afford this car now, but maybe next year I _______. (present/future ability)</p><input type="text" class="fill-input" data-answer="can't, will be able to" data-explanation="Hozirgi qobiliyatsizlik uchun 'can't', kelasi zamon qobiliyati uchun 'will be able to' kerak."></div>
+                        <div class="fill-question"><p>4. Since I started this course, I've _______ understand much more. (Present Perfect ability)</p><input type="text" class="fill-input" data-answer="been able to" data-explanation="Present Perfect zamonidagi qobiliyat uchun 'have been able to' ishlatiladi."></div>
+                        <div class="fill-question"><p>5. He spoke very quietly and I _______ understand him. (past negative ability)</p><input type="text" class="fill-input" data-answer="couldn't" data-explanation="O'tgan zamondagi qobiliyatsizlik uchun 'couldn't' ishlatiladi."></div>
+                        <div class="fill-question"><p>6. I want _______ help people who are in need. (infinitive)</p><input type="text" class="fill-input" data-answer="to be able to" data-explanation="'want' fe'lidan keyin Infinitive (to+V1) keladi, shuning uchun 'to be able to' ishlatiladi."></div>
+                        <div class="fill-question"><p>7. If you had more time, you _______ travel more. (conditional)</p><input type="text" class="fill-input" data-answer="could|would be able to" data-explanation="Shartli gaplarda (conditionals) 'could' yoki 'would be able to' ishlatiladi."></div>
+                        <div class="fill-question"><p>8. As per the rules, we _______ provide a refund. (formal future)</p><input type="text" class="fill-input" data-answer="shall be able to" data-explanation="Rasmiy kontekstda (qoidalarga ko'ra), 'we' bilan 'shall be able to' ishlatiladi."></div>
+                    </div>
+                    <button class="check-btn" onclick="checkFill()">Tekshirish</button>
+                    <div id="fillResult" class="result"></div>
+                </div>
+                
+                <div id="correction" class="exercise-content">
+                   <h3>Xatolarni Tuzating</h3>
+                    <div class="correct-exercise">
+                        <div class="correct-question"><p class="incorrect">1. She will can join us later.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="She will be able to join us later." data-explanation="'will' va 'can' ikkita modal fe'l bo'lgani uchun yonma-yon kela olmaydi. Kelasi zamon qobiliyati uchun 'will be able to' ishlatiladi."></div>
+                        <div class="correct-question"><p class="incorrect">2. I want to can travel the world.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I want to be able to travel the world." data-explanation="'can' fe'lining infinitive shakli yo'q. Uning o'rniga 'to be able to' ishlatiladi."></div>
+                        <div class="correct-question"><p class="incorrect">3. He tried hard and at last he could pass the exam.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="He tried hard and at last he was able to pass the exam." data-explanation="Imtihondan o'tish aniq bir vaziyatdagi yutuqdir. Umumiy qobiliyat emas. Shuning uchun 'was able to' to'g'riroq."></div>
+                        <div class="correct-question"><p class="incorrect">4. I haven't can sleep well recently.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I haven't been able to sleep well recently." data-explanation="Present Perfect zamonida 'can' ishlatilmaydi. Uning o'rniga 'have/has been able to' ishlatiladi."></div>
+                        <div class="correct-question"><p class="incorrect">5. You must can speak Chinese for this job.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="You must be able to speak Chinese for this job." data-explanation="'must' modal fe'lidan keyin yana bir modal fe'l ('can') kela olmaydi. To'g'ri shakli 'must be able to'."></div>
+                        <div class="correct-question"><p class="incorrect">6. Would I use your phone for a moment?</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="Can I use your phone for a moment.|Could I use your phone for a moment." data-explanation="Ruxsat so'rash uchun 'Would I...?' ishlatilmaydi. Uning o'rniga 'Can I...?' yoki 'Could I...?' ishlatish kerak."></div>
+                        <div class="correct-question"><p class="incorrect">7. He was a great musician, he was able to play three instruments.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="He was a great musician, he could play three instruments." data-explanation="Bu gap umumiy o'tgan zamon qobiliyati haqida. Aniq bir yutuq emas. Shuning uchun 'could' to'g'riroq."></div>
+                        <div class="correct-question"><p class="incorrect">8. I'm not very busy. I can to help you.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I'm not very busy. I can help you." data-explanation="Modal fe'llardan (can, could, must...) keyin 'to' ishlatilmaydi. To'g'ri shakl: modal + V1."></div>
+                    </div>
+                     <button class="check-btn" onclick="checkCorrection()">Tekshirish</button>
+                    <div id="correctionResult" class="result"></div>
+                </div>
+
+                <div id="transform" class="exercise-content">
+                    <h3>Gaplarni qavs ichidagi so'zdan foydalanib o'zgartiring</h3>
+                    <div class="transform-exercise">
+                        <div class="transform-question"><p>1. I can't come to the party. (be able to)</p><input type="text" class="transform-input" placeholder="O'zgartirilgan gapni shu yerga yozing..." data-answer="I am not able to come to the party." data-explanation="'can't' hozirgi zamonda 'am/is/are not able to' ga teng."></div>
+                        <div class="transform-question"><p>2. It will be possible for her to work tomorrow. (will)</p><input type="text" class="transform-input" placeholder="O'zgartirilgan gapni shu yerga yozing..." data-answer="She will be able to work tomorrow." data-explanation="'It will be possible' kelasi zamon imkoniyatini 'will be able to' bilan ifodalaydi."></div>
+                        <div class="transform-question"><p>3. He has the ability to speak French. (can)</p><input type="text" class="transform-input" placeholder="O'zgartirilgan gapni shu yerga yozing..." data-answer="He can speak French." data-explanation="'has the ability to' ning eng oddiy va keng tarqalgan shakli 'can' hisoblanadi."></div>
+                        <div class="transform-question"><p>4. I successfully unlocked the door after five minutes. (was able to)</p><input type="text" class="transform-input" placeholder="O'zgartirilgan gapni shu yerga yozing..." data-answer="I was able to unlock the door after five minutes." data-explanation="'successfully' so'zi aniq bir yutuqni bildiradi, bu esa 'was able to' bilan ifodalanadi."></div>
+                        <div class="transform-question"><p>5. I don't think she can finish it on time. (be able to)</p><input type="text" class="transform-input" placeholder="O'zgartirilgan gapni shu yerga yozing..." data-answer="I don't think she will be able to finish it on time." data-explanation="Bu gap kelajakdagi imkoniyat haqida, shuning uchun 'will be able to' ishlatiladi."></div>
+                        <div class="transform-question"><p>6. Please, open the window. (Could)</p><input type="text" class="transform-input" placeholder="O'zgartirilgan gapni shu yerga yozing..." data-answer="Could you open the window, please?" data-explanation="Oddiy buyruq gapini xushmuomala iltimosga aylantirish uchun 'Could you...?' ishlatiladi."></div>
+                        <div class="transform-question"><p>7. He hasn't passed his driving test yet. (not been able to)</p><input type="text" class="transform-input" placeholder="O'zgartirilgan gapni shu yerga yozing..." data-answer="He hasn't been able to pass his driving test yet." data-explanation="Present Perfect inkor shakli qobiliyat bilan 'hasn't been able to' orqali ifodalanadi."></div>
+                         <div class="transform-question"><p>8. Is it possible for you to help me? (Can)</p><input type="text" class="transform-input" placeholder="O'zgartirilgan gapni shu yerga yozing..." data-answer="Can you help me?" data-explanation="'Is it possible for you to...?' so'rog'i 'Can you...?' bilan bir xil ma'noni beradi."></div>
+                    </div>
+                     <button class="check-btn" onclick="checkTransform()">Tekshirish</button>
+                    <div id="transformResult" class="result"></div>
+                </div>
+
+                <div id="order" class="exercise-content">
+                    <h3>So'zlarni to'g'ri tartibda joylashtiring</h3>
+                    <div class="order-exercise">
+                        <div class="order-question"><p>1. (I / come / won't / to / be / able / to)</p><div class="word-container"><div class="word">I</div><div class="word">come</div><div class="word">won't</div><div class="word">to</div><div class="word">be</div><div class="word">able</div><div class="word">to</div></div><div class="drop-zone" data-answer="I won't be able to come"></div></div>
+                        <div class="order-question"><p>2. (you / help / could / me / please?)</p><div class="word-container"><div class="word">you</div><div class="word">help</div><div class="word">could</div><div class="word">me</div><div class="word">please?</div></div><div class="drop-zone" data-answer="could you help me please?"></div></div>
+                        <div class="order-question"><p>3. (she / been / hasn't / to / able / finish)</p><div class="word-container"><div class="word">she</div><div class="word">been</div><div class="word">hasn't</div><div class="word">to</div><div class="word">able</div><div class="word">finish</div></div><div class="drop-zone" data-answer="she hasn't been able to finish"></div></div>
+                        <div class="order-question"><p>4. (to / he / was / the / escape / able / fire / from)</p><div class="word-container"><div class="word">to</div><div class="word">he</div><div class="word">was</div><div class="word">the</div><div class="word">escape</div><div class="word">able</div><div class="word">fire</div><div class="word">from</div></div><div class="drop-zone" data-answer="he was able to escape from the fire"></div></div>
+                        <div class="order-question"><p>5. (you / mind / would / music / turning / down / the?)</p><div class="word-container"><div class="word">you</div><div class="word">mind</div><div class="word">would</div><div class="word">music</div><div class="word">turning</div><div class="word">down</div><div class="word">the?</div></div><div class="drop-zone" data-answer="would you mind turning down the music?"></div></div>
+                        <div class="order-question"><p>6. (to / want / I / be / speak / able / fluently)</p><div class="word-container"><div class="word">to</div><div class="word">want</div><div class="word">I</div><div class="word">be</div><div class="word">speak</div><div class="word">able</div><div class="word">fluently</div></div><div class="drop-zone" data-answer="I want to be able to speak fluently"></div></div>
+                        <div class="order-question"><p>7. (must / you / able / be / to / work / alone)</p><div class="word-container"><div class="word">must</div><div class="word">you</div><div class="word">able</div><div class="word">be</div><div class="word">to</div><div class="word">work</div><div class="word">alone</div></div><div class="drop-zone" data-answer="you must be able to work alone"></div></div>
+                        <div class="order-question"><p>8. (I / couldn't / he / what / hear / said)</p><div class="word-container"><div class="word">I</div><div class="word">couldn't</div><div class="word">he</div><div class="word">what</div><div class="word">hear</div><div class="word">said</div></div><div class="drop-zone" data-answer="I couldn't hear what he said"></div></div>
+                        <div class="order-question"><p>9. (able / he / will / be / to / tomorrow / us / join)</p><div class="word-container"><div class="word">able</div><div class="word">he</div><div class="word">will</div><div class="word">be</div><div class="word">to</div><div class="word">tomorrow</div><div class="word">us</div><div class="word">join</div></div><div class="drop-zone" data-answer="he will be able to join us tomorrow"></div></div>
+                        <div class="order-question"><p>10. (a / when / I / bike / was / I / ride / child / could)</p><div class="word-container"><div class="word">a</div><div class="word">when</div><div class="word">I</div><div class="word">bike</div><div class="word">was</div><div class="word">I</div><div class="word">ride</div><div class="word">child</div><div class="word">could</div></div><div class="drop-zone" data-answer="when I was a child I could ride a bike"></div></div>
+                    </div>
+                    <button class="check-btn" onclick="checkOrder()">Tekshirish</button>
+                    <button class="check-btn" onclick="resetOrder()">Qayta tiklash</button>
+                    <div id="orderResult" class="result"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="errors" class="tab-content">
+             <div class="card">
+                <h2>Muhim Qoidalar va Keng Tarqalgan Xatolar</h2>
+                
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 1: "Modal Fe'l + CAN"</div>
+                    <div class="wrong-example">You must <strong>can</strong> swim to join the team. <br> They will <strong>can</strong> arrive soon.</div>
+                    <div class="correct-example">You must <strong>be able to</strong> swim to join the team. <br> They will <strong>be able to</strong> arrive soon.</div>
+                    <div class="explanation"><div class="explanation-title">🔍 Sababi:</div><p>Ingliz tilining temir qoidasi: <strong>ikkita modal fe'l ketma-ket kelmaydi</strong>. <code>can</code> modal fe'l bo'lgani uchun <code>must, will, should, may, might</code> kabi boshqa modal fe'llardan keyin kela olmaydi. Bu holatlarda har doim <strong><code>be able to</code></strong> ishlatiladi.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">❌ XATO 2: `can` fe'lining Infinitive shakli</div>
+                    <div class="wrong-example">I hope <strong>to can</strong> visit you next summer.</div>
+                    <div class="correct-example">I hope <strong>to be able to</strong> visit you next summer.</div>
+                     <div class="explanation"><div class="explanation-title">🔍 Sababi:</div><p><code>can</code> modal fe'l bo'lgani uchun uning <code>to</code> bilan boshlanadigan infinitive shakli yo'q. Bu holatlarda ham <strong><code>be able to</code></strong> yordamga keladi (<code>to be able to</code>).</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🤔 XATO 3: Umumiy qobiliyat va aniq yutuqni adashtirish</div>
+                     <div class="context">Vaziyat: Kecha imtihon juda qiyin edi, lekin men barcha savollarga javob berdim.</div>
+                    <div class="wrong-example">The exam was difficult, but I <strong>could</strong> answer all the questions.</div>
+                    <div class="correct-example">The exam was difficult, but I <strong>was able to</strong> answer all the questions.</div>
+                    <div class="explanation"><div class="explanation-title">🔍 Sababi:</div><p>Bu yerda gap sizning umumiy bilimingiz haqida emas, balki <strong>aniq bir qiyin vaziyatni uddalaganingiz</strong> haqida ketyapti. Bunday "epladim", "uddaladim" ma'nosini <code>was/were able to</code> beradi. <code>I could answer</code> "javob bera olardim" degan umumiy ma'noni berib qoladi.</p></div>
+                </div>
+                
+                 <div class="error-section">
+                    <div class="error-title">❓ XATO 4: Ruxsat va Iltimosni adashtirish</div>
+                     <div class="context">Siz do'stingizdan eshikni yopishini so'ramoqchisiz.</div>
+                    <div class="wrong-example"><strong>Can I</strong> close the door?</div>
+                    <div class="correct-example"><strong>Can you</strong> close the door? / <strong>Could you</strong> close the door?</div>
+                    <div class="explanation"><div class="explanation-title">🔍 Sababi:</div><p><code>Can I...?</code> / <code>Could I...?</code> - <strong>O'ZINGIZ</strong> biror ish qilish uchun ruxsat so'rash. ("Men yopsam maylimi?").</p><p><code>Can you...?</code> / <code>Could you...?</code> / <code>Would you...?</code> - <strong>BOSHQA</strong> odamdan biror ish qilishni so'rash (iltimos). ("Siz yopa olasizmi?")</p></div>
+                </div>
+
+                <div class="error-section general-tips">
+                    <div class="error-title">💡 "Oltin Qoidalar" To'plami</div>
+                    <div class="rule-box">
+                       1. Gap <strong>kelasi zamon, perfect zamon</strong> yoki <strong>infinitive</strong> haqida bo'lsa -> <strong><code>BE ABLE TO</code></strong>.<br>
+                       2. Gapda <strong>boshqa modal fe'l</strong> (must, should...) bo'lsa -> <strong><code>BE ABLE TO</code></strong>.<br>
+                       3. O'tgan zamonda <strong>"epladim", "uddaladim"</strong> ma'nosi bo'lsa -> <strong><code>WAS/WERE ABLE TO</code></strong>.<br>
+                       4. O'tgan zamonda <strong>umumiy qobiliyat</strong> ("qila olardim") bo'lsa -> <strong><code>COULD</code></strong>.<br>
+                       5. O'tgan zamonda <strong>inkor</strong> bo'lsa, farqi yo'q -> <strong><code>COULDN'T</code></strong> (odatda).<br>
+                       6. Xushmuomalali iltimos -> <strong><code>COULD you...?</code></strong> yoki <strong><code>WOULD you...?</code></strong>
+                    </div>
+                </div>
+             </div>
+        </div>
+    </div>
+
+    <script>
+        let completedSections = 0;
+        const totalSections = 6;
+
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetTab = btn.dataset.tab;
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById(targetTab).classList.add('active');
+                updateProgress();
+            });
+        });
+
+        document.querySelectorAll('.exercise-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetExercise = btn.dataset.exercise;
+                document.querySelectorAll('.exercise-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.exercise-content').forEach(c => c.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById(targetExercise).classList.add('active');
+                if (targetExercise === 'order') {
+                    resetOrder();
+                }
+            });
+        });
+
+        function normalizeAnswer(answer) {
+            if (typeof answer !== 'string') return '';
+            return answer.toLowerCase().trim().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g,"").replace(/\s+/g, ' ');
+        }
+
+        function checkAnswerMatch(userAnswer, correctAnswer) {
+            const normalizedUser = normalizeAnswer(userAnswer);
+            const correctAnswers = correctAnswer.split('|').map(ans => normalizeAnswer(ans));
+            return correctAnswers.includes(normalizedUser);
+        }
+        
+        function checkTest() {
+            const questions = document.querySelectorAll('#test .question');
+            let score = 0;
+            let resultHTML = '';
+            questions.forEach((question, index) => {
+                const qNum = index + 1;
+                const correctAnswer = question.dataset.answer;
+                const explanation = question.dataset.explanation;
+                const selected = document.querySelector(`input[name="q${qNum}"]:checked`);
+
+                if (selected && selected.value === correctAnswer) {
+                    score++;
+                    resultHTML += `<div class="correct-answer">✓ ${qNum}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    const userAnswer = selected ? `Sizning javobingiz: '${selected.value}'` : "Siz javob tanlamadingiz.";
+                    resultHTML += `<div class="wrong-answer">✗ ${qNum}-savol: Noto'g'ri. ${userAnswer} <div class="explanation"><strong>To'g'ri javob '${correctAnswer}'.</strong> ${explanation}</div></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${score}/${questions.length} (${Math.round((score/questions.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('testResult').innerHTML = resultHTML;
+        }
+
+        function checkFill() {
+            const inputs = document.querySelectorAll('#fill .fill-input');
+            let correct = 0;
+            let resultHTML = '';
+            inputs.forEach((input, index) => {
+                const answer = input.dataset.answer;
+                const explanation = input.dataset.explanation;
+                if (checkAnswerMatch(input.value, answer)) {
+                    input.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                    resultHTML += `<div class="correct-answer">✓ ${index + 1}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    input.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savol: Noto'g'ri. <div class="explanation"><strong>To'g'ri javob: '${answer.split('|')[0]}'</strong>. ${explanation}</div></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${inputs.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('fillResult').innerHTML = resultHTML;
+        }
+
+        function checkCorrection() {
+            const inputs = document.querySelectorAll('#correction .correct-input');
+            let correct = 0;
+            let resultHTML = '';
+            inputs.forEach((input, index) => {
+                const answer = input.dataset.answer;
+                 const explanation = input.dataset.explanation;
+                if (checkAnswerMatch(input.value, answer)) {
+                    input.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                     resultHTML += `<div class="correct-answer">✓ ${index + 1}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    input.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savol: Noto'g'ri. <div class="explanation"><strong>To'g'ri javob: '${answer.split('|')[0]}'</strong>. ${explanation}</div></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${inputs.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('correctionResult').innerHTML = resultHTML;
+        }
+
+        function checkTransform() {
+            const inputs = document.querySelectorAll('#transform .transform-input');
+            let correct = 0;
+            let resultHTML = '';
+            inputs.forEach((input, index) => {
+                const answer = input.dataset.answer;
+                const explanation = input.dataset.explanation;
+                if (checkAnswerMatch(input.value, answer)) {
+                    input.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                     resultHTML += `<div class="correct-answer">✓ ${index + 1}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    input.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savol: Noto'g'ri. <div class="explanation"><strong>To'g'ri javob: '${answer.split('|')[0]}'</strong>. ${explanation}</div></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${inputs.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('transformResult').innerHTML = resultHTML;
+        }
+        
+        function checkOrder() {
+            const dropZones = document.querySelectorAll('#order .drop-zone');
+            let correct = 0;
+            let resultHTML = '';
+            dropZones.forEach((zone, index) => {
+                const answer = zone.dataset.answer;
+                const userAnswer = Array.from(zone.children).map(child => child.textContent).join(' ');
+                if (checkAnswerMatch(userAnswer, answer)) {
+                    zone.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                } else {
+                    zone.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savolning to'g'ri javobi: <strong>${answer.split('|')[0]}</strong></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${dropZones.length} (${Math.round((correct/dropZones.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('orderResult').innerHTML = resultHTML;
+        }
+
+        // Click-based word order functionality
+        function handleWordClick(event) {
+            const word = event.target;
+            if (word.classList.contains('word')) {
+                const currentContainer = word.parentElement;
+                let targetContainer;
+
+                if (currentContainer.classList.contains('word-container')) {
+                    targetContainer = currentContainer.nextElementSibling; // the .drop-zone
+                } else if (currentContainer.classList.contains('drop-zone')) {
+                    targetContainer = currentContainer.previousElementSibling; // the .word-container
+                }
+
+                if (targetContainer) {
+                    targetContainer.appendChild(word);
+                }
+            }
+        }
+        document.getElementById('order').addEventListener('click', handleWordClick);
+
+        function shuffleChildren(parent) {
+            let children = Array.from(parent.children);
+            for (let i = children.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [children[i], children[j]] = [children[j], children[i]];
+            }
+            children.forEach(child => parent.appendChild(child));
+        }
+
+        function resetOrder() {
+            document.querySelectorAll('#order .order-question').forEach(question => {
+                const wordContainer = question.querySelector('.word-container');
+                const dropZone = question.querySelector('.drop-zone');
+                Array.from(dropZone.children).forEach(child => wordContainer.appendChild(child));
+                shuffleChildren(wordContainer);
+                dropZone.style.border = '2px dashed var(--drop-zone-border)';
+            });
+            document.getElementById('orderResult').innerHTML = '';
+        }
+
+        function updateProgress() {
+            const tabStates = { 'rules': 1, 'diffs': 2, 'structure': 3, 'examples': 4, 'exercises': 5, 'errors': 6 };
+            const activeTab = document.querySelector('.tab-btn.active').dataset.tab;
+            completedSections = tabStates[activeTab] || 0;
+            const percentage = (completedSections / totalSections) * 100;
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = percentage + '%';
+            progressBar.querySelector('.progress-text').textContent = Math.round(percentage) + '%';
+        }
+
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            themeToggle.checked = true;
+        }
+        themeToggle.addEventListener('change', () => {
+            if (themeToggle.checked) {
+                body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateProgress();
+            resetOrder();
+        });
+    </script>
+</body>
+</html>

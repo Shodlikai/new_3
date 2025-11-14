@@ -1,0 +1,1194 @@
+﻿<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal Fe'llar: Majburiyat va Maslahat - Mukammal Qo'llanma</title>
+    <style>
+        /* Umumiy stilizatsiya (O'zgartirishsiz qoldirildi) */
+        :root {
+            --bg-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --text-primary: #333;
+            --header-bg: rgba(255, 255, 255, 0.1);
+            --header-text: white;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --card-border: rgba(255, 255, 255, 0.2);
+            --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            --h2-text-gradient: linear-gradient(135deg, #667eea, #764ba2);
+            --rule-section-bg: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            --rule-section-border-left: #667eea;
+            --code-bg: #e2e8f0;
+            --code-color: #c53030;
+            --table-th-bg: #e9ecef;
+            --table-th-color: #495057;
+            --table-td-bg: #fff;
+            --structure-card-bg: linear-gradient(135deg, #e0eafc, #cfdef3);
+            --structure-card-border: #667eea;
+            --formula-bg: white;
+            --example-category-bg: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            --example-item-bg: white;
+            --english-text: #2d3436;
+            --uzbek-text: #636e72;
+            --input-bg: #f8f9fa;
+            --input-border: #dee2e6;
+            --input-focus-shadow: rgba(102, 126, 234, 0.1);
+            --result-bg: linear-gradient(135deg, #ddd6fe, #c4b5fd);
+            --result-color: #5b21b6;
+            --correct-color: #28a745;
+            --wrong-color: #dc3545;
+            --progress-bg: rgba(255, 255, 255, 0.2);
+            --progress-bar-gradient: linear-gradient(90deg, #4CAF50, #45a049);
+            --tab-btn-bg: rgba(255, 255, 255, 0.2);
+            --tab-btn-hover-bg: rgba(255, 255, 255, 0.3);
+            --tab-btn-active-bg: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            --exercise-btn-bg: linear-gradient(135deg, #74b9ff, #0984e3);
+            --exercise-btn-active-bg: linear-gradient(135deg, #00b894, #00a085);
+            --word-bg: linear-gradient(135deg, #667eea, #764ba2);
+            --drop-zone-border: #dee2e6;
+            --drop-zone-bg: #f8f9fa;
+            --drop-zone-hover-bg: rgba(102, 126, 234, 0.1);
+        }
+
+        .dark-mode {
+            --bg-primary: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            --text-primary: #ecf0f1;
+            --header-bg: rgba(0, 0, 0, 0.2);
+            --header-text: #ecf0f1;
+            --card-bg: #3b506b;
+            --card-border: rgba(255, 255, 255, 0.1);
+            --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            --h2-text-gradient: linear-gradient(135deg, #a2ccff, #82b1ff);
+            --rule-section-bg: #4a6280;
+            --rule-section-border-left: #82b1ff;
+            --code-bg: #2f4358;
+            --code-color: #ff8c8c;
+            --table-th-bg: #4a6280;
+            --table-th-color: #ecf0f1;
+            --table-td-bg: #3b506b;
+            --structure-card-bg: linear-gradient(135deg, #4a6280, #5a7490);
+            --structure-card-border: #82b1ff;
+            --formula-bg: #2f4358;
+            --example-category-bg: #4a6280;
+            --example-item-bg: #3b506b;
+            --english-text: #ecf0f1;
+            --uzbek-text: #bdc3c7;
+            --input-bg: #2f4358;
+            --input-border: #5a7490;
+            --input-focus-shadow: rgba(130, 177, 255, 0.2);
+            --result-bg: linear-gradient(135deg, #4a2c7a, #6a3a9a);
+            --result-color: #e0e0e0;
+            --correct-color: #5cb85c;
+            --wrong-color: #d9534f;
+            --progress-bg: rgba(0, 0, 0, 0.3);
+            --progress-bar-gradient: linear-gradient(90deg, #5cb85c, #4cae4c);
+            --tab-btn-bg: rgba(0, 0, 0, 0.3);
+            --tab-btn-hover-bg: rgba(0, 0, 0, 0.4);
+            --tab-btn-active-bg: linear-gradient(135deg, #e74c3c, #c0392b);
+            --exercise-btn-bg: linear-gradient(135deg, #3498db, #2980b9);
+            --exercise-btn-active-bg: linear-gradient(135deg, #2ecc71, #27ae60);
+            --word-bg: linear-gradient(135deg, #3498db, #2980b9);
+            --drop-zone-border: #5a7490;
+            --drop-zone-bg: #2f4358;
+            --drop-zone-hover-bg: rgba(52, 152, 219, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            min-height: 100vh;
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--card-border);
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            color: var(--header-text);
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: bold;
+        }
+
+        .header p {
+            color: var(--header-text);
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        
+        .progress-container {
+            background: var(--progress-bg);
+            border-radius: 25px;
+            padding: 5px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(5px);
+        }
+
+        .progress-bar {
+            background: var(--progress-bar-gradient);
+            height: 30px;
+            border-radius: 20px;
+            transition: width 0.8s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 0%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-text {
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .theme-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .theme-switch input[type="checkbox"] {
+            height: 0;
+            width: 0;
+            visibility: hidden;
+        }
+
+        .theme-switch label {
+            cursor: pointer;
+            text-indent: -9999px;
+            width: 60px;
+            height: 30px;
+            background: #ccc;
+            display: block;
+            border-radius: 100px;
+            position: relative;
+            transition: background-color 0.3s ease;
+        }
+
+        .theme-switch label:after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background: #fff;
+            border-radius: 90px;
+            transition: 0.3s;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+
+        .theme-switch input:checked + label {
+            background: #82b1ff;
+        }
+
+        .theme-switch input:checked + label:after {
+            left: calc(100% - 3px);
+            transform: translateX(-100%);
+            background: #f1c40f;
+        }
+
+        .theme-switch .icon {
+            font-size: 1.5rem;
+            color: var(--header-text);
+            transition: color 0.3s ease;
+        }
+        .theme-switch input:checked ~ .icon.moon { display: block; }
+        .theme-switch input:not(:checked) ~ .icon.moon { display: none; }
+        .theme-switch input:checked ~ .icon.sun { display: none; }
+        .theme-switch input:not(:checked) ~ .icon.sun { display: block; }
+        .theme-switch .icon.sun { color: #f39c12; }
+        .theme-switch .icon.moon { color: #a2ccff; }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 10px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: var(--tab-btn-bg);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            color: var(--header-text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            font-weight: 500;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .tab-btn:hover {
+            background: var(--tab-btn-hover-bg);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .tab-btn.active {
+            background: var(--tab-btn-active-bg);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+        }
+
+        .card h2 {
+            color: var(--text-primary);
+            margin-bottom: 25px;
+            font-size: 2.2rem;
+            text-align: center;
+            background: var(--h2-text-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .rule-section, .diff-section {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: var(--rule-section-bg);
+            border-radius: 15px;
+            border-left: 5px solid var(--rule-section-border-left);
+        }
+
+        .rule-section h3, .diff-section h3 {
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .rule-section p, .rule-section li, .diff-section p, .diff-section li {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        
+        .rule-section code, .diff-section code {
+            background-color: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--code-color);
+        }
+
+        .diff-table-container { 
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch; 
+        }
+
+        .diff-table {
+            width: 100%; 
+            min-width: 600px;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        .diff-table th, .diff-table td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            text-align: left;
+            color: var(--text-primary);
+        }
+        .diff-table th {
+            background-color: var(--table-th-bg);
+            color: var(--table-th-color);
+        }
+        .diff-table td { background-color: var(--table-td-bg); }
+        .ok { color: var(--correct-color); font-weight: bold; }
+        .not-ok { color: var(--wrong-color); font-weight: bold; }
+
+
+        .structure-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .structure-card {
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            background: var(--structure-card-bg);
+            border: 2px solid var(--structure-card-border);
+        }
+        .structure-card:hover { transform: translateY(-5px); }
+
+        .structure-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            text-align: center;
+            color: var(--text-primary);
+        }
+
+        .formula {
+            background: var(--formula-bg); padding: 15px; border-radius: 10px;
+            margin-bottom: 15px; text-align: center; font-size: 1.1rem;
+            font-weight: 500; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            color: var(--text-primary);
+        }
+
+        .noun, .pronoun, .verb, .subject, .object {
+            padding: 5px 10px; border-radius: 5px; margin: 0 5px; color: white;
+        }
+        .noun { background: #fd79a8; }
+        .pronoun { background: #0984e3; }
+        .verb { background: #00b894; }
+        .subject { background: #ffeaa7; color: #333;}
+        .object { background: #6c5ce7; }
+        
+
+        .examples { background: rgba(255, 255, 255, 0.7); padding: 15px; border-radius: 10px; }
+        .examples p { margin-bottom: 8px; font-size: 1rem; color: var(--text-primary); }
+        
+        .structure-card .examples .uzbek {
+            color: var(--uzbek-text);
+            font-style: italic;
+            padding-left: 10px;
+            border-left: 3px solid #764ba2;
+            margin-top: 5px;
+        }
+
+
+        .examples-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 25px; margin-top: 25px;
+        }
+
+        .example-category {
+            background: var(--example-category-bg); padding: 25px;
+            border-radius: 15px; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        .example-category h3 {
+            color: var(--text-primary); margin-bottom: 20px; font-size: 1.4rem; text-align: center;
+            padding-bottom: 10px; border-bottom: 2px solid var(--rule-section-border-left);
+        }
+
+        .example-item {
+            background: var(--example-item-bg); padding: 15px; border-radius: 10px; margin-bottom: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease;
+        }
+        .example-item:hover { transform: translateX(5px); }
+        .english { color: var(--english-text); font-weight: 500; margin-bottom: 8px; font-size: 1.05rem; }
+        .uzbek { color: var(--uzbek-text); font-style: italic; padding-left: 20px; border-left: 3px solid var(--rule-section-border-left); }
+
+        .exercise-nav {
+            display: flex; justify-content: center; margin-bottom: 30px;
+            gap: 10px; flex-wrap: wrap;
+        }
+        .exercise-btn {
+            background: var(--exercise-btn-bg); color: white; border: none;
+            padding: 12px 20px; border-radius: 10px; cursor: pointer; transition: all 0.3s ease;
+            font-size: 14px; font-weight: 500; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .exercise-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); }
+        .exercise-btn.active {
+            background: var(--exercise-btn-active-bg);
+            box-shadow: 0 6px 20px rgba(0, 184, 148, 0.3);
+        }
+
+        .exercise-content { display: none; }
+        .exercise-content.active { display: block; animation: fadeIn 0.5s ease-in-out; }
+        .exercise-content h3 { color: var(--text-primary); margin-bottom: 25px; font-size: 1.6rem; text-align: center; }
+
+        .quiz-container, .fill-exercise, .combine-exercise, .correct-exercise, .omission-exercise, .order-exercise { margin-bottom: 25px; }
+        .question, .fill-question, .combine-question, .correct-question, .omission-question, .order-question {
+            background: var(--example-item-bg); padding: 20px; border-radius: 15px; margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); border-left: 5px solid var(--rule-section-border-left);
+        }
+        .question p, .fill-question p, .combine-question p, .correct-question p, .omission-question p, .order-question p {
+            font-size: 1.2rem; margin-bottom: 15px; color: var(--english-text); font-weight: 500;
+        }
+        .correct-question p.incorrect { text-decoration: line-through; color: var(--wrong-color);}
+
+        .options { display: flex; flex-direction: column; gap: 10px; }
+        .options label {
+            display: flex; align-items: center; padding: 10px; border-radius: 8px;
+            background: var(--input-bg); cursor: pointer; transition: background 0.3s ease; font-size: 1rem;
+            color: var(--text-primary);
+        }
+        .options label:hover { background: var(--rule-section-bg); }
+        .options input[type="radio"] { margin-right: 10px; transform: scale(1.2); }
+
+        .fill-input, .combine-input, .correct-input, .transform-input {
+            width: 100%; background: var(--input-bg); border: 2px solid var(--input-border);
+            border-radius: 8px; padding: 12px; font-size: 1rem; transition: all 0.3s ease;
+            color: var(--text-primary);
+        }
+        .fill-input:focus, .combine-input:focus, .correct-input:focus, .transform-input:focus {
+            outline: none; border-color: var(--rule-section-border-left); box-shadow: 0 0 0 3px var(--input-focus-shadow);
+        }
+
+        .check-btn {
+            background: var(--exercise-btn-active-bg); color: white; border: none;
+            padding: 15px 30px; border-radius: 10px; cursor: pointer; font-size: 1.1rem;
+            font-weight: 500; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: block; margin: 10px auto;
+        }
+        .check-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 184, 148, 0.3); }
+
+        .check-btn:active { transform: translateY(0); }
+
+        .result {
+            margin-top: 20px; padding: 15px; border-radius: 10px; text-align: center;
+            font-size: 1.2rem; font-weight: 500; background: var(--result-bg);
+            color: var(--result-color); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .correct-answer { color: var(--correct-color); margin: 5px 0; }
+        .wrong-answer { color: var(--wrong-color); margin: 5px 0; }
+        .final-score { margin-top: 10px; padding: 10px; background: var(--input-bg); border-radius: 5px; color: var(--text-primary); }
+
+        .explanation {
+            background: var(--input-bg);
+            border-left: 4px solid var(--rule-section-border-left);
+            padding: 10px;
+            margin: 10px 0 0 0;
+            border-radius: 0 8px 8px 0;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            text-align: left;
+        }
+
+        .word-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: var(--input-bg);
+            border-radius: 10px;
+            min-height: 60px;
+        }
+
+        .word {
+            background: var(--word-bg);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer; /* O'zgartirildi */
+            transition: all 0.3s ease;
+            font-weight: 500;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+        
+        .word:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .drop-zone {
+            min-height: 60px;
+            border: 2px dashed var(--drop-zone-border);
+            border-radius: 10px;
+            padding: 15px;
+            background: var(--drop-zone-bg);
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            gap: 10px;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+        }
+
+        .drop-zone:hover, .word-container:hover {
+            border-color: var(--rule-section-border-left);
+            background: var(--drop-zone-hover-bg);
+        }
+
+        .drop-zone .word {
+             background: var(--exercise-btn-active-bg);
+        }
+
+        .transform-question {
+            background: var(--example-item-bg);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--structure-card-border);
+            transition: all 0.3s ease;
+        }
+
+        .transform-question:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        }
+
+        .transform-question p {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .transform-question p b {
+            color: var(--header-text);
+            background: var(--word-bg);
+            padding: 3px 9px;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .transform-input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .transform-input-wrapper .fa-pen-to-square {
+            position: absolute;
+            left: 15px;
+            color: var(--uzbek-text);
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .transform-input {
+            padding-left: 45px; 
+            background-image: linear-gradient(to right, var(--input-bg), var(--card-bg));
+            font-weight: 500;
+        }
+
+        .transform-input:focus {
+            background-image: none;
+        }
+
+        .transform-input-wrapper:hover .fa-pen-to-square {
+            color: var(--rule-section-border-left);
+        }
+        
+        .error-section {
+            background: var(--rule-section-bg);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-left: 5px solid var(--wrong-color);
+        }
+
+        .error-title {
+            color: var(--wrong-color);
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .wrong-example {
+            background: rgba(220, 53, 69, 0.1);
+            border: 2px solid var(--wrong-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0 10px 0;
+            position: relative;
+            color: var(--text-primary);
+        }
+
+        .wrong-example::before {
+            content: "❌ NOTO'G'RI";
+            position: absolute;
+            top: -12px;
+            left: 15px;
+            background: var(--wrong-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .correct-example {
+            background: rgba(40, 167, 69, 0.1);
+            border: 2px solid var(--correct-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0 10px 0;
+            position: relative;
+            color: var(--text-primary);
+        }
+
+        .correct-example::before {
+            content: "✅ TO'G'RI";
+            position: absolute;
+            top: -12px;
+            left: 15px;
+            background: var(--correct-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .explanation .explanation-title {
+            color: var(--rule-section-border-left);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .rule-box {
+            background: var(--exercise-btn-bg);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-weight: 500;
+        }
+
+        .situation-example {
+            background: var(--example-item-bg);
+            border: 1px solid var(--input-border);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            color: var(--text-primary);
+        }
+
+        .context {
+            color: var(--correct-color);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .error-section.general-tips {
+             border-left-color: var(--correct-color);
+        }
+        .error-section.general-tips .error-title {
+             color: var(--correct-color);
+        }
+        .error-section.general-tips .rule-box {
+            background: var(--exercise-btn-active-bg);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header h1 { font-size: 2rem; }
+            .card h2 { font-size: 1.8rem; }
+            .structure-grid, .examples-grid { grid-template-columns: 1fr; }
+            .nav-tabs, .exercise-nav { flex-direction: column; gap: 5px; }
+            .tab-btn, .exercise-btn { width: 100%; text-align: center; }
+            .theme-switch { top: 10px; right: 10px; }
+        }
+
+        @media (max-width: 480px) {
+            .header { padding: 20px; }
+            .header h1 { font-size: 1.5rem; }
+            .card { padding: 15px; }
+            .structure-card { padding: 20px; }
+            .example-category { padding: 20px; }
+            .question { padding: 15px; }
+            .word { padding: 6px 12px; font-size: 14px; }
+            .diff-table { min-width: 400px; }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .check-btn:hover { animation: bounce 0.6s ease; }
+
+        .card {
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideUp 0.6s ease forwards;
+        }
+
+        @keyframes slideUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(135deg, #764ba2, #667eea); }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Modal Fe'llar: Majburiyat va Maslahat - Mukammal Qo'llanma</h1>
+            <p>Must, Have to, Should, Ought to, Had better va ularning barcha nozik jihatlari</p>
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar">
+                    <span class="progress-text">0%</span>
+                </div>
+            </div>
+
+            <div class="theme-switch">
+                <i class="fas fa-sun icon sun"></i>
+                <input type="checkbox" id="themeToggle">
+                <label for="themeToggle"></label>
+                <i class="fas fa-moon icon moon"></i>
+            </div>
+        </div>
+
+        <nav class="nav-tabs">
+            <button class="tab-btn active" data-tab="rules">Qoidalar</button>
+            <button class="tab-btn" data-tab="diffs">Farqlar</button>
+            <button class="tab-btn" data-tab="structure">Strukturalar</button>
+            <button class="tab-btn" data-tab="examples">Misollar</button>
+            <button class="tab-btn" data-tab="exercises">Mashqlar</button>
+            <button class="tab-btn" data-tab="errors">Muhim Qoidalar va Xatolar</button>
+        </nav>
+
+        <div id="rules" class="tab-content active">
+             <div class="card">
+                <h2>Asosiy Qoidalar</h2>
+                <div class="rule-section"><h3><code>Must</code> / <code>Mustn't</code></h3><p><code>Must</code> kuchli majburiyat (ko'pincha shaxsiy, ichki his-tuyg'udan kelib chiquvchi) yoki qat'iy qoidani bildiradi. <code>Mustn't</code> esa qat'iy taqiqni ifodalaydi.</p><ul><li><strong>Majburiyat:</strong> I <strong>must</strong> finish this report by Friday. (Men bu hisobotni juma kungacha tugatishim shart.)</li><li><strong>Qoida/Qonun:</strong> You <strong>must</strong> wear a seatbelt. (Siz xavfsizlik kamarini taqishingiz shart.)</li><li><strong>Taqiq:</strong> You <strong>mustn't</strong> smoke here. (Bu yerda chekish qat'iyan man etiladi.)</li></ul></div>
+                <div class="rule-section"><h3><code>Have to</code> / <code>Don't have to</code></h3><p><code>Have to</code> tashqi majburiyatni (qoida, vaziyat, boshqa odamning talabi) bildiradi. <code>Don't/Doesn't have to</code> esa majburiyat yo'qligini, ya'ni biror ishni qilish shart emasligini bildiradi.</p><ul><li><strong>Tashqi majburiyat:</strong> I <strong>have to</strong> work on Saturdays. (Men shanba kunlari ishlashim kerak. - Ishxonamning qoidasi)</li><li><strong>O'tgan zamon:</strong> We <strong>had to</strong> leave early yesterday. (Biz kecha erta ketishimizga to'g'ri keldi.)</li><li><strong>Majburiyat yo'qligi:</strong> You <strong>don't have to</strong> come if you're busy. (Agar band bo'lsangiz, kelishingiz shart emas.)</li></ul></div>
+                <div class="rule-section"><h3><code>Should</code> / <code>Ought to</code></h3><p>Bu ikki fe'l deyarli bir xil ma'noda bo'lib, maslahat, tavsiya yoki biror narsa to'g'ri yoki noto'g'ri ekanligini aytish uchun ishlatiladi. <code>Ought to</code> biroz rasmiyroq va axloqiy majburiyatlarga ko'proq ishora qiladi.</p><ul><li><strong>Maslahat:</strong> You <strong>should</strong> see a doctor. (Shifokorga ko'rinishingiz kerak.)</li><li><strong>Tanqid (o'tgan zamon):</strong> You <strong>should have told</strong> me the truth. (Menga haqiqatni aytishing kerak edi.)</li><li><strong>Axloqiy majburiyat:</strong> We <strong>ought to</strong> respect our elders. (Biz kattalarni hurmat qilishimiz kerak.)</li></ul></div>
+                <div class="rule-section"><h3><code>Had better</code></h3><p><code>Had better</code> ('d better) kuchli maslahat yoki ogohlantirishni bildiradi. Agar bu maslahatga amal qilinmasa, yomon oqibat kelib chiqishi mumkinligi nazarda tutiladi. U faqat hozirgi va kelasi zamonga oid vaziyatlar uchun ishlatiladi.</p><ul><li><strong>Ogohlantirish:</strong> You'<strong>d better</strong> hurry, or you'll miss the train. (Yaxshisi shoshil, aks holda poyezddan qolib ketasan.)</li><li><strong>Kuchli maslahat:</strong> It's cold outside. You <strong>had better</strong> wear a coat. (Tashqari sovuq. Palto kiyganingiz ma'qul.)</li></ul></div>
+            </div>
+        </div>
+
+        <div id="diffs" class="tab-content">
+            <div class="card">
+                <h2>Nozik Farqlar</h2>
+                <div class="diff-section"><h3><code>Mustn't</code> vs <code>Don't have to</code> (Eng muhim farq!)</h3><p>Bu modal fe'llar orasidagi eng ko'p adashtiriladigan va ma'noni butunlay o'zgartirib yuboradigan farqdir.</p><div class="diff-table-container"><table class="diff-table"><tr><th>Fe'l</th><th>Ma'nosi</th><th>Natijasi</th><th>Misol</th></tr><tr><td><code>Mustn't</code></td><td><strong>Taqiqlangan (It's forbidden).</strong> Bu ishni qilish mumkin emas. Qilsangiz, qoida buziladi.</td><td>Qilmaslik kerak.</td><td>You <strong>mustn't</strong> talk in the library. (Kutubxonada gaplashish mumkin emas.)</td></tr><tr><td><code>Don't have to</code></td><td><strong>Majburiy emas (It's not necessary).</strong> Bu ishni qilish shart emas. Agar xohlasangiz, qilishingiz mumkin.</td><td>Qilsangiz ham, qilmasangiz ham bo'ladi.</td><td>You <strong>don't have to</strong> whisper. This is a cafe. (Pichirlashingiz shart emas. Bu kafe.)</td></tr></table></div></div>
+                <div class="diff-section"><h3><code>Must</code> vs <code>Have to</code></h3><p>Ikkala fe'l ham majburiyatni bildiradi, lekin ularning kelib chiqishi (motivatsiyasi) farqlanadi.</p><div class="diff-table-container"><table class="diff-table"><tr><th>Fe'l</th><th>Kelib chiqishi</th><th>Misol</th></tr><tr><td><code>Must</code></td><td><strong>Ichki majburiyat.</strong> Gapiruvchining o'z his-tuyg'ulari, fikri yoki shaxsiy qoidasidan kelib chiqadi.</td><td>I <strong>must</strong> stop eating so much sugar. (O'zim uchun qaror qildim.)</td></tr><tr><td><code>Have to</code></td><td><strong>Tashqi majburiyat.</strong> Tashqi kuchlar, qoidalar, qonunlar, boshqa odamlarning talabi.</td><td>I <strong>have to</strong> stop eating sugar because the doctor told me to. (Shifokor aytdi.)</td></tr></table></div></div>
+                <div class="diff-section"><h3><code>Should</code> vs <code>Had better</code></h3><p>Ikkalasi ham maslahat beradi, lekin kuchi va konteksti har xil.</p><div class="diff-table-container"><table class="diff-table"><tr><th>Fe'l</th><th>Ma'nosi</th><th>Kontekst</th><th>Misol</th></tr><tr><td><code>Should</code></td><td><strong>Umumiy maslahat.</strong> "Shunday qilsang yaxshi bo'lardi" degan ma'noda.</td><td>Har qanday vaziyatda.</td><td>You <strong>should</strong> visit Paris one day. (Bir kun Parijga borishing kerak.)</td></tr><tr><td><code>Had better</code></td><td><strong>Kuchli maslahat/Ogohlantirish.</strong> "Shunday qilmasang, yomon bo'ladi" degan ma'noda.</td><td>Aniq bir vaziyatda va yomon oqibat ehtimoli bo'lganda.</td><td>The weather is getting worse. We'<strong>d better</strong> go home now. (Havo yomonlashyapti. Yaxshisi hozir uyga ketaylik.)</td></tr></table></div></div>
+            </div>
+        </div>
+
+        <div id="structure" class="tab-content">
+            <div class="card">
+                <h2>Modal Fe'llar Strukturalari</h2>
+                <div class="structure-grid">
+                    <div class="structure-card positive"><h3><code>Must</code> (Majburiyat)</h3><div class="formula"><span class="subject">Ega</span> + <span class="verb">must</span> + <span class="auxiliary">V (asosiy shakli)</span></div><div class="examples"><p>1. I <b>must</b> finish this work today.</p><p class="uzbek">Men bu ishni bugun tugatishim shart.</p><p>2. You <b>must</b> follow the rules.</p><p class="uzbek">Siz qoidalarga rioya qilishingiz shart.</p></div></div>
+                    <div class="structure-card negative"><h3><code>Mustn't</code> (Taqiq)</h3><div class="formula"><span class="subject">Ega</span> + <span class="verb">mustn't</span> + <span class="auxiliary">V (asosiy shakli)</span></div><div class="examples"><p>1. You <b>mustn't</b> park here.</p><p class="uzbek">Bu yerga mashina qo'yishingiz mumkin emas.</p><p>2. We <b>mustn't</b> be late.</p><p class="uzbek">Biz kechikmasligimiz kerak.</p></div></div>
+                    <div class="structure-card positive"><h3><code>Have to</code> / <code>Has to</code> (Majburiyat)</h3><div class="formula"><span class="subject">Ega</span> + <span class="verb">have to / has to</span> + <span class="auxiliary">V (asosiy shakli)</span></div><div class="examples"><p>1. I <b>have to</b> go now.</p><p class="uzbek">Men hozir ketishim kerak.</p><p>2. She <b>has to</b> work on weekends.</p><p class="uzbek">U dam olish kunlari ishlashi kerak.</p></div></div>
+                    <div class="structure-card positive"><h3><code>Had to</code> (O'tgan zamon majburiyati)</h3><div class="formula"><span class="subject">Ega</span> + <span class="verb">had to</span> + <span class="auxiliary">V (asosiy shakli)</span></div><div class="examples"><p>1. We <b>had to</b> cancel the trip.</p><p class="uzbek">Biz sayohatni bekor qilishimiz kerak edi.</p><p>2. He <b>had to</b> apologize.</p><p class="uzbek">U uzr so'rashi kerak edi.</p></div></div>
+                    <div class="structure-card negative"><h3><code>Don't / Doesn't have to</code> (Majburiyat yo'qligi)</h3><div class="formula"><span class="subject">Ega</span> + <span class="verb">don't / doesn't have to</span> + <span class="auxiliary">V (asosiy shakli)</span></div><div class="examples"><p>1. You <b>don't have to</b> pay.</p><p class="uzbek">Siz pul to'lashingiz shart emas.</p><p>2. She <b>doesn't have to</b> come.</p><p class="uzbek">U kelishi shart emas.</p></div></div>
+                    <div class="structure-card positive"><h3><code>Should</code> / <code>Ought to</code> (Maslahat)</h3><div class="formula"><span class="subject">Ega</span> + <span class="verb">should / ought to</span> + <span class="auxiliary">V (asosiy shakli)</span></div><div class="examples"><p>1. You <b>should</b> listen to your parents.</p><p class="uzbek">Siz ota-onangizni tinglashingiz kerak.</p><p>2. He <b>ought to</b> apologize.</p><p class="uzbek">U uzr so'rashi kerak.</p></div></div>
+                    <div class="structure-card positive"><h3><code>Had better</code> (Kuchli maslahat)</h3><div class="formula"><span class="subject">Ega</span> + <span class="verb">had better</span> + <span class="auxiliary">V (asosiy shakli)</span></div><div class="examples"><p>1. You <b>had better</b> study.</p><p class="uzbek">Yaxshisi, o'qishingiz kerak.</p><p>2. We'<b>d better</b> leave now.</p><p class="uzbek">Yaxshisi, hozir ketganimiz ma'qul.</p></div></div>
+                    <div class="structure-card question"><h3><code>Should have</code> + V3 (O'tgan zamon)</h3><div class="formula"><span class="subject">Ega</span> + <span class="verb">should</span> + <span class="auxiliary">have + V3</span></div><div class="examples"><p>1. I <b>should have studied</b> harder.</p><p class="uzbek">Men qattiqroq o'qishim kerak edi (lekin o'qimadim).</p><p>2. You <b>shouldn't have told</b> her.</p><p class="uzbek">Siz unga aytmasligingiz kerak edi (lekin aytdingiz).</p></div></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="examples" class="tab-content">
+            <div class="card">
+                <h2>Misollar To'plami</h2>
+                <div class="examples-grid">
+                    <div class="example-category"><h3>Kuchli Majburiyat va Taqiq</h3><div class="example-item"><p class="english">I <strong>must</strong> remember to buy a gift for her birthday.</p><p class="uzbek">Uning tug'ilgan kuniga sovg'a olishni eslab qolishim shart.</p></div><div class="example-item"><p class="english">Pilots <strong>have to</strong> get a special license to fly a plane.</p><p class="uzbek">Uchuvchilar samolyotni boshqarish uchun maxsus litsenziya olishlari kerak.</p></div><div class="example-item"><p class="english">You <strong>mustn't</strong> touch that wire. It's dangerous.</p><p class="uzbek">U simga teginishing mumkin emas. U xavfli.</p></div><div class="example-item"><p class="english">Yesterday, I <strong>had to</strong> work late to finish the project.</p><p class="uzbek">Kecha loyihani tugatish uchun kechgacha ishlashimga to'g'ri keldi.</p></div><div class="example-item"><p class="english">This is a secret. You <strong>mustn't</strong> tell anybody.</p><p class="uzbek">Bu sir. Hech kimga aytmasliging kerak.</p></div></div>
+                    <div class="example-category"><h3>Maslahat va Tavsiya</h3><div class="example-item"><p class="english">You <strong>should</strong> drink more water every day.</p><p class="uzbek">Har kuni ko'proq suv ichishing kerak.</p></div><div class="example-item"><p class="english">He <strong>ought to</strong> be more careful when driving.</p><p class="uzbek">U mashina haydayotganda ehtiyotkorroq bo'lishi kerak.</p></div><div class="example-item"><p class="english">I think we <strong>should</strong> check the information again.</p><p class="uzbek">O'ylaymanki, biz ma'lumotni yana bir bor tekshirishimiz kerak.</p></div><div class="example-item"><p class="english">You <strong>shouldn't</strong> believe everything you read online.</p><p class="uzbek">Internetda o'qigan hamma narsaga ishonmasliging kerak.</p></div><div class="example-item"><p class="english">She <strong>ought to have listened</strong> to my advice.</p><p class="uzbek">U mening maslahatimga quloq solishi kerak edi.</p></div></div>
+                    <div class="example-category"><h3>Majburiyat Yo'qligi</h3><div class="example-item"><p class="english">It's Sunday, so I <strong>don't have to</strong> go to work.</p><p class="uzbek">Bugun Yakshanba, shuning uchun ishga borishim shart emas.</p></div><div class="example-item"><p class="english">She <strong>doesn't have to</strong> cook tonight. We can order pizza.</p><p class="uzbek">U bugun ovqat qilishi shart emas. Pizza buyurtma qilishimiz mumkin.</p></div><div class="example-item"><p class="english">The museum entrance was free, so we <strong>didn't have to</strong> buy tickets.</p><p class="uzbek">Muzeyga kirish tekin edi, shuning uchun chipta sotib olishimizga to'g'ri kelmadi.</p></div><div class="example-item"><p class="english">You <strong>don't have to</strong> finish the book if you don't like it.</p><p class="uzbek">Agar yoqmasa, kitobni oxirigacha o'qishing shart emas.</p></div><div class="example-item"><p class="english">He is rich. He <strong>doesn't have to</strong> worry about money.</p><p class="uzbek">U boy. Pul haqida qayg'urishi shart emas.</p></div></div>
+                    <div class="example-category"><h3>Ogohlantirish va O'tgan Zamondagi Afsus</h3><div class="example-item"><p class="english">You'<strong>d better</strong> leave now or you will be late.</p><p class="uzbek">Yaxshisi hozir jo'na, aks holda kech qolasan.</p></div><div class="example-item"><p class="english">I <strong>should have studied</strong> harder for the test. I failed.</p><p class="uzbek">Testga qattiqroq o'qishim kerak edi. Men yiqildim.</p></div><div class="example-item"><p class="english">He <strong>had better not</strong> forget to call her.</p><p class="uzbek">Yaxshisi u unga qo'ng'iroq qilishni unutmasin.</p></div><div class="example-item"><p class="english">You <strong>shouldn't have spent</strong> so much money.</p><p class="uzbek">Buncha ko'p pul sarflamasliging kerak edi.</p></div><div class="example-item"><p class="english">We <strong>had better</strong> check the weather before we go camping.</p><p class="uzbek">Lagerga borishdan oldin ob-havoni tekshirganimiz ma'qul.</p></div></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="exercises" class="tab-content">
+            <div class="card">
+                <h2>Mashqlar To'plami</h2>
+                <nav class="exercise-nav">
+                    <button class="exercise-btn active" data-exercise="test">Test</button>
+                    <button class="exercise-btn" data-exercise="fill">Bo'sh joyni to'ldirish</button>
+                    <button class="exercise-btn" data-exercise="correction">Xatolarni Tuzatish</button>
+                    <button class="exercise-btn" data-exercise="transform">Gaplarni O'zgartirish</button>
+                    <button class="exercise-btn" data-exercise="order">So'zlarni Tartiblash</button>
+                </nav>
+
+                <div id="test" class="exercise-content active">
+                    <h3>To'g'ri modal fe'lni tanlang</h3>
+                    <div class="quiz-container">
+                        <div class="question" data-answer="a" data-explanation="Qonun yoki qat'iy qoida (taqiq) uchun 'mustn't' ishlatiladi."><p>1. It's a hospital. You ___ smoke here.</p><div class="options"><label><input type="radio" name="q1" value="a">a) mustn't</label><label><input type="radio" name="q1" value="b">b) don't have to</label><label><input type="radio" name="q1" value="c">c) shouldn't</label></div></div>
+                        <div class="question" data-answer="b" data-explanation="'Majburiyat yo'qligi' ma'nosini 'don't have to' beradi. 'Mustn't' esa taqiqni bildiradi."><p>2. Tomorrow is a holiday, so we ___ go to work.</p><div class="options"><label><input type="radio" name="q2" value="a">a) mustn't</label><label><input type="radio" name="q2" value="b">b) don't have to</label><label><input type="radio" name="q2" value="c">c) shouldn't</label></div></div>
+                        <div class="question" data-answer="b" data-explanation="Kuchli ogohlantirish, agar amal qilinmasa yomon oqibat bo'lishi mumkinligi uchun 'had better' ishlatiladi."><p>3. It's raining. You ___ take an umbrella or you'll get wet.</p><div class="options"><label><input type="radio" name="q3" value="a">a) should</label><label><input type="radio" name="q3" value="b">b) had better</label><label><input type="radio" name="q3" value="c">c) have to</label></div></div>
+                        <div class="question" data-answer="c" data-explanation="Kuchli ishonch va mantiqiy xulosa uchun 'must' ishlatiladi."><p>4. He's been working all day. He ___ be very tired.</p><div class="options"><label><input type="radio" name="q4" value="a">a) should</label><label><input type="radio" name="q4" value="b">b) has to</label><label><input type="radio" name="q4" value="c">c) must</label></div></div>
+                        <div class="question" data-answer="b" data-explanation="O'tgan zamondagi bajarilmagan ish uchun afsuslanish yoki tanqid 'should have' orqali ifodalanadi."><p>5. I failed the exam. I ___ studied harder.</p><div class="options"><label><input type="radio" name="q5" value="a">a) should</dabel><label><input type="radio" name="q5" value="b">b) should have</label><label><input type="radio" name="q5" value="c">c) must have</label></div></div>
+                    </div>
+                    <button class="check-btn" onclick="checkTest()">Tekshirish</button>
+                    <div id="testResult" class="result"></div>
+                </div>
+
+                <div id="fill" class="exercise-content">
+                    <h3>Bo'sh joyni to'ldiring</h3>
+                    <div class="fill-exercise">
+                        <div class="fill-question"><p>1. You _______ tell anyone this, it's a secret. (taqiq)</p><input type="text" class="fill-input" data-answer="mustn't" data-explanation="Sirni aytish qat'iyan taqiqlanadi."></div>
+                        <div class="fill-question"><p>2. I _______ study for my exam tomorrow. It's very important to me. (shaxsiy majburiyat)</p><input type="text" class="fill-input" data-answer="must" data-explanation="Shaxsiy muhimlik ichki majburiyatni bildiradi."></div>
+                        <div class="fill-question"><p>3. She _______ apologize for her rude behavior. (maslahat)</p><input type="text" class="fill-input" data-answer="should|ought to" data-explanation="Bu oddiy maslahat."></div>
+                        <div class="fill-question"><p>4. We _______ leave now, or we'll miss the bus. (kuchli maslahat)</p><input type="text" class="fill-input" data-answer="had better" data-explanation="Salbiy oqibat (avtobusdan qolib ketish) borligi uchun kuchli ogohlantirish ishlatiladi."></div>
+                        <div class="fill-question"><p>5. You _______ pay for this; it's free. (zarurat yo'qligi)</p><input type="text" class="fill-input" data-answer="don't have to" data-explanation="Majburiyat yo'q."></div>
+                        <div class="fill-question"><p>6. He _______ wear a suit to work. It's a rule at his company. (tashqi majburiyat)</p><input type="text" class="fill-input" data-answer="has to" data-explanation="Kompaniya qoidasi tashqi majburiyatdir."></div>
+                        <div class="fill-question"><p>7. You _______ told me you were coming! I would have prepared dinner. (o'tgan zamondagi afsus)</p><input type="text" class="fill-input" data-answer="should have" data-explanation="O'tgan zamondagi bajarilmagan ish uchun tanqid."></div>
+                        <div class="fill-question"><p>8. We _______ leave early yesterday because of the snow. (o'tgan zamondagi majburiyat)</p><input type="text" class="fill-input" data-answer="had to" data-explanation="'must' ning o'tgan zamoni yo'q, shuning uchun 'had to' ishlatiladi."></div>
+                    </div>
+                    <button class="check-btn" onclick="checkFill()">Tekshirish</button>
+                    <div id="fillResult" class="result"></div>
+                </div>
+                
+                <div id="correction" class="exercise-content">
+                    <h3>Xatolarni Tuzating</h3>
+                    <div class="correct-exercise">
+                        <div class="correct-question"><p class="incorrect">1. You should to study harder.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="You should study harder." data-explanation="Modal fe'llardan keyin 'to' ishlatilmaydi (ought to dan tashqari)."></div>
+                        <div class="correct-question"><p class="incorrect">2. He musts go now.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="He must go now." data-explanation="Modal fe'llar 3-shaxsda -s qo'shimchasini olmaydi."></div>
+                        <div class="correct-question"><p class="incorrect">3. You don't must smoke here.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="You mustn't smoke here." data-explanation="Taqiq uchun 'mustn't' ishlatiladi. 'don't must' degan shakl yo'q."></div>
+                        <div class="correct-question"><p class="incorrect">4. She doesn't has to work.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="She doesn't have to work." data-explanation="'doesn't' dan keyin fe'lning asosiy shakli 'have' keladi."></div>
+                        <div class="correct-question"><p class="incorrect">5. I musted go to the bank yesterday.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I had to go to the bank yesterday." data-explanation="'must' ning o'tgan zamon shakli yo'q. Uning o'rniga 'had to' ishlatiladi."></div>
+                        <div class="correct-question"><p class="incorrect">6. We didn't had to wait.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="We didn't have to wait." data-explanation="'didn't' dan keyin fe'lning asosiy shakli 'have' keladi."></div>
+                        <div class="correct-question"><p class="incorrect">7. They ought to have tell us.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="They ought to have told us." data-explanation="'have' dan keyin doim V3 (Past Participle) ishlatiladi."></div>
+                        <div class="correct-question"><p class="incorrect">8. You better go now.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="You had better go now." data-explanation="'had better' iborasi to'liq ishlatilishi kerak. 'had' tushib qolgan."></div>
+                    </div>
+                     <button class="check-btn" onclick="checkCorrection()">Tekshirish</button>
+                    <div id="correctionResult" class="result"></div>
+                </div>
+                
+                <div id="transform" class="exercise-content">
+                    <h3>Gaplarni o'zgartiring</h3>
+                    <div class="transform-exercise">
+                        <div class="transform-question"><p>1. It is necessary for you to wear a uniform. (Use: <b>have to</b>)</p><input type="text" class="transform-input" placeholder="Javobingizni yozing..." data-answer="You have to wear a uniform." data-explanation="'It is necessary' tashqi majburiyatni bildiradi."></div>
+                        <div class="transform-question"><p>2. It is forbidden to smoke here. (Use: <b>mustn't</b>)</p><input type="text" class="transform-input" placeholder="Javobingizni yozing..." data-answer="You mustn't smoke here." data-explanation="'It is forbidden' qat'iy taqiqni anglatadi."></div>
+                        <div class="transform-question"><p>3. I advise you to see a doctor. (Use: <b>should</b>)</p><input type="text" class="transform-input" placeholder="Javobingizni yozing..." data-answer="You should see a doctor." data-explanation="'I advise you' maslahat berishning sinonimidir."></div>
+                        <div class="transform-question"><p>4. It would be a good idea for us to leave now. (Use: <b>had better</b>)</p><input type="text" class="transform-input" placeholder="Javobingizni yozing..." data-answer="We had better leave now." data-explanation="Bu vaziyatda ketish kuchli tavsiya qilinmoqda."></div>
+                        <div class="transform-question"><p>5. It was not necessary for them to wait. (Use: <b>didn't have to</b>)</p><input type="text" class="transform-input" placeholder="Javobingizni yozing..." data-answer="They didn't have to wait." data-explanation="'not necessary' majburiyat yo'qligini bildiradi."></div>
+                        <div class="transform-question"><p>6. It was a mistake that you didn't call her. (Use: <b>should have</b>)</p><input type="text" class="transform-input" placeholder="Javobingizni yozing..." data-answer="You should have called her." data-explanation="'It was a mistake' o'tgan zamondagi xato harakat uchun tanqidni bildiradi."></div>
+                    </div>
+                     <button class="check-btn" onclick="checkTransform()">Tekshirish</button>
+                    <div id="transformResult" class="result"></div>
+                </div>
+                
+                <div id="order" class="exercise-content">
+                    <h3>So'zlarni Tartiblang</h3>
+                    <div class="order-exercise">
+                        <div class="order-question"><p>1. (must / you / listen / to / me)</p><div class="word-container"><div class="word">you</div><div class="word">must</div><div class="word">listen</div><div class="word">to</div><div class="word">me</div></div><div class="drop-zone" data-answer="you must listen to me"></div></div>
+                        <div class="order-question"><p>2. (to / have / I / early / wake / up)</p><div class="word-container"><div class="word">I</div><div class="word">have</div><div class="word">to</div><div class="word">wake</div><div class="word">up</div><div class="word">early</div></div><div class="drop-zone" data-answer="i have to wake up early"></div></div>
+                        <div class="order-question"><p>3. (better / you / had / hurry)</p><div class="word-container"><div class="word">you</div><div class="word">had</div><div class="word">better</div><div class="word">hurry</div></div><div class="drop-zone" data-answer="you had better hurry"></div></div>
+                        <div class="order-question"><p>4. (should / have / she / called / me)</p><div class="word-container"><div class="word">she</div><div class="word">should</div><div class="word">have</div><div class="word">called</div><div class="word">me</div></div><div class="drop-zone" data-answer="she should have called me"></div></div>
+                        <div class="order-question"><p>5. (to / work / doesn't / she / have)</p><div class="word-container"><div class="word">to</div><div class="word">work</div><div class="word">doesn't</div><div class="word">she</div><div class="word">have</div></div><div class="drop-zone" data-answer="she doesn't have to work"></div></div>
+                        <div class="order-question"><p>6. (mustn't / park / you / here)</p><div class="word-container"><div class="word">mustn't</div><div class="word">park</div><div class="word">you</div><div class="word">here</div></div><div class="drop-zone" data-answer="you mustn't park here"></div></div>
+                    </div>
+                    <button class="check-btn" onclick="checkOrder()">Tekshirish</button>
+                    <button class="check-btn" onclick="resetOrder()">Qayta tiklash</button>
+                    <div id="orderResult" class="result"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="errors" class="tab-content">
+             <div class="card">
+                <h2>Muhim Qoidalar va Keng Tarqalgan Xatolar</h2>
+                
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 1: `Mustn't` vs `Don't have to` adashtirish</div>
+                    <div class="context">Vaziyat: Siz muzeydasiz. Ba'zi xonalarga kirish tekin, ba'zilariga esa taqiqlangan.</div>
+                    <div class="wrong-example">To enter this room, you <strong>mustn't</strong> pay. (Bu xonaga kirish uchun pul to'lamasligingiz shart.) - Ma'no xato!</div>
+                    <div class="correct-example">To enter this room, you <strong>don't have to</strong> pay. (Bu xonaga kirish uchun pul to'lashingiz shart emas.)</div>
+                    <div class="explanation">
+                        <div class="explanation-title">🔍 Sababi:</div>
+                        <p><strong>`Mustn't`</strong> - bu TAQIQ. (Kirish taqiqlangan, suratga olish mumkin emas). <br> <strong>`Don't have to`</strong> - bu MAJBURIYAT YO'QLIGI. (To'lash shart emas, lekin xohlasangiz to'lang; forma kiyish shart emas, lekin kiyishingiz mumkin).</p>
+                    </div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">❌ XATO 2: O'tgan zamonda `Must` ishlatish</div>
+                    <div class="wrong-example">Yesterday, I <strong>musted</strong> go to the doctor.</div>
+                    <div class="correct-example">Yesterday, I <strong>had to</strong> go to the doctor.</div>
+                     <div class="explanation">
+                        <div class="explanation-title">🔍 Sababi:</div>
+                        <p><code>Must</code> modal fe'lining o'tgan zamon shakli yo'q. O'tgan zamondagi majburiyatni ifodalash uchun har doim <strong><code>had to</code></strong> ishlatiladi.</p>
+                    </div>
+                </div>
+                
+                 <div class="error-section">
+                    <div class="error-title">🤔 XATO 3: `Had better` va `Should` ni adashtirish</div>
+                     <div class="context">Umumiy maslahat bermoqchisiz: "Odamlar ko'proq sport bilan shug'ullanishi kerak".</div>
+                    <div class="wrong-example">People <strong>had better</strong> exercise more. (Noto'g'ri kontekst)</div>
+                    <div class="correct-example">People <strong>should</strong> exercise more.</div>
+                    <div class="explanation">
+                        <div class="explanation-title">🔍 Sababi:</div>
+                        <p><strong>`Should`</strong> - umumiy, har doimga oid maslahatlar uchun. <br><strong>`Had better`</strong> - aniq bir vaziyatda, yomon oqibatni oldini olish uchun beriladigan kuchli maslahat/ogohlantirish uchun (masalan, "Yomg'ir yog'yapti, yaxshisi soyabon ol" - `You'd better take an umbrella`).</p>
+                    </div>
+                </div>
+
+                 <div class="error-section">
+                    <div class="error-title">⚙️ XATO 4: Struktura xatolari</div>
+                    <div class="wrong-example">He doesn't <strong>has to</strong> come.<br>You should <strong>to</strong> call her.</div>
+                    <div class="correct-example">He doesn't <strong>have to</strong> come.<br>You should call her.</div>
+                    <div class="explanation">
+                        <div class="explanation-title">🔍 Sababi:</div>
+                        <p><code>do/does/did</code> yordamchi fe'llaridan keyin har doim fe'lning asosiy shakli (<code>have</code>) keladi. <br> Barcha modal fe'llardan keyin (<code>ought to</code> dan tashqari) <code>to</code> yuklamasi ishlatilmaydi.</p>
+                    </div>
+                </div>
+             </div>
+        </div>
+    </div>
+
+    <script>
+        let completedSections = 0;
+        const totalSections = 6;
+
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetTab = btn.dataset.tab;
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById(targetTab).classList.add('active');
+                updateProgress();
+            });
+        });
+
+        document.querySelectorAll('.exercise-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetExercise = btn.dataset.exercise;
+                document.querySelectorAll('.exercise-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.exercise-content').forEach(c => c.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById(targetExercise).classList.add('active');
+                if (targetExercise === 'order') {
+                    resetOrder();
+                }
+            });
+        });
+
+        function normalizeAnswer(answer) {
+            if (typeof answer !== 'string') return '';
+            return answer.toLowerCase().trim().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g,"").replace(/\s+/g, ' ');
+        }
+
+        function checkAnswerMatch(userAnswer, correctAnswer) {
+            const normalizedUser = normalizeAnswer(userAnswer);
+            const correctAnswers = correctAnswer.split('|').map(ans => normalizeAnswer(ans));
+            return correctAnswers.includes(normalizedUser);
+        }
+        
+        function checkTest() {
+            const questions = document.querySelectorAll('#test .question');
+            let score = 0;
+            let resultHTML = '';
+            questions.forEach((question, index) => {
+                const qNum = index + 1;
+                const correctAnswer = question.dataset.answer;
+                const explanation = question.dataset.explanation;
+                const selected = document.querySelector(`input[name="q${qNum}"]:checked`);
+
+                if (selected && selected.value === correctAnswer) {
+                    score++;
+                    resultHTML += `<div class="correct-answer">✓ ${qNum}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    const userAnswer = selected ? `Sizning javobingiz: '${selected.value}'` : "Siz javob tanlamadingiz.";
+                    resultHTML += `<div class="wrong-answer">✗ ${qNum}-savol: Noto'g'ri. ${userAnswer} <div class="explanation"><strong>To'g'ri javob '${correctAnswer}'.</strong> ${explanation}</div></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${score}/${questions.length} (${Math.round((score/questions.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('testResult').innerHTML = resultHTML;
+        }
+
+        function checkFill() {
+            const inputs = document.querySelectorAll('#fill .fill-input');
+            let correct = 0;
+            let resultHTML = '';
+            inputs.forEach((input, index) => {
+                const answer = input.dataset.answer;
+                const explanation = input.dataset.explanation;
+                if (checkAnswerMatch(input.value, answer)) {
+                    input.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                    resultHTML += `<div class="correct-answer">✓ ${index + 1}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    input.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savol: Noto'g'ri. <div class="explanation"><strong>To'g'ri javob: '${answer.split('|')[0]}'</strong>. ${explanation}</div></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${inputs.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('fillResult').innerHTML = resultHTML;
+        }
+
+        function checkCorrection() {
+            const inputs = document.querySelectorAll('#correction .correct-input');
+            let correct = 0;
+            let resultHTML = '';
+            inputs.forEach((input, index) => {
+                const answer = input.dataset.answer;
+                 const explanation = input.dataset.explanation;
+                if (checkAnswerMatch(input.value, answer)) {
+                    input.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                     resultHTML += `<div class="correct-answer">✓ ${index + 1}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    input.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savol: Noto'g'ri. <div class="explanation"><strong>To'g'ri javob: '${answer.split('|')[0]}'</strong>. ${explanation}</div></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${inputs.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('correctionResult').innerHTML = resultHTML;
+        }
+
+        function checkTransform() {
+            const inputs = document.querySelectorAll('#transform .transform-input');
+            let correct = 0;
+            let resultHTML = '';
+            inputs.forEach((input, index) => {
+                const answer = input.dataset.answer;
+                const explanation = input.dataset.explanation;
+                if (checkAnswerMatch(input.value, answer)) {
+                    input.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                     resultHTML += `<div class="correct-answer">✓ ${index + 1}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    input.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savol: Noto'g'ri. <div class="explanation"><strong>To'g'ri javob: '${answer.split('|')[0]}'</strong>. ${explanation}</div></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${inputs.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('transformResult').innerHTML = resultHTML;
+        }
+        
+        function checkOrder() {
+            const dropZones = document.querySelectorAll('#order .drop-zone');
+            let correct = 0;
+            let resultHTML = '';
+            dropZones.forEach((zone, index) => {
+                const answer = zone.dataset.answer;
+                const userAnswer = Array.from(zone.children).map(child => child.textContent).join(' ');
+                if (checkAnswerMatch(userAnswer, answer)) {
+                    zone.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                } else {
+                    zone.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savolning to'g'ri javobi: <strong>${answer.split('|')[0]}</strong></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${dropZones.length} (${Math.round((correct/dropZones.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('orderResult').innerHTML = resultHTML;
+        }
+        
+        // YANGI FUNKSIYA: So'zlarni bosish orqali harakatlantirish
+        function handleWordClick(event) {
+            const word = event.target;
+            if (word.classList.contains('word')) {
+                const currentContainer = word.parentElement;
+                let targetContainer;
+
+                // Agar so'z .word-container ichida bo'lsa, uni .drop-zone ga o'tkazish
+                if (currentContainer.classList.contains('word-container')) {
+                    targetContainer = currentContainer.nextElementSibling; // .drop-zone
+                } 
+                // Aksincha, agar so'z .drop-zone ichida bo'lsa, uni .word-container ga qaytarish
+                else if (currentContainer.classList.contains('drop-zone')) {
+                    targetContainer = currentContainer.previousElementSibling; // .word-container
+                }
+
+                if (targetContainer) {
+                    targetContainer.appendChild(word);
+                }
+            }
+        }
+        
+        // Mashqlar bo'limidagi barcha so'zlarga "click" hodisasini qo'shish
+        document.getElementById('order').addEventListener('click', handleWordClick);
+        
+
+        function shuffleChildren(parent) {
+            let children = Array.from(parent.children);
+            for (let i = children.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [children[i], children[j]] = [children[j], children[i]];
+            }
+            children.forEach(child => parent.appendChild(child));
+        }
+
+        function resetOrder() {
+            document.querySelectorAll('#order .order-question').forEach(question => {
+                const wordContainer = question.querySelector('.word-container');
+                const dropZone = question.querySelector('.drop-zone');
+                Array.from(dropZone.children).forEach(child => wordContainer.appendChild(child));
+                shuffleChildren(wordContainer);
+                dropZone.style.border = '2px dashed var(--drop-zone-border)';
+            });
+            document.getElementById('orderResult').innerHTML = '';
+        }
+
+        function updateProgress() {
+            const tabStates = { 'rules': 1, 'diffs': 2, 'structure': 3, 'examples': 4, 'exercises': 5, 'errors': 6 };
+            const activeTab = document.querySelector('.tab-btn.active').dataset.tab;
+            completedSections = tabStates[activeTab] || 0;
+            const percentage = (completedSections / totalSections) * 100;
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = percentage + '%';
+            progressBar.querySelector('.progress-text').textContent = Math.round(percentage) + '%';
+        }
+
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            themeToggle.checked = true;
+        }
+        themeToggle.addEventListener('change', () => {
+            if (themeToggle.checked) {
+                body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateProgress();
+            resetOrder();
+        });
+    </script>
+</body>
+</html>
