@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WH- Clauses (when, where, whoever, etc.) - Mukammal Qo'llanma</title>
+    <style>
+        /* Umumiy stilizatsiya */
+        :root {
+            --bg-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --text-primary: #333;
+            --header-bg: rgba(255, 255, 255, 0.1);
+            --header-text: white;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --card-border: rgba(255, 255, 255, 0.2);
+            --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            --h2-text-gradient: linear-gradient(135deg, #667eea, #764ba2);
+            --rule-section-bg: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            --rule-section-border-left: #667eea;
+            --code-bg: #e2e8f0;
+            --code-color: #c53030;
+            --table-th-bg: #e9ecef;
+            --table-th-color: #495057;
+            --table-td-bg: #fff;
+            --structure-card-bg: linear-gradient(135deg, #e0eafc, #cfdef3);
+            --structure-card-border: #667eea;
+            --formula-bg: white;
+            --example-category-bg: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            --example-item-bg: white;
+            --english-text: #2d3436;
+            --uzbek-text: #636e72;
+            --input-bg: #f8f9fa;
+            --input-border: #dee2e6;
+            --input-focus-shadow: rgba(102, 126, 234, 0.1);
+            --result-bg: linear-gradient(135deg, #ddd6fe, #c4b5fd);
+            --result-color: #5b21b6;
+            --correct-color: #28a745;
+            --wrong-color: #dc3545;
+            --progress-bg: rgba(255, 255, 255, 0.2);
+            --progress-bar-gradient: linear-gradient(90deg, #4CAF50, #45a049);
+            --tab-btn-bg: rgba(255, 255, 255, 0.2);
+            --tab-btn-hover-bg: rgba(255, 255, 255, 0.3);
+            --tab-btn-active-bg: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            --exercise-btn-bg: linear-gradient(135deg, #74b9ff, #0984e3);
+            --exercise-btn-active-bg: linear-gradient(135deg, #00b894, #00a085);
+            --word-bg: linear-gradient(135deg, #667eea, #764ba2);
+            --drop-zone-border: #dee2e6;
+            --drop-zone-bg: #f8f9fa;
+            --drop-zone-hover-bg: rgba(102, 126, 234, 0.1);
+        }
+
+        .dark-mode {
+            --bg-primary: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            --text-primary: #ecf0f1;
+            --header-bg: rgba(0, 0, 0, 0.2);
+            --header-text: #ecf0f1;
+            --card-bg: #3b506b;
+            --card-border: rgba(255, 255, 255, 0.1);
+            --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            --h2-text-gradient: linear-gradient(135deg, #a2ccff, #82b1ff);
+            --rule-section-bg: #4a6280;
+            --rule-section-border-left: #82b1ff;
+            --code-bg: #2f4358;
+            --code-color: #ff8c8c;
+            --table-th-bg: #4a6280;
+            --table-th-color: #ecf0f1;
+            --table-td-bg: #3b506b;
+            --structure-card-bg: linear-gradient(135deg, #4a6280, #5a7490);
+            --structure-card-border: #82b1ff;
+            --formula-bg: #2f4358;
+            --example-category-bg: #4a6280;
+            --example-item-bg: #3b506b;
+            --english-text: #ecf0f1;
+            --uzbek-text: #bdc3c7;
+            --input-bg: #2f4358;
+            --input-border: #5a7490;
+            --input-focus-shadow: rgba(130, 177, 255, 0.2);
+            --result-bg: linear-gradient(135deg, #4a2c7a, #6a3a9a);
+            --result-color: #e0e0e0;
+            --correct-color: #5cb85c;
+            --wrong-color: #d9534f;
+            --progress-bg: rgba(0, 0, 0, 0.3);
+            --progress-bar-gradient: linear-gradient(90deg, #5cb85c, #4cae4c);
+            --tab-btn-bg: rgba(0, 0, 0, 0.3);
+            --tab-btn-hover-bg: rgba(0, 0, 0, 0.4);
+            --tab-btn-active-bg: linear-gradient(135deg, #e74c3c, #c0392b);
+            --exercise-btn-bg: linear-gradient(135deg, #3498db, #2980b9);
+            --exercise-btn-active-bg: linear-gradient(135deg, #2ecc71, #27ae60);
+            --word-bg: linear-gradient(135deg, #3498db, #2980b9);
+            --drop-zone-border: #5a7490;
+            --drop-zone-bg: #2f4358;
+            --drop-zone-hover-bg: rgba(52, 152, 219, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            min-height: 100vh;
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Sarlavha qismi */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--card-border);
+            position: relative; /* For theme toggle positioning */
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            color: var(--header-text);
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: bold;
+        }
+
+        .header p {
+            color: var(--header-text);
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Progress Bar */
+        .progress-container {
+            background: var(--progress-bg);
+            border-radius: 25px;
+            padding: 5px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(5px);
+        }
+
+        .progress-bar {
+            background: var(--progress-bar-gradient);
+            height: 30px;
+            border-radius: 20px;
+            transition: width 0.8s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 0%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-text {
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Theme Toggle Switch */
+        .theme-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .theme-switch input[type="checkbox"] {
+            height: 0;
+            width: 0;
+            visibility: hidden;
+        }
+
+        .theme-switch label {
+            cursor: pointer;
+            text-indent: -9999px;
+            width: 60px;
+            height: 30px;
+            background: #ccc;
+            display: block;
+            border-radius: 100px;
+            position: relative;
+            transition: background-color 0.3s ease;
+        }
+
+        .theme-switch label:after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background: #fff;
+            border-radius: 90px;
+            transition: 0.3s;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+
+        .theme-switch input:checked + label {
+            background: #82b1ff; /* Dark mode toggle background */
+        }
+
+        .theme-switch input:checked + label:after {
+            left: calc(100% - 3px);
+            transform: translateX(-100%);
+            background: #f1c40f; /* Sun color */
+        }
+
+        .theme-switch .icon {
+            font-size: 1.5rem;
+            color: var(--header-text);
+            transition: color 0.3s ease;
+        }
+        .theme-switch input:checked ~ .icon.moon { display: block; }
+        .theme-switch input:not(:checked) ~ .icon.moon { display: none; }
+        .theme-switch input:checked ~ .icon.sun { display: none; }
+        .theme-switch input:not(:checked) ~ .icon.sun { display: block; }
+        .theme-switch .icon.sun { color: #f39c12; }
+        .theme-switch .icon.moon { color: #a2ccff; }
+
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 10px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: var(--tab-btn-bg);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            color: var(--header-text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            font-weight: 500;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .tab-btn:hover {
+            background: var(--tab-btn-hover-bg);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .tab-btn.active {
+            background: var(--tab-btn-active-bg);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Card Styles */
+        .card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+        }
+
+        .card h2 {
+            color: var(--text-primary);
+            margin-bottom: 25px;
+            font-size: 2.2rem;
+            text-align: center;
+            background: var(--h2-text-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Rules Section */
+        .rule-section, .diff-section {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: var(--rule-section-bg);
+            border-radius: 15px;
+            border-left: 5px solid var(--rule-section-border-left);
+        }
+
+        .rule-section h3, .diff-section h3 {
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .rule-section p, .rule-section li, .diff-section p, .diff-section li {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        
+        .rule-section code, .diff-section code {
+            background-color: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--code-color);
+        }
+
+        .diff-table-container { /* Added for responsive table */
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
+        }
+
+        .diff-table {
+            width: 100%; /* Ensure table takes full width of its container */
+            min-width: 600px; /* Minimum width to prevent excessive squishing on small screens */
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        .diff-table th, .diff-table td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            text-align: left;
+            color: var(--text-primary); /* Ensure text color changes with theme */
+        }
+        .diff-table th {
+            background-color: var(--table-th-bg);
+            color: var(--table-th-color);
+        }
+        .diff-table td { background-color: var(--table-td-bg); }
+        .ok { color: var(--correct-color); font-weight: bold; }
+        .not-ok { color: var(--wrong-color); font-weight: bold; }
+
+
+        .structure-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .structure-card {
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            background: var(--structure-card-bg);
+            border: 2px solid var(--structure-card-border);
+        }
+        .structure-card:hover { transform: translateY(-5px); }
+
+        .structure-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            text-align: center;
+            color: var(--text-primary);
+        }
+
+        .formula {
+            background: var(--formula-bg); padding: 15px; border-radius: 10px;
+            margin-bottom: 15px; text-align: center; font-size: 1.1rem;
+            font-weight: 500; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            color: var(--text-primary);
+        }
+
+        .noun, .pronoun, .verb, .subject, .object, .adjective, .adverb, .clause {
+            padding: 5px 10px; border-radius: 5px; margin: 0 5px; color: white;
+        }
+        .noun { background: #fd79a8; }
+        .pronoun { background: #0984e3; }
+        .verb { background: #00b894; }
+        .subject { background: #ffeaa7; color: #333;}
+        .object { background: #6c5ce7; }
+        .adjective { background: #f39c12; }
+        .adverb { background: #e74c3c; }
+        .clause { background: linear-gradient(135deg, #a29bfe, #6c5ce7); border: 1px solid white;}
+        
+
+        .examples { background: rgba(255, 255, 255, 0.7); padding: 15px; border-radius: 10px; }
+        .examples p { margin-bottom: 8px; font-size: 1rem; color: var(--text-primary); }
+        /* Added for Uzbek translations in Structure section */
+        .structure-card .examples .uzbek {
+            color: var(--uzbek-text);
+            font-style: italic;
+            padding-left: 10px; /* Adjusted for smaller indentation */
+            border-left: 3px solid #764ba2; /* Slightly different border color */
+            margin-top: 5px; /* Small margin between English and Uzbek */
+        }
+
+
+        .examples-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px; margin-top: 25px;
+        }
+
+        .example-category {
+            background: var(--example-category-bg); padding: 25px;
+            border-radius: 15px; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        .example-category h3 {
+            color: var(--text-primary); margin-bottom: 20px; font-size: 1.4rem; text-align: center;
+            padding-bottom: 10px; border-bottom: 2px solid var(--rule-section-border-left);
+        }
+
+        .example-item {
+            background: var(--example-item-bg); padding: 15px; border-radius: 10px; margin-bottom: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease;
+        }
+        .example-item:hover { transform: translateX(5px); }
+        .english { color: var(--english-text); font-weight: 500; margin-bottom: 8px; font-size: 1.05rem; }
+        .uzbek { color: var(--uzbek-text); font-style: italic; padding-left: 20px; border-left: 3px solid var(--rule-section-border-left); }
+
+        .exercise-nav {
+            display: flex; justify-content: center; margin-bottom: 30px;
+            gap: 10px; flex-wrap: wrap;
+        }
+        .exercise-btn {
+            background: var(--exercise-btn-bg); color: white; border: none;
+            padding: 12px 20px; border-radius: 10px; cursor: pointer; transition: all 0.3s ease;
+            font-size: 14px; font-weight: 500; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .exercise-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); }
+        .exercise-btn.active {
+            background: var(--exercise-btn-active-bg);
+            box-shadow: 0 6px 20px rgba(0, 184, 148, 0.3);
+        }
+
+        .exercise-content { display: none; }
+        .exercise-content.active { display: block; animation: fadeIn 0.5s ease-in-out; }
+        .exercise-content h3 { color: var(--text-primary); margin-bottom: 25px; font-size: 1.6rem; text-align: center; }
+
+        .quiz-container, .fill-exercise, .combine-exercise, .correct-exercise, .omission-exercise, .order-exercise { margin-bottom: 25px; }
+        .question, .fill-question, .combine-question, .correct-question, .omission-question, .order-question {
+            background: var(--example-item-bg); padding: 20px; border-radius: 15px; margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); border-left: 5px solid var(--rule-section-border-left);
+        }
+        .question p, .fill-question p, .combine-question p, .correct-question p, .omission-question p, .order-question p {
+            font-size: 1.2rem; margin-bottom: 15px; color: var(--english-text); font-weight: 500;
+        }
+        .correct-question p.incorrect { text-decoration: line-through; color: var(--wrong-color);}
+
+        .options { display: flex; flex-direction: column; gap: 10px; }
+        .options label {
+            display: flex; align-items: center; padding: 10px; border-radius: 8px;
+            background: var(--input-bg); cursor: pointer; transition: background 0.3s ease; font-size: 1rem;
+            color: var(--text-primary);
+        }
+        .options label:hover { background: var(--rule-section-bg); }
+        .options input[type="radio"] { margin-right: 10px; transform: scale(1.2); }
+
+        .fill-input, .combine-input, .correct-input, .transform-input {
+            width: 100%; background: var(--input-bg); border: 2px solid var(--input-border);
+            border-radius: 8px; padding: 12px; font-size: 1rem; transition: all 0.3s ease;
+            color: var(--text-primary);
+        }
+        .fill-input:focus, .combine-input:focus, .correct-input:focus, .transform-input:focus {
+            outline: none; border-color: var(--rule-section-border-left); box-shadow: 0 0 0 3px var(--input-focus-shadow);
+        }
+
+        .check-btn {
+            background: var(--exercise-btn-active-bg); color: white; border: none;
+            padding: 15px 30px; border-radius: 10px; cursor: pointer; font-size: 1.1rem;
+            font-weight: 500; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: block; margin: 10px auto;
+        }
+        .check-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 184, 148, 0.3); }
+
+        .check-btn:active { transform: translateY(0); }
+
+        .result {
+            margin-top: 20px; padding: 15px; border-radius: 10px; text-align: center;
+            font-size: 1.2rem; font-weight: 500; background: var(--result-bg);
+            color: var(--result-color); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .correct-answer { color: var(--correct-color); margin: 5px 0; }
+        .wrong-answer { color: var(--wrong-color); margin: 5px 0; }
+        .final-score { margin-top: 10px; padding: 10px; background: var(--input-bg); border-radius: 5px; color: var(--text-primary); }
+
+        /* Yangi stil: Izohlar uchun */
+        .explanation {
+            background: var(--input-bg);
+            border-left: 4px solid var(--rule-section-border-left);
+            padding: 10px;
+            margin: 10px 0 0 0;
+            border-radius: 0 8px 8px 0;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            text-align: left;
+        }
+
+        /* Word Order Exercise Specifics */
+        .word-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: var(--input-bg);
+            border-radius: 10px;
+            min-height: 60px; /* Ensure visibility even if empty */
+        }
+
+        .word {
+            background: var(--word-bg);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: inline-block; /* Ensure display is correct */
+        }
+
+        .word:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .drop-zone {
+            min-height: 60px;
+            border: 2px dashed var(--drop-zone-border);
+            border-radius: 10px;
+            padding: 15px;
+            background: var(--drop-zone-bg);
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            gap: 10px;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+        }
+
+        .drop-zone:hover, .word-container:hover {
+            border-color: var(--rule-section-border-left);
+            background: var(--drop-zone-hover-bg);
+        }
+
+        .drop-zone .word {
+             background: var(--exercise-btn-active-bg);
+        }
+
+        /* --- Styles for Sentence Transformation Exercise (START) --- */
+        .transform-question {
+            background: var(--example-item-bg);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--structure-card-border);
+            transition: all 0.3s ease;
+        }
+
+        .transform-question:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        }
+
+        .transform-question p {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .transform-question p b {
+            color: var(--header-text);
+            background: var(--word-bg);
+            padding: 3px 9px;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .transform-input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .transform-input-wrapper .fa-pen-to-square {
+            position: absolute;
+            left: 15px;
+            color: var(--uzbek-text);
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .transform-input {
+            padding-left: 45px; /* Make space for the icon */
+            background-image: linear-gradient(to right, var(--input-bg), var(--card-bg));
+            font-weight: 500;
+        }
+
+        .transform-input:focus {
+            background-image: none;
+        }
+
+        .transform-input-wrapper:hover .fa-pen-to-square {
+            color: var(--rule-section-border-left);
+        }
+        /* --- Styles for Sentence Transformation Exercise (END) --- */
+        
+        /* --- Styles for Muhim Qoidalar Section (START) --- */
+        .error-section {
+            background: var(--rule-section-bg);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-left: 5px solid var(--wrong-color);
+        }
+
+        .error-title {
+            color: var(--wrong-color);
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .wrong-example {
+            background: rgba(220, 53, 69, 0.1);
+            border: 2px solid var(--wrong-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0 10px 0;
+            position: relative;
+            color: var(--text-primary);
+        }
+
+        .wrong-example::before {
+            content: "❌ NOTO'G'RI";
+            position: absolute;
+            top: -12px;
+            left: 15px;
+            background: var(--wrong-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .correct-example {
+            background: rgba(40, 167, 69, 0.1);
+            border: 2px solid var(--correct-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0 10px 0;
+            position: relative;
+            color: var(--text-primary);
+        }
+
+        .correct-example::before {
+            content: "✅ TO'G'RI";
+            position: absolute;
+            top: -12px;
+            left: 15px;
+            background: var(--correct-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .explanation .explanation-title {
+            color: var(--rule-section-border-left);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .rule-box {
+            background: var(--exercise-btn-bg);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-weight: 500;
+        }
+
+        .situation-example {
+            background: var(--example-item-bg);
+            border: 1px solid var(--input-border);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            color: var(--text-primary);
+        }
+
+        .context {
+            color: var(--correct-color);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .error-section.general-tips {
+             border-left-color: var(--correct-color);
+        }
+        .error-section.general-tips .error-title {
+             color: var(--correct-color);
+        }
+        .error-section.general-tips .rule-box {
+            background: var(--exercise-btn-active-bg);
+        }
+        /* --- Styles for Muhim Qoidalar Section (END) --- */
+
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header h1 { font-size: 2rem; }
+            .card h2 { font-size: 1.8rem; }
+            .structure-grid, .examples-grid { grid-template-columns: 1fr; }
+            .nav-tabs, .exercise-nav { flex-direction: column; gap: 5px; }
+            .tab-btn, .exercise-btn { width: 100%; text-align: center; }
+            .theme-switch { top: 10px; right: 10px; }
+        }
+
+        @media (max-width: 480px) {
+            .header { padding: 20px; }
+            .header h1 { font-size: 1.5rem; }
+            .card { padding: 15px; }
+            .structure-card { padding: 20px; }
+            .example-category { padding: 20px; }
+            .question { padding: 15px; }
+            .word { padding: 6px 12px; font-size: 14px; }
+            .diff-table { min-width: 400px; } /* Adjust for very small screens */
+        }
+
+        /* Animation Effects */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .check-btn:hover { animation: bounce 0.6s ease; }
+
+        /* Scroll Animations */
+        .card {
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideUp 0.6s ease forwards;
+        }
+
+        @keyframes slideUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(135deg, #764ba2, #667eea); }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>WH- Clauses (when, where, whoever, etc.) - Mukammal Qo'llanma</h1>
+            <p>Vaqt, joy, shaxs va narsalarga umumiy ishora qilish qoidalari</p>
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar">
+                    <span class="progress-text">0%</span>
+                </div>
+            </div>
+
+            <div class="theme-switch">
+                <i class="fas fa-sun icon sun"></i>
+                <input type="checkbox" id="themeToggle">
+                <label for="themeToggle"></label>
+                <i class="fas fa-moon icon moon"></i>
+            </div>
+        </div>
+
+        <nav class="nav-tabs">
+            <button class="tab-btn active" data-tab="rules">Qoidalar</button>
+            <button class="tab-btn" data-tab="diffs">Farqlar</button>
+            <button class="tab-btn" data-tab="structure">Strukturalar</button>
+            <button class="tab-btn" data-tab="examples">Misollar</button>
+            <button class="tab-btn" data-tab="exercises">Mashqlar</button>
+            <button class="tab-btn" data-tab="errors">Muhim Qoidalar va Xatolar</button>
+        </nav>
+
+        <div id="rules" class="tab-content active">
+             <div class="card">
+                <h2>WH- Clauses: Asosiy Qoidalar</h2>
+                <div class="rule-section">
+                    <h3>1-qism: Vaqt (<code>when</code>) va Joy (<code>where</code>) ergash gaplari</h3>
+                    <p>Bu so'zlar biror otga aniqlik kirituvchi <strong>relative clause</strong> yasash uchun ishlatiladi.</p>
+                    <ul>
+                        <li><strong>When:</strong> Vaqtni bildiruvchi otlardan (the day, the time, the moment, the year) keyin ishlatiladi.</li>
+                        <li><strong>Where:</strong> Joyni bildiruvchi otlardan (the place, the house, the city, the room) keyin ishlatiladi.</li>
+                    </ul>
+                     <div class="example">
+                        <p>I remember the day <strong>when</strong> we first met. (Biz birinchi uchrashgan kunni eslayman.)</p>
+                        <p>This is the place <strong>where</strong> I grew up. (Bu men o'sgan joy.)</p>
+                    </div>
+                </div>
+                <div class="rule-section">
+                    <h3>2-qism: Umumlashtiruvchi "-ever" so'zlari</h3>
+                    <p><code>-ever</code> qo'shimchasi "har qanday", "kim/nima/qachon/qayerda bo'lishidan qat'iy nazar" degan ma'nolarni beradi va odatda gapda ot (noun clause) vazifasini bajaradi.</p>
+                    <ul>
+                        <li><code>Whoever</code>: "har kimki", "kim bo'lsa ham". Shaxslarga nisbatan ishlatiladi.</li>
+                        <li><code>Whatever</code>: "har nimaki", "nima bo'lsa ham". Narsalarga nisbatan ishlatiladi.</li>
+                        <li><code>Whichever</code>: "qaysi biri bo'lsa ham". Cheklangan tanlov orasidan biriga ishora qiladi.</li>
+                        <li><code>Whenever</code>: "har qachonki", "qachon bo'lsa ham". Vaqtga ishora qiladi.</li>
+                        <li><code>Wherever</code>: "har qayerdaki", "qayerda bo'lsa ham". Joyga ishora qiladi.</li>
+                        <li><code>However</code>: "qanchalik ... bo'lmasin". Sifat yoki ravishning darajasini bildiradi.</li>
+                    </ul>
+                </div>
+                 <div class="rule-section">
+                    <h3><code>However</code> ishlatilishi</h3>
+                    <p><code>However</code> boshqa "-ever" so'zlaridan farqli o'laroq, o'zi yolg'iz kelmaydi. Undan keyin sifat (adjective) yoki ravish (adverb) keladi.</p>
+                    <div class="example">
+                        <p><strong>However hard</strong> you study, there is always more to learn. (Qanchalik ko'p o'qisang ham, o'rganish uchun doim ko'p narsa bor.)</p>
+                        <p>You can't finish it, <strong>however fast</strong> you are. (Qanchalik tez bo'lsang ham, sen buni tugata olmaysan.)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="diffs" class="tab-content">
+            <div class="card">
+                <h2>WH- so'zlari orasidagi nozik farqlar</h2>
+                <div class="diff-section">
+                    <h3>Aniqlovchi (when/where) vs Umumlashtiruvchi (whenever/wherever)</h3>
+                    <div class="diff-table-container">
+                        <table class="diff-table">
+                            <tr><th>So'z</th><th>Ma'nosi va ishlatilishi</th><th>Misol</th></tr>
+                            <tr>
+                                <td><code>where</code></td>
+                                <td><strong>Aniq bir joyga</strong> ishora qiladi.</td>
+                                <td>This is the office <strong>where</strong> I work. (Bu men ishlaydigan (aynan shu) ofis.)</td>
+                            </tr>
+                            <tr>
+                                <td><code>wherever</code></td>
+                                <td><strong>Har qanday, ixtiyoriy joyga</strong> ishora qiladi.</td>
+                                <td>You can sit <strong>wherever</strong> you like. (Xohlagan joyingga o'tirishing mumkin.)</td>
+                            </tr>
+                             <tr>
+                                <td><code>when</code></td>
+                                <td><strong>Aniq bir vaqtga</strong> ishora qiladi.</td>
+                                <td>I remember the day <strong>when</strong> I graduated. (Men bitirgan (aynan shu) kunni eslayman.)</td>
+                            </tr>
+                             <tr>
+                                <td><code>whenever</code></td>
+                                <td><strong>Har qanday, ixtiyoriy vaqtga</strong> ishora qiladi.</td>
+                                <td>Call me <strong>whenever</strong> you are ready. (Qachon tayyor bo'lsang, qo'ng'iroq qil.)</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                 <div class="diff-section">
+                    <h3><code>Whatever</code> vs. <code>Whichever</code></h3>
+                     <p>Ikkalasi ham narsalarga ishora qilsa-da, ular orasida tanlov doirasiga ko'ra farq bor.</p>
+                     <div class="diff-table-container">
+                        <table class="diff-table">
+                            <tr><th>So'z</th><th>Ma'nosi va ishlatilishi</th><th>Misol</th></tr>
+                            <tr>
+                                <td><code>Whatever</code></td>
+                                <td><strong>Cheksiz tanlov.</strong> "Har nimaiki" degan ma'noni beradi.</td>
+                                <td>You can eat <strong>whatever</strong> you want from the menu. (Menyudan xohlagan narsangni yeyishing mumkin.)</td>
+                            </tr>
+                             <tr>
+                                <td><code>Whichever</code></td>
+                                <td><strong>Cheklangan tanlov.</strong> "Qaysi biri bo'lsa ham" degan ma'noni beradi (odatda 2-3 ta narsa orasidan).</td>
+                                <td>There are tea and coffee. You can drink <strong>whichever</strong> you prefer. (Choy va kofe bor. Qaysi birini afzal ko'rsang, ichaver.)</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="structure" class="tab-content">
+            <div class="card">
+                <h2>WH- Clauses Gapdagi Vazifalari</h2>
+                <div class="structure-grid">
+                    <div class="structure-card">
+                        <h3>Ot Ergash Gap (Ega vazifasida)</h3>
+                        <div class="formula"><span class="clause">Whoever/Whatever ...</span> + <span class="verb">Fe'l</span> ...</div>
+                        <div class="examples">
+                            <p><b>Whoever comes late</b> will miss the show.</p>
+                            <p class="uzbek">Kim kech kelsa, shouni o'tkazib yuboradi.</p>
+                            <p><b>Whatever she said</b> was true.</p>
+                            <p class="uzbek">U nima degan bo'lsa, hammasi rost edi.</p>
+                        </div>
+                    </div>
+                    <div class="structure-card">
+                        <h3>Ot Ergash Gap (To'ldiruvchi vazifasida)</h3>
+                        <div class="formula"><span class="subject">Ega</span> + <span class="verb">Fe'l</span> + <span class="clause">whatever/whoever ...</span></div>
+                        <div class="examples">
+                            <p>You can do <b>whatever you want</b>.</p>
+                            <p class="uzbek">Siz xohlagan narsangizni qilishingiz mumkin.</p>
+                            <p>The company will hire <b>whoever is best for the job</b>.</p>
+                            <p class="uzbek">Kompaniya ish uchun kim eng yaxshi bo'lsa, o'shani ishga oladi.</p>
+                        </div>
+                    </div>
+                    <div class="structure-card">
+                        <h3>Ravish Ergash Gap (Adverbial Clause)</h3>
+                        <div class="formula">Bosh gap + <span class="clause">whenever/wherever ...</span></div>
+                        <div class="examples">
+                            <p>He feels happy <b>whenever he sees her</b>.</p>
+                            <p class="uzbek">U qachonki uni ko'rsa, xursand bo'ladi.</p>
+                            <p>I will find you <b>wherever you go</b>.</p>
+                            <p class="uzbek">Qayerga borsang ham, men seni topaman.</p>
+                        </div>
+                    </div>
+                    <div class="structure-card">
+                        <h3><code>However</code> + Sifat/Ravish</h3>
+                        <div class="formula"><span class="clause">However + adj/adv + S + V</span>, ...</div>
+                        <div class="examples">
+                            <p><b>However hard he tried</b>, he couldn't open the door.</p>
+                            <p class="uzbek">U qanchalik qattiq harakat qilmasin, eshikni ocha olmadi.</p>
+                            <p><b>However carefully you drive</b>, accidents can happen.</p>
+                            <p class="uzbek">Mashinani qanchalik ehtiyotkor haydasangiz ham, baxtsiz hodisalar yuz berishi mumkin.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="examples" class="tab-content">
+            <div class="card">
+                <h2>WH- Clauses Misollari</h2>
+                <div class="examples-grid">
+                    <div class="example-category">
+                        <h3><code>Whoever</code> (kim bo'lsa ham)</h3>
+                        <div class="example-item">
+                            <p class="english"><strong>Whoever</strong> enters the room first may have lunch with us.</p>
+                            <p class="uzbek">Xonaga kim birinchi bo'lib kirsa, o'sha biz bilan tushlik qilishi mumkin.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">The boss will hire <strong>whoever</strong> impresses him in the interview.</p>
+                            <p class="uzbek">Boss intervyuda kim uni hayratga solsa, o'shani ishga oladi.</p>
+                        </div>
+                    </div>
+                     <div class="example-category">
+                        <h3><code>Whatever</code> (nima bo'lsa ham)</h3>
+                        <div class="example-item">
+                            <p class="english">The people were saying <strong>whatever</strong> was on their mind.</p>
+                            <p class="uzbek">Odamlar xayoliga nima kelsa, o'shani aytishayotgan edi.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">You can choose <strong>whatever</strong> movie you made, I'm fine with it.</p>
+                            <p class="uzbek">Siz qilgan nimaiki film bo'lsa, tanlang, menga roziman.</p>
+                        </div>
+                    </div>
+                    <div class="example-category">
+                        <h3><code>Whichever</code> (qaysi biri bo'lsa ham)</h3>
+                        <div class="example-item">
+                            <p class="english">You can choose <strong>whichever</strong> color you like.</p>
+                            <p class="uzbek">Sizga qaysi rang yoqsa, o'shani tanlashingiz mumkin.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">Take <strong>whichever</strong> book you want from the shelf.</p>
+                            <p class="uzbek">Javondan qaysi kitobni xohlasangiz, o'shani oling.</p>
+                        </div>
+                    </div>
+                    <div class="example-category">
+                        <h3><code>Whenever</code> (qachon bo'lsa ham)</h3>
+                        <div class="example-item">
+                            <p class="english">You can come over <strong>whenever</strong> you want.</p>
+                            <p class="uzbek">Qachon xohlasangiz, kelishingiz mumkin.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">Feel free to visit me <strong>whenever</strong> you're in town.</p>
+                            <p class="uzbek">Qachon shaharda bo'lsangiz, bemalol menikiga tashrif buyuring.</p>
+                        </div>
+                    </div>
+                    <div class="example-category">
+                        <h3><code>Wherever</code> (qayerda bo'lsa ham)</h3>
+                        <div class="example-item">
+                            <p class="english">Put your keys <strong>wherever</strong> you can easily find them.</p>
+                            <p class="uzbek">Kalitlaringizni qayerda osongina topsa bo'ladigan bo'lsa, o'sha joyga qo'ying.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">The guests can sit <strong>wherever</strong> they feel comfortable.</p>
+                            <p class="uzbek">Mehmonlar o'zlarini qayerda qulay his qilishsa, o'sha joyda o'tirishlari mumkin.</p>
+                        </div>
+                    </div>
+                    <div class="example-category">
+                        <h3><code>However</code> (qanchalik ... bo'lmasin)</h3>
+                        <div class="example-item">
+                            <p class="english"><strong>However</strong> hard you try, mistakes can happen.</p>
+                            <p class="uzbek">Qanchalik urinmang, xatolar bo'lishi mumkin.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english"><strong>However</strong> many times you fall, get back up and try again.</p>
+                            <p class="uzbek">Qanchalik ko'p marta yiqilib tushsang ham, o'rningdan turib yana harakat qil.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<div id="exercises" class="tab-content">
+    <div class="card">
+      <h2>Mashqlar (WH- Clauses)</h2>
+                <nav class="exercise-nav">
+                    <button class="exercise-btn active" data-exercise="test">Test</button>
+                    <button class="exercise-btn" data-exercise="fill">Bo'sh joyni to'ldirish</button>
+                    <button class="exercise-btn" data-exercise="correction">Xatolarni Tuzatish</button>
+                    <button class="exercise-btn" data-exercise="order">So'zlarni Tartiblash</button>
+                    <button class="exercise-btn" data-exercise="transform">Gaplarni Birlashtirish</button>
+                </nav>
+
+                <div id="test" class="exercise-content active">
+                    <h3>To'g'ri so'zni tanlang</h3>
+                    <div class="quiz-container">
+                        <div class="question" data-answer="a" data-explanation="'Har kimki' ma'nosida shaxslarga nisbatan 'whoever' ishlatiladi."><p>1. ___ finishes their work early can go out to play.</p><div class="options"><label><input type="radio" name="q1" value="a">a) Whoever</label><label><input type="radio" name="q1" value="b">b) Whatever</label><label><input type="radio" name="q1" value="c">c) Whichever</label></div></div>
+                        <div class="question" data-answer="b" data-explanation="'Har qayerda' ma'nosida joyga nisbatan 'wherever' ishlatiladi."><p>2. You can sit ___ you want.</p><div class="options"><label><input type="radio" name="q2" value="a">a) whenever</label><label><input type="radio" name="q2" value="b">b) wherever</label><label><input type="radio" name="q2" value="c">c) whatever</label></div></div>
+                        <div class="question" data-answer="c" data-explanation="'Qanchalik qiyin bo'lmasin' ma'nosini 'However difficult' beradi."><p>3. ___, I will finish this project.</p><div class="options"><label><input type="radio" name="q3" value="a">a) Whatever difficult it is</label><label><input type="radio" name="q3" value="b">b) Whichever difficult it is</label><label><input type="radio" name="q3" value="c">c) However difficult it is</label></div></div>
+                        <div class="question" data-answer="a" data-explanation="Cheklangan tanlov ('red' or 'blue') bo'lgani uchun 'whichever' to'g'ri keladi."><p>4. You can take ___ dress you like, the red one or the blue one.</p><div class="options"><label><input type="radio" name="q4" value="a">a) whichever</label><label><input type="radio" name="q4" value="b">b) whatever</label><label><input type="radio" name="q4" value="c">c) whoever</label></div></div>
+                        <div class="question" data-answer="b" data-explanation="'Har nimaiki' ma'nosida, cheklanmagan tanlov uchun 'whatever' ishlatiladi."><p>5. She can do ___ she wants. It's her life.</p><div class="options"><label><input type="radio" name="q5" value="a">a) whichever</label><label><input type="radio" name="q5" value="b">b) whatever</label><label><input type="radio" name="q5" value="c">c) whenever</label></div></div>
+                        <div class="question" data-answer="c" data-explanation="'Har qachonki' ma'nosida vaqtga nisbatan 'whenever' ishlatiladi."><p>6. Call me ___ you get home.</p><div class="options"><label><input type="radio" name="q6" value="a">a) wherever</label><label><input type="radio" name="q6" value="b">b) whatever</label><label><input type="radio" name="q6" value="c">c) whenever</label></div></div>
+                        <div class="question" data-answer="a" data-explanation="Aniq bir joy ('the city') haqida gap ketganda 'where' ishlatiladi."><p>7. This is the city ___ I was born.</p><div class="options"><label><input type="radio" name="q7" value="a">a) where</label><label><input type="radio" name="q7" value="b">b) wherever</label><label><input type="radio" name="q7" value="c">c) which</label></div></div>
+                        <div class="question" data-answer="b" data-explanation="Gapning egasi ('Kimki yutsa') 'whoever' bo'ladi."><p>8. ___ wins the race will get a prize.</p><div class="options"><label><input type="radio" name="q8" value="a">a) Whichever</label><label><input type="radio" name="q8" value="b">b) Whoever</label><label><input type="radio" name="q8" value="c">c) Whatever</label></div></div>
+                        <div class="question" data-answer="c" data-explanation="Aniq bir vaqt ('the day') haqida gap ketganda 'when' ishlatiladi."><p>9. Do you remember the day ___ we went to the zoo?</p><div class="options"><label><input type="radio" name="q9" value="a">a) whenever</label><label><input type="radio" name="q9" value="b">b) where</label><label><input type="radio" name="q9" value="c">c) when</label></div></div>
+                        <div class="question" data-answer="a" data-explanation="'Qanchalik tez yugurmasin' ma'nosini 'However fast' beradi."><p>10. ___ she runs, I'll catch up.</p><div class="options"><label><input type="radio" name="q10" value="a">a) However fast</label><label><input type="radio" name="q10" value="b">b) Whatever fast</label><label><input type="radio" name="q10" value="c">c) How fast</label></div></div>
+                    </div>
+                    <button class="check-btn" onclick="checkTest()">Tekshirish</button>
+                    <div id="testResult" class="result"></div>
+                </div>
+
+                <div id="fill" class="exercise-content">
+                    <h3>Bo'sh joyni to'g'ri so'z bilan to'ldiring.</h3>
+                    <div class="fill-exercise">
+                        <div class="fill-question"><p>1. Eat ___ you like from the menu.</p><input type="text" class="fill-input" data-answer="whatever" data-explanation="'Nimaiki xohlasangiz' ma'nosida 'whatever' ishlatiladi."></div>
+                        <div class="fill-question"><p>2. He follows me ___ I go.</p><input type="text" class="fill-input" data-answer="wherever" data-explanation="'Qayerga borsam ham' ma'nosida 'wherever' ishlatiladi."></div>
+                        <div class="fill-question"><p>3. The prize will be given to ___ solves the puzzle first.</p><input type="text" class="fill-input" data-answer="whoever" data-explanation="'Kimki birinchi yechsa' ma'nosida 'whoever' ishlatiladi."></div>
+                        <div class="fill-question"><p>4. ___ you are ready, we can start the meeting.</p><input type="text" class="fill-input" data-answer="Whenever" data-explanation="'Qachon tayyor bo'lsangiz' ma'nosida 'whenever' ishlatiladi."></div>
+                        <div class="fill-question"><p>5. There are two paths. You can go ___ way you choose.</p><input type="text" class="fill-input" data-answer="whichever" data-explanation="Ikki yo'l - cheklangan tanlov, shuning uchun 'whichever' ishlatiladi."></div>
+                        <div class="fill-question"><p>6. ___ hard I try, I can't seem to lose weight.</p><input type="text" class="fill-input" data-answer="However" data-explanation="'Qanchalik qattiq harakat qilmayin' ma'nosida 'However hard' ishlatiladi."></div>
+                        <div class="fill-question"><p>7. This is the house ___ I spent my childhood.</p><input type="text" class="fill-input" data-answer="where" data-explanation="Aniq bir joy ('the house') uchun 'where' ishlatiladi."></div>
+                        <div class="fill-question"><p>8. You should do ___ you think is right.</p><input type="text" class="fill-input" data-answer="whatever" data-explanation="'Nimaiki to'g'ri deb o'ylasangiz' ma'nosida 'whatever' ishlatiladi."></div>
+                        <div class="fill-question"><p>9. I'll never forget the moment ___ I first saw her.</p><input type="text" class="fill-input" data-answer="when" data-explanation="Aniq bir vaqt ('the moment') uchun 'when' ishlatiladi."></div>
+                        <div class="fill-question"><p>10. Give this message to ___ you see at the reception.</p><input type="text" class="fill-input" data-answer="whoever" data-explanation="'Kimni ko'rsangiz' ma'nosida 'whoever' ishlatiladi."></div>
+                    </div>
+                    <button class="check-btn" onclick="checkFill()">Tekshirish</button>
+                    <div id="fillResult" class="result"></div>
+                </div>
+
+                <div id="correction" class="exercise-content">
+                    <h3>Xatolarni Tuzatish</h3>
+                    <div class="correct-exercise">
+                        <div class="correct-question"><p class="incorrect">1. I will buy whichever I want.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I will buy whatever I want." data-explanation="Tanlov cheklanmagan ('har nimaiki'), shuning uchun 'whatever' ishlatilishi kerak."></div>
+                        <div class="correct-question"><p class="incorrect">2. Whatever of these two shirts do you want?</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="Whichever of these two shirts do you want?" data-explanation="Ikki ko'ylak - cheklangan tanlov, shuning uchun 'whichever' ishlatilishi kerak."></div>
+                        <div class="correct-question"><p class="incorrect">3. I don't care whoever says. I will do it.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I don't care what anyone says. I will do it.|I don't care whatever they say. I will do it." data-explanation="'Whoever' gap egasi bo'lib kelishi kerak. Bu yerda 'what anyone says' yoki 'whatever they say' to'g'riroq."></div>
+                        <div class="correct-question"><p class="incorrect">4. She will marry whomever loves her.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="She will marry whoever loves her." data-explanation="Ergash gapning egasi ('kimki uni sevsa') 'whoever' bo'ladi, to'ldiruvchi emas."></div>
+                        <div class="correct-question"><p class="incorrect">5. Whatever you do, is fine with me.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="Whatever you do is fine with me." data-explanation="Bu yerda 'Whatever you do' gapning to'liq egasi hisoblanadi, shuning uchun undan keyin vergul qo'yilmaydi."></div>
+                        <div class="correct-question"><p class="incorrect">6. You can call me whenever time you want.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="You can call me whenever you want.|You can call me at whatever time you want." data-explanation="'Whenever' o'zi 'at any time' degani. 'Time' so'zini qo'shish ortiqcha."></div>
+                        <div class="correct-question"><p class="incorrect">7. I will go to wherever is cheap.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I will go wherever is cheap." data-explanation="'to' predlogi kerak emas, chunki 'wherever' o'z ichiga 'to any place' ma'nosini oladi."></div>
+                        <div class="correct-question"><p class="incorrect">8. However you are tired, you must finish it.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="However tired you are, you must finish it." data-explanation="'However' dan keyin sifat (tired) kelishi kerak."></div>
+                        <div class="correct-question"><p class="incorrect">9. This is the town whenever I was born.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="This is the town where I was born." data-explanation="Joyga ishora qilish uchun 'where' ishlatiladi."></div>
+                        <div class="correct-question"><p class="incorrect">10. I will give the job to whoever of them.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I will give the job to whichever of them." data-explanation="'of them' cheklangan guruhni bildiradi, shuning uchun 'whichever' to'g'ri keladi."></div>
+                    </div>
+                    <button class="check-btn" onclick="checkCorrection()">Tekshirish</button>
+                    <div id="correctionResult" class="result"></div>
+                </div>
+                
+                <div id="order" class="exercise-content">
+                    <h3>So'zlarni to'g'ri tartibda joylashtiring</h3>
+                    <div class="order-exercise">
+                        <div class="order-question"><p>1. (you / whenever / want / come)</p><div class="word-container"><div class="word">you</div><div class="word">want</div><div class="word">come</div><div class="word">whenever</div></div><div class="drop-zone" data-answer="come whenever you want"></div></div>
+                        <div class="order-question"><p>2. (like / sit / you / wherever)</p><div class="word-container"><div class="word">you</div><div class="word">wherever</div><div class="word">like</div><div class="word">sit</div></div><div class="drop-zone" data-answer="sit wherever you like"></div></div>
+                        <div class="order-question"><p>3. (first / arrives / whoever / wins)</p><div class="word-container"><div class="word">wins</div><div class="word">first</div><div class="word">arrives</div><div class="word">whoever</div></div><div class="drop-zone" data-answer="whoever arrives first wins"></div></div>
+                        <div class="question" data-answer="c" data-explanation="Ergash gapning egasi ('kimki uni sevsa') 'whoever' bo'ladi, to'ldiruvchi emas."><p>4. She will marry whomever loves her.</p><div class="options"><label><input type="radio" name="q4" value="a">a) who</label><label><input type="radio" name="q4" value="b">b) that</label><label><input type="radio" name="q4" value="c">c) whoever</label></div></div>
+                        <div class="order-question"><p>5. (I / whatever / need / will buy / you)</p><div class="word-container"><div class="word">you</div><div class="word">whatever</div><div class="word">need</div><div class="word">I</div><div class="word">will buy</div></div><div class="drop-zone" data-answer="I will buy whatever you need"></div></div>
+                        <div class="order-question"><p>6. (you / take / prefer / whichever)</p><div class="word-container"><div class="word">prefer</div><div class="word">whichever</div><div class="word">take</div><div class="word">you</div></div><div class="drop-zone" data-answer="take whichever you prefer"></div></div>
+                        <div class="order-question"><p>7. (hard / however / you / work / , / take a rest)</p><div class="word-container"><div class="word">you</div><div class="word">,</div><div class="word">work</div><div class="word">hard</div><div class="word">take a rest</div><div class="word">however</div></div><div class="drop-zone" data-answer="however hard you work , take a rest"></div></div>
+                        <div class="order-question"><p>8. (the day / I / met you / remember / when)</p><div class="word-container"><div class="word">when</div><div class="word">I</div><div class="word">met you</div><div class="word">remember</div><div class="word">the day</div></div><div class="drop-zone" data-answer="I remember the day when I met you"></div></div>
+                        <div class="order-question"><p>9. (is / the place / where / he / this / lives)</p><div class="word-container"><div class="word">he</div><div class="word">the place</div><div class="word">is</div><div class="word">this</div><div class="word">lives</div><div class="word">where</div></div><div class="drop-zone" data-answer="this is the place where he lives"></div></div>
+                        <div class="order-question"><p>10. (will hire / is qualified / the boss / whoever)</p><div class="word-container"><div class="word">is qualified</div><div class="word">the boss</div><div class="word">will hire</div><div class="word">whoever</div></div><div class="drop-zone" data-answer="the boss will hire whoever is qualified"></div></div>
+                    </div>
+                    <button class="check-btn" onclick="checkOrder()">Tekshirish</button>
+                    <button class="check-btn" onclick="resetOrder()">Qayta tiklash</button>
+                    <div id="orderResult" class="result"></div>
+                </div>
+
+                <div id="transform" class="exercise-content">
+                    <h3>Gaplarni birlashtiring</h3>
+                    <div class="transform-exercise">
+                        <div class="transform-question"><p>1. It doesn't matter who you invite. They are all welcome. &rarr; (Use: <b>Whoever</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="Whoever you invite is welcome." data-explanation="'It doesn't matter who' o'rniga 'Whoever' ishlatiladi."></div></div>
+                        <div class="transform-question"><p>2. You can leave at any time you want. &rarr; (Use: <b>Whenever</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="You can leave whenever you want." data-explanation="'at any time' 'whenever' bilan almashtiriladi."></div></div>
+                        <div class="transform-question"><p>3. It doesn't matter what you say. I won't believe you. &rarr; (Use: <b>Whatever</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="Whatever you say, I won't believe you." data-explanation="'It doesn't matter what' o'rniga 'Whatever' ishlatiladi."></div></div>
+                        <div class="transform-question"><p>4. You can go to any place you like. &rarr; (Use: <b>Wherever</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="You can go wherever you like." data-explanation="'to any place' o'rniga 'wherever' ishlatiladi."></div></div>
+                        <div class="transform-question"><p>5. It doesn't matter how hard you try. You can't beat me. &rarr; (Use: <b>However</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="However hard you try, you can't beat me." data-explanation="'It doesn't matter how hard' 'However hard' ga o'zgaradi."></div></div>
+                        <div class="transform-question"><p>6. You can choose any of the two options. &rarr; (Use: <b>Whichever</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="You can choose whichever of the two options you want." data-explanation="Cheklangan tanlov ('two options') uchun 'whichever' ishlatiladi."></div></div>
+                        <div class="transform-question"><p>7. A person came to see you. I don't know who. &rarr; (Use: <b>Whoever</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="Tell whoever came to see me to wait." data-explanation="Bu yerda 'whoever' noaniq shaxsga ishora qiladi."></div></div>
+                        <div class="transform-question"><p>8. This is a special place. I met my wife here. &rarr; (Use: <b>where</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="This is the special place where I met my wife." data-explanation="'here' 'where' bilan almashtirilib, gaplar birlashtiriladi."></div></div>
+                        <div class="transform-question"><p>9. I remember that time. We were happy then. &rarr; (Use: <b>when</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="I remember the time when we were happy." data-explanation="'then' 'when' bilan almashtirilib, gaplar birlashtiriladi."></div></div>
+                        <div class="transform-question"><p>10. You can tell me any secret. I will keep it. &rarr; (Use: <b>Whatever</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="I will keep whatever secret you tell me." data-explanation="'any secret' 'whatever secret' bilan almashtiriladi."></div></div>
+                    </div>
+                    <button class="check-btn" onclick="checkTransform()">Tekshirish</button>
+                    <div id="transformResult" class="result"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="errors" class="tab-content">
+             <div class="card">
+                <h2>Muhim Qoidalar va Xatolar (WH- Clauses)</h2>
+                
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 1: `Whoever` vs. `Whomever` adashtirish</div>
+                    <div class="wrong-example">Give the prize to <strong>whoever</strong> you think deserves it.</div>
+                    <div class="correct-example">Give the prize to <strong>whomever</strong> you think deserves it.</div>
+                    <div class="explanation"><p><strong>Qoida:</strong> Agar olmosh ergash gapning to'ldiruvchisi bo'lsa ('you think *he* deserves it' emas, 'you think *him*...'), 'whomever' ishlatiladi. Ammo zamonaviy ingliz tilida 'whoever' ko'proq ishlatiladi. Agar ergash gapning egasi bo'lsa (<strong>Whoever</strong> deserves it...), har doim 'whoever' ishlatiladi.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 2: `Whatever` vs. `Whichever`</div>
+                    <div class="wrong-example">There are two options. Choose <strong>whatever</strong> you like.</div>
+                    <div class="correct-example">There are two options. Choose <strong>whichever</strong> you like.</div>
+                    <div class="explanation"><p><strong>Qoida:</strong> Tanlov cheklangan bo'lsa (ikki, uchta narsa orasida), har doim 'whichever' ishlatiladi. 'Whatever' esa cheklanmagan tanlov uchun.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 3: `where` vs. `wherever`</div>
+                    <div class="wrong-example">This is the hotel <strong>wherever</strong> we stayed.</div>
+                    <div class="correct-example">This is the hotel <strong>where</strong> we stayed.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> 'where' aniq bir joyga ishora qiladi. 'wherever' esa 'har qanday joy' degani va noaniq joyga ishora qiladi (Sit wherever you want).</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 4: `However`ni noto'g'ri ishlatish</div>
+                    <div class="wrong-example"><strong>However</strong> you are smart, you can make mistakes.</div>
+                    <div class="correct-example"><strong>However smart you are</strong>, you can make mistakes.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> 'However'dan keyin darrov sifat (smart) yoki ravish kelishi kerak, keyin ega va kesim.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 5: Ot ergash gapdan keyin vergul</div>
+                    <div class="wrong-example">Whatever you decide<strong>,</strong> is fine with me.</div>
+                    <div class="correct-example">Whatever you decide is fine with me.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> Agar WH-clause gapning egasi vazifasida kelsa, undan keyin vergul qo'yilmaydi.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 6: Shaxs uchun 'whatever' ishlatish</div>
+                    <div class="wrong-example">You can ask <strong>whatever</strong> is at the front desk.</div>
+                    <div class="correct-example">You can ask <strong>whoever</strong> is at the front desk.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> Shaxslarga nisbatan 'har kimki' ma'nosida 'whoever' ishlatiladi, 'whatever' emas.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 7: `when` vs. `whenever`</div>
+                    <div class="wrong-example">I will be happy <strong>when</strong> you visit. (har qanday vaqtda)</div>
+                    <div class="correct-example">I will be happy <strong>whenever</strong> you visit.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> 'when' aniq bir vaqtga ishora qiladi. 'whenever' esa 'har qachonki' degan ma'noni beradi.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 8: So'roq belgisi bilan adashtirish</div>
+                    <div class="wrong-example">I know <strong>what is your name?</strong></div>
+                    <div class="correct-example">I know <strong>what your name is</strong>.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> WH-clause boshqa gapning ichida kelsa, u so'roq emas, darak gap tartibida bo'ladi (ega + kesim).</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 9: `-ever` bilan `that` ishlatish</div>
+                    <div class="wrong-example">He will do whatever <strong>that</strong> you ask.</div>
+                    <div class="correct-example">He will do whatever you ask.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> `-ever` bilan tugaydigan so'zlardan keyin `that` ishlatilmaydi.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 10: `however` vs. `but`</div>
+                    <div class="wrong-example">I am tired, <strong>however</strong> I will help you. (Ma'no xato emas, lekin uslubda)</div>
+                    <div class="correct-example">I am tired, <strong>but</strong> I will help you. <br/> <strong>However tired I am</strong>, I will help you.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> Garchi 'however' "ammo" ma'nosida kelsa ham, u ko'pincha gap boshida yoki ikki gap o'rtasida nuqtali vergul bilan keladi. 'but' bog'lovchisi esa oddiyroq va keng tarqalgan. 'however'ning "qanchalik...bo'lmasin" ma'nosini unutmaslik kerak.</p></div>
+                </div>
+                
+             </div>
+        </div>
+        
+    </div>
+
+    <script>
+        // Progress tracking
+        let completedSections = 0;
+        const totalSections = 6; // Qoidalar, Farqlar, Strukturalar, Misollar, Mashqlar, Xatolar
+
+        // Tab functionality
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetTab = btn.dataset.tab;
+                
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                btn.classList.add('active');
+                document.getElementById(targetTab).classList.add('active');
+                
+                updateProgress();
+            });
+        });
+
+        // Exercise navigation
+        document.querySelectorAll('.exercise-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetExercise = btn.dataset.exercise;
+                
+                document.querySelectorAll('.exercise-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.exercise-content').forEach(c => c.classList.remove('active'));
+                
+                btn.classList.add('active');
+                document.getElementById(targetExercise).classList.add('active');
+
+                if (targetExercise === 'order') {
+                    resetOrder();
+                }
+            });
+        });
+
+        function normalizeAnswer(answer) {
+            if (typeof answer !== 'string') return '';
+            return answer.toLowerCase().trim()
+                .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")
+                .replace(/\s+/g, ' ');
+        }
+
+        function checkAnswerMatch(userAnswer, correctAnswer) {
+            const normalizedUser = normalizeAnswer(userAnswer);
+            const correctAnswers = correctAnswer.split('|').map(ans => normalizeAnswer(ans));
+            return correctAnswers.includes(normalizedUser);
+        }
+
+        function checkTest() {
+            const questions = document.querySelectorAll('#test .question');
+            let score = 0;
+            let resultHTML = '';
+            questions.forEach((question, index) => {
+                const qNum = index + 1;
+                const correctAnswer = question.dataset.answer;
+                const explanation = question.dataset.explanation;
+                const selected = document.querySelector(`input[name="q${qNum}"]:checked`);
+
+                if (selected && selected.value === correctAnswer) {
+                    score++;
+                    resultHTML += `<div class="correct-answer">✓ ${qNum}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    resultHTML += `<div class="wrong-answer">✗ ${qNum}-savol: Noto'g'ri. <div class="explanation">${explanation}</div></div>`;
+                }
+            });
+            resultHTML += `<div class="final-score"><strong>Natija: ${score}/${questions.length} (${Math.round((score/questions.length)*100)}%)</strong></div>`;
+            document.getElementById('testResult').innerHTML = resultHTML;
+        }
+
+        function checkFill() {
+            const inputs = document.querySelectorAll('#fill .fill-input');
+            let correct = 0;
+            let resultHTML = '';
+            inputs.forEach((input, index) => {
+                const answer = input.dataset.answer;
+                const explanation = input.dataset.explanation;
+                if (checkAnswerMatch(input.value, answer)) {
+                    input.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                    resultHTML += `<div class="correct-answer">✓ ${index + 1}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    input.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savol: Noto'g'ri. To'g'ri javob: <strong>${answer.split('|')[0]}</strong> <div class="explanation">${explanation}</div></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${inputs.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('fillResult').innerHTML = resultHTML;
+        }
+
+        function checkCorrection() {
+            const inputs = document.querySelectorAll('#correction .correct-input');
+            let correct = 0;
+            let resultHTML = '';
+            inputs.forEach((input, index) => {
+                const answer = input.dataset.answer;
+                 const explanation = input.dataset.explanation;
+                if (checkAnswerMatch(input.value, answer)) {
+                    input.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                     resultHTML += `<div class="correct-answer">✓ ${index + 1}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    input.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savol: Noto'g'ri. To'g'ri javob: <strong>${answer.split('|')[0]}</strong> <div class="explanation">${explanation}</div></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${inputs.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('correctionResult').innerHTML = resultHTML;
+        }
+
+        function checkOrder() {
+            const dropZones = document.querySelectorAll('#order .drop-zone');
+            let correct = 0;
+            let resultHTML = '';
+            dropZones.forEach((zone, index) => {
+                const answer = zone.dataset.answer;
+                const userAnswer = Array.from(zone.children).map(child => child.textContent).join(' ');
+                if (checkAnswerMatch(userAnswer, answer)) {
+                    zone.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                } else {
+                    zone.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savolning to'g'ri javobi: <strong>${answer.split('|')[0]}</strong></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${dropZones.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('orderResult').innerHTML = resultHTML;
+        }
+
+        function checkTransform() {
+            const inputs = document.querySelectorAll('#transform .transform-input');
+            let correct = 0;
+            let resultHTML = '';
+            inputs.forEach((input, index) => {
+                const answer = input.dataset.answer;
+                const explanation = input.dataset.explanation;
+                if (checkAnswerMatch(input.value, answer)) {
+                    input.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                     resultHTML += `<div class="correct-answer">✓ ${index + 1}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    input.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savol: Noto'g'ri. To'g'ri javob: <strong>${answer.split('|')[0]}</strong> <div class="explanation">${explanation}</div></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${inputs.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('transformResult').innerHTML = resultHTML;
+        }
+
+        // Click-based word order functionality
+        function handleWordClick(event) {
+            const word = event.target;
+            if (word.classList.contains('word')) {
+                const currentContainer = word.parentElement;
+                let targetContainer;
+
+                if (currentContainer.classList.contains('word-container')) {
+                    targetContainer = currentContainer.nextElementSibling;
+                } else if (currentContainer.classList.contains('drop-zone')) {
+                    targetContainer = currentContainer.previousElementSibling;
+                }
+
+                if (targetContainer) {
+                    targetContainer.appendChild(word);
+                }
+            }
+        }
+        document.getElementById('order').addEventListener('click', handleWordClick);
+
+        // So'zlarni aralashtirish funksiyasi
+        function shuffleChildren(parent) {
+            let children = Array.from(parent.children);
+            for (let i = children.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [children[i], children[j]] = [children[j], children[i]];
+            }
+            children.forEach(child => parent.appendChild(child));
+        }
+
+        // So'zlarni tartiblash mashqini qayta tiklash
+        function resetOrder() {
+            document.querySelectorAll('#order .order-question').forEach(question => {
+                const wordContainer = question.querySelector('.word-container');
+                const dropZone = question.querySelector('.drop-zone');
+                
+                // Barcha so'zlarni wordContainer ga qaytarish
+                Array.from(dropZone.children).forEach(child => wordContainer.appendChild(child));
+                
+                // So'zlarni aralashtirish
+                shuffleChildren(wordContainer);
+
+                dropZone.style.border = '2px dashed var(--drop-zone-border)';
+            });
+            document.getElementById('orderResult').innerHTML = '';
+        }
+
+        // Progressni yangilash
+        function updateProgress() {
+            const tabStates = { 'rules': 1, 'diffs': 2, 'structure': 3, 'examples': 4, 'exercises': 5, 'errors': 6 };
+            const activeTab = document.querySelector('.tab-btn.active').dataset.tab;
+            completedSections = tabStates[activeTab] || 0;
+            const percentage = (completedSections / totalSections) * 100;
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = percentage + '%';
+            progressBar.querySelector('.progress-text').textContent = Math.round(percentage) + '%';
+        }
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            themeToggle.checked = true;
+        }
+        themeToggle.addEventListener('change', () => {
+            if (themeToggle.checked) {
+                body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Sahifa yuklanganda
+        document.addEventListener('DOMContentLoaded', () => {
+            updateProgress();
+            resetOrder(); // So'zlarni birinchi yuklashda aralashtirish
+        });
+    </script>
+</body>
+</html>
