@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Used To, Be Used To & Get Used To - Mukammal Qo'llanma</title>
+    <style>
+        /* Umumiy stilizatsiya */
+        :root {
+            --bg-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --text-primary: #333;
+            --header-bg: rgba(255, 255, 255, 0.1);
+            --header-text: white;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --card-border: rgba(255, 255, 255, 0.2);
+            --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            --h2-text-gradient: linear-gradient(135deg, #667eea, #764ba2);
+            --rule-section-bg: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            --rule-section-border-left: #667eea;
+            --code-bg: #e2e8f0;
+            --code-color: #c53030;
+            --table-th-bg: #e9ecef;
+            --table-th-color: #495057;
+            --table-td-bg: #fff;
+            --structure-card-bg: linear-gradient(135deg, #e0eafc, #cfdef3);
+            --structure-card-border: #667eea;
+            --formula-bg: white;
+            --example-category-bg: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            --example-item-bg: white;
+            --english-text: #2d3436;
+            --uzbek-text: #636e72;
+            --input-bg: #f8f9fa;
+            --input-border: #dee2e6;
+            --input-focus-shadow: rgba(102, 126, 234, 0.1);
+            --result-bg: linear-gradient(135deg, #ddd6fe, #c4b5fd);
+            --result-color: #5b21b6;
+            --correct-color: #28a745;
+            --wrong-color: #dc3545;
+            --progress-bg: rgba(255, 255, 255, 0.2);
+            --progress-bar-gradient: linear-gradient(90deg, #4CAF50, #45a049);
+            --tab-btn-bg: rgba(255, 255, 255, 0.2);
+            --tab-btn-hover-bg: rgba(255, 255, 255, 0.3);
+            --tab-btn-active-bg: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            --exercise-btn-bg: linear-gradient(135deg, #74b9ff, #0984e3);
+            --exercise-btn-active-bg: linear-gradient(135deg, #00b894, #00a085);
+            --word-bg: linear-gradient(135deg, #667eea, #764ba2);
+            --drop-zone-border: #dee2e6;
+            --drop-zone-bg: #f8f9fa;
+            --drop-zone-hover-bg: rgba(102, 126, 234, 0.1);
+        }
+
+        .dark-mode {
+            --bg-primary: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            --text-primary: #ecf0f1;
+            --header-bg: rgba(0, 0, 0, 0.2);
+            --header-text: #ecf0f1;
+            --card-bg: #3b506b;
+            --card-border: rgba(255, 255, 255, 0.1);
+            --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            --h2-text-gradient: linear-gradient(135deg, #a2ccff, #82b1ff);
+            --rule-section-bg: #4a6280;
+            --rule-section-border-left: #82b1ff;
+            --code-bg: #2f4358;
+            --code-color: #ff8c8c;
+            --table-th-bg: #4a6280;
+            --table-th-color: #ecf0f1;
+            --table-td-bg: #3b506b;
+            --structure-card-bg: linear-gradient(135deg, #4a6280, #5a7490);
+            --structure-card-border: #82b1ff;
+            --formula-bg: #2f4358;
+            --example-category-bg: #4a6280;
+            --example-item-bg: #3b506b;
+            --english-text: #ecf0f1;
+            --uzbek-text: #bdc3c7;
+            --input-bg: #2f4358;
+            --input-border: #5a7490;
+            --input-focus-shadow: rgba(130, 177, 255, 0.2);
+            --result-bg: linear-gradient(135deg, #4a2c7a, #6a3a9a);
+            --result-color: #e0e0e0;
+            --correct-color: #5cb85c;
+            --wrong-color: #d9534f;
+            --progress-bg: rgba(0, 0, 0, 0.3);
+            --progress-bar-gradient: linear-gradient(90deg, #5cb85c, #4cae4c);
+            --tab-btn-bg: rgba(0, 0, 0, 0.3);
+            --tab-btn-hover-bg: rgba(0, 0, 0, 0.4);
+            --tab-btn-active-bg: linear-gradient(135deg, #e74c3c, #c0392b);
+            --exercise-btn-bg: linear-gradient(135deg, #3498db, #2980b9);
+            --exercise-btn-active-bg: linear-gradient(135deg, #2ecc71, #27ae60);
+            --word-bg: linear-gradient(135deg, #3498db, #2980b9);
+            --drop-zone-border: #5a7490;
+            --drop-zone-bg: #2f4358;
+            --drop-zone-hover-bg: rgba(52, 152, 219, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            min-height: 100vh;
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Sarlavha qismi */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--card-border);
+            position: relative; /* For theme toggle positioning */
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            color: var(--header-text);
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: bold;
+        }
+
+        .header p {
+            color: var(--header-text);
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Progress Bar */
+        .progress-container {
+            background: var(--progress-bg);
+            border-radius: 25px;
+            padding: 5px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(5px);
+        }
+
+        .progress-bar {
+            background: var(--progress-bar-gradient);
+            height: 30px;
+            border-radius: 20px;
+            transition: width 0.8s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 0%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-text {
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Theme Toggle Switch */
+        .theme-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .theme-switch input[type="checkbox"] {
+            height: 0;
+            width: 0;
+            visibility: hidden;
+        }
+
+        .theme-switch label {
+            cursor: pointer;
+            text-indent: -9999px;
+            width: 60px;
+            height: 30px;
+            background: #ccc;
+            display: block;
+            border-radius: 100px;
+            position: relative;
+            transition: background-color 0.3s ease;
+        }
+
+        .theme-switch label:after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background: #fff;
+            border-radius: 90px;
+            transition: 0.3s;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+
+        .theme-switch input:checked + label {
+            background: #82b1ff; /* Dark mode toggle background */
+        }
+
+        .theme-switch input:checked + label:after {
+            left: calc(100% - 3px);
+            transform: translateX(-100%);
+            background: #f1c40f; /* Sun color */
+        }
+
+        .theme-switch .icon {
+            font-size: 1.5rem;
+            color: var(--header-text);
+            transition: color 0.3s ease;
+        }
+        .theme-switch input:checked ~ .icon.moon { display: block; }
+        .theme-switch input:not(:checked) ~ .icon.moon { display: none; }
+        .theme-switch input:checked ~ .icon.sun { display: none; }
+        .theme-switch input:not(:checked) ~ .icon.sun { display: block; }
+        .theme-switch .icon.sun { color: #f39c12; }
+        .theme-switch .icon.moon { color: #a2ccff; }
+
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 10px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: var(--tab-btn-bg);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            color: var(--header-text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            font-weight: 500;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .tab-btn:hover {
+            background: var(--tab-btn-hover-bg);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .tab-btn.active {
+            background: var(--tab-btn-active-bg);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Card Styles */
+        .card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+        }
+
+        .card h2 {
+            color: var(--text-primary);
+            margin-bottom: 25px;
+            font-size: 2.2rem;
+            text-align: center;
+            background: var(--h2-text-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Rules Section */
+        .rule-section, .diff-section {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: var(--rule-section-bg);
+            border-radius: 15px;
+            border-left: 5px solid var(--rule-section-border-left);
+        }
+
+        .rule-section h3, .diff-section h3 {
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .rule-section p, .rule-section li, .diff-section p, .diff-section li {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        
+        .rule-section code, .diff-section code {
+            background-color: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--code-color);
+        }
+
+        .diff-table-container { /* Added for responsive table */
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
+        }
+
+        .diff-table {
+            width: 100%; /* Ensure table takes full width of its container */
+            min-width: 600px; /* Minimum width to prevent excessive squishing on small screens */
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        .diff-table th, .diff-table td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            text-align: left;
+            color: var(--text-primary); /* Ensure text color changes with theme */
+        }
+        .diff-table th {
+            background-color: var(--table-th-bg);
+            color: var(--table-th-color);
+        }
+        .diff-table td { background-color: var(--table-td-bg); }
+        .ok { color: var(--correct-color); font-weight: bold; }
+        .not-ok { color: var(--wrong-color); font-weight: bold; }
+
+
+        .structure-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .structure-card {
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            background: var(--structure-card-bg);
+            border: 2px solid var(--structure-card-border);
+        }
+        .structure-card:hover { transform: translateY(-5px); }
+
+        .structure-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            text-align: center;
+            color: var(--text-primary);
+        }
+
+        .formula {
+            background: var(--formula-bg); padding: 15px; border-radius: 10px;
+            margin-bottom: 15px; text-align: center; font-size: 1.1rem;
+            font-weight: 500; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            color: var(--text-primary);
+        }
+
+        .noun, .pronoun, .verb, .subject, .object, .adjective, .adverb, .clause, .infinitive, .gerund {
+            padding: 5px 10px; border-radius: 5px; margin: 0 5px; color: white;
+        }
+        .noun { background: #fd79a8; }
+        .pronoun { background: #0984e3; }
+        .verb { background: #00b894; }
+        .subject { background: #ffeaa7; color: #333;}
+        .object { background: #6c5ce7; }
+        .adjective { background: #f39c12; }
+        .adverb { background: #e74c3c; }
+        .clause { background: linear-gradient(135deg, #a29bfe, #6c5ce7); border: 1px solid white;}
+        .infinitive { background: #81ecec; color: #333; }
+        .gerund { background: #fab1a0; color: #333; }
+        
+
+        .examples { background: rgba(255, 255, 255, 0.7); padding: 15px; border-radius: 10px; }
+        .examples p { margin-bottom: 8px; font-size: 1rem; color: var(--text-primary); }
+        /* Added for Uzbek translations in Structure section */
+        .structure-card .examples .uzbek {
+            color: var(--uzbek-text);
+            font-style: italic;
+            padding-left: 10px; /* Adjusted for smaller indentation */
+            border-left: 3px solid #764ba2; /* Slightly different border color */
+            margin-top: 5px; /* Small margin between English and Uzbek */
+        }
+
+
+        .examples-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px; margin-top: 25px;
+        }
+
+        .example-category {
+            background: var(--example-category-bg); padding: 25px;
+            border-radius: 15px; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        .example-category h3 {
+            color: var(--text-primary); margin-bottom: 20px; font-size: 1.4rem; text-align: center;
+            padding-bottom: 10px; border-bottom: 2px solid var(--rule-section-border-left);
+        }
+
+        .example-item {
+            background: var(--example-item-bg); padding: 15px; border-radius: 10px; margin-bottom: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease;
+        }
+        .example-item:hover { transform: translateX(5px); }
+        .english { color: var(--english-text); font-weight: 500; margin-bottom: 8px; font-size: 1.05rem; }
+        .uzbek { color: var(--uzbek-text); font-style: italic; padding-left: 20px; border-left: 3px solid var(--rule-section-border-left); }
+
+        .exercise-nav {
+            display: flex; justify-content: center; margin-bottom: 30px;
+            gap: 10px; flex-wrap: wrap;
+        }
+        .exercise-btn {
+            background: var(--exercise-btn-bg); color: white; border: none;
+            padding: 12px 20px; border-radius: 10px; cursor: pointer; transition: all 0.3s ease;
+            font-size: 14px; font-weight: 500; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .exercise-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); }
+        .exercise-btn.active {
+            background: var(--exercise-btn-active-bg);
+            box-shadow: 0 6px 20px rgba(0, 184, 148, 0.3);
+        }
+
+        .exercise-content { display: none; }
+        .exercise-content.active { display: block; animation: fadeIn 0.5s ease-in-out; }
+        .exercise-content h3 { color: var(--text-primary); margin-bottom: 25px; font-size: 1.6rem; text-align: center; }
+
+        .quiz-container, .fill-exercise, .combine-exercise, .correct-exercise, .omission-exercise, .order-exercise { margin-bottom: 25px; }
+        .question, .fill-question, .combine-question, .correct-question, .omission-question, .order-question {
+            background: var(--example-item-bg); padding: 20px; border-radius: 15px; margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); border-left: 5px solid var(--rule-section-border-left);
+        }
+        .question p, .fill-question p, .combine-question p, .correct-question p, .omission-question p, .order-question p {
+            font-size: 1.2rem; margin-bottom: 15px; color: var(--english-text); font-weight: 500;
+        }
+        .correct-question p.incorrect { text-decoration: line-through; color: var(--wrong-color);}
+
+        .options { display: flex; flex-direction: column; gap: 10px; }
+        .options label {
+            display: flex; align-items: center; padding: 10px; border-radius: 8px;
+            background: var(--input-bg); cursor: pointer; transition: background 0.3s ease; font-size: 1rem;
+            color: var(--text-primary);
+        }
+        .options label:hover { background: var(--rule-section-bg); }
+        .options input[type="radio"] { margin-right: 10px; transform: scale(1.2); }
+
+        .fill-input, .combine-input, .correct-input, .transform-input {
+            width: 100%; background: var(--input-bg); border: 2px solid var(--input-border);
+            border-radius: 8px; padding: 12px; font-size: 1rem; transition: all 0.3s ease;
+            color: var(--text-primary);
+        }
+        .fill-input:focus, .combine-input:focus, .correct-input:focus, .transform-input:focus {
+            outline: none; border-color: var(--rule-section-border-left); box-shadow: 0 0 0 3px var(--input-focus-shadow);
+        }
+
+        .check-btn {
+            background: var(--exercise-btn-active-bg); color: white; border: none;
+            padding: 15px 30px; border-radius: 10px; cursor: pointer; font-size: 1.1rem;
+            font-weight: 500; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: block; margin: 10px auto;
+        }
+        .check-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 184, 148, 0.3); }
+
+        .check-btn:active { transform: translateY(0); }
+
+        .result {
+            margin-top: 20px; padding: 15px; border-radius: 10px; text-align: center;
+            font-size: 1.2rem; font-weight: 500; background: var(--result-bg);
+            color: var(--result-color); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .correct-answer { color: var(--correct-color); margin: 5px 0; }
+        .wrong-answer { color: var(--wrong-color); margin: 5px 0; }
+        .final-score { margin-top: 10px; padding: 10px; background: var(--input-bg); border-radius: 5px; color: var(--text-primary); }
+
+        /* Yangi stil: Izohlar uchun */
+        .explanation {
+            background: var(--input-bg);
+            border-left: 4px solid var(--rule-section-border-left);
+            padding: 10px;
+            margin: 10px 0 0 0;
+            border-radius: 0 8px 8px 0;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            text-align: left;
+        }
+
+        /* Word Order Exercise Specifics */
+        .word-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: var(--input-bg);
+            border-radius: 10px;
+            min-height: 60px; /* Ensure visibility even if empty */
+        }
+
+        .word {
+            background: var(--word-bg);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: inline-block; /* Ensure display is correct */
+        }
+
+        .word:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .drop-zone {
+            min-height: 60px;
+            border: 2px dashed var(--drop-zone-border);
+            border-radius: 10px;
+            padding: 15px;
+            background: var(--drop-zone-bg);
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            gap: 10px;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+        }
+
+        .drop-zone:hover, .word-container:hover {
+            border-color: var(--rule-section-border-left);
+            background: var(--drop-zone-hover-bg);
+        }
+
+        .drop-zone .word {
+             background: var(--exercise-btn-active-bg);
+        }
+
+        /* --- Styles for Sentence Transformation Exercise (START) --- */
+        .transform-question {
+            background: var(--example-item-bg);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--structure-card-border);
+            transition: all 0.3s ease;
+        }
+
+        .transform-question:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        }
+
+        .transform-question p {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .transform-question p b {
+            color: var(--header-text);
+            background: var(--word-bg);
+            padding: 3px 9px;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .transform-input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .transform-input-wrapper .fa-pen-to-square {
+            position: absolute;
+            left: 15px;
+            color: var(--uzbek-text);
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .transform-input {
+            padding-left: 45px; /* Make space for the icon */
+            background-image: linear-gradient(to right, var(--input-bg), var(--card-bg));
+            font-weight: 500;
+        }
+
+        .transform-input:focus {
+            background-image: none;
+        }
+
+        .transform-input-wrapper:hover .fa-pen-to-square {
+            color: var(--rule-section-border-left);
+        }
+        /* --- Styles for Sentence Transformation Exercise (END) --- */
+        
+        /* --- Styles for Muhim Qoidalar Section (START) --- */
+        .error-section {
+            background: var(--rule-section-bg);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-left: 5px solid var(--wrong-color);
+        }
+
+        .error-title {
+            color: var(--wrong-color);
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .wrong-example {
+            background: rgba(220, 53, 69, 0.1);
+            border: 2px solid var(--wrong-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0 10px 0;
+            position: relative;
+            color: var(--text-primary);
+        }
+
+        .wrong-example::before {
+            content: "❌ NOTO'G'RI";
+            position: absolute;
+            top: -12px;
+            left: 15px;
+            background: var(--wrong-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .correct-example {
+            background: rgba(40, 167, 69, 0.1);
+            border: 2px solid var(--correct-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0 10px 0;
+            position: relative;
+            color: var(--text-primary);
+        }
+
+        .correct-example::before {
+            content: "✅ TO'G'RI";
+            position: absolute;
+            top: -12px;
+            left: 15px;
+            background: var(--correct-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .explanation .explanation-title {
+            color: var(--rule-section-border-left);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .rule-box {
+            background: var(--exercise-btn-bg);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-weight: 500;
+        }
+
+        .situation-example {
+            background: var(--example-item-bg);
+            border: 1px solid var(--input-border);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            color: var(--text-primary);
+        }
+
+        .context {
+            color: var(--correct-color);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .error-section.general-tips {
+             border-left-color: var(--correct-color);
+        }
+        .error-section.general-tips .error-title {
+             color: var(--correct-color);
+        }
+        .error-section.general-tips .rule-box {
+            background: var(--exercise-btn-active-bg);
+        }
+        /* --- Styles for Muhim Qoidalar Section (END) --- */
+
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header h1 { font-size: 2rem; }
+            .card h2 { font-size: 1.8rem; }
+            .structure-grid, .examples-grid { grid-template-columns: 1fr; }
+            .nav-tabs, .exercise-nav { flex-direction: column; gap: 5px; }
+            .tab-btn, .exercise-btn { width: 100%; text-align: center; }
+            .theme-switch { top: 10px; right: 10px; }
+        }
+
+        @media (max-width: 480px) {
+            .header { padding: 20px; }
+            .header h1 { font-size: 1.5rem; }
+            .card { padding: 15px; }
+            .structure-card { padding: 20px; }
+            .example-category { padding: 20px; }
+            .question { padding: 15px; }
+            .word { padding: 6px 12px; font-size: 14px; }
+            .diff-table { min-width: 400px; } /* Adjust for very small screens */
+        }
+
+        /* Animation Effects */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .check-btn:hover { animation: bounce 0.6s ease; }
+
+        /* Scroll Animations */
+        .card {
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideUp 0.6s ease forwards;
+        }
+
+        @keyframes slideUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(135deg, #764ba2, #667eea); }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Used To, Be Used To & Get Used To - Mukammal Qo'llanma</h1>
+            <p>O'tgan va hozirgi zamondagi odatlar va ko'nikmalarni ifodalash</p>
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar">
+                    <span class="progress-text">0%</span>
+                </div>
+            </div>
+
+            <div class="theme-switch">
+                <i class="fas fa-sun icon sun"></i>
+                <input type="checkbox" id="themeToggle">
+                <label for="themeToggle"></label>
+                <i class="fas fa-moon icon moon"></i>
+            </div>
+        </div>
+
+        <nav class="nav-tabs">
+            <button class="tab-btn active" data-tab="rules">Qoidalar</button>
+            <button class="tab-btn" data-tab="diffs">Farqlar</button>
+            <button class="tab-btn" data-tab="structure">Strukturalar</button>
+            <button class="tab-btn" data-tab="examples">Misollar</button>
+            <button class="tab-btn" data-tab="exercises">Mashqlar</button>
+            <button class="tab-btn" data-tab="errors">Muhim Qoidalar va Xatolar</button>
+        </nav>
+
+        <div id="rules" class="tab-content active">
+             <div class="card">
+                <h2>Asosiy Qoidalar</h2>
+                <div class="rule-section">
+                    <h3>1. <code>used to + fe'l</code> (O'tgan zamondagi odatlar)</h3>
+                    <p>Bu struktura o'tmishda muntazam bajarilgan, ammo hozirda bajarilmaydigan ish-harakatlar yoki holatlar uchun ishlatiladi. Undan keyin har doim fe'lning <strong>infinitive shakli (V1)</strong> keladi.</p>
+                    <ul>
+                        <li><strong>Ma'nosi:</strong> "-ar edi", "-ganman", "-ardi".</li>
+                        <li><strong>Faqat o'tgan zamon uchun:</strong> Hozirgi zamonda ishlatilmaydi.</li>
+                    </ul>
+                     <div class="example">
+                        <p>I <strong>used to play</strong> rugby at school. (Men maktabda regbi o'ynardim.) - Hozir o'ynamayman.</p>
+                        <p>He <strong>did not use to</strong> read a newspaper. (U gazeta o'qimas edi.) - Hozir o'qishi mumkin.</p>
+                    </div>
+                </div>
+                <div class="rule-section">
+                    <h3>2. <code>be used to + V-ing</code> (Ko'nikkanlik holati)</h3>
+                    <p>Bu struktura biror narsaga yoki harakatga <strong>ko'nikkanlik, moslashganlik</strong> holatini bildiradi. Undan keyin fe'lning <strong>-ing (gerund) shakli</strong> yoki <strong>ot (noun)</strong> keladi.</p>
+                     <ul>
+                        <li><strong>Ma'nosi:</strong> "-ga o'rganganman", "-ga ko'nikkanman".</li>
+                        <li><strong>Hamma zamonlarda:</strong> 'be' fe'lini o'zgartirish orqali (am/is/are, was/were, will be) ishlatilishi mumkin.</li>
+                    </ul>
+                    <div class="example">
+                        <p>My friend <strong>is used to waking</strong> up early. (Mening do'stim erta uyg'onishga o'rgangan.)</p>
+                        <p>She <strong>is used to</strong> the noisy environment. (U shovqinli muhitga o'rgangan.)</p>
+                    </div>
+                </div>
+                 <div class="rule-section">
+                    <h3>3. <code>get used to + V-ing</code> (Ko'nikish jarayoni)</h3>
+                    <p>Bu struktura biror narsaga yoki harakatga <strong>ko'nikish, moslashish jarayonini</strong> bildiradi. Undan keyin ham <strong>-ing (gerund) shakli</strong> yoki <strong>ot (noun)</strong> keladi.</p>
+                      <ul>
+                        <li><strong>Ma'nosi:</strong> "-ga o'rganyapman", "-ga ko'nikyapman".</li>
+                        <li><strong>Hamma zamonlarda:</strong> 'get' fe'lini o'zgartirish orqali (get/gets, got, am getting, will get) ishlatilishi mumkin.</li>
+                    </ul>
+                    <div class="example">
+                        <p>The baby <strong>is getting used to sleeping</strong> through the night. (Chaqaloq tun bo'yi uxlashga o'rganyapti.)</p>
+                        <p>I can't <strong>get used to</strong> this cold weather. (Men bu sovuq havoga ko'nika olmayapman.)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="diffs" class="tab-content">
+            <div class="card">
+                <h2>Asosiy Farqlar Jadvali</h2>
+                <div class="diff-section">
+                    <h3><code>used to</code> vs <code>be used to</code> vs <code>get used to</code></h3>
+                    <p>Bu uchta struktura o'xshash eshitilsa-da, ularning ma'nolari va ishlatilishi mutlaqo farq qiladi.</p>
+                    <div class="diff-table-container">
+                        <table class="diff-table">
+                            <tr><th>Struktura</th><th>Ma'nosi</th><th>Undan keyin keladi</th><th>Misol</th></tr>
+                            <tr>
+                                <td><code>used to + V1</code></td>
+                                <td><strong>O'tgan zamondagi odat</strong> (endi mavjud emas)</td>
+                                <td>Fe'l (infinitive)</td>
+                                <td>He <strong>used to smoke</strong>. (U chekardi.)</td>
+                            </tr>
+                            <tr>
+                                <td><code>be used to + V-ing</code></td>
+                                <td><strong>Ko'nikkanlik holati</strong> (normal holat)</td>
+                                <td>Fe'l+ing (gerund) yoki Ot (noun)</td>
+                                <td>He <strong>is used to working</strong> hard. (U qattiq ishlashga o'rgangan.)</td>
+                            </tr>
+                             <tr>
+                                <td><code>get used to + V-ing</code></td>
+                                <td><strong>Ko'nikish jarayoni</strong> (normal holatga kelish)</td>
+                                <td>Fe'l+ing (gerund) yoki Ot (noun)</td>
+                                <td>He is <strong>getting used to working</strong> hard. (U qattiq ishlashga o'rganyapti.)</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="structure" class="tab-content">
+            <div class="card">
+                <h2>Gap tuzilmalari</h2>
+                <div class="structure-grid">
+                    <div class="structure-card">
+                        <h3><code>used to</code> - O'tgan zamon odati</h3>
+                        <div class="formula"><span class="subject">S</span> + <strong>used to</strong> + <span class="infinitive">V1</span></div>
+                        <div class="formula"><span class="subject">S</span> + <strong>didn't use to</strong> + <span class="infinitive">V1</span></div>
+                        <div class="formula"><strong>Did</strong> + <span class="subject">S</span> + <strong>use to</strong> + <span class="infinitive">V1</span>?</div>
+                        <div class="examples">
+                            <p>I <b>used to leave</b> my bicycle in the rain.</p>
+                            <p class="uzbek">Velosipedimni yomg'ir ostida qoldirardim.</p>
+                        </div>
+                    </div>
+                    <div class="structure-card">
+                        <h3><code>be used to</code> - Hozirgi ko'nikma</h3>
+                        <div class="formula"><span class="subject">S</span> + <strong>am/is/are</strong> + <strong>used to</strong> + <span class="gerund">V-ing/Noun</span></div>
+                        <div class="examples">
+                            <p>My friend <b>is used to waking</b> up early.</p>
+                            <p class="uzbek">Do'stim erta uyg'onishga o'rgangan.</p>
+                        </div>
+                    </div>
+                    <div class="structure-card">
+                        <h3><code>be used to</code> - O'tgan zamon ko'nikmasi</h3>
+                        <div class="formula"><span class="subject">S</span> + <strong>was/were</strong> + <strong>used to</strong> + <span class="gerund">V-ing/Noun</span></div>
+                        <div class="examples">
+                            <p>Jessica <b>was used to performing</b> traditional Spanish dances.</p>
+                            <p class="uzbek">Jessika an'anaviy ispan raqslarini ijro etishga o'rgangan edi.</p>
+                        </div>
+                    </div>
+                    <div class="structure-card">
+                        <h3><code>get used to</code> - Ko'nikish jarayoni</h3>
+                        <div class="formula"><span class="subject">S</span> + <strong>is/are getting</strong> + <strong>used to</strong> + <span class="gerund">V-ing/Noun</span></div>
+                        <div class="examples">
+                            <p>The baby <b>is getting used to sleeping</b> through the night.</p>
+                            <p class="uzbek">Chaqaloq tun bo'yi uxlashga odatlanyapti.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="examples" class="tab-content">
+            <div class="card">
+                <h2>Misollar bilan tanishing</h2>
+                <div class="examples-grid">
+                    <div class="example-category">
+                        <h3><code>used to</code> (O'tgan zamon odatlari)</h3>
+                        <div class="example-item">
+                            <p class="english">Many people <strong>used to</strong> use a car to travel.</p>
+                            <p class="uzbek">Ko'p odamlar sayohat qilish uchun mashinadan foydalanishardi.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">The whole family <strong>used to</strong> watch the sunset.</p>
+                            <p class="uzbek">Butun oila quyosh botishini tomosha qilar edi.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">Did your mother <strong>use to</strong> sing to you when you were young?</p>
+                            <p class="uzbek">Yoshligingizda onangiz sizga qo'shiq aytarmidi?</p>
+                        </div>
+                         <div class="example-item">
+                            <p class="english">His sister <strong>did not use to</strong> water the houseplants.</p>
+                            <p class="uzbek">Opasi xona o'simliklarini sug'ormasdi.</p>
+                        </div>
+                    </div>
+                    <div class="example-category">
+                        <h3><code>be used to</code> (Ko'nikkanlik holati)</h3>
+                        <div class="example-item">
+                            <p class="english">The people in big cities <strong>are used to</strong> heavy traffic.</p>
+                            <p class="uzbek">Katta shaharlardagi odamlar og'ir tirbandlikka o'rganib qolgan.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">She <strong>is not used to</strong> a noisy environment.</p>
+                            <p class="uzbek">U shovqinli muhitga o'rganmagan.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">I <strong>was not used to</strong> managing my time efficiently.</p>
+                            <p class="uzbek">Men vaqtimni samarali boshqarishga o'rganmagan edim.</p>
+                        </div>
+                         <div class="example-item">
+                            <p class="english"><strong>Are they used to</strong> drinking lots of water in hot weather?</p>
+                            <p class="uzbek">Ular issiq havoda ko'p suv ichishga o'rganganmi?</p>
+                        </div>
+                    </div>
+                    <div class="example-category">
+                        <h3><code>get used to</code> (Ko'nikish jarayoni)</h3>
+                        <div class="example-item">
+                            <p class="english">The drivers <strong>are getting used to</strong> communicating through emails.</p>
+                            <p class="uzbek">Haydovchilar elektron pochta orqali muloqot qilishga o'rganishmoqda.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">The girl <strong>is getting used to</strong> adapting to change.</p>
+                            <p class="uzbek">Bu qiz o'zgarishlarga moslashishga ko'nikmoqda.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">You <strong>are getting used to</strong> participating in team sports.</p>
+                            <p class="uzbek">Siz jamoaviy sport turlarida ishtirok etishga ko'nikyapsiz.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">She <strong>was not getting used to</strong> running a successful business.</p>
+                            <p class="uzbek">U muvaffaqiyatli biznes yuritishga odatlanmayotgan edi.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<div id="exercises" class="tab-content">
+    <div class="card">
+      <h2>Mashqlar</h2>
+                <nav class="exercise-nav">
+                    <button class="exercise-btn active" data-exercise="test">Test</button>
+                    <button class="exercise-btn" data-exercise="fill">Bo'sh joyni to'ldirish</button>
+                    <button class="exercise-btn" data-exercise="correction">Xatolarni Tuzatish</button>
+                    <button class="exercise-btn" data-exercise="order">So'zlarni Tartiblash</button>
+                    <button class="exercise-btn" data-exercise="transform">Gaplarni O'zgartirish</button>
+                </nav>
+
+                <div id="test" class="exercise-content active">
+                    <h3>To'g'ri variantni tanlang</h3>
+                    <div class="quiz-container">
+                        <div class="question" data-answer="a" data-explanation="'used to' dan keyin fe'lning V1 shakli (infinitive) keladi."><p>1. When I was young, I used to ___ football every day.</p><div class="options"><label><input type="radio" name="q1" value="a">a) play</label><label><input type="radio" name="q1" value="b">b) playing</label><label><input type="radio" name="q1" value="c">c) played</label></div></div>
+                        <div class="question" data-answer="b" data-explanation="'am used to' dan keyin fe'lning -ing shakli (gerund) keladi."><p>2. I'm from a hot country, so I'm not used to ___ in cold weather.</p><div class="options"><label><input type="radio" name="q2" value="a">a) live</label><label><input type="radio" name="q2" value="b">b) living</label><label><input type="radio" name="q2" value="c">c) lived</label></div></div>
+                        <div class="question" data-answer="c" data-explanation="Ko'nikish jarayonini 'getting used to' bildiradi."><p>3. It was difficult at first, but now I'm ___ to the new job.</p><div class="options"><label><input type="radio" name="q3" value="a">a) used</label><label><input type="radio" name="q3" value="b">b) get used</label><label><input type="radio" name="q3" value="c">c) getting used</label></div></div>
+                        <div class="question" data-answer="a" data-explanation="O'tgan zamon inkor shaklida 'did not' bilan 'use to' (d harfisiz) ishlatiladi."><p>4. He ___ to like vegetables, but now he loves them.</p><div class="options"><label><input type="radio" name="q4" value="a">a) didn't use to</label><label><input type="radio" name="q4" value="b">b) didn't used to</label><label><input type="radio" name="q4" value="c">c) wasn't used to</label></div></div>
+                        <div class="question" data-answer="b" data-explanation="O'tgan zamon so'roq shaklida 'Did' bilan 'use to' (d harfisiz) ishlatiladi."><p>5. ___ you use to have long hair?</p><div class="options"><label><input type="radio" name="q5" value="a">a) Were</label><label><input type="radio" name="q5" value="b">b) Did</label><label><input type="radio" name="q5" value="c">c) Have</label></div></div>
+                        <div class="question" data-answer="c" data-explanation="Bu yerda hozirgi ko'nikma haqida gap ketyapti va undan keyin V-ing shakli keladi."><p>6. It's strange, I'm not used to ___ so much attention.</p><div class="options"><label><input type="radio" name="q6" value="a">a) get</label><label><input type="radio" name="q6" value="b">b) to get</label><label><input type="radio" name="q6" value="c">c) getting</label></div></div>
+                        <div class="question" data-answer="a" data-explanation="O'tmishdagi odat haqida gap ketyapti, shuning uchun 'used to + V1'."><p>7. My grandfather ___ us stories every night.</p><div class="options"><label><input type="radio" name="q7" value="a">a) used to tell</label><label><input type="radio" name="q7" value="b">b) was used to telling</label><label><input type="radio" name="q7" value="c">c) got used to tell</label></div></div>
+                        <div class="question" data-answer="b" data-explanation="Hozirgi paytdagi ko'nikish jarayoni ('is getting used to') va undan keyin ot ('the noise') kelmoqda."><p>8. At first the noise bothered him, but now he ___ to it.</p><div class="options"><label><input type="radio" name="q8" value="a">a) used</label><label><input type="radio" name="q8" value="b">b) is getting used</label><label><input type="radio" name="q8" value="c">c) is used</label></div></div>
+                        <div class="question" data-answer="a" data-explanation="O'tgan zamondagi odat haqida so'roq."><p>9. ___ people use to travel by horse and carriage?</p><div class="options"><label><input type="radio" name="q9" value="a">a) Did</label><label><input type="radio" name="q9" value="b">b) Were</label><label><input type="radio" name="q9" value="c">c) Had</label></div></div>
+                        <div class="question" data-answer="c" data-explanation="'be used to'dan keyin V-ing yoki ot kelishi kerak. Bu yerda 'hard work' ot."><p>10. Don't worry, professional athletes are used to ___.</p><div class="options"><label><input type="radio" name="q10" value="a">a) work hard</label><label><input type="radio" name="q10" value="b">b) working hard</label><label><input type="radio" name="q10" value="c">c) hard work</label></div></div>
+                    </div>
+                    <button class="check-btn" onclick="checkTest()">Tekshirish</button>
+                    <div id="testResult" class="result"></div>
+                </div>
+
+                <div id="fill" class="exercise-content">
+                    <h3>Bo'sh joyni to'g'ri shakl bilan to'ldiring.</h3>
+                    <div class="fill-exercise">
+                        <div class="fill-question"><p>1. He doesn't live here now, but he ___ here. (live)</p><input type="text" class="fill-input" data-answer="used to live" data-explanation="O'tgan zamondagi holat."></div>
+                        <div class="fill-question"><p>2. I'm finding this new job difficult, but I'm sure I'll ___ to it soon. (get used)</p><input type="text" class="fill-input" data-answer="get used" data-explanation="Kelajakdagi ko'nikish jarayoni."></div>
+                        <div class="fill-question"><p>3. It took me a while, but I finally ___ up early. (get used to waking)</p><input type="text" class="fill-input" data-answer="got used to waking" data-explanation="O'tgan zamondagi tugallangan ko'nikish jarayoni."></div>
+                        <div class="fill-question"><p>4. She ___ coffee, but now she drinks it every day. (not / drink)</p><input type="text" class="fill-input" data-answer="didn't use to drink" data-explanation="O'tgan zamondagi odatning inkori."></div>
+                        <div class="fill-question"><p>5. He has lived in London for years. He ___ on the left. (is used to driving)</p><input type="text" class="fill-input" data-answer="is used to driving" data-explanation="Hozirgi kundagi ko'nikkanlik holati."></div>
+                        <div class="fill-question"><p>6. ___ you ___ to school by bus? (go)</p><input type="text" class="fill-input" data-answer="Did you use to go" data-explanation="O'tgan zamondagi odat haqida so'roq."></div>
+                        <div class="fill-question"><p>7. I don't like spicy food. I ___ it. (not / be used to)</p><input type="text" class="fill-input" data-answer="am not used to" data-explanation="Hozirgi ko'nikmaning inkori."></div>
+                        <div class="fill-question"><p>8. My children ___ computer games, but they don't have time now. (play)</p><input type="text" class="fill-input" data-answer="used to play" data-explanation="O'tgan zamondagi odat."></div>
+                        <div class="fill-question"><p>9. The new manager ___ team projects. (is getting used to leading)</p><input type="text" class="fill-input" data-answer="is getting used to leading" data-explanation="Hozir davom etayotgan ko'nikish jarayoni."></div>
+                        <div class="fill-question"><p>10. Before he moved here, he ___ in a big city. (was used to living)</p><input type="text" class="fill-input" data-answer="was used to living" data-explanation="O'tgan zamondagi ko'nikkanlik holati."></div>
+                    </div>
+                    <button class="check-btn" onclick="checkFill()">Tekshirish</button>
+                    <div id="fillResult" class="result"></div>
+                </div>
+
+                <div id="correction" class="exercise-content">
+                    <h3>Xatolarni Tuzatish</h3>
+                    <div class="correct-exercise">
+                        <div class="correct-question"><p class="incorrect">1. I am used to get up early.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I am used to getting up early." data-explanation="'be used to' dan keyin har doim fe'lning -ing shakli keladi."></div>
+                        <div class="correct-question"><p class="incorrect">2. He didn't used to smoke.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="He didn't use to smoke." data-explanation="'did' yordamchi fe'li o'tgan zamonni bildirgani uchun, 'used' dagi '-d' qo'shimchasi tushib qoladi."></div>
+                        <div class="correct-question"><p class="incorrect">3. She used to living in a small village.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="She used to live in a small village." data-explanation="'used to' dan keyin har doim fe'lning oddiy shakli (infinitive) keladi."></div>
+                        <div class="correct-question"><p class="incorrect">4. Are you used to live in this noisy city?</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="Are you used to living in this noisy city?" data-explanation="'be used to' dan keyin V-ing shakli kelishi kerak."></div>
+                        <div class="correct-question"><p class="incorrect">5. I can't get use to the food here.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I can't get used to the food here." data-explanation="'get used to' barqaror birikma, 'used' so'zi '-d' bilan yozilishi kerak."></div>
+                        <div class="correct-question"><p class="incorrect">6. They weren't used to work so hard.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="They weren't used to working so hard." data-explanation="'be used to' dan keyin V-ing shakli keladi."></div>
+                        <div class="correct-question"><p class="incorrect">7. Did he used to have a beard?</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="Did he use to have a beard?" data-explanation="So'roq shaklida 'Did' ishlatilgani uchun 'use to' '-d' siz yoziladi."></div>
+                        <div class="correct-question"><p class="incorrect">8. Now I am getting used to speak English every day.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="Now I am getting used to speaking English every day." data-explanation="'get used to' dan keyin V-ing shakli keladi."></div>
+                        <div class="correct-question"><p class="incorrect">9. I used to be afraid of dogs, but now I used to them.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I used to be afraid of dogs, but now I am used to them." data-explanation="Hozirgi ko'nikma uchun 'am used to' ishlatiladi."></div>
+                        <div class="correct-question"><p class="incorrect">10. He will never get used to wake up at 5 am.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="He will never get used to waking up at 5 am." data-explanation="'get used to' dan keyin V-ing shakli keladi."></div>
+                    </div>
+                    <button class="check-btn" onclick="checkCorrection()">Tekshirish</button>
+                    <div id="correctionResult" class="result"></div>
+                </div>
+                
+                <div id="order" class="exercise-content">
+                    <h3>So'zlarni to'g'ri tartibda joylashtiring</h3>
+                    <div class="order-exercise">
+                        <div class="order-question"><p>1. (I / live / to / used / in the countryside)</p><div class="word-container"><div class="word">to</div><div class="word">used</div><div class="word">I</div><div class="word">live</div><div class="word">in the countryside</div></div><div class="drop-zone" data-answer="I used to live in the countryside"></div></div>
+                        <div class="order-question"><p>2. (getting / to / I / used / am / the weather)</p><div class="word-container"><div class="word">I</div><div class="word">am</div><div class="word">the weather</div><div class="word">used</div><div class="word">getting</div><div class="word">to</div></div><div class="drop-zone" data-answer="I am getting used to the weather"></div></div>
+                        <div class="order-question"><p>3. (she / to / isn't / used / spicy food / eating)</p><div class="word-container"><div class="word">eating</div><div class="word">used</div><div class="word">she</div><div class="word">isn't</div><div class="word">spicy food</div><div class="word">to</div></div><div class="drop-zone" data-answer="she isn't used to eating spicy food"></div></div>
+                        <div class="order-question"><p>4. (you / to / work / here / did / use)</p><div class="word-container"><div class="word">here</div><div class="word">did</div><div class="word">use</div><div class="word">you</div><div class="word">work</div><div class="word">to</div></div><div class="drop-zone" data-answer="did you use to work here"></div></div>
+                        <div class="order-question"><p>5. (didn't / to / have / we / use / a car)</p><div class="word-container"><div class="word">a car</div><div class="word">didn't</div><div class="word">have</div><div class="word">use</div><div class="word">to</div><div class="word">we</div></div><div class="drop-zone" data-answer="we didn't use to have a car"></div></div>
+                        <div class="order-question"><p>6. (used / my grandparents / to / visit / us / often)</p><div class="word-container"><div class="word">us</div><div class="word">my grandparents</div><div class="word">to</div><div class="word">visit</div><div class="word">often</div><div class="word">used</div></div><div class="drop-zone" data-answer="my grandparents used to visit us often"></div></div>
+                        <div class="order-question"><p>7. (used / are / to / long hours / they / working)</p><div class="word-container"><div class="word">are</div><div class="word">they</div><div class="word">long hours</div><div class="word">to</div><div class="word">working</div><div class="word">used</div></div><div class="drop-zone" data-answer="they are used to working long hours"></div></div>
+                        <div class="order-question"><p>8. (get / to / you / used / will / the noise)</p><div class="word-container"><div class="word">the noise</div><div class="word">you</div><div class="word">will</div><div class="word">to</div><div class="word">get</div><div class="word">used</div></div><div class="drop-zone" data-answer="you will get used to the noise"></div></div>
+                        <div class="order-question"><p>9. (not / was / to / used / he / driving / in the city)</p><div class="word-container"><div class="word">was</div><div class="word">not</div><div class="word">in the city</div><div class="word">used</div><div class="word">he</div><div class="word">to</div><div class="word">driving</div></div><div class="drop-zone" data-answer="he was not used to driving in the city"></div></div>
+                        <div class="order-question"><p>10. (to / my brother / use / did / wear / glasses)</p><div class="word-container"><div class="word">did</div><div class="word">my brother</div><div class="word">glasses</div><div class="word">wear</div><div class="word">use</div><div class="word">to</div></div><div class="drop-zone" data-answer="did my brother use to wear glasses"></div></div>
+                    </div>
+                    <button class="check-btn" onclick="checkOrder()">Tekshirish</button>
+                    <button class="check-btn" onclick="resetOrder()">Qayta tiklash</button>
+                    <div id="orderResult" class="result"></div>
+                </div>
+
+                <div id="transform" class="exercise-content">
+                    <h3>Gaplarni qayta yozing</h3>
+                    <div class="transform-exercise">
+                        <div class="transform-question"><p>1. In the past, I played tennis. Now I don't. &rarr; (Use: <b>used to</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="I used to play tennis." data-explanation="O'tmishda qolib ketgan odat uchun 'used to' ishlatiladi."></div></div>
+                        <div class="transform-question"><p>2. Waking up early is normal for me now. &rarr; (Use: <b>be used to</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="I am used to waking up early." data-explanation="Normal holatga kelgan odat (ko'nikma) 'be used to' bilan ifodalanadi."></div></div>
+                        <div class="transform-question"><p>3. Living in a big city is a new experience for her. She is adapting. &rarr; (Use: <b>get used to</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="She is getting used to living in a big city." data-explanation="Moslashish jarayoni 'get used to' bilan beriladi."></div></div>
+                        <div class="transform-question"><p>4. He didn't have a beard in the past, but he does now. &rarr; (Use: <b>didn't use to</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="He didn't use to have a beard." data-explanation="O'tmishda bo'lmagan odatning inkori."></div></div>
+                        <div class="transform-question"><p>5. Was it your habit to read comics as a child? &rarr; (Use: <b>Did... use to</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="Did you use to read comics as a child?" data-explanation="O'tmishdagi odat haqida so'roq."></div></div>
+                        <div class="transform-question"><p>6. It's not a problem for them to work at night. &rarr; (Use: <b>be used to</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="They are used to working at night." data-explanation="Ular uchun bu normal holat, ya'ni ko'nikishgan."></div></div>
+                        <div class="transform-question"><p>7. I am slowly adapting to my new glasses. &rarr; (Use: <b>get used to</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="I am getting used to my new glasses." data-explanation="Moslashish jarayoni 'get used to' bilan beriladi."></div></div>
+                        <div class="transform-question"><p>8. In the past, there was a cinema here. &rarr; (Use: <b>used to</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="There used to be a cinema here." data-explanation="O'tmishdagi holat uchun 'There used to be...' ishlatiladi."></div></div>
+                        <div class="transform-question"><p>9. For him, driving a big car was normal. &rarr; (Use: <b>was used to</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="He was used to driving a big car." data-explanation="O'tgan zamondagi ko'nikkanlik holati."></div></div>
+                        <div class="transform-question"><p>10. Eventually, you will find it normal to live alone. &rarr; (Use: <b>get used to</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="You will get used to living alone." data-explanation="Kelajakdagi ko'nikish jarayoni."></div></div>
+                    </div>
+                    <button class="check-btn" onclick="checkTransform()">Tekshirish</button>
+                    <div id="transformResult" class="result"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="errors" class="tab-content">
+             <div class="card">
+                <h2>Muhim Qoidalar va Xatolar</h2>
+                
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 1: `be used to` dan keyin V1 ishlatish</div>
+                    <div class="wrong-example">I am used to <strong>get up</strong> early.</div>
+                    <div class="correct-example">I am used to <strong>getting up</strong> early.</div>
+                    <div class="explanation"><p><strong>Qoida:</strong> `be used to` dan keyin har doim fe'lning `-ing` shakli (gerund) yoki ot keladi.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 2: `used to` dan keyin V-ing ishlatish</div>
+                    <div class="wrong-example">He used to <strong>working</strong> in a factory.</div>
+                    <div class="correct-example">He used to <strong>work</strong> in a factory.</div>
+                    <div class="explanation"><p><strong>Qoida:</strong> O'tgan zamon odatlarini bildiruvchi `used to` dan keyin har doim fe'lning oddiy shakli (infinitive) keladi.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 3: Inkor shakldagi xato</div>
+                    <div class="wrong-example">She <strong>didn't used to</strong> like coffee.</div>
+                    <div class="correct-example">She <strong>didn't use to</strong> like coffee.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> Inkor shaklda `did` yordamchi fe'li o'tgan zamonni ko'rsatgani uchun `use` fe'li hozirgi zamon shaklida, ya'ni `-d` qo'shimchasisiz yoziladi.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 4: So'roq shakldagi xato</div>
+                    <div class="wrong-example"><strong>Used you to</strong> play the piano?</div>
+                    <div class="correct-example"><strong>Did you use to</strong> play the piano?</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> So'roq shaklda ham `Did` yordamchi fe'li ishlatiladi va `use` fe'li `-d` qo'shimchasisiz yoziladi.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 5: Hozirgi zamon uchun `use to` ishlatish</div>
+                    <div class="wrong-example">I <strong>use to</strong> wake up at 7 AM every day.</div>
+                    <div class="correct-example">I wake up at 7 AM every day.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> `used to` faqat o'tgan zamondagi odatlar uchun ishlatiladi. Hozirgi odatlar uchun `Simple Present` (oddiy hozirgi zamon) ishlatiladi.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 6: `be` fe'lini unutish</div>
+                    <div class="wrong-example">I <strong>used to waking</strong> up early, so it's not a problem.</div>
+                    <div class="correct-example">I <strong>am used to waking</strong> up early, so it's not a problem.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> Ko'nikkanlikni bildirish uchun `used to` dan oldin `be` fe'lining kerakli shakli (am/is/are/was/were) bo'lishi shart.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 7: Bir martalik harakat uchun `used to`</div>
+                    <div class="wrong-example">Yesterday, I <strong>used to watch</strong> a movie.</div>
+                    <div class="correct-example">Yesterday, I <strong>watched</strong> a movie.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> `used to` faqat odat tusiga kirgan, takrorlanib turgan harakatlar uchun ishlatiladi. Bir marta sodir bo'lgan harakat uchun `Simple Past` ishlatiladi.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 8: Bo'lishli gapda `use to` (d harfisiz)</div>
+                    <div class="wrong-example">I <strong>use to</strong> live in London.</div>
+                    <div class="correct-example">I <strong>used to</strong> live in London.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> Bo'lishli (daraka) gaplarda har doim `used to` shakli ishlatiladi. `use to` faqat `did` bilan inkor va so'roq gaplarda keladi.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 9: `be used to` vs. `get used to`</div>
+                    <div class="wrong-example">I am still <strong>used to</strong> the new system. (jarayon)</div>
+                    <div class="correct-example">I am still <strong>getting used to</strong> the new system.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> Agar ko'nikish holati hali tugamagan, jarayonda bo'lsa, `get used to` ishlatiladi. `be used to` esa allaqachon ko'nikib bo'lingan holatni bildiradi.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 10: `to` predlogini unutish</div>
+                    <div class="wrong-example">I am used <strong>living</strong> here.</div>
+                    <div class="correct-example">I am used <strong>to living</strong> here.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> `be used to` va `get used to` bir butun ibora hisoblanadi. `to` predlogini tushirib qoldirib bo'lmaydi.</p></div>
+                </div>
+                
+             </div>
+        </div>
+        
+    </div>
+
+    <script>
+        // Progress tracking
+        let completedSections = 0;
+        const totalSections = 6; // Qoidalar, Farqlar, Strukturalar, Misollar, Mashqlar, Xatolar
+
+        // Tab functionality
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetTab = btn.dataset.tab;
+                
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                btn.classList.add('active');
+                document.getElementById(targetTab).classList.add('active');
+                
+                updateProgress();
+            });
+        });
+
+        // Exercise navigation
+        document.querySelectorAll('.exercise-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetExercise = btn.dataset.exercise;
+                
+                document.querySelectorAll('.exercise-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.exercise-content').forEach(c => c.classList.remove('active'));
+                
+                btn.classList.add('active');
+                document.getElementById(targetExercise).classList.add('active');
+
+                if (targetExercise === 'order') {
+                    resetOrder();
+                }
+            });
+        });
+
+        function normalizeAnswer(answer) {
+            if (typeof answer !== 'string') return '';
+            return answer.toLowerCase().trim()
+                .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")
+                .replace(/\s+/g, ' ');
+        }
+
+        function checkAnswerMatch(userAnswer, correctAnswer) {
+            const normalizedUser = normalizeAnswer(userAnswer);
+            const correctAnswers = correctAnswer.split('|').map(ans => normalizeAnswer(ans));
+            return correctAnswers.includes(normalizedUser);
+        }
+
+        function checkTest() {
+            const questions = document.querySelectorAll('#test .question');
+            let score = 0;
+            let resultHTML = '';
+            questions.forEach((question, index) => {
+                const qNum = index + 1;
+                const correctAnswer = question.dataset.answer;
+                const explanation = question.dataset.explanation;
+                const selected = document.querySelector(`input[name="q${qNum}"]:checked`);
+
+                if (selected && selected.value === correctAnswer) {
+                    score++;
+                    resultHTML += `<div class="correct-answer">✓ ${qNum}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    resultHTML += `<div class="wrong-answer">✗ ${qNum}-savol: Noto'g'ri. <div class="explanation">${explanation}</div></div>`;
+                }
+            });
+            resultHTML += `<div class="final-score"><strong>Natija: ${score}/${questions.length} (${Math.round((score/questions.length)*100)}%)</strong></div>`;
+            document.getElementById('testResult').innerHTML = resultHTML;
+        }
+
+        function checkFill() {
+            const inputs = document.querySelectorAll('#fill .fill-input');
+            let correct = 0;
+            let resultHTML = '';
+            inputs.forEach((input, index) => {
+                const answer = input.dataset.answer;
+                const explanation = input.dataset.explanation;
+                if (checkAnswerMatch(input.value, answer)) {
+                    input.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                    resultHTML += `<div class="correct-answer">✓ ${index + 1}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    input.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savol: Noto'g'ri. To'g'ri javob: <strong>${answer.split('|')[0]}</strong> <div class="explanation">${explanation}</div></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${inputs.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('fillResult').innerHTML = resultHTML;
+        }
+
+        function checkCorrection() {
+            const inputs = document.querySelectorAll('#correction .correct-input');
+            let correct = 0;
+            let resultHTML = '';
+            inputs.forEach((input, index) => {
+                const answer = input.dataset.answer;
+                 const explanation = input.dataset.explanation;
+                if (checkAnswerMatch(input.value, answer)) {
+                    input.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                     resultHTML += `<div class="correct-answer">✓ ${index + 1}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    input.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savol: Noto'g'ri. To'g'ri javob: <strong>${answer.split('|')[0]}</strong> <div class="explanation">${explanation}</div></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${inputs.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('correctionResult').innerHTML = resultHTML;
+        }
+
+        function checkOrder() {
+            const dropZones = document.querySelectorAll('#order .drop-zone');
+            let correct = 0;
+            let resultHTML = '';
+            dropZones.forEach((zone, index) => {
+                const answer = zone.dataset.answer;
+                const userAnswer = Array.from(zone.children).map(child => child.textContent).join(' ');
+                if (checkAnswerMatch(userAnswer, answer)) {
+                    zone.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                } else {
+                    zone.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savolning to'g'ri javobi: <strong>${answer.split('|')[0]}</strong></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${dropZones.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('orderResult').innerHTML = resultHTML;
+        }
+
+        function checkTransform() {
+            const inputs = document.querySelectorAll('#transform .transform-input');
+            let correct = 0;
+            let resultHTML = '';
+            inputs.forEach((input, index) => {
+                const answer = input.dataset.answer;
+                const explanation = input.dataset.explanation;
+                if (checkAnswerMatch(input.value, answer)) {
+                    input.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                     resultHTML += `<div class="correct-answer">✓ ${index + 1}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    input.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savol: Noto'g'ri. To'g'ri javob: <strong>${answer.split('|')[0]}</strong> <div class="explanation">${explanation}</div></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${inputs.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('transformResult').innerHTML = resultHTML;
+        }
+
+        // Click-based word order functionality
+        function handleWordClick(event) {
+            const word = event.target;
+            if (word.classList.contains('word')) {
+                const currentContainer = word.parentElement;
+                let targetContainer;
+
+                if (currentContainer.classList.contains('word-container')) {
+                    targetContainer = currentContainer.nextElementSibling;
+                } else if (currentContainer.classList.contains('drop-zone')) {
+                    targetContainer = currentContainer.previousElementSibling;
+                }
+
+                if (targetContainer) {
+                    targetContainer.appendChild(word);
+                }
+            }
+        }
+        document.getElementById('order').addEventListener('click', handleWordClick);
+
+        // So'zlarni aralashtirish funksiyasi
+        function shuffleChildren(parent) {
+            let children = Array.from(parent.children);
+            for (let i = children.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [children[i], children[j]] = [children[j], children[i]];
+            }
+            children.forEach(child => parent.appendChild(child));
+        }
+
+        // So'zlarni tartiblash mashqini qayta tiklash
+        function resetOrder() {
+            document.querySelectorAll('#order .order-question').forEach(question => {
+                const wordContainer = question.querySelector('.word-container');
+                const dropZone = question.querySelector('.drop-zone');
+                
+                // Barcha so'zlarni wordContainer ga qaytarish
+                Array.from(dropZone.children).forEach(child => wordContainer.appendChild(child));
+                
+                // So'zlarni aralashtirish
+                shuffleChildren(wordContainer);
+
+                dropZone.style.border = '2px dashed var(--drop-zone-border)';
+            });
+            document.getElementById('orderResult').innerHTML = '';
+        }
+
+        // Progressni yangilash
+        function updateProgress() {
+            const tabStates = { 'rules': 1, 'diffs': 2, 'structure': 3, 'examples': 4, 'exercises': 5, 'errors': 6 };
+            const activeTab = document.querySelector('.tab-btn.active').dataset.tab;
+            completedSections = tabStates[activeTab] || 0;
+            const percentage = (completedSections / totalSections) * 100;
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = percentage + '%';
+            progressBar.querySelector('.progress-text').textContent = Math.round(percentage) + '%';
+        }
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            themeToggle.checked = true;
+        }
+        themeToggle.addEventListener('change', () => {
+            if (themeToggle.checked) {
+                body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Sahifa yuklanganda
+        document.addEventListener('DOMContentLoaded', () => {
+            updateProgress();
+            resetOrder(); // So'zlarni birinchi yuklashda aralashtirish
+        });
+    </script>
+</body>
+</html>
