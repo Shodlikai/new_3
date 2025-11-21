@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passive Voice 2 (Perfect & Modal) - Mukammal Qo'llanma</title>
+    <style>
+        /* Umumiy stilizatsiya */
+        :root {
+            --bg-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --text-primary: #333;
+            --header-bg: rgba(255, 255, 255, 0.1);
+            --header-text: white;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --card-border: rgba(255, 255, 255, 0.2);
+            --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            --h2-text-gradient: linear-gradient(135deg, #667eea, #764ba2);
+            --rule-section-bg: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            --rule-section-border-left: #667eea;
+            --code-bg: #e2e8f0;
+            --code-color: #c53030;
+            --table-th-bg: #e9ecef;
+            --table-th-color: #495057;
+            --table-td-bg: #fff;
+            --structure-card-bg: linear-gradient(135deg, #e0eafc, #cfdef3);
+            --structure-card-border: #667eea;
+            --formula-bg: white;
+            --example-category-bg: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            --example-item-bg: white;
+            --english-text: #2d3436;
+            --uzbek-text: #636e72;
+            --input-bg: #f8f9fa;
+            --input-border: #dee2e6;
+            --input-focus-shadow: rgba(102, 126, 234, 0.1);
+            --result-bg: linear-gradient(135deg, #ddd6fe, #c4b5fd);
+            --result-color: #5b21b6;
+            --correct-color: #28a745;
+            --wrong-color: #dc3545;
+            --progress-bg: rgba(255, 255, 255, 0.2);
+            --progress-bar-gradient: linear-gradient(90deg, #4CAF50, #45a049);
+            --tab-btn-bg: rgba(255, 255, 255, 0.2);
+            --tab-btn-hover-bg: rgba(255, 255, 255, 0.3);
+            --tab-btn-active-bg: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            --exercise-btn-bg: linear-gradient(135deg, #74b9ff, #0984e3);
+            --exercise-btn-active-bg: linear-gradient(135deg, #00b894, #00a085);
+            --word-bg: linear-gradient(135deg, #667eea, #764ba2);
+            --drop-zone-border: #dee2e6;
+            --drop-zone-bg: #f8f9fa;
+            --drop-zone-hover-bg: rgba(102, 126, 234, 0.1);
+        }
+
+        .dark-mode {
+            --bg-primary: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            --text-primary: #ecf0f1;
+            --header-bg: rgba(0, 0, 0, 0.2);
+            --header-text: #ecf0f1;
+            --card-bg: #3b506b;
+            --card-border: rgba(255, 255, 255, 0.1);
+            --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            --h2-text-gradient: linear-gradient(135deg, #a2ccff, #82b1ff);
+            --rule-section-bg: #4a6280;
+            --rule-section-border-left: #82b1ff;
+            --code-bg: #2f4358;
+            --code-color: #ff8c8c;
+            --table-th-bg: #4a6280;
+            --table-th-color: #ecf0f1;
+            --table-td-bg: #3b506b;
+            --structure-card-bg: linear-gradient(135deg, #4a6280, #5a7490);
+            --structure-card-border: #82b1ff;
+            --formula-bg: #2f4358;
+            --example-category-bg: #4a6280;
+            --example-item-bg: #3b506b;
+            --english-text: #ecf0f1;
+            --uzbek-text: #bdc3c7;
+            --input-bg: #2f4358;
+            --input-border: #5a7490;
+            --input-focus-shadow: rgba(130, 177, 255, 0.2);
+            --result-bg: linear-gradient(135deg, #4a2c7a, #6a3a9a);
+            --result-color: #e0e0e0;
+            --correct-color: #5cb85c;
+            --wrong-color: #d9534f;
+            --progress-bg: rgba(0, 0, 0, 0.3);
+            --progress-bar-gradient: linear-gradient(90deg, #5cb85c, #4cae4c);
+            --tab-btn-bg: rgba(0, 0, 0, 0.3);
+            --tab-btn-hover-bg: rgba(0, 0, 0, 0.4);
+            --tab-btn-active-bg: linear-gradient(135deg, #e74c3c, #c0392b);
+            --exercise-btn-bg: linear-gradient(135deg, #3498db, #2980b9);
+            --exercise-btn-active-bg: linear-gradient(135deg, #2ecc71, #27ae60);
+            --word-bg: linear-gradient(135deg, #3498db, #2980b9);
+            --drop-zone-border: #5a7490;
+            --drop-zone-bg: #2f4358;
+            --drop-zone-hover-bg: rgba(52, 152, 219, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            min-height: 100vh;
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Sarlavha qismi */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--card-border);
+            position: relative; /* For theme toggle positioning */
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            color: var(--header-text);
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: bold;
+        }
+
+        .header p {
+            color: var(--header-text);
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Progress Bar */
+        .progress-container {
+            background: var(--progress-bg);
+            border-radius: 25px;
+            padding: 5px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(5px);
+        }
+
+        .progress-bar {
+            background: var(--progress-bar-gradient);
+            height: 30px;
+            border-radius: 20px;
+            transition: width 0.8s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 0%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-text {
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Theme Toggle Switch */
+        .theme-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .theme-switch input[type="checkbox"] {
+            height: 0;
+            width: 0;
+            visibility: hidden;
+        }
+
+        .theme-switch label {
+            cursor: pointer;
+            text-indent: -9999px;
+            width: 60px;
+            height: 30px;
+            background: #ccc;
+            display: block;
+            border-radius: 100px;
+            position: relative;
+            transition: background-color 0.3s ease;
+        }
+
+        .theme-switch label:after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background: #fff;
+            border-radius: 90px;
+            transition: 0.3s;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+
+        .theme-switch input:checked + label {
+            background: #82b1ff; /* Dark mode toggle background */
+        }
+
+        .theme-switch input:checked + label:after {
+            left: calc(100% - 3px);
+            transform: translateX(-100%);
+            background: #f1c40f; /* Sun color */
+        }
+
+        .theme-switch .icon {
+            font-size: 1.5rem;
+            color: var(--header-text);
+            transition: color 0.3s ease;
+        }
+        .theme-switch input:checked ~ .icon.moon { display: block; }
+        .theme-switch input:not(:checked) ~ .icon.moon { display: none; }
+        .theme-switch input:checked ~ .icon.sun { display: none; }
+        .theme-switch input:not(:checked) ~ .icon.sun { display: block; }
+        .theme-switch .icon.sun { color: #f39c12; }
+        .theme-switch .icon.moon { color: #a2ccff; }
+
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 10px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: var(--tab-btn-bg);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            color: var(--header-text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            font-weight: 500;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .tab-btn:hover {
+            background: var(--tab-btn-hover-bg);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .tab-btn.active {
+            background: var(--tab-btn-active-bg);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Card Styles */
+        .card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+        }
+
+        .card h2 {
+            color: var(--text-primary);
+            margin-bottom: 25px;
+            font-size: 2.2rem;
+            text-align: center;
+            background: var(--h2-text-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Rules Section */
+        .rule-section, .diff-section {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: var(--rule-section-bg);
+            border-radius: 15px;
+            border-left: 5px solid var(--rule-section-border-left);
+        }
+
+        .rule-section h3, .diff-section h3 {
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .rule-section h4, .diff-section h4 {
+             color: var(--text-primary);
+             font-size: 1.2rem;
+             margin-top: 20px;
+             padding-bottom: 5px;
+             border-bottom: 2px solid var(--rule-section-border-left);
+        }
+
+        .rule-section p, .rule-section li, .diff-section p, .diff-section li {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        
+        .rule-section code, .diff-section code {
+            background-color: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--code-color);
+        }
+
+        .diff-table-container { /* Added for responsive table */
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
+        }
+
+        .diff-table {
+            width: 100%; /* Ensure table takes full width of its container */
+            min-width: 600px; /* Minimum width to prevent excessive squishing on small screens */
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        .diff-table th, .diff-table td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            text-align: left;
+            color: var(--text-primary); /* Ensure text color changes with theme */
+        }
+        .diff-table th {
+            background-color: var(--table-th-bg);
+            color: var(--table-th-color);
+        }
+        .diff-table td { background-color: var(--table-td-bg); }
+        .ok { color: var(--correct-color); font-weight: bold; }
+        .not-ok { color: var(--wrong-color); font-weight: bold; }
+
+
+        .structure-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .structure-card {
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            background: var(--structure-card-bg);
+            border: 2px solid var(--structure-card-border);
+        }
+        .structure-card:hover { transform: translateY(-5px); }
+
+        .structure-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            text-align: center;
+            color: var(--text-primary);
+        }
+
+        .formula {
+            background: var(--formula-bg); padding: 10px; border-radius: 8px;
+            margin-bottom: 10px; text-align: left; font-size: 1rem;
+            font-weight: 500; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            color: var(--text-primary);
+        }
+
+        .noun, .pronoun, .verb, .subject, .object, .adjective, .adverb, .clause, .infinitive, .gerund, .v3 {
+            padding: 5px 10px; border-radius: 5px; margin: 0 5px; color: white;
+        }
+        .noun { background: #fd79a8; }
+        .pronoun { background: #0984e3; }
+        .verb { background: #00b894; }
+        .subject { background: #ffeaa7; color: #333;}
+        .object { background: #6c5ce7; }
+        .adjective { background: #f39c12; }
+        .adverb { background: #e74c3c; }
+        .clause { background: linear-gradient(135deg, #a29bfe, #6c5ce7); border: 1px solid white;}
+        .infinitive { background: #81ecec; color: #333; }
+        .gerund { background: #fab1a0; color: #333; }
+        .v3 { background: #d63031; }
+        
+
+        .examples { background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 10px; margin-top: 15px; }
+        .examples p { margin-bottom: 8px; font-size: 1rem; color: var(--text-primary); }
+        .examples p.english { font-weight: bold; }
+        /* Added for Uzbek translations in Structure section */
+        .structure-card .examples .uzbek {
+            color: var(--uzbek-text);
+            font-style: italic;
+            padding-left: 10px; /* Adjusted for smaller indentation */
+            border-left: 3px solid #764ba2; /* Slightly different border color */
+            margin-top: 5px; /* Small margin between English and Uzbek */
+        }
+
+
+        .examples-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px; margin-top: 25px;
+        }
+
+        .example-category {
+            background: var(--example-category-bg); padding: 25px;
+            border-radius: 15px; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        .example-category h3 {
+            color: var(--text-primary); margin-bottom: 20px; font-size: 1.4rem; text-align: center;
+            padding-bottom: 10px; border-bottom: 2px solid var(--rule-section-border-left);
+        }
+
+        .example-item {
+            background: var(--example-item-bg); padding: 15px; border-radius: 10px; margin-bottom: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease;
+        }
+        .example-item:hover { transform: translateX(5px); }
+        .english { color: var(--english-text); font-weight: 500; margin-bottom: 8px; font-size: 1.05rem; }
+        .uzbek { color: var(--uzbek-text); font-style: italic; padding-left: 20px; border-left: 3px solid var(--rule-section-border-left); }
+
+        .exercise-nav {
+            display: flex; justify-content: center; margin-bottom: 30px;
+            gap: 10px; flex-wrap: wrap;
+        }
+        .exercise-btn {
+            background: var(--exercise-btn-bg); color: white; border: none;
+            padding: 12px 20px; border-radius: 10px; cursor: pointer; transition: all 0.3s ease;
+            font-size: 14px; font-weight: 500; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .exercise-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); }
+        .exercise-btn.active {
+            background: var(--exercise-btn-active-bg);
+            box-shadow: 0 6px 20px rgba(0, 184, 148, 0.3);
+        }
+
+        .exercise-content { display: none; }
+        .exercise-content.active { display: block; animation: fadeIn 0.5s ease-in-out; }
+        .exercise-content h3 { color: var(--text-primary); margin-bottom: 25px; font-size: 1.6rem; text-align: center; }
+
+        .quiz-container, .fill-exercise, .combine-exercise, .correct-exercise, .omission-exercise, .order-exercise { margin-bottom: 25px; }
+        .question, .fill-question, .combine-question, .correct-question, .omission-question, .order-question {
+            background: var(--example-item-bg); padding: 20px; border-radius: 15px; margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); border-left: 5px solid var(--rule-section-border-left);
+        }
+        .question p, .fill-question p, .combine-question p, .correct-question p, .omission-question p, .order-question p {
+            font-size: 1.2rem; margin-bottom: 15px; color: var(--english-text); font-weight: 500;
+        }
+        .correct-question p.incorrect { text-decoration: line-through; color: var(--wrong-color);}
+
+        .options { display: flex; flex-direction: column; gap: 10px; }
+        .options label {
+            display: flex; align-items: center; padding: 10px; border-radius: 8px;
+            background: var(--input-bg); cursor: pointer; transition: background 0.3s ease; font-size: 1rem;
+            color: var(--text-primary);
+        }
+        .options label:hover { background: var(--rule-section-bg); }
+        .options input[type="radio"] { margin-right: 10px; transform: scale(1.2); }
+
+        .fill-input, .combine-input, .correct-input, .transform-input {
+            width: 100%; background: var(--input-bg); border: 2px solid var(--input-border);
+            border-radius: 8px; padding: 12px; font-size: 1rem; transition: all 0.3s ease;
+            color: var(--text-primary);
+        }
+        .fill-input:focus, .combine-input:focus, .correct-input:focus, .transform-input:focus {
+            outline: none; border-color: var(--rule-section-border-left); box-shadow: 0 0 0 3px var(--input-focus-shadow);
+        }
+
+        .check-btn {
+            background: var(--exercise-btn-active-bg); color: white; border: none;
+            padding: 15px 30px; border-radius: 10px; cursor: pointer; font-size: 1.1rem;
+            font-weight: 500; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: block; margin: 10px auto;
+        }
+        .check-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); }
+
+        .check-btn:active { transform: translateY(0); }
+
+        .result {
+            margin-top: 20px; padding: 15px; border-radius: 10px; text-align: center;
+            font-size: 1.2rem; font-weight: 500; background: var(--result-bg);
+            color: var(--result-color); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .correct-answer { color: var(--correct-color); margin: 5px 0; }
+        .wrong-answer { color: var(--wrong-color); margin: 5px 0; }
+        .final-score { margin-top: 10px; padding: 10px; background: var(--input-bg); border-radius: 5px; color: var(--text-primary); }
+
+        /* Yangi stil: Izohlar uchun */
+        .explanation {
+            background: var(--input-bg);
+            border-left: 4px solid var(--rule-section-border-left);
+            padding: 10px;
+            margin: 10px 0 0 0;
+            border-radius: 0 8px 8px 0;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            text-align: left;
+        }
+
+        /* Word Order Exercise Specifics */
+        .word-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: var(--input-bg);
+            border-radius: 10px;
+            min-height: 60px; /* Ensure visibility even if empty */
+        }
+
+        .word {
+            background: var(--word-bg);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: inline-block; /* Ensure display is correct */
+        }
+
+        .word:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .drop-zone {
+            min-height: 60px;
+            border: 2px dashed var(--drop-zone-border);
+            border-radius: 10px;
+            padding: 15px;
+            background: var(--drop-zone-bg);
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            gap: 10px;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+        }
+
+        .drop-zone:hover, .word-container:hover {
+            border-color: var(--rule-section-border-left);
+            background: var(--drop-zone-hover-bg);
+        }
+
+        .drop-zone .word {
+             background: var(--exercise-btn-active-bg);
+        }
+
+        /* --- Styles for Sentence Transformation Exercise (START) --- */
+        .transform-question {
+            background: var(--example-item-bg);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--structure-card-border);
+            transition: all 0.3s ease;
+        }
+
+        .transform-question:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        }
+
+        .transform-question p {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .transform-question p b {
+            color: var(--header-text);
+            background: var(--word-bg);
+            padding: 3px 9px;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .transform-input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .transform-input-wrapper .fa-pen-to-square {
+            position: absolute;
+            left: 15px;
+            color: var(--uzbek-text);
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .transform-input {
+            padding-left: 45px; /* Make space for the icon */
+            background-image: linear-gradient(to right, var(--input-bg), var(--card-bg));
+            font-weight: 500;
+        }
+
+        .transform-input:focus {
+            background-image: none;
+        }
+
+        .transform-input-wrapper:hover .fa-pen-to-square {
+            color: var(--rule-section-border-left);
+        }
+        /* --- Styles for Sentence Transformation Exercise (END) --- */
+        
+        /* --- Styles for Muhim Qoidalar Section (START) --- */
+        .error-section {
+            background: var(--rule-section-bg);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-left: 5px solid var(--wrong-color);
+        }
+
+        .error-title {
+            color: var(--wrong-color);
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .wrong-example {
+            background: rgba(220, 53, 69, 0.1);
+            border: 2px solid var(--wrong-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0 10px 0;
+            position: relative;
+            color: var(--text-primary);
+        }
+
+        .wrong-example::before {
+            content: "❌ NOTO'G'RI";
+            position: absolute;
+            top: -12px;
+            left: 15px;
+            background: var(--wrong-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .correct-example {
+            background: rgba(40, 167, 69, 0.1);
+            border: 2px solid var(--correct-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0 10px 0;
+            position: relative;
+            color: var(--text-primary);
+        }
+
+        .correct-example::before {
+            content: "✅ TO'G'RI";
+            position: absolute;
+            top: -12px;
+            left: 15px;
+            background: var(--correct-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .explanation .explanation-title {
+            color: var(--rule-section-border-left);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .rule-box {
+            background: var(--exercise-btn-bg);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-weight: 500;
+        }
+
+        .situation-example {
+            background: var(--example-item-bg);
+            border: 1px solid var(--input-border);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            color: var(--text-primary);
+        }
+
+        .context {
+            color: var(--correct-color);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .error-section.general-tips {
+             border-left-color: var(--correct-color);
+        }
+        .error-section.general-tips .error-title {
+             color: var(--correct-color);
+        }
+        .error-section.general-tips .rule-box {
+            background: var(--exercise-btn-active-bg);
+        }
+        /* --- Styles for Muhim Qoidalar Section (END) --- */
+
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header h1 { font-size: 2rem; }
+            .card h2 { font-size: 1.8rem; }
+            .structure-grid, .examples-grid { grid-template-columns: 1fr; }
+            .nav-tabs, .exercise-nav { flex-direction: column; gap: 5px; }
+            .tab-btn, .exercise-btn { width: 100%; text-align: center; }
+            .theme-switch { top: 10px; right: 10px; }
+        }
+
+        @media (max-width: 480px) {
+            .header { padding: 20px; }
+            .header h1 { font-size: 1.5rem; }
+            .card { padding: 15px; }
+            .structure-card { padding: 20px; }
+            .example-category { padding: 20px; }
+            .question { padding: 15px; }
+            .word { padding: 6px 12px; font-size: 14px; }
+            .diff-table { min-width: 400px; } /* Adjust for very small screens */
+        }
+
+        /* Animation Effects */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .check-btn:hover { animation: bounce 0.6s ease; }
+
+        /* Scroll Animations */
+        .card {
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideUp 0.6s ease forwards;
+        }
+
+        @keyframes slideUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(135deg, #764ba2, #667eea); }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Passive Voice 2 (Perfect & Modal) - Mukammal Qo'llanma</h1>
+            <p>Murakkab zamonlar va modal fe'llar bilan majhul nisbat</p>
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar">
+                    <span class="progress-text">0%</span>
+                </div>
+            </div>
+
+            <div class="theme-switch">
+                <i class="fas fa-sun icon sun"></i>
+                <input type="checkbox" id="themeToggle">
+                <label for="themeToggle"></label>
+                <i class="fas fa-moon icon moon"></i>
+            </div>
+        </div>
+
+        <nav class="nav-tabs">
+            <button class="tab-btn active" data-tab="rules">Qoidalar</button>
+            <button class="tab-btn" data-tab="diffs">Farqlar</button>
+            <button class="tab-btn" data-tab="structure">Strukturalar</button>
+            <button class="tab-btn" data-tab="examples">Misollar</button>
+            <button class="tab-btn" data-tab="exercises">Mashqlar</button>
+            <button class="tab-btn" data-tab="errors">Muhim Qoidalar va Xatolar</button>
+        </nav>
+
+        <div id="rules" class="tab-content active">
+             <div class="card">
+                <h2>Majhul Nisbat Qoidalari (Murakkab Zamonlar)</h2>
+                <div class="rule-section">
+                    <h3>Passive Voice nima va qachon ishlatiladi?</h3>
+                    <p>Passive Voice (Majhul nisbat)da gapning fokusi ish-harakatni bajaruvchiga (agent) emas, balki o'sha harakat qaratilgan obyektga tushadi. Ya'ni, ishni kim qilgani emas, nima ish qilingani muhimroq bo'ladi.</p>
+                </div>
+                <div class="rule-section">
+                    <h3>Passive Voice Zamonlar Bo'yicha Yasalishi va Ishlatilishi</h3>
+                    
+                    <h4>Present Perfect Passive (<code>has/have been + V3</code>)</h4>
+                    <p><strong>Ishlatilishi:</strong> O'tgan zamonda noaniq bir vaqtda sodir bo'lgan, ammo natijasi hozirgi kunga ta'sir qiladigan harakatlar uchun. "qilingan", "qilinib bo'ldi" kabi ma'nolarni beradi.</p>
+                    <p><strong>Misol:</strong> The book <strong>has already been read</strong>. (Kitob allaqachon o'qilgan - natijasi hozir ma'lum).</p>
+                    
+                    <h4>Past Perfect Passive (<code>had been + V3</code>)</h4>
+                    <p><strong>Ishlatilishi:</strong> O'tgan zamondagi boshqa bir harakatdan oldin sodir bo'lib, tugagan harakat uchun. "qilingan edi", "qilinib bo'lingan edi" ma'nolarini beradi.</p>
+                    <p><strong>Misol:</strong> The event <strong>had been organized</strong> by the time you arrived. (Siz yetib kelguningizcha tadbir tashkillashtirib bo'lingan edi).</p>
+                    
+                     <h4>Future Perfect Passive (<code>will have been + V3</code>)</h4>
+                    <p><strong>Ishlatilishi:</strong> Kelajakdagi aniq bir vaqtdan oldin sodir bo'lib, tugallanadigan ish-harakatlar uchun. "qilingan bo'ladi", "qilinib bo'lingan bo'ladi" ma'nolarini beradi.</p>
+                    <p><strong>Misol:</strong> The project <strong>will have been completed</strong> by the end of the week. (Loyiha hafta oxirigacha tugallangan bo'ladi).</p>
+                    
+                    <h4>Modal Fe'llar + Passive (<code>modal + be + V3</code>)</h4>
+                    <p><strong>Ishlatilishi:</strong> Modal fe'llar (can, must, should, may, etc.) bilan birga kelib, majburiyat, imkoniyat, tavsiya kabi ma'nolarni majhul nisbatda ifodalaydi.</p>
+                    <p><strong>Misol:</strong> The report <strong>must be submitted</strong> before the deadline. (Hisobot belgilangan muddatdan oldin topshirilishi kerak).</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="diffs" class="tab-content">
+            <div class="card">
+                <h2>Passive Zamonlar O'rtasidagi Farqlar</h2>
+                <div class="diff-section">
+                    <h3>1. Past Simple vs. Present Perfect Passive</h3>
+                    <p>Asosiy farq harakatning vaqti va hozirgi kunga aloqasidadir.</p>
+                    <ul>
+                        <li><strong>Past Simple Passive (<code>was/were + V3</code>)</strong> harakatning o'tmishda <strong>aniq bir vaqtda</strong> (yesterday, last week) sodir bo'lganini va o'sha yerda qolganini bildiradi.</li>
+                        <li><strong>Present Perfect Passive (<code>has/have been + V3</code>)</strong> harakatning o'tmishda <strong>noaniq bir vaqtda</strong> sodir bo'lganini, lekin uning <strong>natijasi hozir ko'rinib turganini</strong> yoki hozirgi kun uchun ahamiyatli ekanligini bildiradi.</li>
+                    </ul>
+                    <div class="example-item">
+                        <p class="english">The window <strong>was broken</strong> yesterday. (Deraza kecha sindirildi - Fokus kechagi voqeada)</p>
+                        <p class="english">The window <strong>has been broken</strong>. (Deraza sindirilgan - Fokus hozir derazaning singan holatida ekanligida)</p>
+                    </div>
+                </div>
+
+                <div class="diff-section">
+                    <h3>2. Present Perfect vs. Past Perfect Passive</h3>
+                    <p>Bu ikki zamonning farqi "hozirgacha" va "o'sha paytgacha" degan tushunchalarda yotadi.</p>
+                     <ul>
+                        <li><strong>Present Perfect Passive (<code>has/have been + V3</code>)</strong> harakatning <strong>hozirgacha</strong> bo'lgan vaqt oralig'ida sodir bo'lganini bildiradi.</li>
+                        <li><strong>Past Perfect Passive (<code>had been + V3</code>)</strong> harakatning o'tmishdagi boshqa bir harakatdan <strong>oldinroq</strong> bajarilganini bildiradi.</li>
+                    </ul>
+                    <div class="example-item">
+                        <p class="english">The report <strong>has been finished</strong>. (Hisobot tugatilgan - hozir u tayyor)</p>
+                        <p class="english">The report <strong>had been finished</strong> by the time the manager asked for it. (Menejer so'ragan paytgacha hisobot tugatilgan edi)</p>
+                    </div>
+                </div>
+
+                <div class="diff-section">
+                    <h3>3. Future Simple vs. Future Perfect Passive</h3>
+                    <p>Bu ikki kelasi zamon harakatning qachon tugashiga qarab farqlanadi.</p>
+                    <ul>
+                        <li><strong>Future Simple Passive (<code>will be + V3</code>)</strong> harakatning kelajakda biror bir nuqtada bajarilishini aytadi.</li>
+                        <li><strong>Future Perfect Passive (<code>will have been + V3</code>)</strong> harakatning kelajakdagi aniq bir nuqtadan <strong>oldinroq</strong> bajarilib bo'lishini bildiradi.</li>
+                    </ul>
+                    <div class="example-item">
+                        <p class="english">The new bridge <strong>will be built</strong> next year. (Yangi ko'prik kelasi yili quriladi)</p>
+                        <p class="english">The new bridge <strong>will have been built</strong> by the end of next year. (Yangi ko'prik kelasi yil oxirigacha qurib bo'linadi)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="structure" class="tab-content">
+            <div class="card">
+                <h2>Gap tuzilmalari (Darak, Inkor, So'roq)</h2>
+                <div class="structure-grid">
+                    <div class="structure-card">
+                        <h3>Present Perfect Passive</h3>
+                        <div class="formula">(+) S + <strong>has/have been</strong> + <span class="v3">V3</span></div>
+                        <div class="formula">(-) S + <strong>has/have not been</strong> + <span class="v3">V3</span></div>
+                        <div class="formula">(?) <strong>Has/Have</strong> + S + <strong>been</strong> + <span class="v3">V3</span>?</div>
+                        <div class="examples">
+                            <p class="english">(+) The meal has been cooked by the chef.</p>
+                            <p class="uzbek">Ovqat oshpaz tomonidan pishirildi.</p>
+                            <p class="english">(-) The car has not been repaired yet.</p>
+                            <p class="uzbek">Mashina hali ta'mirlanmagan.</p>
+                        </div>
+                    </div>
+                    <div class="structure-card">
+                        <h3>Past Perfect Passive</h3>
+                        <div class="formula">(+) S + <strong>had been</strong> + <span class="v3">V3</span></div>
+                        <div class="formula">(-) S + <strong>had not been</strong> + <span class="v3">V3</span></div>
+                        <div class="formula">(?) <strong>Had</strong> + S + <strong>been</strong> + <span class="v3">V3</span>?</div>
+                         <div class="examples">
+                            <p class="english">(+) The problem had been identified.</p>
+                            <p class="uzbek">Muammo aniqlangan edi.</p>
+                            <p class="english">(-) The coffee had not been brewed.</p>
+                            <p class="uzbek">Qahva qaynatilmagan edi.</p>
+                        </div>
+                    </div>
+                     <div class="structure-card">
+                        <h3>Future Perfect Passive</h3>
+                        <div class="formula">(+) S + <strong>will have been</strong> + <span class="v3">V3</span></div>
+                        <div class="formula">(-) S + <strong>will not have been</strong> + <span class="v3">V3</span></div>
+                        <div class="formula">(?) <strong>Will</strong> + S + <strong>have been</strong> + <span class="v3">V3</span>?</div>
+                         <div class="examples">
+                            <p class="english">(+) The report will have been submitted by the deadline.</p>
+                            <p class="uzbek">Hisobot belgilangan muddatgacha topshiriladi.</p>
+                            <p class="english">(?) Will the book have been read by the end of the week?</p>
+                            <p class="uzbek">Kitob hafta oxirigacha o'qib bo'lingan bo'ladimi?</p>
+                        </div>
+                    </div>
+                     <div class="structure-card">
+                        <h3>Modal Passive</h3>
+                        <div class="formula">(+) S + <strong>modal + be</strong> + <span class="v3">V3</span></div>
+                        <div class="formula">(-) S + <strong>modal + not + be</strong> + <span class="v3">V3</span></div>
+                        <div class="formula">(?) <strong>Modal</strong> + S + <strong>be</strong> + <span class="v3">V3</span>?</div>
+                         <div class="examples">
+                            <p class="english">(+) The assignment must be completed by the students.</p>
+                            <p class="uzbek">Topshiriq talabalar tomonidan yakka tartibda bajarilishi kerak.</p>
+                            <p class="english">(-) The room cannot be reserved online.</p>
+                            <p class="uzbek">Xonani onlayn bron qilish mumkin emas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="examples" class="tab-content">
+            <div class="card">
+                <h2>Misollar bilan tanishing</h2>
+                <div class="examples-grid">
+                    <div class="example-category">
+                        <h3>Present Perfect Passive</h3>
+                        <div class="example-item">
+                            <p class="english">The book <strong>has already been read</strong>.</p>
+                            <p class="uzbek">Kitob allaqachon o'qilgan.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">The car <strong>has not been repaired</strong> yet.</p>
+                            <p class="uzbek">Mashina hali ta'mirlanmagan.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english"><strong>Has the job been finished</strong>?</p>
+                            <p class="uzbek">Ish tugatildimi?</p>
+                        </div>
+                    </div>
+                    <div class="example-category">
+                        <h3>Past Perfect Passive</h3>
+                        <div class="example-item">
+                            <p class="english">The reservation <strong>had not been confirmed</strong>.</p>
+                            <p class="uzbek">Buyurtma tasdiqlanmagan edi.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">The event <strong>had been organized by</strong> the time you arrived.</p>
+                            <p class="uzbek">Siz kelguningizcha tadbir tashkillashtirib bo'lingan edi.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english"><strong>Had the problem been identified</strong>?</p>
+                            <p class="uzbek">Muammo aniqlanganmidi?</p>
+                        </div>
+                    </div>
+                    <div class="example-category">
+                        <h3>Future Perfect Passive</h3>
+                        <div class="example-item">
+                            <p class="english">The project <strong>will have been completed</strong> by the time you arrive.</p>
+                            <p class="uzbek">Siz yetib kelguningizgacha loyiha tugallangan bo'ladi.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">The house <strong>will not have been cleaned</strong> before the guests arrive.</p>
+                            <p class="uzbek">Mehmonlar kelishidan oldin uy tozalanmagan bo'ladi.</p>
+                        </div>
+                         <div class="example-item">
+                            <p class="english"><strong>Will</strong> all the tickets <strong>have been sold</strong> by the time the concert begins?</p>
+                            <p class="uzbek">Konsert boshlanishiga qadar barcha chiptalar sotilgan bo'ladimi?</p>
+                        </div>
+                    </div>
+                     <div class="example-category">
+                        <h3>Modal Verbs (Passive)</h3>
+                        <div class="example-item">
+                            <p class="english">The room <strong>cannot be reserved</strong> online.</p>
+                            <p class="uzbek">Xonani onlayn bron qilish mumkin emas.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">The report <strong>must be submitted</strong> before the deadline.</p>
+                            <p class="uzbek">Hisobot muddatidan oldin topshirilishi kerak.</p>
+                        </div>
+                         <div class="example-item">
+                            <p class="english">The repairs <strong>should be completed</strong> within the timeframe.</p>
+                            <p class="uzbek">Ta'mirlash belgilangan muddatlarda bajarilishi kerak.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<div id="exercises" class="tab-content">
+    <div class="card">
+      <h2>Mashqlar (Passive Voice - Murakkab Zamonlar)</h2>
+                <nav class="exercise-nav">
+                    <button class="exercise-btn active" data-exercise="test">Test</button>
+                    <button class="exercise-btn" data-exercise="fill">Bo'sh joyni to'ldirish</button>
+                    <button class="exercise-btn" data-exercise="correction">Xatolarni Tuzatish</button>
+                    <button class="exercise-btn" data-exercise="order">So'zlarni Tartiblash</button>
+                    <button class="exercise-btn" data-exercise="transform">Gaplarni O'zgartirish</button>
+                </nav>
+
+                <div id="test" class="exercise-content active">
+                    <h3>To'g'ri Passive shaklini tanlang</h3>
+                    <div class="quiz-container">
+                        <div class="question" data-answer="b" data-explanation="Present Perfect Passive: 'yet' so'zi P.Perfect bilan keladi. 'The homework' birlikda, shuning uchun 'hasn't been finished'."><p>1. The homework ___ yet.</p><div class="options"><label><input type="radio" name="q1" value="a">a) wasn't finished</label><label><input type="radio" name="q1" value="b">b) hasn't been finished</label><label><input type="radio" name="q1" value="c">c) isn't being finished</label></div></div>
+                        <div class="question" data-answer="c" data-explanation="Past Perfect Passive: 'by the time' P.Perfectga ishora. Boshqa o'tgan zamon harakatidan ('I got there') oldin sodir bo'lgan."><p>2. All the tickets ___ by the time I got there.</p><div class="options"><label><input type="radio" name="q2" value="a">a) were sold</label><label><input type="radio" name="q2" value="b">b) have been sold</label><label><input type="radio" name="q2" value="c">c) had been sold</label></div></div>
+                        <div class="question" data-answer="a" data-explanation="Modal Passive: 'must' dan keyin 'be + V3' keladi."><p>3. This door must ___ locked at all times.</p><div class="options"><label><input type="radio" name="q3" value="a">a) be kept</label><label><input type="radio" name="q3" value="b">b) to be kept</label><label><input type="radio" name="q3" value="c">c) been kept</label></div></div>
+                        <div class="question" data-answer="a" data-explanation="Future Perfect Passive: 'by next week' F.Perfectga ishora."><p>4. The report ___ by next week.</p><div class="options"><label><input type="radio" name="q4" value="a">a) will have been written</label><label><input type="radio" name="q4" value="b">b) will be written</label><label><input type="radio" name="q4" value="c">c) has been written</label></div></div>
+                        <div class="question" data-answer="b" data-explanation="Present Perfect Passive so'roq shakli: 'the decision' birlikda."><p>5. ___ a decision been made yet?</p><div class="options"><label><input type="radio" name="q5" value="a">a) Have</label><label><input type="radio" name="q5" value="b">b) Has</label><label><input type="radio" name="q5" value="c">c) Had</label></div></div>
+                        <div class="question" data-answer="c" data-explanation="Past Perfect Passive inkor shakli."><p>6. The problem ___ by the time the manager arrived.</p><div class="options"><label><input type="radio" name="q6" value="a">a) hasn't been solved</label><label><input type="radio" name="q6" value="b">b) wasn't solved</label><label><input type="radio" name="q6" value="c">c) had not been solved</label></div></div>
+                        <div class="question" data-answer="a" data-explanation="Modal Passive: 'can't + be + V3'."><p>7. The tickets ___ at the box office.</p><div class="options"><label><input type="radio" name="q7" value="a">a) can be purchased</label><label><input type="radio" name="q7" value="b">b) can been purchased</label><label><input type="radio" name="q7" value="c">c) have been purchased</label></div></div>
+                        <div class="question" data-answer="b" data-explanation="Future Perfect Passive so'roq shakli."><p>8. Will the new software ___ before the meeting starts?</p><div class="options"><label><input type="radio" name="q8" value="a">a) be installed</label><label><input type="radio" name="q8" value="b">b) have been installed</label><label><input type="radio" name="q8" value="c">c) has been installed</label></div></div>
+                        <div class="question" data-answer="c" data-explanation="Present Perfect Passive: 'recently' (yaqinda) P.Perfectga ishora. 'The walls' ko'plikda."><p>9. The walls ___ recently.</p><div class="options"><label><input type="radio" name="q9" value="a">a) were painted</label><label><input type="radio" name="q9" value="b">b) are painted</label><label><input type="radio" name="q9" value="c">c) have been painted</label></div></div>
+                        <div class="question" data-answer="a" data-explanation="Modal fe'l 'should' bilan kelgan inkor passive."><p>10. The information ___ shared with anyone.</p><div class="options"><label><input type="radio" name="q10" value="a">a) should not be</label><label><input type="radio" name="q10" value="b">b) should not</label><label><input type="radio" name="q10" value="c">c) should not been</label></div></div>
+                    </div>
+                    <button class="check-btn" onclick="checkTest()">Tekshirish</button>
+                    <div id="testResult" class="result"></div>
+                </div>
+
+                <div id="fill" class="exercise-content">
+                    <h3>Bo'sh joyni fe'lning to'g'ri Passive shakli bilan to'ldiring.</h3>
+                    <div class="fill-exercise">
+                        <div class="fill-question"><p>1. The movie ___ by many people already. (watch)</p><input type="text" class="fill-input" data-answer="has been watched" data-explanation="Present Perfect Passive."></div>
+                        <div class="fill-question"><p>2. The assignment ___ by the students individually. (cannot/complete)</p><input type="text" class="fill-input" data-answer="cannot be completed" data-explanation="Modal Passive."></div>
+                        <div class="fill-question"><p>3. The lights ___ before he left the house. (turn off)</p><input type="text" class="fill-input" data-answer="had been turned off" data-explanation="Past Perfect Passive."></div>
+                        <div class="fill-question"><p>4. The new software ___ by the IT team tomorrow. (install)</p><input type="text" class="fill-input" data-answer="will be installed" data-explanation="Future Simple Passive."></div>
+                        <div class="fill-question"><p>5. ___ the report ___ yet? (submit)</p><input type="text" class="fill-input" data-answer="Has the report been submitted" data-explanation="Present Perfect Passive so'roq shakli."></div>
+                        <div class="fill-question"><p>6. The task ___ to another team yesterday. (could/assign)</p><input type="text" class="fill-input" data-answer="could have been assigned" data-explanation="Modal Perfect Passive (qo'shimcha bonus). To'g'ri: could be assigned."></div>
+                        <div class="fill-question"><p>7. By the end of this month, the house ___. (sell)</p><input type="text" class="fill-input" data-answer="will have been sold" data-explanation="Future Perfect Passive."></div>
+                        <div class="fill-question"><p>8. The problem ___ by the time the manager arrived. (not/solve)</p><input type="text" class="fill-input" data-answer="had not been solved" data-explanation="Past Perfect Passive inkor shakli."></div>
+                        <div class="fill-question"><p>9. Your car ___ regularly. (should/wash)</p><input type="text" class="fill-input" data-answer="should be washed" data-explanation="Modal Passive."></div>
+                        <div class="fill-question"><p>10. Many pictures of the hotel ___ taken recently. (have)</p><input type="text" class="fill-input" data-answer="have been taken" data-explanation="Present Perfect Passive."></div>
+                    </div>
+                    <button class="check-btn" onclick="checkFill()">Tekshirish</button>
+                    <div id="fillResult" class="result"></div>
+                </div>
+
+                <div id="correction" class="exercise-content">
+                    <h3>Xatolarni Tuzatish</h3>
+                    <div class="correct-exercise">
+                        <div class="correct-question"><p class="incorrect">1. The project has finished by the team.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="The project has been finished by the team." data-explanation="Present Perfect Passive da 'has' va V3 o'rtasida 'been' bo'lishi kerak."></div>
+                        <div class="correct-question"><p class="incorrect">2. The task must to be completed.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="The task must be completed." data-explanation="Modal fe'llardan keyin 'to' ishlatilmaydi. To'g'ri formula: modal + be + V3."></div>
+                        <div class="question" data-answer="c" data-explanation="Past Perfect Passive: 'by the time' P.Perfectga ishora. Boshqa o'tgan zamon harakatidan ('I got there') oldin sodir bo'lgan."><p>8. All the tickets ___ by the time I got there.</p><div class="options"><label><input type="radio" name="q8" value="a">a) were sold</label><label><input type="radio" name="q8" value="b">b) have been sold</label><label><input type="radio" name="q8" value="c">c) had been sold</label></div></div>
+                        <div class="correct-question"><p class="incorrect">4. The letter had wrote before I came.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="The letter had been written before I came." data-explanation="Past Perfect Passive da 'had' va V3 o'rtasida 'been' bo'lishi kerak, va V3 'written' bo'ladi."></div>
+                        <div class="correct-question"><p class="incorrect">5. The documents has not been signed.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="The documents have not been signed." data-explanation="'documents' ko'plikda bo'lgani uchun 'have' ishlatiladi, 'has' emas."></div>
+                        <div class="correct-question"><p class="incorrect">6. The presentation will have rehearsed by tomorrow.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="The presentation will have been rehearsed by tomorrow." data-explanation="Future Perfect Passive da 'will have' va V3 o'rtasida 'been' bo'lishi kerak."></div>
+                        <div class="correct-question"><p class="incorrect">7. Has been the problem identified?</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="Has the problem been identified?" data-explanation="So'roq gapda so'z tartibi: Has/Have + Ega + been + V3."></div>
+                        <div class="correct-question"><p class="incorrect">8. The information should kept confidential.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="The information should be kept confidential." data-explanation="Modal Passive da modal fe'l va V3 o'rtasida 'be' bo'lishi kerak."></div>
+                        <div class="correct-question"><p class="incorrect">9. The cake will had been baked by 5 o'clock.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="The cake will have been baked by 5 o'clock." data-explanation="Future Perfect Passive da 'will' dan keyin 'have' ishlatiladi, 'had' emas."></div>
+                        <div class="correct-question"><p class="incorrect">10. The technology has be upgraded.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="The technology has been upgraded." data-explanation="Present Perfect Passive da 'has' dan keyin 'been' ishlatiladi, 'be' emas."></div>
+                    </div>
+                    <button class="check-btn" onclick="checkCorrection()">Tekshirish</button>
+                    <div id="correctionResult" class="result"></div>
+                </div>
+                
+                <div id="order" class="exercise-content">
+                    <h3>So'zlarni to'g'ri tartibda joylashtiring</h3>
+                    <div class="order-exercise">
+                        <div class="order-question"><p>1. (has / the book / been / read / already)</p><div class="word-container"><div class="word">read</div><div class="word">has</div><div class="word">the book</div><div class="word">already</div><div class="word">been</div></div><div class="drop-zone" data-answer="the book has already been read"></div></div>
+                        <div class="order-question"><p>2. (must / completed / the task / be)</p><div class="word-container"><div class="word">be</div><div class="word">must</div><div class="word">the task</div><div class="word">completed</div></div><div class="drop-zone" data-answer="the task must be completed"></div></div>
+                        <div class="order-question"><p>3. (by the time / the food / had / been / cooked / we arrived)</p><div class="word-container"><div class="word">been</div><div class="word">the food</div><div class="word">had</div><div class="word">cooked</div><div class="word">we arrived</div><div class="word">by the time</div></div><div class="drop-zone" data-answer="the food had been cooked by the time we arrived"></div></div>
+                        <div class="order-question"><p>4. (not / been / the car / has / repaired / yet)</p><div class="word-container"><div class="word">not</div><div class="word">has</div><div class="word">the car</div><div class="word">repaired</div><div class="word">yet</div><div class="word">been</div></div><div class="drop-zone" data-answer="the car has not been repaired yet"></div></div>
+                        <div class="order-question"><p>5. (will / by tomorrow / the letter / been / have / sent)</p><div class="word-container"><div class="word">sent</div><div class="word">will</div><div class="word">the letter</div><div class="word">by tomorrow</div><div class="word">been</div><div class="word">have</div></div><div class="drop-zone" data-answer="the letter will have been sent by tomorrow"></div></div>
+                        <div class="order-question"><p>6. (been / the problem / has / solved)</p><div class="word-container"><div class="word">has</div><div class="word">the problem</div><div class="word">solved</div><div class="word">been</div></div><div class="drop-zone" data-answer="has the problem been solved"></div></div>
+                        <div class="order-question"><p>7. (could / the package / been / delivered / not / have)</p><div class="word-container"><div class="word">not</div><div class="word">could</div><div class="word">delivered</div><div class="word">the package</div><div class="word">have</div><div class="word">been</div></div><div class="drop-zone" data-answer="the package could not have been delivered"></div></div>
+                        <div class="order-question"><p>8. (the tickets / had / been / the match / before / sold)</p><div class="word-container"><div class="word">sold</div><div class="word">the match</div><div class="word">had</div><div class="word">the tickets</div><div class="word">before</div><div class="word">been</div></div><div class="drop-zone" data-answer="the tickets had been sold before the match"></div></div>
+                        <div class="order-question"><p>9. (be / should / the rules / followed)</p><div class="word-container"><div class="word">followed</div><div class="word">the rules</div><div class="word">should</div><div class="word">be</div></div><div class="drop-zone" data-answer="the rules should be followed"></div></div>
+                        <div class="order-question"><p>10. (will / not / have / been / the project / by next year / finished)</p><div class="word-container"><div class="word">finished</div><div class="word">the project</div><div class="word">by next year</div><div class="word">have</div><div class="word">been</div><div class="word">will</div><div class="word">not</div></div><div class="drop-zone" data-answer="the project will not have been finished by next year"></div></div>
+                    </div>
+                    <button class="check-btn" onclick="checkOrder()">Tekshirish</button>
+                    <button class="check-btn" onclick="resetOrder()">Qayta tiklash</button>
+                    <div id="orderResult" class="result"></div>
+                </div>
+
+                <div id="transform" class="exercise-content">
+                    <h3>Gaplarni Active dan Passive ga o'zgartiring</h3>
+                    <div class="transform-exercise">
+                        <div class="transform-question"><p>1. They have just finished the project. &rarr; The project ______ just ______.</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Passive shaklini kiriting..." data-answer="has just been finished" data-explanation="Present Perfect Active -> Present Perfect Passive (has/have been + V3)."></div></div>
+                        <div class="transform-question"><p>2. You must follow the rules. &rarr; The rules ______.</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Passive shaklini kiriting..." data-answer="must be followed" data-explanation="Modal Active -> Modal Passive (modal + be + V3)."></div></div>
+                        <div class="transform-question"><p>3. He had repaired the car before I arrived. &rarr; The car ______ before I arrived.</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Passive shaklini kiriting..." data-answer="had been repaired" data-explanation="Past Perfect Active -> Past Perfect Passive (had been + V3)."></div></div>
+                        <div class="transform-question"><p>4. The company will have launched the new product by next year. &rarr; The new product ______ by next year.</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Passive shaklini kiriting..." data-answer="will have been launched" data-explanation="Future Perfect Active -> Future Perfect Passive (will have been + V3)."></div></div>
+                        <div class="question" data-answer="b" data-explanation="Present Perfect Passive so'roq shakli: 'the decision' birlikda."><p>5. ___ a decision been made yet?</p><div class="options"><label><input type="radio" name="q5" value="a">a) Have</label><label><input type="radio" name="q5" value="b">b) Has</label><label><input type="radio" name="q5" value="c">c) Had</label></div></div>
+                        <div class="transform-question"><p>6. Someone has broken the window. &rarr; The window ______.</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Passive shaklini kiriting..." data-answer="has been broken" data-explanation="Present Perfect Active -> Present Perfect Passive."></div></div>
+                        <div class="transform-question"><p>7. The government should solve this problem. &rarr; This problem ______ by the government.</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Passive shaklini kiriting..." data-answer="should be solved" data-explanation="Modal Active -> Modal Passive."></div></div>
+                        <div class="transform-question"><p>8. By the time he called, she had already sent the email. &rarr; The email ______ by the time he called.</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Passive shaklini kiriting..." data-answer="had already been sent" data-explanation="Past Perfect Active -> Past Perfect Passive."></div></div>
+                        <div class="transform-question"><p>9. They will have painted the house by Saturday. &rarr; The house ______ by Saturday.</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Passive shaklini kiriting..." data-answer="will have been painted" data-explanation="Future Perfect Active -> Future Perfect Passive."></div></div>
+                        <div class="transform-question"><p>10. Have they delivered the packages? &rarr; Have the packages ______?</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Passive shaklini kiriting..." data-answer="been delivered" data-explanation="Present Perfect Question Active -> Present Perfect Question Passive."></div></div>
+                    </div>
+                    <button class="check-btn" onclick="checkTransform()">Tekshirish</button>
+                    <div id="transformResult" class="result"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="errors" class="tab-content">
+             <div class="card">
+                <h2>Muhim Qoidalar va Xatolar (Passive Voice - Murakkab)</h2>
+                
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 1: Perfect zamonlarda `been` ni unutish</div>
+                    <div class="wrong-example">The project has <strong>finished</strong> by the team.</div>
+                    <div class="correct-example">The project has <strong>been finished</strong> by the team.</div>
+                    <div class="explanation"><p><strong>Qoida:</strong> Perfect zamonlarning (Present, Past, Future) majhul nisbatida `have/has/had` va `V3` o'rtasida har doim `been` bo'lishi shart.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 2: Modal fe'llardan keyin `be` ni unutish</div>
+                    <div class="wrong-example">The report must <strong>submitted</strong>.</div>
+                    <div class="correct-example">The report must <strong>be submitted</strong>.</div>
+                    <div class="explanation"><p><strong>Qoida:</strong> Modal fe'llardan keyingi majhul nisbat formulasi: <code>modal + be + V3</code>. 'be' fe'lini tushirib qoldirib bo'lmaydi.</p></div>
+                </div>
+                
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 3: `has been` vs. `had been` ni adashtirish</div>
+                    <div class="wrong-example">When I arrived, the meeting <strong>has already been started</strong>.</div>
+                    <div class="correct-example">When I arrived, the meeting <strong>had already been started</strong>.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> Agar harakat o'tmishdagi boshqa bir harakatdan oldin sodir bo'lgan bo'lsa (men kelishimdan oldin boshlangan), Past Perfect (`had been`) ishlatiladi.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 4: Modal fe'ldan keyin `been` ishlatish</div>
+                    <div class="wrong-example">The document should <strong>been checked</strong>.</div>
+                    <div class="correct-example">The document should <strong>be checked</strong>.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> Oddiy modal fe'llardan keyin `be` ishlatiladi. `been` faqat Modal Perfect'larda (should have been) keladi.</p></div>
+                </div>
+                
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 5: `be` fe'lini unutish (umumiy)</div>
+                    <div class="wrong-example">The house built last year.</div>
+                    <div class="correct-example">The house was built last year.</div>
+                    <div class="explanation"><p><strong>Qoida:</strong> Majhul nisbat har doim `be` fe'lining zamonga mos shakli bilan birga keladi. Uni tushirib qoldirish mumkin emas.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 6: Fe'lning noto'g'ri shakli (V3 o'rniga boshqasi)</div>
+                    <div class="wrong-example">The car has been <strong>repair</strong>.</div>
+                    <div class="correct-example">The car has been <strong>repaired</strong>.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> Majhul nisbatda asosiy fe'l har doim 3-shaklda (Past Participle - V3) bo'lishi kerak.</p></div>
+                </div>
+                
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 7: `by` va `with` ni adashtirish</div>
+                    <div class="wrong-example">The door was opened <strong>by</strong> a key.</div>
+                    <div class="correct-example">The door was opened <strong>with</strong> a key.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> Harakatni bajaruvchi shaxs uchun `by` ishlatiladi. Ishni bajarishda ishlatilgan asbob-uskuna uchun `with` ishlatiladi.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 8: So'roq shaklida noto'g'ri so'z tartibi</div>
+                    <div class="wrong-example"><strong>Has been the problem</strong> identified?</div>
+                    <div class="correct-example"><strong>Has the problem been</strong> identified?</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> So'roq gaplarda birinchi yordamchi fe'l (Has/Have/Had/Will) egadan oldinga o'tadi.</p></div>
+                </div>
+                
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 9: O'timsiz fe'llarni majhulda ishlatish</div>
+                    <div class="wrong-example">A serious accident <strong>was happened</strong>.</div>
+                    <div class="correct-example">A serious accident <strong>happened</strong>.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> `happen`, `arrive`, `die`, `sleep` kabi o'timsiz fe'llar (o'zidan keyin to'ldiruvchi talab qilmaydigan) majhul nisbatda ishlatilmaydi.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 10: `Active` va `Passive`ni aralashtirish</div>
+                    <div class="wrong-example">The company <strong>was built</strong> the bridge.</div>
+                    <div class="correct-example">The company <strong>built</strong> the bridge. / The bridge <strong>was built</strong> by the company.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> Agar gapda harakat bajaruvchisi ega bo'lib kelsa (The company), fe'l Aniq nisbatda bo'lishi kerak. Agar harakat obyekti ega bo'lib kelsa (The bridge), fe'l Majhul nisbatda bo'lishi kerak.</p></div>
+                </div>
+                
+             </div>
+        </div>
+        
+    </div>
+
+    <script>
+        // Progress tracking
+        let completedSections = 0;
+        const totalSections = 6; // Qoidalar, Farqlar, Strukturalar, Misollar, Mashqlar, Xatolar
+
+        // Tab functionality
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetTab = btn.dataset.tab;
+                
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                btn.classList.add('active');
+                document.getElementById(targetTab).classList.add('active');
+                
+                updateProgress();
+            });
+        });
+
+        // Exercise navigation
+        document.querySelectorAll('.exercise-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetExercise = btn.dataset.exercise;
+                
+                document.querySelectorAll('.exercise-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.exercise-content').forEach(c => c.classList.remove('active'));
+                
+                btn.classList.add('active');
+                document.getElementById(targetExercise).classList.add('active');
+
+                if (targetExercise === 'order') {
+                    resetOrder();
+                }
+            });
+        });
+
+        function normalizeAnswer(answer) {
+            if (typeof answer !== 'string') return '';
+            return answer.toLowerCase().trim()
+                .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")
+                .replace(/\s+/g, ' ');
+        }
+
+        function checkAnswerMatch(userAnswer, correctAnswer) {
+            const normalizedUser = normalizeAnswer(userAnswer);
+            const correctAnswers = correctAnswer.split('|').map(ans => normalizeAnswer(ans));
+            return correctAnswers.includes(normalizedUser);
+        }
+
+        function checkTest() {
+            const questions = document.querySelectorAll('#test .question');
+            let score = 0;
+            let resultHTML = '';
+            questions.forEach((question, index) => {
+                const qNum = index + 1;
+                const correctAnswer = question.dataset.answer;
+                const explanation = question.dataset.explanation;
+                const selected = document.querySelector(`input[name="q${qNum}"]:checked`);
+
+                if (selected && selected.value === correctAnswer) {
+                    score++;
+                    resultHTML += `<div class="correct-answer">✓ ${qNum}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    resultHTML += `<div class="wrong-answer">✗ ${qNum}-savol: Noto'g'ri. <div class="explanation">${explanation}</div></div>`;
+                }
+            });
+            resultHTML += `<div class="final-score"><strong>Natija: ${score}/${questions.length} (${Math.round((score/questions.length)*100)}%)</strong></div>`;
+            document.getElementById('testResult').innerHTML = resultHTML;
+        }
+
+        function checkFill() {
+            const inputs = document.querySelectorAll('#fill .fill-input');
+            let correct = 0;
+            let resultHTML = '';
+            inputs.forEach((input, index) => {
+                const answer = input.dataset.answer;
+                const explanation = input.dataset.explanation;
+                if (checkAnswerMatch(input.value, answer)) {
+                    input.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                    resultHTML += `<div class="correct-answer">✓ ${index + 1}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    input.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savol: Noto'g'ri. To'g'ri javob: <strong>${answer.split('|')[0]}</strong> <div class="explanation">${explanation}</div></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${inputs.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('fillResult').innerHTML = resultHTML;
+        }
+
+        function checkCorrection() {
+            const inputs = document.querySelectorAll('#correction .correct-input');
+            let correct = 0;
+            let resultHTML = '';
+            inputs.forEach((input, index) => {
+                const answer = input.dataset.answer;
+                 const explanation = input.dataset.explanation;
+                if (checkAnswerMatch(input.value, answer)) {
+                    input.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                     resultHTML += `<div class="correct-answer">✓ ${index + 1}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    input.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savol: Noto'g'ri. To'g'ri javob: <strong>${answer.split('|')[0]}</strong> <div class="explanation">${explanation}</div></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${inputs.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('correctionResult').innerHTML = resultHTML;
+        }
+
+        function checkOrder() {
+            const dropZones = document.querySelectorAll('#order .drop-zone');
+            let correct = 0;
+            let resultHTML = '';
+            dropZones.forEach((zone, index) => {
+                const answer = zone.dataset.answer;
+                const userAnswer = Array.from(zone.children).map(child => child.textContent).join(' ');
+                if (checkAnswerMatch(userAnswer, answer)) {
+                    zone.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                } else {
+                    zone.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savolning to'g'ri javobi: <strong>${answer.split('|')[0]}</strong></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${dropZones.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('orderResult').innerHTML = resultHTML;
+        }
+
+        function checkTransform() {
+            const inputs = document.querySelectorAll('#transform .transform-input');
+            let correct = 0;
+            let resultHTML = '';
+            inputs.forEach((input, index) => {
+                const answer = input.dataset.answer;
+                const explanation = input.dataset.explanation;
+                if (checkAnswerMatch(input.value, answer)) {
+                    input.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                     resultHTML += `<div class="correct-answer">✓ ${index + 1}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    input.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savol: Noto'g'ri. To'g'ri javob: <strong>${answer.split('|')[0]}</strong> <div class="explanation">${explanation}</div></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${inputs.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('transformResult').innerHTML = resultHTML;
+        }
+
+        // Click-based word order functionality
+        function handleWordClick(event) {
+            const word = event.target;
+            if (word.classList.contains('word')) {
+                const currentContainer = word.parentElement;
+                let targetContainer;
+
+                if (currentContainer.classList.contains('word-container')) {
+                    targetContainer = currentContainer.nextElementSibling;
+                } else if (currentContainer.classList.contains('drop-zone')) {
+                    targetContainer = currentContainer.previousElementSibling;
+                }
+
+                if (targetContainer) {
+                    targetContainer.appendChild(word);
+                }
+            }
+        }
+        document.getElementById('order').addEventListener('click', handleWordClick);
+
+        // So'zlarni aralashtirish funksiyasi
+        function shuffleChildren(parent) {
+            let children = Array.from(parent.children);
+            for (let i = children.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [children[i], children[j]] = [children[j], children[i]];
+            }
+            children.forEach(child => parent.appendChild(child));
+        }
+
+        // So'zlarni tartiblash mashqini qayta tiklash
+        function resetOrder() {
+            document.querySelectorAll('#order .order-question').forEach(question => {
+                const wordContainer = question.querySelector('.word-container');
+                const dropZone = question.querySelector('.drop-zone');
+                
+                // Barcha so'zlarni wordContainer ga qaytarish
+                Array.from(dropZone.children).forEach(child => wordContainer.appendChild(child));
+                
+                // So'zlarni aralashtirish
+                shuffleChildren(wordContainer);
+
+                dropZone.style.border = '2px dashed var(--drop-zone-border)';
+            });
+            document.getElementById('orderResult').innerHTML = '';
+        }
+
+        // Progressni yangilash
+        function updateProgress() {
+            const tabStates = { 'rules': 1, 'diffs': 2, 'structure': 3, 'examples': 4, 'exercises': 5, 'errors': 6 };
+            const activeTab = document.querySelector('.tab-btn.active').dataset.tab;
+            completedSections = tabStates[activeTab] || 0;
+            const percentage = (completedSections / totalSections) * 100;
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = percentage + '%';
+            progressBar.querySelector('.progress-text').textContent = Math.round(percentage) + '%';
+        }
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            themeToggle.checked = true;
+        }
+        themeToggle.addEventListener('change', () => {
+            if (themeToggle.checked) {
+                body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Sahifa yuklanganda
+        document.addEventListener('DOMContentLoaded', () => {
+            updateProgress();
+            resetOrder(); // So'zlarni birinchi yuklashda aralashtirish
+        });
+    </script>
+</body>
+</html>
