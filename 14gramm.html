@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embedded Questions (Ko'chirma So'roq Gaplar) - Mukammal Qo'llanma</title>
+    <style>
+        /* Umumiy stilizatsiya */
+        :root {
+            --bg-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --text-primary: #333;
+            --header-bg: rgba(255, 255, 255, 0.1);
+            --header-text: white;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --card-border: rgba(255, 255, 255, 0.2);
+            --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            --h2-text-gradient: linear-gradient(135deg, #667eea, #764ba2);
+            --rule-section-bg: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            --rule-section-border-left: #667eea;
+            --code-bg: #e2e8f0;
+            --code-color: #c53030;
+            --table-th-bg: #e9ecef;
+            --table-th-color: #495057;
+            --table-td-bg: #fff;
+            --structure-card-bg: linear-gradient(135deg, #e0eafc, #cfdef3);
+            --structure-card-border: #667eea;
+            --formula-bg: white;
+            --example-category-bg: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            --example-item-bg: white;
+            --english-text: #2d3436;
+            --uzbek-text: #636e72;
+            --input-bg: #f8f9fa;
+            --input-border: #dee2e6;
+            --input-focus-shadow: rgba(102, 126, 234, 0.1);
+            --result-bg: linear-gradient(135deg, #ddd6fe, #c4b5fd);
+            --result-color: #5b21b6;
+            --correct-color: #28a745;
+            --wrong-color: #dc3545;
+            --progress-bg: rgba(255, 255, 255, 0.2);
+            --progress-bar-gradient: linear-gradient(90deg, #4CAF50, #45a049);
+            --tab-btn-bg: rgba(255, 255, 255, 0.2);
+            --tab-btn-hover-bg: rgba(255, 255, 255, 0.3);
+            --tab-btn-active-bg: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            --exercise-btn-bg: linear-gradient(135deg, #74b9ff, #0984e3);
+            --exercise-btn-active-bg: linear-gradient(135deg, #00b894, #00a085);
+            --word-bg: linear-gradient(135deg, #667eea, #764ba2);
+            --drop-zone-border: #dee2e6;
+            --drop-zone-bg: #f8f9fa;
+            --drop-zone-hover-bg: rgba(102, 126, 234, 0.1);
+        }
+
+        .dark-mode {
+            --bg-primary: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            --text-primary: #ecf0f1;
+            --header-bg: rgba(0, 0, 0, 0.2);
+            --header-text: #ecf0f1;
+            --card-bg: #3b506b;
+            --card-border: rgba(255, 255, 255, 0.1);
+            --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            --h2-text-gradient: linear-gradient(135deg, #a2ccff, #82b1ff);
+            --rule-section-bg: #4a6280;
+            --rule-section-border-left: #82b1ff;
+            --code-bg: #2f4358;
+            --code-color: #ff8c8c;
+            --table-th-bg: #4a6280;
+            --table-th-color: #ecf0f1;
+            --table-td-bg: #3b506b;
+            --structure-card-bg: linear-gradient(135deg, #4a6280, #5a7490);
+            --structure-card-border: #82b1ff;
+            --formula-bg: #2f4358;
+            --example-category-bg: #4a6280;
+            --example-item-bg: #3b506b;
+            --english-text: #ecf0f1;
+            --uzbek-text: #bdc3c7;
+            --input-bg: #2f4358;
+            --input-border: #5a7490;
+            --input-focus-shadow: rgba(130, 177, 255, 0.2);
+            --result-bg: linear-gradient(135deg, #4a2c7a, #6a3a9a);
+            --result-color: #e0e0e0;
+            --correct-color: #5cb85c;
+            --wrong-color: #d9534f;
+            --progress-bg: rgba(0, 0, 0, 0.3);
+            --progress-bar-gradient: linear-gradient(90deg, #5cb85c, #4cae4c);
+            --tab-btn-bg: rgba(0, 0, 0, 0.3);
+            --tab-btn-hover-bg: rgba(0, 0, 0, 0.4);
+            --tab-btn-active-bg: linear-gradient(135deg, #e74c3c, #c0392b);
+            --exercise-btn-bg: linear-gradient(135deg, #3498db, #2980b9);
+            --exercise-btn-active-bg: linear-gradient(135deg, #2ecc71, #27ae60);
+            --word-bg: linear-gradient(135deg, #3498db, #2980b9);
+            --drop-zone-border: #5a7490;
+            --drop-zone-bg: #2f4358;
+            --drop-zone-hover-bg: rgba(52, 152, 219, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            min-height: 100vh;
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Sarlavha qismi */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--card-border);
+            position: relative; /* For theme toggle positioning */
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            color: var(--header-text);
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: bold;
+        }
+
+        .header p {
+            color: var(--header-text);
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Progress Bar */
+        .progress-container {
+            background: var(--progress-bg);
+            border-radius: 25px;
+            padding: 5px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(5px);
+        }
+
+        .progress-bar {
+            background: var(--progress-bar-gradient);
+            height: 30px;
+            border-radius: 20px;
+            transition: width 0.8s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 0%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-text {
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Theme Toggle Switch */
+        .theme-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .theme-switch input[type="checkbox"] {
+            height: 0;
+            width: 0;
+            visibility: hidden;
+        }
+
+        .theme-switch label {
+            cursor: pointer;
+            text-indent: -9999px;
+            width: 60px;
+            height: 30px;
+            background: #ccc;
+            display: block;
+            border-radius: 100px;
+            position: relative;
+            transition: background-color 0.3s ease;
+        }
+
+        .theme-switch label:after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background: #fff;
+            border-radius: 90px;
+            transition: 0.3s;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+
+        .theme-switch input:checked + label {
+            background: #82b1ff; /* Dark mode toggle background */
+        }
+
+        .theme-switch input:checked + label:after {
+            left: calc(100% - 3px);
+            transform: translateX(-100%);
+            background: #f1c40f; /* Sun color */
+        }
+
+        .theme-switch .icon {
+            font-size: 1.5rem;
+            color: var(--header-text);
+            transition: color 0.3s ease;
+        }
+        .theme-switch input:checked ~ .icon.moon { display: block; }
+        .theme-switch input:not(:checked) ~ .icon.moon { display: none; }
+        .theme-switch input:checked ~ .icon.sun { display: none; }
+        .theme-switch input:not(:checked) ~ .icon.sun { display: block; }
+        .theme-switch .icon.sun { color: #f39c12; }
+        .theme-switch .icon.moon { color: #a2ccff; }
+
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 10px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: var(--tab-btn-bg);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            color: var(--header-text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            font-weight: 500;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .tab-btn:hover {
+            background: var(--tab-btn-hover-bg);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .tab-btn.active {
+            background: var(--tab-btn-active-bg);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Card Styles */
+        .card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+        }
+
+        .card h2 {
+            color: var(--text-primary);
+            margin-bottom: 25px;
+            font-size: 2.2rem;
+            text-align: center;
+            background: var(--h2-text-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Rules Section */
+        .rule-section, .diff-section {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: var(--rule-section-bg);
+            border-radius: 15px;
+            border-left: 5px solid var(--rule-section-border-left);
+        }
+
+        .rule-section h3, .diff-section h3 {
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .rule-section h4, .diff-section h4 {
+             color: var(--text-primary);
+             font-size: 1.2rem;
+             margin-top: 20px;
+             padding-bottom: 5px;
+             border-bottom: 2px solid var(--rule-section-border-left);
+        }
+
+        .rule-section p, .rule-section li, .diff-section p, .diff-section li {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        
+        .rule-section code, .diff-section code {
+            background-color: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--code-color);
+        }
+
+        .diff-table-container { /* Added for responsive table */
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
+        }
+
+        .diff-table {
+            width: 100%; /* Ensure table takes full width of its container */
+            min-width: 600px; /* Minimum width to prevent excessive squishing on small screens */
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        .diff-table th, .diff-table td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            text-align: left;
+            color: var(--text-primary); /* Ensure text color changes with theme */
+        }
+        .diff-table th {
+            background-color: var(--table-th-bg);
+            color: var(--table-th-color);
+        }
+        .diff-table td { background-color: var(--table-td-bg); }
+        .ok { color: var(--correct-color); font-weight: bold; }
+        .not-ok { color: var(--wrong-color); font-weight: bold; }
+
+
+        .structure-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .structure-card {
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            background: var(--structure-card-bg);
+            border: 2px solid var(--structure-card-border);
+        }
+        .structure-card:hover { transform: translateY(-5px); }
+
+        .structure-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            text-align: center;
+            color: var(--text-primary);
+        }
+
+        .formula {
+            background: var(--formula-bg); padding: 10px; border-radius: 8px;
+            margin-bottom: 10px; text-align: left; font-size: 1rem;
+            font-weight: 500; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            color: var(--text-primary);
+        }
+
+        .noun, .pronoun, .verb, .subject, .object, .adjective, .adverb, .clause, .infinitive, .gerund, .v3, .intro-phrase, .wh-word {
+            padding: 5px 10px; border-radius: 5px; margin: 0 5px; color: white;
+        }
+        .noun { background: #fd79a8; }
+        .pronoun { background: #0984e3; }
+        .verb { background: #00b894; }
+        .subject { background: #ffeaa7; color: #333;}
+        .object { background: #6c5ce7; }
+        .adjective { background: #f39c12; }
+        .adverb { background: #e74c3c; }
+        .clause { background: linear-gradient(135deg, #a29bfe, #6c5ce7); border: 1px solid white;}
+        .infinitive { background: #81ecec; color: #333; }
+        .gerund { background: #fab1a0; color: #333; }
+        .v3 { background: #d63031; }
+        .intro-phrase { background: #00cec9; }
+        .wh-word { background: #e84393; }
+        
+
+        .examples { background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 10px; margin-top: 15px; }
+        .examples p { margin-bottom: 8px; font-size: 1rem; color: var(--text-primary); }
+        .examples p.english { font-weight: bold; }
+        /* Added for Uzbek translations in Structure section */
+        .structure-card .examples .uzbek {
+            color: var(--uzbek-text);
+            font-style: italic;
+            padding-left: 10px; /* Adjusted for smaller indentation */
+            border-left: 3px solid #764ba2; /* Slightly different border color */
+            margin-top: 5px; /* Small margin between English and Uzbek */
+        }
+
+
+        .examples-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px; margin-top: 25px;
+        }
+
+        .example-category {
+            background: var(--example-category-bg); padding: 25px;
+            border-radius: 15px; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        .example-category h3 {
+            color: var(--text-primary); margin-bottom: 20px; font-size: 1.4rem; text-align: center;
+            padding-bottom: 10px; border-bottom: 2px solid var(--rule-section-border-left);
+        }
+
+        .example-item {
+            background: var(--example-item-bg); padding: 15px; border-radius: 10px; margin-bottom: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease;
+        }
+        .example-item:hover { transform: translateX(5px); }
+        .english { color: var(--english-text); font-weight: 500; margin-bottom: 8px; font-size: 1.05rem; }
+        .uzbek { color: var(--uzbek-text); font-style: italic; padding-left: 20px; border-left: 3px solid var(--rule-section-border-left); }
+
+        .exercise-nav {
+            display: flex; justify-content: center; margin-bottom: 30px;
+            gap: 10px; flex-wrap: wrap;
+        }
+        .exercise-btn {
+            background: var(--exercise-btn-bg); color: white; border: none;
+            padding: 12px 20px; border-radius: 10px; cursor: pointer; transition: all 0.3s ease;
+            font-size: 14px; font-weight: 500; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .exercise-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); }
+        .exercise-btn.active {
+            background: var(--exercise-btn-active-bg);
+            box-shadow: 0 6px 20px rgba(0, 184, 148, 0.3);
+        }
+
+        .exercise-content { display: none; }
+        .exercise-content.active { display: block; animation: fadeIn 0.5s ease-in-out; }
+        .exercise-content h3 { color: var(--text-primary); margin-bottom: 25px; font-size: 1.6rem; text-align: center; }
+
+        .quiz-container, .fill-exercise, .combine-exercise, .correct-exercise, .omission-exercise, .order-exercise { margin-bottom: 25px; }
+        .question, .fill-question, .combine-question, .correct-question, .omission-question, .order-question {
+            background: var(--example-item-bg); padding: 20px; border-radius: 15px; margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); border-left: 5px solid var(--rule-section-border-left);
+        }
+        .question p, .fill-question p, .combine-question p, .correct-question p, .omission-question p, .order-question p {
+            font-size: 1.2rem; margin-bottom: 15px; color: var(--english-text); font-weight: 500;
+        }
+        .correct-question p.incorrect { text-decoration: line-through; color: var(--wrong-color);}
+
+        .options { display: flex; flex-direction: column; gap: 10px; }
+        .options label {
+            display: flex; align-items: center; padding: 10px; border-radius: 8px;
+            background: var(--input-bg); cursor: pointer; transition: background 0.3s ease; font-size: 1rem;
+            color: var(--text-primary);
+        }
+        .options label:hover { background: var(--rule-section-bg); }
+        .options input[type="radio"] { margin-right: 10px; transform: scale(1.2); }
+
+        .fill-input, .combine-input, .correct-input, .transform-input {
+            width: 100%; background: var(--input-bg); border: 2px solid var(--input-border);
+            border-radius: 8px; padding: 12px; font-size: 1rem; transition: all 0.3s ease;
+            color: var(--text-primary);
+        }
+        .fill-input:focus, .combine-input:focus, .correct-input:focus, .transform-input:focus {
+            outline: none; border-color: var(--rule-section-border-left); box-shadow: 0 0 0 3px var(--input-focus-shadow);
+        }
+
+        .check-btn {
+            background: var(--exercise-btn-active-bg); color: white; border: none;
+            padding: 15px 30px; border-radius: 10px; cursor: pointer; font-size: 1.1rem;
+            font-weight: 500; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: block; margin: 10px auto;
+        }
+        .check-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); }
+
+        .check-btn:active { transform: translateY(0); }
+
+        .result {
+            margin-top: 20px; padding: 15px; border-radius: 10px; text-align: center;
+            font-size: 1.2rem; font-weight: 500; background: var(--result-bg);
+            color: var(--result-color); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .correct-answer { color: var(--correct-color); margin: 5px 0; }
+        .wrong-answer { color: var(--wrong-color); margin: 5px 0; }
+        .final-score { margin-top: 10px; padding: 10px; background: var(--input-bg); border-radius: 5px; color: var(--text-primary); }
+
+        /* Yangi stil: Izohlar uchun */
+        .explanation {
+            background: var(--input-bg);
+            border-left: 4px solid var(--rule-section-border-left);
+            padding: 10px;
+            margin: 10px 0 0 0;
+            border-radius: 0 8px 8px 0;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            text-align: left;
+        }
+
+        /* Word Order Exercise Specifics */
+        .word-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: var(--input-bg);
+            border-radius: 10px;
+            min-height: 60px; /* Ensure visibility even if empty */
+        }
+
+        .word {
+            background: var(--word-bg);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: inline-block; /* Ensure display is correct */
+        }
+
+        .word:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .drop-zone {
+            min-height: 60px;
+            border: 2px dashed var(--drop-zone-border);
+            border-radius: 10px;
+            padding: 15px;
+            background: var(--drop-zone-bg);
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            gap: 10px;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+        }
+
+        .drop-zone:hover, .word-container:hover {
+            border-color: var(--rule-section-border-left);
+            background: var(--drop-zone-hover-bg);
+        }
+
+        .drop-zone .word {
+             background: var(--exercise-btn-active-bg);
+        }
+
+        /* --- Styles for Sentence Transformation Exercise (START) --- */
+        .transform-question {
+            background: var(--example-item-bg);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--structure-card-border);
+            transition: all 0.3s ease;
+        }
+
+        .transform-question:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        }
+
+        .transform-question p {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .transform-question p b {
+            color: var(--header-text);
+            background: var(--word-bg);
+            padding: 3px 9px;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .transform-input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .transform-input-wrapper .fa-pen-to-square {
+            position: absolute;
+            left: 15px;
+            color: var(--uzbek-text);
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .transform-input {
+            padding-left: 45px; /* Make space for the icon */
+            background-image: linear-gradient(to right, var(--input-bg), var(--card-bg));
+            font-weight: 500;
+        }
+
+        .transform-input:focus {
+            background-image: none;
+        }
+
+        .transform-input-wrapper:hover .fa-pen-to-square {
+            color: var(--rule-section-border-left);
+        }
+        /* --- Styles for Sentence Transformation Exercise (END) --- */
+        
+        /* --- Styles for Muhim Qoidalar Section (START) --- */
+        .error-section {
+            background: var(--rule-section-bg);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-left: 5px solid var(--wrong-color);
+        }
+
+        .error-title {
+            color: var(--wrong-color);
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .wrong-example {
+            background: rgba(220, 53, 69, 0.1);
+            border: 2px solid var(--wrong-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0 10px 0;
+            position: relative;
+            color: var(--text-primary);
+        }
+
+        .wrong-example::before {
+            content: "❌ NOTO'G'RI";
+            position: absolute;
+            top: -12px;
+            left: 15px;
+            background: var(--wrong-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .correct-example {
+            background: rgba(40, 167, 69, 0.1);
+            border: 2px solid var(--correct-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0 10px 0;
+            position: relative;
+            color: var(--text-primary);
+        }
+
+        .correct-example::before {
+            content: "✅ TO'G'RI";
+            position: absolute;
+            top: -12px;
+            left: 15px;
+            background: var(--correct-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .explanation .explanation-title {
+            color: var(--rule-section-border-left);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .rule-box {
+            background: var(--exercise-btn-bg);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-weight: 500;
+        }
+
+        .situation-example {
+            background: var(--example-item-bg);
+            border: 1px solid var(--input-border);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            color: var(--text-primary);
+        }
+
+        .context {
+            color: var(--correct-color);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .error-section.general-tips {
+             border-left-color: var(--correct-color);
+        }
+        .error-section.general-tips .error-title {
+             color: var(--correct-color);
+        }
+        .error-section.general-tips .rule-box {
+            background: var(--exercise-btn-active-bg);
+        }
+        /* --- Styles for Muhim Qoidalar Section (END) --- */
+
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header h1 { font-size: 2rem; }
+            .card h2 { font-size: 1.8rem; }
+            .structure-grid, .examples-grid { grid-template-columns: 1fr; }
+            .nav-tabs, .exercise-nav { flex-direction: column; gap: 5px; }
+            .tab-btn, .exercise-btn { width: 100%; text-align: center; }
+            .theme-switch { top: 10px; right: 10px; }
+        }
+
+        @media (max-width: 480px) {
+            .header { padding: 20px; }
+            .header h1 { font-size: 1.5rem; }
+            .card { padding: 15px; }
+            .structure-card { padding: 20px; }
+            .example-category { padding: 20px; }
+            .question { padding: 15px; }
+            .word { padding: 6px 12px; font-size: 14px; }
+            .diff-table { min-width: 400px; } /* Adjust for very small screens */
+        }
+
+        /* Animation Effects */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .check-btn:hover { animation: bounce 0.6s ease; }
+
+        /* Scroll Animations */
+        .card {
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideUp 0.6s ease forwards;
+        }
+
+        @keyframes slideUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(135deg, #764ba2, #667eea); }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Embedded Questions (Ko'chirma So'roq Gaplar) - Mukammal Qo'llanma</h1>
+            <p>So'roq gaplarni boshqa gaplar ichida to'g'ri ishlatish qoidalari</p>
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar">
+                    <span class="progress-text">0%</span>
+                </div>
+            </div>
+
+            <div class="theme-switch">
+                <i class="fas fa-sun icon sun"></i>
+                <input type="checkbox" id="themeToggle">
+                <label for="themeToggle"></label>
+                <i class="fas fa-moon icon moon"></i>
+            </div>
+        </div>
+
+        <nav class="nav-tabs">
+            <button class="tab-btn active" data-tab="rules">Qoidalar</button>
+            <button class="tab-btn" data-tab="diffs">Farqlar</button>
+            <button class="tab-btn" data-tab="structure">Strukturalar</button>
+            <button class="tab-btn" data-tab="examples">Misollar</button>
+            <button class="tab-btn" data-tab="exercises">Mashqlar</button>
+            <button class="tab-btn" data-tab="errors">Muhim Qoidalar va Xatolar</button>
+        </nav>
+
+        <div id="rules" class="tab-content active">
+             <div class="card">
+                <h2>Ko'chirma So'roq Gaplar Qoidalari</h2>
+                <div class="rule-section">
+                    <h3>Embedded Question nima?</h3>
+                    <p><strong>Embedded Question</strong> - bu boshqa bir darak yoki so'roq gapning ichiga joylashtirilgan so'roq gapdir. Ular gapni yanada xushmuomalali yoki murakkabroq qilish uchun ishlatiladi.</p>
+                    <ul>
+                        <li><strong>Oddiy so'roq:</strong> Where is the station? (Stansiya qayerda?)</li>
+                        <li><strong>Ko'chirma so'roq:</strong> Could you tell me <strong>where the station is</strong>? (Stansiya qayerdaligini ayta olasizmi?)</li>
+                    </ul>
+                </div>
+                <div class="rule-section">
+                    <h3>1-qoida: Darak gap tartibi (Statement Word Order)</h3>
+                    <p>Bu eng muhim qoida: ko'chirma so'roq gapning ichki qismi har doim <strong>darak gap tartibida (Ega + Kesim)</strong> bo'ladi, so'roq gap tartibida emas. Yordamchi fe'llar <code>do/does/did</code> ishlatilmaydi.</p>
+                     <div class="example">
+                        <p><strong>To'g'ri:</strong> I don't know <strong>where she lives</strong>. (Ega 'she' + Kesim 'lives')</p>
+                        <p><strong>Xato:</strong> <s>I don't know where does she live.</s></p>
+                    </div>
+                </div>
+                 <div class="rule-section">
+                    <h3>2-qoida: <code>if</code> va <code>whether</code> ishlatilishi</h3>
+                    <p>Agar ko'chirilayotgan so'roq gap "Ha/Yo'q" (Yes/No) turiga mansub bo'lsa (ya'ni, maxsus so'roq so'zi bilan boshlanmasa), ko'chirma so'roq gapda uni bog'lash uchun <strong><code>if</code></strong> yoki <strong><code>whether</code></strong> so'zlari ishlatiladi.</p>
+                    <div class="example">
+                        <p><strong>Oddiy so'roq:</strong> Is she coming? (U kelyaptimi?)</p>
+                        <p><strong>Ko'chirma so'roq:</strong> I wonder <strong>if she is coming</strong>. (U kelayotganmikan, qiziqyabman).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="diffs" class="tab-content">
+            <div class="card">
+                <h2>To'g'ridan-to'g'ri va Ko'chirma so'roq gaplar farqi</h2>
+                <div class="diff-section">
+                    <h3>1. So'z tartibi farqi (WH- savollarida)</h3>
+                    <p>Asosiy farq so'z tartibidadir. To'g'ridan-to'g'ri so'roqlarda yordamchi fe'l egadan oldin keladi, ko'chirma so'roqlarda esa egadan keyin keladi (darak gap kabi).</p>
+                     <ul>
+                        <li><strong>To'g'ridan-to'g'ri:</strong> So'roq so'zi + Yordamchi fe'l + Ega + Kesim? (<code>Why did he leave?</code>)</li>
+                        <li><strong>Ko'chirma:</strong> Boshlovchi ibora + So'roq so'zi + Ega + Kesim. (<code>I don't know why he left.</code>)</li>
+                    </ul>
+                    <div class="example-item">
+                        <p class="english">Direct: What time <strong>is it</strong>?</p>
+                        <p class="english">Embedded: Do you know what time <strong>it is</strong>?</p>
+                        <p class="uzbek">Farq: <strong>'is it'</strong> (so'roq tartibi) <strong>'it is'</strong> (darak tartibi) ga o'zgardi.</p>
+                    </div>
+                </div>
+
+                <div class="diff-section">
+                    <h3>2. "Ha/Yo'q" savollaridagi farq</h3>
+                    <p>To'g'ridan-to'g'ri "Ha/Yo'q" savollari yordamchi fe'l bilan boshlanadi. Ko'chirma so'roqlarda esa bu yordamchi fe'l o'rniga <code>if</code> yoki <code>whether</code> ishlatiladi va darak gap tartibiga o'tiladi.</p>
+                     <ul>
+                        <li><strong>To'g'ridan-to'g'ri:</strong> Yordamchi fe'l + Ega + Kesim? (<code>Does she speak Greek?</code>)</li>
+                        <li><strong>Ko'chirma:</strong> Boshlovchi ibora + if/whether + Ega + Kesim. (<code>I'd like to know if she speaks Greek.</code>)</li>
+                    </ul>
+                    <div class="example-item">
+                        <p class="english">Direct: <strong>Did</strong> you call your mom?</p>
+                        <p class="english">Embedded: He asked <strong>if</strong> you called your mom.</p>
+                        <p class="uzbek">Farq: <strong>'Did'</strong> yordamchi fe'li tushib qoldi va uning o'rniga <strong>'if'</strong> qo'shildi. Fe'l 'call' o'tgan zamonga ('called') o'zgardi.</p>
+                    </div>
+                </div>
+                 <div class="diff-section">
+                    <h3>3. Punktuatsiya (tinish belgilari) farqi</h3>
+                    <p>Gapning oxiridagi tinish belgisi to'g'ridan-to'g'ri so'roqqa emas, balki butun gapni boshlab kelgan asosiy qismga bog'liq bo'ladi.</p>
+                     <ul>
+                        <li>Agar asosiy gap <strong>darak</strong> bo'lsa, oxiriga <strong>nuqta (.)</strong> qo'yiladi.</li>
+                        <li>Agar asosiy gap <strong>so'roq</strong> bo'lsa, oxiriga <strong>so'roq belgisi (?)</strong> qo'yiladi.</li>
+                    </ul>
+                    <div class="example-item">
+                        <p class="english">I don't know where she is<strong>.</strong> (Bosh gap "I don't know" - darak gap).</p>
+                        <p class="english">Could you tell me where she is<strong>?</strong> (Bosh gap "Could you tell me" - so'roq gap).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="structure" class="tab-content">
+            <div class="card">
+                <h2>Ko'chirma So'roq Gap Tuzilmalari</h2>
+                <div class="structure-grid">
+                    <div class="structure-card">
+                        <h3>WH- so'zlar bilan</h3>
+                        <div class="formula"><span class="intro-phrase">Boshlovchi ibora</span> + <span class="wh-word">WH-so'z</span> + <span class="subject">Ega</span> + <span class="verb">Kesim</span>...</div>
+                        <div class="examples">
+                            <p class="english">I don't know <strong>where she lives</strong>.</p>
+                            <p class="uzbek">Men uning qayerda yashashini bilmayman.</p>
+                            <p class="english">Could you tell me <strong>how much it costs</strong>?</p>
+                            <p class="uzbek">Bu qancha turishini ayta olasizmi?</p>
+                        </div>
+                    </div>
+                    <div class="structure-card">
+                        <h3>If / Whether bilan</h3>
+                        <div class="formula"><span class="intro-phrase">Boshlovchi ibora</span> + <span class="wh-word">if/whether</span> + <span class="subject">Ega</span> + <span class="verb">Kesim</span>...</div>
+                        <div class="examples">
+                            <p class="english">He is asking <strong>if this seat is free</strong>.</p>
+                            <p class="uzbek">U bu o'rindiq bo'sh yoki yo'qligini so'rayapti.</p>
+                            <p class="english">I wonder <strong>whether they will get married</strong>.</p>
+                            <p class="uzbek">Ular turmush qurishadimi yoki yo'qmi, qiziqyabman.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="examples" class="tab-content">
+            <div class="card">
+                <h2>Misollar bilan tanishing</h2>
+                <div class="examples-grid">
+                    <div class="example-category">
+                        <h3>WH-savollar bilan</h3>
+                        <div class="example-item">
+                            <p class="english">I don't know <strong>how they got the idea</strong>.</p>
+                            <p class="uzbek">Ular bu g'oyani qanday olganini bilmayman.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">Could you tell me <strong>why you did it</strong>?</p>
+                            <p class="uzbek">Nima uchun bunday qilganingizni ayta olasizmi?</p>
+                        </div>
+                         <div class="example-item">
+                            <p class="english">He asked for the name of the person <strong>who had won the award</strong>.</p>
+                            <p class="uzbek">U mukofotni yutgan insonning ismini so'radi.</p>
+                        </div>
+                    </div>
+                    <div class="example-category">
+                        <h3>"Ha/Yo'q" savollari bilan (if/whether)</h3>
+                        <div class="example-item">
+                            <p class="english">I don't know <strong>if they have found a flat</strong>.</p>
+                            <p class="uzbek">Men ular kvartira topgan-topmaganini bilmayman.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">I wonder <strong>if/whether they will be all right</strong>.</p>
+                            <p class="uzbek">Men ularning hammalari joyida bo'lish-bo'lmasligiga qiziqaman.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">She wondered <strong>whether I had read the book</strong> that was recommended to us.</p>
+                            <p class="uzbek">U bizga maslahat berilgan kitobni o'qigan-o'qimaganimni bilishga qiziqdi.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<div id="exercises" class="tab-content">
+    <div class="card">
+      <h2>Mashqlar (Embedded Questions)</h2>
+                <nav class="exercise-nav">
+                    <button class="exercise-btn active" data-exercise="test">Test</button>
+                    <button class="exercise-btn" data-exercise="fill">Bo'sh joyni to'ldirish</button>
+                    <button class="exercise-btn" data-exercise="correction">Xatolarni Tuzatish</button>
+                    <button class="exercise-btn" data-exercise="order">So'zlarni Tartiblash</button>
+                    <button class="exercise-btn" data-exercise="transform">Gaplarni Birlashtirish</button>
+                </nav>
+
+                <div id="test" class="exercise-content active">
+                    <h3>To'g'ri variantni tanlang</h3>
+                    <div class="quiz-container">
+                        <div class="question" data-answer="b" data-explanation="Ko'chirma so'roq gapda darak gap tartibi (ega + kesim) ishlatiladi: 'he is', 'is he' emas."><p>1. Can you tell me where ___?</p><div class="options"><label><input type="radio" name="q1" value="a">a) is he</label><label><input type="radio" name="q1" value="b">b) he is</label><label><input type="radio" name="q1" value="c">c) he</label></div></div>
+                        <div class="question" data-answer="c" data-explanation="Ha/Yo'q savoli ko'chirilganda 'if' yoki 'whether' ishlatiladi."><p>2. I wonder ___ they will come.</p><div class="options"><label><input type="radio" name="q2" value="a">a) will</label><label><input type="radio" name="q2" value="b">b) that</label><label><input type="radio" name="q2" value="c">c) if</label></div></div>
+                        <div class="question" data-answer="a" data-explanation="'do/does/did' yordamchi fe'llari ko'chirma so'roq gapda tushib qoladi va asosiy fe'l zamonga moslanadi."><p>3. I don't know what ___.</p><div class="options"><label><input type="radio" name="q3" value="a">a) she wants</label><label><input type="radio" name="q3" value="b">b) does she want</label><label><input type="radio" name="q3" value="c">c) she want</label></div></div>
+                        <div class="question" data-answer="b" data-explanation="Darak gap tartibi: 'the time is', 'is the time' emas."><p>4. Could you tell me what ___?</p><div class="options"><label><input type="radio" name="q4" value="a">a) is the time</label><label><input type="radio" name="q4" value="b">b) the time is</label><label><input type="radio" name="q4" value="c">c) time is</label></div></div>
+                        <div class="question" data-answer="c" data-explanation="'Did' tushib qolib, fe'l o'tgan zamonga o'tadi: 'you enjoyed'."><p>5. He asked me if ___ the party.</p><div class="options"><label><input type="radio" name="q5" value="a">a) did you enjoy</label><label><input type="radio" name="q5" value="b">b) you enjoy</label><label><input type="radio" name="q5" value="c">c) you enjoyed</label></div></div>
+                        <div class="question" data-answer="a" data-explanation="Bosh gap ("I don't know") darak gap bo'lgani uchun oxiriga nuqta qo'yiladi."><p>6. I don't know where he went ___</p><div class="options"><label><input type="radio" name="q6" value="a">a) .</label><label><input type="radio" name="q6" value="b">b) ?</label><label><input type="radio" name="q6" value="c">c) !</label></div></div>
+                        <div class="question" data-answer="b" data-explanation="Bosh gap ("Do you know") so'roq gap bo'lgani uchun oxiriga so'roq belgisi qo'yiladi."><p>7. Do you know how much this costs ___</p><div class="options"><label><input type="radio" name="q7" value="a">a) .</label><label><input type="radio" name="q7" value="b">b) ?</label><label><input type="radio" name="q7" value="c">c) .?</label></div></div>
+                        <div class="question" data-answer="c" data-explanation="To'g'ri so'z tartibi: WH-word + Ega + Kesim."><p>8. Let's ask ___.</p><div class="options"><label><input type="radio" name="q8" value="a">a) when does the train leave</label><label><input type="radio" name="q8" value="b">b) when the train does leave</label><label><input type="radio" name="q8" value="c">c) when the train leaves</label></div></div>
+                        <div class="question" data-answer="a" data-explanation="To'g'ri so'z tartibi: if + Ega + Kesim."><p>9. I'm not sure ___.</p><div class="options"><label><input type="radio" name="q9" value="a">a) if he has a car</label><label><input type="radio" name="q9" value="b">b) if has he a car</label><label><input type="radio" name="q9" value="c">c) does he have a car</label></div></div>
+                        <div class="question" data-answer="b" data-explanation="Darak gap tartibi: 'whose socks those are'."><p>10. I don't know ___.</p><div class="options"><label><input type="radio" name="q10" value="a">a) whose socks are those</label><label><input type="radio" name="q10" value="b">b) whose socks those are</label><label><input type="radio" name="q10" value="c">c) whose are those socks</label></div></div>
+                    </div>
+                    <button class="check-btn" onclick="checkTest()">Tekshirish</button>
+                    <div id="testResult" class="result"></div>
+                </div>
+
+                <div id="fill" class="exercise-content">
+                    <h3>Bo'sh joyni `if`, `whether` yoki WH-so'z bilan to'ldiring.</h3>
+                    <div class="fill-exercise">
+                        <div class="fill-question"><p>1. I don't know ___ she is working.</p><input type="text" class="fill-input" data-answer="when|where" data-explanation="'Qachon' yoki 'qayerda' ma'nolarida keladi."></div>
+                        <div class="fill-question"><p>2. Do you know ___ he will pass the exam?</p><input type="text" class="fill-input" data-answer="if|whether" data-explanation="Ha/Yo'q savoli ko'chirilmoqda."></div>
+                        <div class="fill-question"><p>3. I can't remember ___ I put my keys.</p><input type="text" class="fill-input" data-answer="where" data-explanation="'Qayerga' degan ma'noda."></div>
+                        <div class="fill-question"><p>4. Could you tell me ___ the next train is?</p><input type="text" class="fill-input" data-answer="when|what time" data-explanation="'Qachon' ma'nosida."></div>
+                        <div class="fill-question"><p>5. He asked me ___ I was hungry.</p><input type="text" class="fill-input" data-answer="if|whether" data-explanation="Ha/Yo'q savoli ko'chirilmoqda."></div>
+                        <div class="fill-question"><p>6. We need to find out ___ this package came from.</p><input type="text" class="fill-input" data-answer="where" data-explanation="'Qayerdan' ma'nosida."></div>
+                        <div class="fill-question"><p>7. I wonder ___ they will get married.</p><input type="text" class="fill-input" data-answer="if|whether" data-explanation="Ha/Yo'q savoli ko'chirilmoqda."></div>
+                        <div class="fill-question"><p>8. She wants to know ___ you are.</p><input type="text" class="fill-input" data-answer="how" data-explanation="'Ahvolingiz qanday' ma'nosida."></div>
+                        <div class="fill-question"><p>9. Please tell me ___ I can find a good restaurant.</p><input type="text" class="fill-input" data-answer="where" data-explanation="'Qayerda' ma'nosida."></div>
+                        <div class="fill-question"><p>10. I'm not sure ___ she liked the gift.</p><input type="text" class="fill-input" data-answer="if|whether" data-explanation="Ha/Yo'q savoli ko'chirilmoqda."></div>
+                    </div>
+                    <button class="check-btn" onclick="checkFill()">Tekshirish</button>
+                    <div id="fillResult" class="result"></div>
+                </div>
+
+                <div id="correction" class="exercise-content">
+                    <h3>Xatolarni Tuzatish</h3>
+                    <div class="correct-exercise">
+                        <div class="correct-question"><p class="incorrect">1. I don't know where is the post office.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I don't know where the post office is." data-explanation="Ko'chirma so'roq gapda darak gap tartibi (ega + kesim) ishlatiladi: 'the post office is'."></div>
+                        <div class="correct-question"><p class="incorrect">2. Do you know what time does the film start?</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="Do you know what time the film starts?" data-explanation="'does' yordamchi fe'li tushib qoladi va asosiy fe'lga '-s' qo'shimchasi qo'shiladi."></div>
+                        <div class="correct-question"><p class="incorrect">3. I wonder does he like his new job.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I wonder if he likes his new job." data-explanation="Ha/Yo'q savoli uchun 'if' yoki 'whether' ishlatiladi va 'does' tushib qoladi."></div>
+                        <div class="correct-question"><p class="incorrect">4. She asked me where did I buy this hat.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="She asked me where I bought this hat." data-explanation="'did' yordamchi fe'li tushib qoladi va asosiy fe'l ('buy') o'tgan zamonga ('bought') o'zgaradi."></div>
+                        <div class="correct-question"><p class="incorrect">5. I can't remember what is his name.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I can't remember what his name is." data-explanation="Darak gap tartibi: 'his name is'."></div>
+                        <div class="correct-question"><p class="incorrect">6. He wants to know is the museum open.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="He wants to know if the museum is open." data-explanation="Ha/Yo'q savoli uchun 'if' yoki 'whether' kerak."></div>
+                        <div class="correct-question"><p class="incorrect">7. I'd like to know how much costs it.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I'd like to know how much it costs." data-explanation="Darak gap tartibi: ega ('it') + kesim ('costs')."></div>
+                        <div class="correct-question"><p class="incorrect">8. I was wondering could you help me.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I was wondering if you could help me." data-explanation="Ha/Yo'q savoli (Could you...?) 'if' yordamida ko'chiriladi."></div>
+                        <div class="correct-question"><p class="incorrect">9. Tell me why are you crying.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="Tell me why you are crying." data-explanation="Darak gap tartibi: 'you are crying'."></div>
+                        <div class="correct-question"><p class="incorrect">10. I am not sure that they are coming.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I am not sure if they are coming." data-explanation="'Ishonchim komil emas' degan ma'noda 'that' emas, 'if' yoki 'whether' ishlatiladi."></div>
+                    </div>
+                    <button class="check-btn" onclick="checkCorrection()">Tekshirish</button>
+                    <div id="correctionResult" class="result"></div>
+                </div>
+                
+                <div id="order" class="exercise-content">
+                    <h3>So'zlarni to'g'ri tartibda joylashtiring</h3>
+                    <div class="order-exercise">
+                        <div class="order-question"><p>1. (I / know / she / lives / don't / where)</p><div class="word-container"><div class="word">where</div><div class="word">don't</div><div class="word">lives</div><div class="word">she</div><div class="word">know</div><div class="word">I</div></div><div class="drop-zone" data-answer="I don't know where she lives"></div></div>
+                        <div class="order-question"><p>2. (tell me / you / is / what / time / could / it)</p><div class="word-container"><div class="word">what</div><div class="word">it</div><div class="word">could</div><div class="word">you</div><div class="word">time</div><div class="word">is</div><div class="word">tell me</div></div><div class="drop-zone" data-answer="could you tell me what time it is"></div></div>
+                        <div class="order-question"><p>3. (if / I / coming / wonder / he / is)</p><div class="word-container"><div class="word">is</div><div class="word">he</div><div class="word">coming</div><div class="word">I</div><div class="word">if</div><div class="word">wonder</div></div><div class="drop-zone" data-answer="I wonder if he is coming"></div></div>
+                        <div class="order-question"><p>4. (she / where / went / know / I / don't)</p><div class="word-container"><div class="word">I</div><div class="word">don't</div><div class="word">know</div><div class="word">went</div><div class="word">where</div><div class="word">she</div></div><div class="drop-zone" data-answer="I don't know where she went"></div></div>
+                        <div class="order-question"><p>5. (he / if / has / a car / I / don't / know / owns)</p><div class="word-container"><div class="word">if</div><div class="word">I</div><div class="word">don't</div><div class="word">know</div><div class="word">he</div><div class="word">owns</div><div class="word">a car</div><div class="word">has</div></div><div class="drop-zone" data-answer="I don't know if he owns a car"></div></div>
+                        <div class="order-question"><p>6. (asked / for / the person / of / he / the name / who won)</p><div class="word-container"><div class="word">the name</div><div class="word">of</div><div class="word">who won</div><div class="word">the person</div><div class="word">he</div><div class="word">asked</div><div class="word">for</div></div><div class="drop-zone" data-answer="he asked for the name of the person who won"></div></div>
+                        <div class="order-question"><p>7. (how / you / know / old / she / do / is)</p><div class="word-container"><div class="word">do</div><div class="word">you</div><div class="word">is</div><div class="word">she</div><div class="word">old</div><div class="word">know</div><div class="word">how</div></div><div class="drop-zone" data-answer="do you know how old she is"></div></div>
+                        <div class="order-question"><p>8. (the boss / if / coming / I / don't / know / is / back)</p><div class="word-container"><div class="word">is</div><div class="word">I</div><div class="word">if</div><div class="word">the boss</div><div class="word">back</div><div class="word">know</div><div class="word">coming</div><div class="word">don't</div></div><div class="drop-zone" data-answer="I don't know if the boss is coming back"></div></div>
+                        <div class="order-question"><p>9. (remember / you / do / where / it / was)</p><div class="word-container"><div class="word">it</div><div class="word">do</div><div class="word">remember</div><div class="word">you</div><div class="word">was</div><div class="word">where</div></div><div class="drop-zone" data-answer="do you remember where it was"></div></div>
+                        <div class="order-question"><p>10. (asked / she / if / me / I / could / help / her)</p><div class="word-container"><div class="word">I</div><div class="word">me</div><div class="word">her</div><div class="word">if</div><div class="word">she</div><div class="word">could</div><div class="word">help</div><div class="word">asked</div></div><div class="drop-zone" data-answer="she asked me if I could help her"></div></div>
+                    </div>
+                    <button class="check-btn" onclick="checkOrder()">Tekshirish</button>
+                    <button class="check-btn" onclick="resetOrder()">Qayta tiklash</button>
+                    <div id="orderResult" class="result"></div>
+                </div>
+
+                <div id="transform" class="exercise-content">
+                    <h3>Gaplarni birlashtiring (Embedded Question yasang)</h3>
+                    <div class="transform-exercise">
+                        <div class="transform-question"><p>1. I don't know. What does she want? &rarr; I don't know ______.</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="what she wants" data-explanation="'does' tushib qoladi va 'want' ga '-s' qo'shiladi."></div></div>
+                        <div class="transform-question"><p>2. Could you tell me? Where is the bank? &rarr; Could you tell me ______?</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="where the bank is" data-explanation="So'z tartibi 'the bank is' ga o'zgaradi."></div></div>
+                        <div class="transform-question"><p>3. I wonder. Will they come to the party? &rarr; I wonder ______.</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="if they will come to the party" data-explanation="Ha/Yo'q savoli bo'lgani uchun 'if' ishlatiladi."></div></div>
+                        <div class="transform-question"><p>4. He asked me. "Did you finish your homework?" &rarr; He asked me ______.</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="if I had finished my homework" data-explanation="'if' qo'shiladi va zamonlar moslashuvi (Past Simple -> Past Perfect) sodir bo'ladi."></div></div>
+                        <div class="transform-question"><p>5. I can't remember. Where did I park the car? &rarr; I can't remember ______.</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="where I parked the car" data-explanation="'did' tushib qoladi va 'park' o'tgan zamonga o'tadi."></div></div>
+                        <div class="transform-question"><p>6. Do you know? Is he married? &rarr; Do you know ______?</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="if he is married" data-explanation="Ha/Yo'q savoli 'if' orqali ko'chiriladi."></div></div>
+                        <div class="transform-question"><p>7. Please find out. What time does the show start? &rarr; Please find out ______.</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="what time the show starts" data-explanation="'does' tushib qoladi va 'start' ga '-s' qo'shiladi."></div></div>
+                        <div class="transform-question"><p>8. She wants to know. "Can I use your phone?" &rarr; She wants to know ______.</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="if she can use my phone" data-explanation="'if' qo'shiladi va olmoshlar moslashadi."></div></div>
+                        <div class="transform-question"><p>9. I'm not sure. Has Amanda got a new job? &rarr; I'm not sure ______.</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="if Amanda has got a new job" data-explanation="Ha/Yo'q savoli 'if' yordamida ko'chiriladi."></div></div>
+                        <div class="transform-question"><p>10. Why did she leave? It's a mystery. &rarr; ______ is a mystery.</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="Why she left" data-explanation="Ko'chirma so'roq gapning o'zi gapning egasi bo'lib kelmoqda."></div></div>
+                    </div>
+                    <button class="check-btn" onclick="checkTransform()">Tekshirish</button>
+                    <div id="transformResult" class="result"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="errors" class="tab-content">
+             <div class="card">
+                <h2>Muhim Qoidalar va Xatolar (Embedded Questions)</h2>
+                
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 1: So'roq gap tartibini ishlatish</div>
+                    <div class="wrong-example">I don't know <strong>where is the station</strong>.</div>
+                    <div class="correct-example">I don't know <strong>where the station is</strong>.</div>
+                    <div class="explanation"><p><strong>Eng asosiy qoida:</strong> Ko'chirma so'roq gap har doim darak gap tartibida (Ega + Kesim) bo'ladi.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 2: `do/does/did` yordamchi fe'llarini ishlatish</div>
+                    <div class="wrong-example">Could you tell me what time <strong>does the train leave</strong>?</div>
+                    <div class="correct-example">Could you tell me what time <strong>the train leaves</strong>?</div>
+                    <div class="explanation"><p><strong>Qoida:</strong> `do/does/did` yordamchi fe'llari ko'chirma so'roq gaplarda ishlatilmaydi. Ular tushib qoladi va asosiy fe'l zamonga moslanadi (masalan, `-s` qo'shiladi yoki o'tgan zamonga o'tadi).</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 3: "Ha/Yo'q" savollarida `if/whether`ni unutish</div>
+                    <div class="wrong-example">I want to know <strong>are you coming</strong>.</div>
+                    <div class="correct-example">I want to know <strong>if you are coming</strong>.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> Agar asl savol "Ha" yoki "Yo'q" deb javob berishni talab qilsa, ko'chirma so'roq gapda `if` yoki `whether` ishlatilishi shart.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 4: Noto'g'ri tinish belgisi</div>
+                    <div class="wrong-example">I wonder where he is<strong>?</strong></div>
+                    <div class="correct-example">I wonder where he is<strong>.</strong></div>
+                     <div class="explanation"><p><strong>Qoida:</strong> Gapning oxiridagi tinish belgisi asosiy (bosh) gapga bog'liq. Agar bosh gap darak bo'lsa (I wonder...), oxiriga nuqta qo'yiladi.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 5: Zamonlar moslashuvini unutish</div>
+                    <div class="wrong-example">He asked me where I <strong>live</strong>. (Agar "Where do you live?" deb so'ragan bo'lsa)</div>
+                    <div class="correct-example">He asked me where I <strong>lived</strong>.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> Agar asosiy gapning fe'li (masalan, 'asked') o'tgan zamonda bo'lsa, ko'chirma so'roq gapning zamoni ham o'tgan zamonga moslashishi kerak (Present &rarr; Past).</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 6: `that` va `if` ni aralashtirish</div>
+                    <div class="wrong-example">I don't know <strong>that if</strong> he will come.</div>
+                    <div class="correct-example">I don't know <strong>if</strong> he will come.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> Ko'chirma so'roq gaplarni bog'lash uchun 'that' ishlatilmaydi. 'that' faqat ko'chirma darak gaplar uchun ishlatilishi mumkin.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 7: `to be` fe'lini noto'g'ri joylashtirish</div>
+                    <div class="wrong-example">Can you tell me how old <strong>is she</strong>?</div>
+                    <div class="correct-example">Can you tell me how old <strong>she is</strong>?</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> 'to be' fe'li (is, are, was, were) har doim egadan keyin keladi.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 8: So'roq so'zini unutish</div>
+                    <div class="wrong-example">He asked me I wanted a drink.</div>
+                    <div class="correct-example">He asked me <strong>if</strong> I wanted a drink.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> Barcha ko'chirma so'roq gaplar WH-so'zi yoki 'if'/'whether' bilan boshlanishi kerak.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 9: `whether` dan keyin `or not` ni noto'g'ri ishlatish</div>
+                    <div class="wrong-example">I don't know <strong>whether or not he is</strong> coming. (Bu to'g'ri, lekin ...)</div>
+                    <div class="correct-example">I don't know <strong>whether he is coming or not</strong>.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> `or not` iborasi `whether` dan keyin darhol yoki gapning oxirida kelishi mumkin. `if` bilan esa faqat gap oxirida keladi: "I don't know <strong>if</strong> he is coming <strong>or not</strong>."</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 10: `why` bilan `to + infinitive` ishlatish</div>
+                    <div class="wrong-example">I don't know <strong>why to do</strong>.</div>
+                    <div class="correct-example">I don't know <strong>what to do</strong>.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> `what`, `where`, `how`, `when` kabi so'roq so'zlaridan keyin `to+infinitive` ishlatish mumkin. Lekin `why` dan keyin bu struktura ishlatilmaydi. Uning o'rniga "why I should do it" kabi to'liq gap ishlatiladi.</p></div>
+                </div>
+                
+             </div>
+        </div>
+        
+    </div>
+
+    <script>
+        // Progress tracking
+        let completedSections = 0;
+        const totalSections = 6; // Qoidalar, Farqlar, Strukturalar, Misollar, Mashqlar, Xatolar
+
+        // Tab functionality
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetTab = btn.dataset.tab;
+                
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                btn.classList.add('active');
+                document.getElementById(targetTab).classList.add('active');
+                
+                updateProgress();
+            });
+        });
+
+        // Exercise navigation
+        document.querySelectorAll('.exercise-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetExercise = btn.dataset.exercise;
+                
+                document.querySelectorAll('.exercise-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.exercise-content').forEach(c => c.classList.remove('active'));
+                
+                btn.classList.add('active');
+                document.getElementById(targetExercise).classList.add('active');
+
+                if (targetExercise === 'order') {
+                    resetOrder();
+                }
+            });
+        });
+
+        function normalizeAnswer(answer) {
+            if (typeof answer !== 'string') return '';
+            return answer.toLowerCase().trim()
+                .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")
+                .replace(/\s+/g, ' ');
+        }
+
+        function checkAnswerMatch(userAnswer, correctAnswer) {
+            const normalizedUser = normalizeAnswer(userAnswer);
+            const correctAnswers = correctAnswer.split('|').map(ans => normalizeAnswer(ans));
+            return correctAnswers.includes(normalizedUser);
+        }
+
+        function checkTest() {
+            const questions = document.querySelectorAll('#test .question');
+            let score = 0;
+            let resultHTML = '';
+            questions.forEach((question, index) => {
+                const qNum = index + 1;
+                const correctAnswer = question.dataset.answer;
+                const explanation = question.dataset.explanation;
+                const selected = document.querySelector(`input[name="q${qNum}"]:checked`);
+
+                if (selected && selected.value === correctAnswer) {
+                    score++;
+                    resultHTML += `<div class="correct-answer">✓ ${qNum}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    resultHTML += `<div class="wrong-answer">✗ ${qNum}-savol: Noto'g'ri. <div class="explanation">${explanation}</div></div>`;
+                }
+            });
+            resultHTML += `<div class="final-score"><strong>Natija: ${score}/${questions.length} (${Math.round((score/questions.length)*100)}%)</strong></div>`;
+            document.getElementById('testResult').innerHTML = resultHTML;
+        }
+
+        function checkFill() {
+            const inputs = document.querySelectorAll('#fill .fill-input');
+            let correct = 0;
+            let resultHTML = '';
+            inputs.forEach((input, index) => {
+                const answer = input.dataset.answer;
+                const explanation = input.dataset.explanation;
+                if (checkAnswerMatch(input.value, answer)) {
+                    input.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                    resultHTML += `<div class="correct-answer">✓ ${index + 1}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    input.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savol: Noto'g'ri. To'g'ri javob: <strong>${answer.split('|')[0]}</strong> <div class="explanation">${explanation}</div></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${inputs.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('fillResult').innerHTML = resultHTML;
+        }
+
+        function checkCorrection() {
+            const inputs = document.querySelectorAll('#correction .correct-input');
+            let correct = 0;
+            let resultHTML = '';
+            inputs.forEach((input, index) => {
+                const answer = input.dataset.answer;
+                 const explanation = input.dataset.explanation;
+                if (checkAnswerMatch(input.value, answer)) {
+                    input.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                     resultHTML += `<div class="correct-answer">✓ ${index + 1}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    input.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savol: Noto'g'ri. To'g'ri javob: <strong>${answer.split('|')[0]}</strong> <div class="explanation">${explanation}</div></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${inputs.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('correctionResult').innerHTML = resultHTML;
+        }
+
+        function checkOrder() {
+            const dropZones = document.querySelectorAll('#order .drop-zone');
+            let correct = 0;
+            let resultHTML = '';
+            dropZones.forEach((zone, index) => {
+                const answer = zone.dataset.answer;
+                const userAnswer = Array.from(zone.children).map(child => child.textContent).join(' ');
+                if (checkAnswerMatch(userAnswer, answer)) {
+                    zone.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                } else {
+                    zone.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savolning to'g'ri javobi: <strong>${answer.split('|')[0]}</strong></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${dropZones.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('orderResult').innerHTML = resultHTML;
+        }
+
+        function checkTransform() {
+            const inputs = document.querySelectorAll('#transform .transform-input');
+            let correct = 0;
+            let resultHTML = '';
+            inputs.forEach((input, index) => {
+                const answer = input.dataset.answer;
+                const explanation = input.dataset.explanation;
+                if (checkAnswerMatch(input.value, answer)) {
+                    input.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                     resultHTML += `<div class="correct-answer">✓ ${index + 1}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    input.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savol: Noto'g'ri. To'g'ri javob: <strong>${answer.split('|')[0]}</strong> <div class="explanation">${explanation}</div></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${inputs.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('transformResult').innerHTML = resultHTML;
+        }
+
+        // Click-based word order functionality
+        function handleWordClick(event) {
+            const word = event.target;
+            if (word.classList.contains('word')) {
+                const currentContainer = word.parentElement;
+                let targetContainer;
+
+                if (currentContainer.classList.contains('word-container')) {
+                    targetContainer = currentContainer.nextElementSibling;
+                } else if (currentContainer.classList.contains('drop-zone')) {
+                    targetContainer = currentContainer.previousElementSibling;
+                }
+
+                if (targetContainer) {
+                    targetContainer.appendChild(word);
+                }
+            }
+        }
+        document.getElementById('order').addEventListener('click', handleWordClick);
+
+        // So'zlarni aralashtirish funksiyasi
+        function shuffleChildren(parent) {
+            let children = Array.from(parent.children);
+            for (let i = children.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [children[i], children[j]] = [children[j], children[i]];
+            }
+            children.forEach(child => parent.appendChild(child));
+        }
+
+        // So'zlarni tartiblash mashqini qayta tiklash
+        function resetOrder() {
+            document.querySelectorAll('#order .order-question').forEach(question => {
+                const wordContainer = question.querySelector('.word-container');
+                const dropZone = question.querySelector('.drop-zone');
+                
+                // Barcha so'zlarni wordContainer ga qaytarish
+                Array.from(dropZone.children).forEach(child => wordContainer.appendChild(child));
+                
+                // So'zlarni aralashtirish
+                shuffleChildren(wordContainer);
+
+                dropZone.style.border = '2px dashed var(--drop-zone-border)';
+            });
+            document.getElementById('orderResult').innerHTML = '';
+        }
+
+        // Progressni yangilash
+        function updateProgress() {
+            const tabStates = { 'rules': 1, 'diffs': 2, 'structure': 3, 'examples': 4, 'exercises': 5, 'errors': 6 };
+            const activeTab = document.querySelector('.tab-btn.active').dataset.tab;
+            completedSections = tabStates[activeTab] || 0;
+            const percentage = (completedSections / totalSections) * 100;
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = percentage + '%';
+            progressBar.querySelector('.progress-text').textContent = Math.round(percentage) + '%';
+        }
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            themeToggle.checked = true;
+        }
+        themeToggle.addEventListener('change', () => {
+            if (themeToggle.checked) {
+                body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Sahifa yuklanganda
+        document.addEventListener('DOMContentLoaded', () => {
+            updateProgress();
+            resetOrder(); // So'zlarni birinchi yuklashda aralashtirish
+        });
+    </script>
+</body>
+</html>
