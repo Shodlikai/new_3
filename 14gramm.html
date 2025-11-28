@@ -9,9 +9,9 @@
         :root {
             --bg-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --text-primary: #333;
-            --header-bg: rgba(255, 255, 255, 0.1);
+            --header-bg: rgba(255, 255, 255, 0.15); /* Blur o'rniga sal shaffofroq */
             --header-text: white;
-            --card-bg: rgba(255, 255, 255, 0.95);
+            --card-bg: rgba(255, 255, 255, 0.98); /* 0.95 dan 0.98 ga oshirildi (kamroq yuklama) */
             --card-border: rgba(255, 255, 255, 0.2);
             --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
             --h2-text-gradient: linear-gradient(135deg, #667eea, #764ba2);
@@ -52,7 +52,7 @@
         .dark-mode {
             --bg-primary: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
             --text-primary: #ecf0f1;
-            --header-bg: rgba(0, 0, 0, 0.2);
+            --header-bg: rgba(0, 0, 0, 0.3);
             --header-text: #ecf0f1;
             --card-bg: #3b506b;
             --card-border: rgba(255, 255, 255, 0.1);
@@ -98,7 +98,9 @@
             min-height: 100vh;
             color: var(--text-primary);
             line-height: 1.6;
-            transition: background 0.5s ease, color 0.5s ease;
+            margin: 0;
+            /* Performance Fix: Transition only background/color, removed 'all' */
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
         .container {
@@ -112,12 +114,14 @@
             text-align: center;
             margin-bottom: 40px;
             background: var(--header-bg);
-            backdrop-filter: blur(10px);
+            /* Performance Fix: Backdrop filter kamaytirildi yoki olib tashlandi */
+            backdrop-filter: blur(5px); 
+            -webkit-backdrop-filter: blur(5px);
             padding: 30px;
             border-radius: 20px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             border: 1px solid var(--card-border);
-            position: relative; /* For theme toggle positioning */
+            position: relative;
         }
 
         .header h1 {
@@ -140,7 +144,6 @@
             border-radius: 25px;
             padding: 5px;
             margin-bottom: 30px;
-            backdrop-filter: blur(5px);
         }
 
         .progress-bar {
@@ -204,13 +207,13 @@
         }
 
         .theme-switch input:checked + label {
-            background: #82b1ff; /* Dark mode toggle background */
+            background: #82b1ff;
         }
 
         .theme-switch input:checked + label:after {
             left: calc(100% - 3px);
             transform: translateX(-100%);
-            background: #f1c40f; /* Sun color */
+            background: #f1c40f;
         }
 
         .theme-switch .icon {
@@ -232,7 +235,7 @@
             justify-content: center;
             margin-bottom: 30px;
             background: var(--header-bg);
-            backdrop-filter: blur(10px);
+            /* Performance Fix: Removed heavy blur */
             border-radius: 15px;
             padding: 10px;
             gap: 10px;
@@ -246,7 +249,7 @@
             border-radius: 10px;
             color: var(--header-text);
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: background 0.3s, transform 0.2s;
             font-size: 16px;
             font-weight: 500;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
@@ -267,7 +270,7 @@
         /* Tab Content */
         .tab-content {
             display: none;
-            animation: fadeIn 0.5s ease-in-out;
+            animation: fadeIn 0.4s ease-in-out;
         }
 
         .tab-content.active {
@@ -275,7 +278,7 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -285,8 +288,8 @@
             border-radius: 20px;
             padding: 30px;
             box-shadow: var(--card-shadow);
-            backdrop-filter: blur(10px);
             border: 1px solid var(--card-border);
+            will-change: opacity, transform; /* Optimization hint */
         }
 
         .card h2 {
@@ -337,14 +340,14 @@
             color: var(--code-color);
         }
 
-        .diff-table-container { /* Added for responsive table */
+        .diff-table-container {
             overflow-x: auto;
-            -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
+            -webkit-overflow-scrolling: touch;
         }
 
         .diff-table {
-            width: 100%; /* Ensure table takes full width of its container */
-            min-width: 600px; /* Minimum width to prevent excessive squishing on small screens */
+            width: 100%;
+            min-width: 600px;
             border-collapse: collapse;
             margin-top: 15px;
         }
@@ -352,15 +355,13 @@
             border: 1px solid #dee2e6;
             padding: 12px;
             text-align: left;
-            color: var(--text-primary); /* Ensure text color changes with theme */
+            color: var(--text-primary);
         }
         .diff-table th {
             background-color: var(--table-th-bg);
             color: var(--table-th-color);
         }
         .diff-table td { background-color: var(--table-td-bg); }
-        .ok { color: var(--correct-color); font-weight: bold; }
-        .not-ok { color: var(--wrong-color); font-weight: bold; }
 
 
         .structure-grid {
@@ -395,7 +396,7 @@
         }
 
         .noun, .pronoun, .verb, .subject, .object, .adjective, .adverb, .clause, .infinitive, .gerund, .v3, .intro-phrase, .wh-word {
-            padding: 5px 10px; border-radius: 5px; margin: 0 5px; color: white;
+            padding: 5px 10px; border-radius: 5px; margin: 0 5px; color: white; display: inline-block;
         }
         .noun { background: #fd79a8; }
         .pronoun { background: #0984e3; }
@@ -415,13 +416,12 @@
         .examples { background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 10px; margin-top: 15px; }
         .examples p { margin-bottom: 8px; font-size: 1rem; color: var(--text-primary); }
         .examples p.english { font-weight: bold; }
-        /* Added for Uzbek translations in Structure section */
         .structure-card .examples .uzbek {
             color: var(--uzbek-text);
             font-style: italic;
-            padding-left: 10px; /* Adjusted for smaller indentation */
-            border-left: 3px solid #764ba2; /* Slightly different border color */
-            margin-top: 5px; /* Small margin between English and Uzbek */
+            padding-left: 10px;
+            border-left: 3px solid #764ba2;
+            margin-top: 5px;
         }
 
 
@@ -453,7 +453,7 @@
         }
         .exercise-btn {
             background: var(--exercise-btn-bg); color: white; border: none;
-            padding: 12px 20px; border-radius: 10px; cursor: pointer; transition: all 0.3s ease;
+            padding: 12px 20px; border-radius: 10px; cursor: pointer; transition: background 0.3s, transform 0.2s;
             font-size: 14px; font-weight: 500; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
         .exercise-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); }
@@ -487,8 +487,9 @@
 
         .fill-input, .combine-input, .correct-input, .transform-input {
             width: 100%; background: var(--input-bg); border: 2px solid var(--input-border);
-            border-radius: 8px; padding: 12px; font-size: 1rem; transition: all 0.3s ease;
+            border-radius: 8px; padding: 12px; font-size: 1rem; transition: border 0.3s ease;
             color: var(--text-primary);
+            box-sizing: border-box; /* Input sig'ishi uchun */
         }
         .fill-input:focus, .combine-input:focus, .correct-input:focus, .transform-input:focus {
             outline: none; border-color: var(--rule-section-border-left); box-shadow: 0 0 0 3px var(--input-focus-shadow);
@@ -497,11 +498,10 @@
         .check-btn {
             background: var(--exercise-btn-active-bg); color: white; border: none;
             padding: 15px 30px; border-radius: 10px; cursor: pointer; font-size: 1.1rem;
-            font-weight: 500; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            font-weight: 500; transition: transform 0.2s; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             display: block; margin: 10px auto;
         }
         .check-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); }
-
         .check-btn:active { transform: translateY(0); }
 
         .result {
@@ -513,7 +513,6 @@
         .wrong-answer { color: var(--wrong-color); margin: 5px 0; }
         .final-score { margin-top: 10px; padding: 10px; background: var(--input-bg); border-radius: 5px; color: var(--text-primary); }
 
-        /* Yangi stil: Izohlar uchun */
         .explanation {
             background: var(--input-bg);
             border-left: 4px solid var(--rule-section-border-left);
@@ -534,7 +533,7 @@
             padding: 15px;
             background: var(--input-bg);
             border-radius: 10px;
-            min-height: 60px; /* Ensure visibility even if empty */
+            min-height: 60px;
         }
 
         .word {
@@ -543,10 +542,11 @@
             padding: 8px 16px;
             border-radius: 8px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: transform 0.2s ease;
             font-weight: 500;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            display: inline-block; /* Ensure display is correct */
+            display: inline-block;
+            user-select: none;
         }
 
         .word:hover {
@@ -564,7 +564,7 @@
             flex-wrap: wrap;
             align-content: flex-start;
             gap: 10px;
-            transition: all 0.3s ease;
+            transition: border-color 0.3s ease;
             color: var(--text-primary);
         }
 
@@ -585,7 +585,7 @@
             margin-bottom: 20px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             border-left: 5px solid var(--structure-card-border);
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease;
         }
 
         .transform-question:hover {
@@ -620,10 +620,11 @@
             color: var(--uzbek-text);
             font-size: 1.1rem;
             transition: color 0.3s ease;
+            z-index: 1; /* Input ustida turishi uchun */
         }
 
         .transform-input {
-            padding-left: 45px; /* Make space for the icon */
+            padding-left: 45px;
             background-image: linear-gradient(to right, var(--input-bg), var(--card-bg));
             font-weight: 500;
         }
@@ -635,9 +636,8 @@
         .transform-input-wrapper:hover .fa-pen-to-square {
             color: var(--rule-section-border-left);
         }
-        /* --- Styles for Sentence Transformation Exercise (END) --- */
         
-        /* --- Styles for Muhim Qoidalar Section (START) --- */
+        /* --- Styles for Muhim Qoidalar Section (FIXED) --- */
         .error-section {
             background: var(--rule-section-bg);
             border-radius: 15px;
@@ -656,12 +656,13 @@
             gap: 10px;
         }
 
+        /* FIX: Elementlar ustiga chiqib qolishini oldini olish uchun margin kattalashtirildi */
         .wrong-example {
             background: rgba(220, 53, 69, 0.1);
             border: 2px solid var(--wrong-color);
             border-radius: 8px;
             padding: 15px;
-            margin: 20px 0 10px 0;
+            margin: 30px 0 10px 0; /* Yuqoridan joy ochildi */
             position: relative;
             color: var(--text-primary);
         }
@@ -669,7 +670,7 @@
         .wrong-example::before {
             content: "❌ NOTO'G'RI";
             position: absolute;
-            top: -12px;
+            top: -14px;
             left: 15px;
             background: var(--wrong-color);
             color: white;
@@ -677,6 +678,7 @@
             border-radius: 15px;
             font-size: 0.8rem;
             font-weight: bold;
+            z-index: 10;
         }
 
         .correct-example {
@@ -684,7 +686,7 @@
             border: 2px solid var(--correct-color);
             border-radius: 8px;
             padding: 15px;
-            margin: 20px 0 10px 0;
+            margin: 30px 0 10px 0; /* Yuqoridan joy ochildi */
             position: relative;
             color: var(--text-primary);
         }
@@ -692,7 +694,7 @@
         .correct-example::before {
             content: "✅ TO'G'RI";
             position: absolute;
-            top: -12px;
+            top: -14px;
             left: 15px;
             background: var(--correct-color);
             color: white;
@@ -700,6 +702,7 @@
             border-radius: 15px;
             font-size: 0.8rem;
             font-weight: bold;
+            z-index: 10;
         }
 
         .explanation .explanation-title {
@@ -765,7 +768,7 @@
             .example-category { padding: 20px; }
             .question { padding: 15px; }
             .word { padding: 6px 12px; font-size: 14px; }
-            .diff-table { min-width: 400px; } /* Adjust for very small screens */
+            .diff-table { min-width: 400px; }
         }
 
         /* Animation Effects */
@@ -780,7 +783,7 @@
         /* Scroll Animations */
         .card {
             opacity: 0;
-            transform: translateY(50px);
+            transform: translateY(20px); /* 50px dan kamaytirildi, qotmasligi uchun */
             animation: slideUp 0.6s ease forwards;
         }
 
@@ -997,16 +1000,16 @@
                 <div id="fill" class="exercise-content">
                     <h3>Bo'sh joyni `if`, `whether` yoki WH-so'z bilan to'ldiring.</h3>
                     <div class="fill-exercise">
-                        <div class="fill-question"><p>1. I don't know ___ she is working.</p><input type="text" class="fill-input" data-answer="when|where" data-explanation="'Qachon' yoki 'qayerda' ma'nolarida keladi."></div>
-                        <div class="fill-question"><p>2. Do you know ___ he will pass the exam?</p><input type="text" class="fill-input" data-answer="if|whether" data-explanation="Ha/Yo'q savoli ko'chirilmoqda."></div>
-                        <div class="fill-question"><p>3. I can't remember ___ I put my keys.</p><input type="text" class="fill-input" data-answer="where" data-explanation="'Qayerga' degan ma'noda."></div>
-                        <div class="fill-question"><p>4. Could you tell me ___ the next train is?</p><input type="text" class="fill-input" data-answer="when|what time" data-explanation="'Qachon' ma'nosida."></div>
-                        <div class="fill-question"><p>5. He asked me ___ I was hungry.</p><input type="text" class="fill-input" data-answer="if|whether" data-explanation="Ha/Yo'q savoli ko'chirilmoqda."></div>
-                        <div class="fill-question"><p>6. We need to find out ___ this package came from.</p><input type="text" class="fill-input" data-answer="where" data-explanation="'Qayerdan' ma'nosida."></div>
-                        <div class="fill-question"><p>7. I wonder ___ they will get married.</p><input type="text" class="fill-input" data-answer="if|whether" data-explanation="Ha/Yo'q savoli ko'chirilmoqda."></div>
-                        <div class="fill-question"><p>8. She wants to know ___ you are.</p><input type="text" class="fill-input" data-answer="how" data-explanation="'Ahvolingiz qanday' ma'nosida."></div>
-                        <div class="fill-question"><p>9. Please tell me ___ I can find a good restaurant.</p><input type="text" class="fill-input" data-answer="where" data-explanation="'Qayerda' ma'nosida."></div>
-                        <div class="fill-question"><p>10. I'm not sure ___ she liked the gift.</p><input type="text" class="fill-input" data-answer="if|whether" data-explanation="Ha/Yo'q savoli ko'chirilmoqda."></div>
+                        <div class="fill-question"><p>1. I don't know ___ she is working.</p><input type="text" class="fill-input" data-answer="when|where" data-explanation="'Qachon' yoki 'qayerda' ma'nolarida keladi." autocomplete="off"></div>
+                        <div class="fill-question"><p>2. Do you know ___ he will pass the exam?</p><input type="text" class="fill-input" data-answer="if|whether" data-explanation="Ha/Yo'q savoli ko'chirilmoqda." autocomplete="off"></div>
+                        <div class="fill-question"><p>3. I can't remember ___ I put my keys.</p><input type="text" class="fill-input" data-answer="where" data-explanation="'Qayerga' degan ma'noda." autocomplete="off"></div>
+                        <div class="fill-question"><p>4. Could you tell me ___ the next train is?</p><input type="text" class="fill-input" data-answer="when|what time" data-explanation="'Qachon' ma'nosida." autocomplete="off"></div>
+                        <div class="fill-question"><p>5. He asked me ___ I was hungry.</p><input type="text" class="fill-input" data-answer="if|whether" data-explanation="Ha/Yo'q savoli ko'chirilmoqda." autocomplete="off"></div>
+                        <div class="fill-question"><p>6. We need to find out ___ this package came from.</p><input type="text" class="fill-input" data-answer="where" data-explanation="'Qayerdan' ma'nosida." autocomplete="off"></div>
+                        <div class="fill-question"><p>7. I wonder ___ they will get married.</p><input type="text" class="fill-input" data-answer="if|whether" data-explanation="Ha/Yo'q savoli ko'chirilmoqda." autocomplete="off"></div>
+                        <div class="fill-question"><p>8. She wants to know ___ you are.</p><input type="text" class="fill-input" data-answer="how" data-explanation="'Ahvolingiz qanday' ma'nosida." autocomplete="off"></div>
+                        <div class="fill-question"><p>9. Please tell me ___ I can find a good restaurant.</p><input type="text" class="fill-input" data-answer="where" data-explanation="'Qayerda' ma'nosida." autocomplete="off"></div>
+                        <div class="fill-question"><p>10. I'm not sure ___ she liked the gift.</p><input type="text" class="fill-input" data-answer="if|whether" data-explanation="Ha/Yo'q savoli ko'chirilmoqda." autocomplete="off"></div>
                     </div>
                     <button class="check-btn" onclick="checkFill()">Tekshirish</button>
                     <div id="fillResult" class="result"></div>
@@ -1015,16 +1018,16 @@
                 <div id="correction" class="exercise-content">
                     <h3>Xatolarni Tuzatish</h3>
                     <div class="correct-exercise">
-                        <div class="correct-question"><p class="incorrect">1. I don't know where is the post office.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I don't know where the post office is." data-explanation="Ko'chirma so'roq gapda darak gap tartibi (ega + kesim) ishlatiladi: 'the post office is'."></div>
-                        <div class="correct-question"><p class="incorrect">2. Do you know what time does the film start?</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="Do you know what time the film starts?" data-explanation="'does' yordamchi fe'li tushib qoladi va asosiy fe'lga '-s' qo'shimchasi qo'shiladi."></div>
-                        <div class="correct-question"><p class="incorrect">3. I wonder does he like his new job.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I wonder if he likes his new job." data-explanation="Ha/Yo'q savoli uchun 'if' yoki 'whether' ishlatiladi va 'does' tushib qoladi."></div>
-                        <div class="correct-question"><p class="incorrect">4. She asked me where did I buy this hat.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="She asked me where I bought this hat." data-explanation="'did' yordamchi fe'li tushib qoladi va asosiy fe'l ('buy') o'tgan zamonga ('bought') o'zgaradi."></div>
-                        <div class="correct-question"><p class="incorrect">5. I can't remember what is his name.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I can't remember what his name is." data-explanation="Darak gap tartibi: 'his name is'."></div>
-                        <div class="correct-question"><p class="incorrect">6. He wants to know is the museum open.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="He wants to know if the museum is open." data-explanation="Ha/Yo'q savoli uchun 'if' yoki 'whether' kerak."></div>
-                        <div class="correct-question"><p class="incorrect">7. I'd like to know how much costs it.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I'd like to know how much it costs." data-explanation="Darak gap tartibi: ega ('it') + kesim ('costs')."></div>
-                        <div class="correct-question"><p class="incorrect">8. I was wondering could you help me.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I was wondering if you could help me." data-explanation="Ha/Yo'q savoli (Could you...?) 'if' yordamida ko'chiriladi."></div>
-                        <div class="correct-question"><p class="incorrect">9. Tell me why are you crying.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="Tell me why you are crying." data-explanation="Darak gap tartibi: 'you are crying'."></div>
-                        <div class="correct-question"><p class="incorrect">10. I am not sure that they are coming.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I am not sure if they are coming." data-explanation="'Ishonchim komil emas' degan ma'noda 'that' emas, 'if' yoki 'whether' ishlatiladi."></div>
+                        <div class="correct-question"><p class="incorrect">1. I don't know where is the post office.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I don't know where the post office is." data-explanation="Ko'chirma so'roq gapda darak gap tartibi (ega + kesim) ishlatiladi: 'the post office is'." autocomplete="off"></div>
+                        <div class="correct-question"><p class="incorrect">2. Do you know what time does the film start?</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="Do you know what time the film starts?" data-explanation="'does' yordamchi fe'li tushib qoladi va asosiy fe'lga '-s' qo'shimchasi qo'shiladi." autocomplete="off"></div>
+                        <div class="correct-question"><p class="incorrect">3. I wonder does he like his new job.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I wonder if he likes his new job." data-explanation="Ha/Yo'q savoli uchun 'if' yoki 'whether' ishlatiladi va 'does' tushib qoladi." autocomplete="off"></div>
+                        <div class="correct-question"><p class="incorrect">4. She asked me where did I buy this hat.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="She asked me where I bought this hat." data-explanation="'did' yordamchi fe'li tushib qoladi va asosiy fe'l ('buy') o'tgan zamonga ('bought') o'zgaradi." autocomplete="off"></div>
+                        <div class="correct-question"><p class="incorrect">5. I can't remember what is his name.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I can't remember what his name is." data-explanation="Darak gap tartibi: 'his name is'." autocomplete="off"></div>
+                        <div class="correct-question"><p class="incorrect">6. He wants to know is the museum open.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="He wants to know if the museum is open." data-explanation="Ha/Yo'q savoli uchun 'if' yoki 'whether' kerak." autocomplete="off"></div>
+                        <div class="correct-question"><p class="incorrect">7. I'd like to know how much costs it.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I'd like to know how much it costs." data-explanation="Darak gap tartibi: ega ('it') + kesim ('costs')." autocomplete="off"></div>
+                        <div class="correct-question"><p class="incorrect">8. I was wondering could you help me.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I was wondering if you could help me." data-explanation="Ha/Yo'q savoli (Could you...?) 'if' yordamida ko'chiriladi." autocomplete="off"></div>
+                        <div class="correct-question"><p class="incorrect">9. Tell me why are you crying.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="Tell me why you are crying." data-explanation="Darak gap tartibi: 'you are crying'." autocomplete="off"></div>
+                        <div class="correct-question"><p class="incorrect">10. I am not sure that they are coming.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I am not sure if they are coming." data-explanation="'Ishonchim komil emas' degan ma'noda 'that' emas, 'if' yoki 'whether' ishlatiladi." autocomplete="off"></div>
                     </div>
                     <button class="check-btn" onclick="checkCorrection()">Tekshirish</button>
                     <div id="correctionResult" class="result"></div>
@@ -1052,16 +1055,16 @@
                 <div id="transform" class="exercise-content">
                     <h3>Gaplarni birlashtiring (Embedded Question yasang)</h3>
                     <div class="transform-exercise">
-                        <div class="transform-question"><p>1. I don't know. What does she want? &rarr; I don't know ______.</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="what she wants" data-explanation="'does' tushib qoladi va 'want' ga '-s' qo'shiladi."></div></div>
-                        <div class="transform-question"><p>2. Could you tell me? Where is the bank? &rarr; Could you tell me ______?</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="where the bank is" data-explanation="So'z tartibi 'the bank is' ga o'zgaradi."></div></div>
-                        <div class="transform-question"><p>3. I wonder. Will they come to the party? &rarr; I wonder ______.</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="if they will come to the party" data-explanation="Ha/Yo'q savoli bo'lgani uchun 'if' ishlatiladi."></div></div>
-                        <div class="transform-question"><p>4. He asked me. "Did you finish your homework?" &rarr; He asked me ______.</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="if I had finished my homework" data-explanation="'if' qo'shiladi va zamonlar moslashuvi (Past Simple -> Past Perfect) sodir bo'ladi."></div></div>
-                        <div class="transform-question"><p>5. I can't remember. Where did I park the car? &rarr; I can't remember ______.</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="where I parked the car" data-explanation="'did' tushib qoladi va 'park' o'tgan zamonga o'tadi."></div></div>
-                        <div class="transform-question"><p>6. Do you know? Is he married? &rarr; Do you know ______?</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="if he is married" data-explanation="Ha/Yo'q savoli 'if' orqali ko'chiriladi."></div></div>
-                        <div class="transform-question"><p>7. Please find out. What time does the show start? &rarr; Please find out ______.</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="what time the show starts" data-explanation="'does' tushib qoladi va 'start' ga '-s' qo'shiladi."></div></div>
-                        <div class="transform-question"><p>8. She wants to know. "Can I use your phone?" &rarr; She wants to know ______.</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="if she can use my phone" data-explanation="'if' qo'shiladi va olmoshlar moslashadi."></div></div>
-                        <div class="transform-question"><p>9. I'm not sure. Has Amanda got a new job? &rarr; I'm not sure ______.</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="if Amanda has got a new job" data-explanation="Ha/Yo'q savoli 'if' yordamida ko'chiriladi."></div></div>
-                        <div class="transform-question"><p>10. Why did she leave? It's a mystery. &rarr; ______ is a mystery.</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="Why she left" data-explanation="Ko'chirma so'roq gapning o'zi gapning egasi bo'lib kelmoqda."></div></div>
+                        <div class="transform-question"><p>1. I don't know. What does she want? &rarr; I don't know ______.</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="what she wants" data-explanation="'does' tushib qoladi va 'want' ga '-s' qo'shiladi." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>2. Could you tell me? Where is the bank? &rarr; Could you tell me ______?</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="where the bank is" data-explanation="So'z tartibi 'the bank is' ga o'zgaradi." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>3. I wonder. Will they come to the party? &rarr; I wonder ______.</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="if they will come to the party" data-explanation="Ha/Yo'q savoli bo'lgani uchun 'if' ishlatiladi." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>4. He asked me. "Did you finish your homework?" &rarr; He asked me ______.</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="if I had finished my homework" data-explanation="'if' qo'shiladi va zamonlar moslashuvi (Past Simple -> Past Perfect) sodir bo'ladi." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>5. I can't remember. Where did I park the car? &rarr; I can't remember ______.</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="where I parked the car" data-explanation="'did' tushib qoladi va 'park' o'tgan zamonga o'tadi." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>6. Do you know? Is he married? &rarr; Do you know ______?</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="if he is married" data-explanation="Ha/Yo'q savoli 'if' orqali ko'chiriladi." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>7. Please find out. What time does the show start? &rarr; Please find out ______.</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="what time the show starts" data-explanation="'does' tushib qoladi va 'start' ga '-s' qo'shiladi." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>8. She wants to know. "Can I use your phone?" &rarr; She wants to know ______.</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="if she can use my phone" data-explanation="'if' qo'shiladi va olmoshlar moslashadi." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>9. I'm not sure. Has Amanda got a new job? &rarr; I'm not sure ______.</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="if Amanda has got a new job" data-explanation="Ha/Yo'q savoli 'if' yordamida ko'chiriladi." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>10. Why did she leave? It's a mystery. &rarr; ______ is a mystery.</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="Why she left" data-explanation="Ko'chirma so'roq gapning o'zi gapning egasi bo'lib kelmoqda." autocomplete="off"></div></div>
                     </div>
                     <button class="check-btn" onclick="checkTransform()">Tekshirish</button>
                     <div id="transformResult" class="result"></div>
@@ -1202,11 +1205,14 @@
             const questions = document.querySelectorAll('#test .question');
             let score = 0;
             let resultHTML = '';
+            
             questions.forEach((question, index) => {
                 const qNum = index + 1;
                 const correctAnswer = question.dataset.answer;
                 const explanation = question.dataset.explanation;
-                const selected = document.querySelector(`input[name="q${qNum}"]:checked`);
+                
+                // FIX: Scoped selector instead of global ID lookup
+                const selected = question.querySelector('input[type="radio"]:checked');
 
                 if (selected && selected.value === correctAnswer) {
                     score++;
@@ -1274,7 +1280,8 @@
                     resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savolning to'g'ri javobi: <strong>${answer.split('|')[0]}</strong></div>`;
                 }
             });
-            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${dropZones.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            // FIX: inputs reference error fixed -> dropZones.length
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${dropZones.length} (${Math.round((correct/dropZones.length)*100)}%)</strong></div>` + resultHTML;
             document.getElementById('orderResult').innerHTML = resultHTML;
         }
 
