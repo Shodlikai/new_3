@@ -9,9 +9,9 @@
         :root {
             --bg-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --text-primary: #333;
-            --header-bg: rgba(255, 255, 255, 0.1);
+            --header-bg: rgba(255, 255, 255, 0.15);
             --header-text: white;
-            --card-bg: rgba(255, 255, 255, 0.95);
+            --card-bg: rgba(255, 255, 255, 0.98); /* Sal xiraroq (qotmasligi uchun) */
             --card-border: rgba(255, 255, 255, 0.2);
             --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
             --h2-text-gradient: linear-gradient(135deg, #667eea, #764ba2);
@@ -52,7 +52,7 @@
         .dark-mode {
             --bg-primary: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
             --text-primary: #ecf0f1;
-            --header-bg: rgba(0, 0, 0, 0.2);
+            --header-bg: rgba(0, 0, 0, 0.3);
             --header-text: #ecf0f1;
             --card-bg: #3b506b;
             --card-border: rgba(255, 255, 255, 0.1);
@@ -98,7 +98,9 @@
             min-height: 100vh;
             color: var(--text-primary);
             line-height: 1.6;
-            transition: background 0.5s ease, color 0.5s ease;
+            margin: 0;
+            /* Performance Optimization: Removed 'all' transition */
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
         .container {
@@ -112,12 +114,14 @@
             text-align: center;
             margin-bottom: 40px;
             background: var(--header-bg);
-            backdrop-filter: blur(10px);
+            /* Performance: Reduced blur */
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
             padding: 30px;
             border-radius: 20px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             border: 1px solid var(--card-border);
-            position: relative; /* For theme toggle positioning */
+            position: relative; 
         }
 
         .header h1 {
@@ -140,7 +144,6 @@
             border-radius: 25px;
             padding: 5px;
             margin-bottom: 30px;
-            backdrop-filter: blur(5px);
         }
 
         .progress-bar {
@@ -204,13 +207,13 @@
         }
 
         .theme-switch input:checked + label {
-            background: #82b1ff; /* Dark mode toggle background */
+            background: #82b1ff;
         }
 
         .theme-switch input:checked + label:after {
             left: calc(100% - 3px);
             transform: translateX(-100%);
-            background: #f1c40f; /* Sun color */
+            background: #f1c40f; 
         }
 
         .theme-switch .icon {
@@ -232,7 +235,7 @@
             justify-content: center;
             margin-bottom: 30px;
             background: var(--header-bg);
-            backdrop-filter: blur(10px);
+            /* Performance: Removed blur */
             border-radius: 15px;
             padding: 10px;
             gap: 10px;
@@ -246,7 +249,7 @@
             border-radius: 10px;
             color: var(--header-text);
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: background 0.3s, transform 0.2s;
             font-size: 16px;
             font-weight: 500;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
@@ -267,7 +270,7 @@
         /* Tab Content */
         .tab-content {
             display: none;
-            animation: fadeIn 0.5s ease-in-out;
+            animation: fadeIn 0.4s ease-in-out;
         }
 
         .tab-content.active {
@@ -275,7 +278,7 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -285,8 +288,8 @@
             border-radius: 20px;
             padding: 30px;
             box-shadow: var(--card-shadow);
-            backdrop-filter: blur(10px);
             border: 1px solid var(--card-border);
+            will-change: opacity, transform;
         }
 
         .card h2 {
@@ -337,14 +340,14 @@
             color: var(--code-color);
         }
 
-        .diff-table-container { /* Added for responsive table */
+        .diff-table-container { 
             overflow-x: auto;
-            -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
+            -webkit-overflow-scrolling: touch;
         }
 
         .diff-table {
-            width: 100%; /* Ensure table takes full width of its container */
-            min-width: 600px; /* Minimum width to prevent excessive squishing on small screens */
+            width: 100%; 
+            min-width: 600px;
             border-collapse: collapse;
             margin-top: 15px;
         }
@@ -352,7 +355,7 @@
             border: 1px solid #dee2e6;
             padding: 12px;
             text-align: left;
-            color: var(--text-primary); /* Ensure text color changes with theme */
+            color: var(--text-primary);
         }
         .diff-table th {
             background-color: var(--table-th-bg);
@@ -395,7 +398,7 @@
         }
 
         .noun, .pronoun, .verb, .subject, .object, .adjective, .adverb, .clause, .infinitive, .gerund, .v3, .intro-phrase, .wh-word, .if-clause, .main-clause {
-            padding: 5px 10px; border-radius: 5px; margin: 0 5px; color: white;
+            padding: 5px 10px; border-radius: 5px; margin: 0 5px; color: white; display: inline-block;
         }
         .noun { background: #fd79a8; }
         .pronoun { background: #0984e3; }
@@ -417,13 +420,12 @@
         .examples { background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 10px; margin-top: 15px; }
         .examples p { margin-bottom: 8px; font-size: 1rem; color: var(--text-primary); }
         .examples p.english { font-weight: bold; }
-        /* Added for Uzbek translations in Structure section */
         .structure-card .examples .uzbek {
             color: var(--uzbek-text);
             font-style: italic;
-            padding-left: 10px; /* Adjusted for smaller indentation */
-            border-left: 3px solid #764ba2; /* Slightly different border color */
-            margin-top: 5px; /* Small margin between English and Uzbek */
+            padding-left: 10px; 
+            border-left: 3px solid #764ba2; 
+            margin-top: 5px; 
         }
 
 
@@ -455,7 +457,7 @@
         }
         .exercise-btn {
             background: var(--exercise-btn-bg); color: white; border: none;
-            padding: 12px 20px; border-radius: 10px; cursor: pointer; transition: all 0.3s ease;
+            padding: 12px 20px; border-radius: 10px; cursor: pointer; transition: background 0.3s, transform 0.2s;
             font-size: 14px; font-weight: 500; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
         .exercise-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); }
@@ -489,8 +491,9 @@
 
         .fill-input, .combine-input, .correct-input, .transform-input {
             width: 100%; background: var(--input-bg); border: 2px solid var(--input-border);
-            border-radius: 8px; padding: 12px; font-size: 1rem; transition: all 0.3s ease;
+            border-radius: 8px; padding: 12px; font-size: 1rem; transition: border-color 0.3s ease;
             color: var(--text-primary);
+            box-sizing: border-box;
         }
         .fill-input:focus, .combine-input:focus, .correct-input:focus, .transform-input:focus {
             outline: none; border-color: var(--rule-section-border-left); box-shadow: 0 0 0 3px var(--input-focus-shadow);
@@ -499,7 +502,7 @@
         .check-btn {
             background: var(--exercise-btn-active-bg); color: white; border: none;
             padding: 15px 30px; border-radius: 10px; cursor: pointer; font-size: 1.1rem;
-            font-weight: 500; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            font-weight: 500; transition: transform 0.2s; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             display: block; margin: 10px auto;
         }
         .check-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); }
@@ -545,10 +548,11 @@
             padding: 8px 16px;
             border-radius: 8px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: transform 0.2s ease;
             font-weight: 500;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             display: inline-block; /* Ensure display is correct */
+            user-select: none;
         }
 
         .word:hover {
@@ -566,7 +570,7 @@
             flex-wrap: wrap;
             align-content: flex-start;
             gap: 10px;
-            transition: all 0.3s ease;
+            transition: border-color 0.3s ease;
             color: var(--text-primary);
         }
 
@@ -587,7 +591,7 @@
             margin-bottom: 20px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             border-left: 5px solid var(--structure-card-border);
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease;
         }
 
         .transform-question:hover {
@@ -622,6 +626,7 @@
             color: var(--uzbek-text);
             font-size: 1.1rem;
             transition: color 0.3s ease;
+            z-index: 1;
         }
 
         .transform-input {
@@ -639,7 +644,7 @@
         }
         /* --- Styles for Sentence Transformation Exercise (END) --- */
         
-        /* --- Styles for Muhim Qoidalar Section (START) --- */
+        /* --- Styles for Muhim Qoidalar Section (FIXED) --- */
         .error-section {
             background: var(--rule-section-bg);
             border-radius: 15px;
@@ -663,7 +668,7 @@
             border: 2px solid var(--wrong-color);
             border-radius: 8px;
             padding: 15px;
-            margin: 20px 0 10px 0;
+            margin: 30px 0 10px 0; /* Margin yuqoridan oshirildi */
             position: relative;
             color: var(--text-primary);
         }
@@ -671,7 +676,7 @@
         .wrong-example::before {
             content: "❌ NOTO'G'RI";
             position: absolute;
-            top: -12px;
+            top: -14px;
             left: 15px;
             background: var(--wrong-color);
             color: white;
@@ -679,6 +684,7 @@
             border-radius: 15px;
             font-size: 0.8rem;
             font-weight: bold;
+            z-index: 10;
         }
 
         .correct-example {
@@ -686,7 +692,7 @@
             border: 2px solid var(--correct-color);
             border-radius: 8px;
             padding: 15px;
-            margin: 20px 0 10px 0;
+            margin: 30px 0 10px 0; /* Margin yuqoridan oshirildi */
             position: relative;
             color: var(--text-primary);
         }
@@ -694,7 +700,7 @@
         .correct-example::before {
             content: "✅ TO'G'RI";
             position: absolute;
-            top: -12px;
+            top: -14px;
             left: 15px;
             background: var(--correct-color);
             color: white;
@@ -702,6 +708,7 @@
             border-radius: 15px;
             font-size: 0.8rem;
             font-weight: bold;
+            z-index: 10;
         }
 
         .explanation .explanation-title {
@@ -767,7 +774,7 @@
             .example-category { padding: 20px; }
             .question { padding: 15px; }
             .word { padding: 6px 12px; font-size: 14px; }
-            .diff-table { min-width: 400px; } /* Adjust for very small screens */
+            .diff-table { min-width: 400px; } 
         }
 
         /* Animation Effects */
@@ -782,7 +789,7 @@
         /* Scroll Animations */
         .card {
             opacity: 0;
-            transform: translateY(50px);
+            transform: translateY(20px);
             animation: slideUp 0.6s ease forwards;
         }
 
@@ -983,16 +990,16 @@
                 <div id="fill" class="exercise-content">
                     <h3>Bo'sh joyni fe'lning to'g'ri shakli bilan to'ldiring.</h3>
                     <div class="fill-exercise">
-                        <div class="fill-question"><p>1. If I were you, I ___ that car. (not/buy)</p><input type="text" class="fill-input" data-answer="would not buy|wouldn't buy" data-explanation="Type 2: maslahat."></div>
-                        <div class="fill-question"><p>2. She would have helped if you ___. (ask)</p><input type="text" class="fill-input" data-answer="had asked" data-explanation="Type 3: o'tmishdagi afsus."></div>
-                        <div class="fill-question"><p>3. If I ___ a lot of money, I would travel the world. (have)</p><input type="text" class="fill-input" data-answer="had" data-explanation="Type 2: hozirgi xayolot."></div>
-                        <div class="fill-question"><p>4. If he ___ so tired, he would have gone to the party. (not/be)</p><input type="text" class="fill-input" data-answer="hadn't been" data-explanation="Type 3: o'tmishdagi shart."></div>
-                        <div class="fill-question"><p>5. What would you do if you ___ the president for a day? (be)</p><input type="text" class="fill-input" data-answer="were" data-explanation="Type 2: xayoliy savol."></div>
-                        <div class="fill-question"><p>6. They ___ the match if they had played better. (win)</p><input type="text" class="fill-input" data-answer="would have won" data-explanation="Type 3: o'tmishdagi natija."></div>
-                        <div class="fill-question"><p>7. If I ___ his number, I would call him. (know)</p><input type="text" class="fill-input" data-answer="knew" data-explanation="Type 2: hozirgi xayolot."></div>
-                        <div class="fill-question"><p>8. The accident wouldn't have happened if you ___ more careful. (be)</p><input type="text" class="fill-input" data-answer="had been" data-explanation="Type 3: o'tmishdagi shart."></div>
-                        <div class="fill-question"><p>9. If I ___ you, I would apologize. (be)</p><input type="text" class="fill-input" data-answer="were" data-explanation="Type 2: maslahat."></div>
-                        <div class="fill-question"><p>10. If it ___ yesterday, we would have gone to the beach. (not/rain)</p><input type="text" class="fill-input" data-answer="hadn't rained" data-explanation="Type 3: o'tmishdagi afsus."></div>
+                        <div class="fill-question"><p>1. If I were you, I ___ that car. (not/buy)</p><input type="text" class="fill-input" data-answer="would not buy|wouldn't buy" data-explanation="Type 2: maslahat." autocomplete="off"></div>
+                        <div class="fill-question"><p>2. She would have helped if you ___. (ask)</p><input type="text" class="fill-input" data-answer="had asked" data-explanation="Type 3: o'tmishdagi afsus." autocomplete="off"></div>
+                        <div class="fill-question"><p>3. If I ___ a lot of money, I would travel the world. (have)</p><input type="text" class="fill-input" data-answer="had" data-explanation="Type 2: hozirgi xayolot." autocomplete="off"></div>
+                        <div class="fill-question"><p>4. If he ___ so tired, he would have gone to the party. (not/be)</p><input type="text" class="fill-input" data-answer="hadn't been" data-explanation="Type 3: o'tmishdagi shart." autocomplete="off"></div>
+                        <div class="fill-question"><p>5. What would you do if you ___ the president for a day? (be)</p><input type="text" class="fill-input" data-answer="were" data-explanation="Type 2: xayoliy savol." autocomplete="off"></div>
+                        <div class="fill-question"><p>6. They ___ the match if they had played better. (win)</p><input type="text" class="fill-input" data-answer="would have won" data-explanation="Type 3: o'tmishdagi natija." autocomplete="off"></div>
+                        <div class="fill-question"><p>7. If I ___ his number, I would call him. (know)</p><input type="text" class="fill-input" data-answer="knew" data-explanation="Type 2: hozirgi xayolot." autocomplete="off"></div>
+                        <div class="fill-question"><p>8. The accident wouldn't have happened if you ___ more careful. (be)</p><input type="text" class="fill-input" data-answer="had been" data-explanation="Type 3: o'tmishdagi shart." autocomplete="off"></div>
+                        <div class="fill-question"><p>9. If I ___ you, I would apologize. (be)</p><input type="text" class="fill-input" data-answer="were" data-explanation="Type 2: maslahat." autocomplete="off"></div>
+                        <div class="fill-question"><p>10. If it ___ yesterday, we would have gone to the beach. (not/rain)</p><input type="text" class="fill-input" data-answer="hadn't rained" data-explanation="Type 3: o'tmishdagi afsus." autocomplete="off"></div>
                     </div>
                     <button class="check-btn" onclick="checkFill()">Tekshirish</button>
                     <div id="fillResult" class="result"></div>
@@ -1001,16 +1008,16 @@
                 <div id="correction" class="exercise-content">
                     <h3>Xatolarni Tuzatish</h3>
                     <div class="correct-exercise">
-                        <div class="correct-question"><p class="incorrect">1. If I would have money, I would buy a house.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="If I had money, I would buy a house." data-explanation="'If' qismida 'would' ishlatilmaydi. Type 2 da Past Simple kerak."></div>
-                        <div class="correct-question"><p class="incorrect">2. If she had studied, she would pass.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="If she had studied, she would have passed." data-explanation="Bu Type 3. Tense'lar aralashib ketgan. Bosh gapda 'would have + V3' bo'lishi kerak."></div>
-                        <div class="correct-question"><p class="incorrect">3. If I was you, I would tell the truth.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="If I were you, I would tell the truth." data-explanation="Type 2 da maslahat berish uchun 'If I were you...' qolipi ishlatiladi."></div>
-                        <div class="correct-question"><p class="incorrect">4. If he came earlier, we would have met him.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="If he had come earlier, we would have met him." data-explanation="Bu Type 3. 'If' qismida Past Simple emas, Past Perfect ('had come') ishlatiladi."></div>
-                        <div class="correct-question"><p class="incorrect">5. If I had known, I would tell you.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="If I had known, I would have told you." data-explanation="Type 3 da bosh gap 'would have + V3' bo'ladi."></div>
-                        <div class="correct-question"><p class="incorrect">6. I would be happy if I meet my favorite actor.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I would be happy if I met my favorite actor." data-explanation="Type 2 da 'if' qismida Past Simple ('met') ishlatiladi."></div>
-                        <div class="correct-question"><p class="incorrect">7. If you would have asked me, I would have helped.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="If you had asked me, I would have helped." data-explanation="'If' qismida 'would have' ishlatilmaydi. Past Perfect kerak."></div>
-                        <div class="correct-question"><p class="incorrect">8. What would you have do if you had won?</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="What would you have done if you had won?" data-explanation="Type 3 da asosiy fe'l V3 shaklida ('done') bo'lishi kerak."></div>
-                        <div class="correct-question"><p class="incorrect">9. If I am rich, I would travel a lot.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="If I were rich, I would travel a lot." data-explanation="Bu Type 2 (xayolot). 'If' qismida 'to be' fe'lining Past Simple shakli ('were') ishlatiladi."></div>
-                        <div class="correct-question"><p class="incorrect">10. We would of gone if you had called.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="We would have gone if you had called." data-explanation="Og'zaki nutqdagi 'would've' noto'g'ri eshitilib 'would of' deb yoziladi. To'g'ri shakli 'would have'."></div>
+                        <div class="correct-question"><p class="incorrect">1. If I would have money, I would buy a house.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="If I had money, I would buy a house." data-explanation="'If' qismida 'would' ishlatilmaydi. Type 2 da Past Simple kerak." autocomplete="off"></div>
+                        <div class="correct-question"><p class="incorrect">2. If she had studied, she would pass.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="If she had studied, she would have passed." data-explanation="Bu Type 3. Tense'lar aralashib ketgan. Bosh gapda 'would have + V3' bo'lishi kerak." autocomplete="off"></div>
+                        <div class="correct-question"><p class="incorrect">3. If I was you, I would tell the truth.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="If I were you, I would tell the truth." data-explanation="Type 2 da maslahat berish uchun 'If I were you...' qolipi ishlatiladi." autocomplete="off"></div>
+                        <div class="correct-question"><p class="incorrect">4. If he came earlier, we would have met him.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="If he had come earlier, we would have met him." data-explanation="Bu Type 3. 'If' qismida Past Simple emas, Past Perfect ('had come') ishlatiladi." autocomplete="off"></div>
+                        <div class="correct-question"><p class="incorrect">5. If I had known, I would tell you.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="If I had known, I would have told you." data-explanation="Type 3 da bosh gap 'would have + V3' bo'ladi." autocomplete="off"></div>
+                        <div class="correct-question"><p class="incorrect">6. I would be happy if I meet my favorite actor.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I would be happy if I met my favorite actor." data-explanation="Type 2 da 'if' qismida Past Simple ('met') ishlatiladi." autocomplete="off"></div>
+                        <div class="correct-question"><p class="incorrect">7. If you would have asked me, I would have helped.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="If you had asked me, I would have helped." data-explanation="'If' qismida 'would have' ishlatilmaydi. Past Perfect kerak." autocomplete="off"></div>
+                        <div class="correct-question"><p class="incorrect">8. What would you have do if you had won?</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="What would you have done if you had won?" data-explanation="Type 3 da asosiy fe'l V3 shaklida ('done') bo'lishi kerak." autocomplete="off"></div>
+                        <div class="correct-question"><p class="incorrect">9. If I am rich, I would travel a lot.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="If I were rich, I would travel a lot." data-explanation="Bu Type 2 (xayolot). 'If' qismida 'to be' fe'lining Past Simple shakli ('were') ishlatiladi." autocomplete="off"></div>
+                        <div class="correct-question"><p class="incorrect">10. We would of gone if you had called.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="We would have gone if you had called." data-explanation="Og'zaki nutqdagi 'would've' noto'g'ri eshitilib 'would of' deb yoziladi. To'g'ri shakli 'would have'." autocomplete="off"></div>
                     </div>
                     <button class="check-btn" onclick="checkCorrection()">Tekshirish</button>
                     <div id="correctionResult" class="result"></div>
@@ -1038,16 +1045,16 @@
                 <div id="transform" class="exercise-content">
                     <h3>Vaziyatga mos shart gap tuzing</h3>
                     <div class="transform-exercise">
-                        <div class="transform-question"><p>1. I don't have money, so I can't buy that car. &rarr; (Use: <b>Type 2</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Shart gap tuzing..." data-answer="If I had money, I would buy that car.|If I had money, I could buy that car." data-explanation="Hozirgi noreal vaziyat uchun Type 2."></div></div>
-                        <div class="transform-question"><p>2. I didn't study for the test, so I failed. &rarr; (Use: <b>Type 3</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Shart gap tuzing..." data-answer="If I had studied for the test, I wouldn't have failed.|If I had studied for the test, I would have passed." data-explanation="O'tmishdagi afsus uchun Type 3."></div></div>
-                        <div class="transform-question"><p>3. I am not you, so I can't give advice. &rarr; (Use: <b>Type 2</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Shart gap tuzing..." data-answer="If I were you, I would give advice." data-explanation="Maslahat berish uchun Type 2 ('If I were you...')."></div></div>
-                        <div class="transform-question"><p>4. It rained yesterday, so we didn't go to the park. &rarr; (Use: <b>Type 3</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Shart gap tuzing..." data-answer="If it hadn't rained yesterday, we would have gone to the park." data-explanation="O'tmishdagi amalga oshmagan harakat uchun Type 3."></div></div>
-                        <div class="transform-question"><p>5. He doesn't know the answer, so he can't help you. &rarr; (Use: <b>Type 2</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Shart gap tuzing..." data-answer="If he knew the answer, he could help you." data-explanation="Hozirgi noreal vaziyat uchun Type 2."></div></div>
-                        <div class="transform-question"><p>6. She missed the flight because she was late. &rarr; (Use: <b>Type 3</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Shart gap tuzing..." data-answer="She wouldn't have missed the flight if she hadn't been late." data-explanation="O'tmishdagi afsus uchun Type 3."></div></div>
-                        <div class="transform-question"><p>7. I don't have wings, so I can't fly. &rarr; (Use: <b>Type 2</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Shart gap tuzing..." data-answer="If I had wings, I would fly." data-explanation="Hozirgi imkonsiz vaziyat uchun Type 2."></div></div>
-                        <div class="transform-question"><p>8. He didn't have a map, so he got lost. &rarr; (Use: <b>Type 3</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Shart gap tuzing..." data-answer="If he had had a map, he wouldn't have got lost." data-explanation="O'tmishdagi afsus uchun Type 3. 'have' fe'lining Past Perfect shakli 'had had'."></div></div>
-                        <div class="transform-question"><p>9. The weather is bad, so we can't go for a picnic. &rarr; (Use: <b>Type 2</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Shart gap tuzing..." data-answer="If the weather were good, we could go for a picnic." data-explanation="Hozirgi xayoliy vaziyat uchun Type 2."></div></div>
-                        <div class="transform-question"><p>10. I didn't see you, so I didn't say hello. &rarr; (Use: <b>Type 3</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Shart gap tuzing..." data-answer="If I had seen you, I would have said hello." data-explanation="O'tmishdagi afsus uchun Type 3."></div></div>
+                        <div class="transform-question"><p>1. I don't have money, so I can't buy that car. &rarr; (Use: <b>Type 2</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Shart gap tuzing..." data-answer="If I had money, I would buy that car.|If I had money, I could buy that car." data-explanation="Hozirgi noreal vaziyat uchun Type 2." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>2. I didn't study for the test, so I failed. &rarr; (Use: <b>Type 3</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Shart gap tuzing..." data-answer="If I had studied for the test, I wouldn't have failed.|If I had studied for the test, I would have passed." data-explanation="O'tmishdagi afsus uchun Type 3." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>3. I am not you, so I can't give advice. &rarr; (Use: <b>Type 2</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Shart gap tuzing..." data-answer="If I were you, I would give advice." data-explanation="Maslahat berish uchun Type 2 ('If I were you...')." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>4. It rained yesterday, so we didn't go to the park. &rarr; (Use: <b>Type 3</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Shart gap tuzing..." data-answer="If it hadn't rained yesterday, we would have gone to the park." data-explanation="O'tmishdagi amalga oshmagan harakat uchun Type 3." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>5. He doesn't know the answer, so he can't help you. &rarr; (Use: <b>Type 2</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Shart gap tuzing..." data-answer="If he knew the answer, he could help you." data-explanation="Hozirgi noreal vaziyat uchun Type 2." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>6. She missed the flight because she was late. &rarr; (Use: <b>Type 3</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Shart gap tuzing..." data-answer="She wouldn't have missed the flight if she hadn't been late." data-explanation="O'tmishdagi afsus uchun Type 3." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>7. I don't have wings, so I can't fly. &rarr; (Use: <b>Type 2</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Shart gap tuzing..." data-answer="If I had wings, I would fly." data-explanation="Hozirgi imkonsiz vaziyat uchun Type 2." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>8. He didn't have a map, so he got lost. &rarr; (Use: <b>Type 3</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Shart gap tuzing..." data-answer="If he had had a map, he wouldn't have got lost." data-explanation="O'tmishdagi afsus uchun Type 3. 'have' fe'lining Past Perfect shakli 'had had'." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>9. The weather is bad, so we can't go for a picnic. &rarr; (Use: <b>Type 2</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Shart gap tuzing..." data-answer="If the weather were good, we could go for a picnic." data-explanation="Hozirgi xayoliy vaziyat uchun Type 2." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>10. I didn't see you, so I didn't say hello. &rarr; (Use: <b>Type 3</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Shart gap tuzing..." data-answer="If I had seen you, I would have said hello." data-explanation="O'tmishdagi afsus uchun Type 3." autocomplete="off"></div></div>
                     </div>
                     <button class="check-btn" onclick="checkTransform()">Tekshirish</button>
                     <div id="transformResult" class="result"></div>
@@ -1188,11 +1195,14 @@
             const questions = document.querySelectorAll('#test .question');
             let score = 0;
             let resultHTML = '';
+            
             questions.forEach((question, index) => {
                 const qNum = index + 1;
                 const correctAnswer = question.dataset.answer;
                 const explanation = question.dataset.explanation;
-                const selected = document.querySelector(`input[name="q${qNum}"]:checked`);
+                
+                // Fixed: Selector is now scoped to the question element
+                const selected = question.querySelector('input[type="radio"]:checked');
 
                 if (selected && selected.value === correctAnswer) {
                     score++;
@@ -1260,7 +1270,8 @@
                     resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savolning to'g'ri javobi: <strong>${answer.split('|')[0]}</strong></div>`;
                 }
             });
-            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${dropZones.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            // Fixed: changed inputs.length to dropZones.length
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${dropZones.length} (${Math.round((correct/dropZones.length)*100)}%)</strong></div>` + resultHTML;
             document.getElementById('orderResult').innerHTML = resultHTML;
         }
 
