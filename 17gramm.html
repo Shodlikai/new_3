@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mixed Conditionals (Aralash Shart Gaplar) - Mukammal Qo'llanma</title>
+    <style>
+        /* Umumiy stilizatsiya */
+        :root {
+            --bg-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --text-primary: #333;
+            --header-bg: rgba(255, 255, 255, 0.15);
+            --header-text: white;
+            --card-bg: rgba(255, 255, 255, 0.98); /* 0.98 ga oshirildi (kamroq yuklama) */
+            --card-border: rgba(255, 255, 255, 0.2);
+            --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            --h2-text-gradient: linear-gradient(135deg, #667eea, #764ba2);
+            --rule-section-bg: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            --rule-section-border-left: #667eea;
+            --code-bg: #e2e8f0;
+            --code-color: #c53030;
+            --table-th-bg: #e9ecef;
+            --table-th-color: #495057;
+            --table-td-bg: #fff;
+            --structure-card-bg: linear-gradient(135deg, #e0eafc, #cfdef3);
+            --structure-card-border: #667eea;
+            --formula-bg: white;
+            --example-category-bg: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            --example-item-bg: white;
+            --english-text: #2d3436;
+            --uzbek-text: #636e72;
+            --input-bg: #f8f9fa;
+            --input-border: #dee2e6;
+            --input-focus-shadow: rgba(102, 126, 234, 0.1);
+            --result-bg: linear-gradient(135deg, #ddd6fe, #c4b5fd);
+            --result-color: #5b21b6;
+            --correct-color: #28a745;
+            --wrong-color: #dc3545;
+            --progress-bg: rgba(255, 255, 255, 0.2);
+            --progress-bar-gradient: linear-gradient(90deg, #4CAF50, #45a049);
+            --tab-btn-bg: rgba(255, 255, 255, 0.2);
+            --tab-btn-hover-bg: rgba(255, 255, 255, 0.3);
+            --tab-btn-active-bg: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            --exercise-btn-bg: linear-gradient(135deg, #74b9ff, #0984e3);
+            --exercise-btn-active-bg: linear-gradient(135deg, #00b894, #00a085);
+            --word-bg: linear-gradient(135deg, #667eea, #764ba2);
+            --drop-zone-border: #dee2e6;
+            --drop-zone-bg: #f8f9fa;
+            --drop-zone-hover-bg: rgba(102, 126, 234, 0.1);
+        }
+
+        .dark-mode {
+            --bg-primary: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            --text-primary: #ecf0f1;
+            --header-bg: rgba(0, 0, 0, 0.3);
+            --header-text: #ecf0f1;
+            --card-bg: #3b506b;
+            --card-border: rgba(255, 255, 255, 0.1);
+            --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            --h2-text-gradient: linear-gradient(135deg, #a2ccff, #82b1ff);
+            --rule-section-bg: #4a6280;
+            --rule-section-border-left: #82b1ff;
+            --code-bg: #2f4358;
+            --code-color: #ff8c8c;
+            --table-th-bg: #4a6280;
+            --table-th-color: #ecf0f1;
+            --table-td-bg: #3b506b;
+            --structure-card-bg: linear-gradient(135deg, #4a6280, #5a7490);
+            --structure-card-border: #82b1ff;
+            --formula-bg: #2f4358;
+            --example-category-bg: #4a6280;
+            --example-item-bg: #3b506b;
+            --english-text: #ecf0f1;
+            --uzbek-text: #bdc3c7;
+            --input-bg: #2f4358;
+            --input-border: #5a7490;
+            --input-focus-shadow: rgba(130, 177, 255, 0.2);
+            --result-bg: linear-gradient(135deg, #4a2c7a, #6a3a9a);
+            --result-color: #e0e0e0;
+            --correct-color: #5cb85c;
+            --wrong-color: #d9534f;
+            --progress-bg: rgba(0, 0, 0, 0.3);
+            --progress-bar-gradient: linear-gradient(90deg, #5cb85c, #4cae4c);
+            --tab-btn-bg: rgba(0, 0, 0, 0.3);
+            --tab-btn-hover-bg: rgba(0, 0, 0, 0.4);
+            --tab-btn-active-bg: linear-gradient(135deg, #e74c3c, #c0392b);
+            --exercise-btn-bg: linear-gradient(135deg, #3498db, #2980b9);
+            --exercise-btn-active-bg: linear-gradient(135deg, #2ecc71, #27ae60);
+            --word-bg: linear-gradient(135deg, #3498db, #2980b9);
+            --drop-zone-border: #5a7490;
+            --drop-zone-bg: #2f4358;
+            --drop-zone-hover-bg: rgba(52, 152, 219, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            min-height: 100vh;
+            color: var(--text-primary);
+            line-height: 1.6;
+            margin: 0;
+            /* Performance Fix: Removed 'all', specific transitions only */
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Sarlavha qismi */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: var(--header-bg);
+            /* Performance Fix: Reduced blur */
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--card-border);
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            color: var(--header-text);
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: bold;
+        }
+
+        .header p {
+            color: var(--header-text);
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Progress Bar */
+        .progress-container {
+            background: var(--progress-bg);
+            border-radius: 25px;
+            padding: 5px;
+            margin-bottom: 30px;
+        }
+
+        .progress-bar {
+            background: var(--progress-bar-gradient);
+            height: 30px;
+            border-radius: 20px;
+            transition: width 0.8s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 0%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-text {
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Theme Toggle Switch */
+        .theme-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .theme-switch input[type="checkbox"] {
+            height: 0;
+            width: 0;
+            visibility: hidden;
+        }
+
+        .theme-switch label {
+            cursor: pointer;
+            text-indent: -9999px;
+            width: 60px;
+            height: 30px;
+            background: #ccc;
+            display: block;
+            border-radius: 100px;
+            position: relative;
+            transition: background-color 0.3s ease;
+        }
+
+        .theme-switch label:after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background: #fff;
+            border-radius: 90px;
+            transition: 0.3s;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+
+        .theme-switch input:checked + label {
+            background: #82b1ff; 
+        }
+
+        .theme-switch input:checked + label:after {
+            left: calc(100% - 3px);
+            transform: translateX(-100%);
+            background: #f1c40f; 
+        }
+
+        .theme-switch .icon {
+            font-size: 1.5rem;
+            color: var(--header-text);
+            transition: color 0.3s ease;
+        }
+        .theme-switch input:checked ~ .icon.moon { display: block; }
+        .theme-switch input:not(:checked) ~ .icon.moon { display: none; }
+        .theme-switch input:checked ~ .icon.sun { display: none; }
+        .theme-switch input:not(:checked) ~ .icon.sun { display: block; }
+        .theme-switch .icon.sun { color: #f39c12; }
+        .theme-switch .icon.moon { color: #a2ccff; }
+
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            background: var(--header-bg);
+            /* Performance: Removed blur */
+            border-radius: 15px;
+            padding: 10px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: var(--tab-btn-bg);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            color: var(--header-text);
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            font-size: 16px;
+            font-weight: 500;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .tab-btn:hover {
+            background: var(--tab-btn-hover-bg);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .tab-btn.active {
+            background: var(--tab-btn-active-bg);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Card Styles */
+        .card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--card-border);
+            will-change: opacity, transform;
+        }
+
+        .card h2 {
+            color: var(--text-primary);
+            margin-bottom: 25px;
+            font-size: 2.2rem;
+            text-align: center;
+            background: var(--h2-text-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Rules Section */
+        .rule-section, .diff-section {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: var(--rule-section-bg);
+            border-radius: 15px;
+            border-left: 5px solid var(--rule-section-border-left);
+        }
+
+        .rule-section h3, .diff-section h3 {
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .rule-section h4, .diff-section h4 {
+             color: var(--text-primary);
+             font-size: 1.2rem;
+             margin-top: 20px;
+             padding-bottom: 5px;
+             border-bottom: 2px solid var(--rule-section-border-left);
+        }
+
+        .rule-section p, .rule-section li, .diff-section p, .diff-section li {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        
+        .rule-section code, .diff-section code {
+            background-color: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--code-color);
+        }
+
+        .diff-table-container { 
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch; 
+        }
+
+        .diff-table {
+            width: 100%;
+            min-width: 600px;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        .diff-table th, .diff-table td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            text-align: left;
+            color: var(--text-primary); 
+        }
+        .diff-table th {
+            background-color: var(--table-th-bg);
+            color: var(--table-th-color);
+        }
+        .diff-table td { background-color: var(--table-td-bg); }
+        .ok { color: var(--correct-color); font-weight: bold; }
+        .not-ok { color: var(--wrong-color); font-weight: bold; }
+
+
+        .structure-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .structure-card {
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            background: var(--structure-card-bg);
+            border: 2px solid var(--structure-card-border);
+        }
+        .structure-card:hover { transform: translateY(-5px); }
+
+        .structure-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            text-align: center;
+            color: var(--text-primary);
+        }
+
+        .formula {
+            background: var(--formula-bg); padding: 10px; border-radius: 8px;
+            margin-bottom: 10px; text-align: left; font-size: 1rem;
+            font-weight: 500; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            color: var(--text-primary);
+        }
+
+        .noun, .pronoun, .verb, .subject, .object, .adjective, .adverb, .clause, .infinitive, .gerund, .v3, .intro-phrase, .wh-word, .if-clause, .main-clause {
+            padding: 5px 10px; border-radius: 5px; margin: 0 5px; color: white;
+        }
+        .noun { background: #fd79a8; }
+        .pronoun { background: #0984e3; }
+        .verb { background: #00b894; }
+        .subject { background: #ffeaa7; color: #333;}
+        .object { background: #6c5ce7; }
+        .adjective { background: #f39c12; }
+        .adverb { background: #e74c3c; }
+        .clause { background: linear-gradient(135deg, #a29bfe, #6c5ce7); border: 1px solid white;}
+        .infinitive { background: #81ecec; color: #333; }
+        .gerund { background: #fab1a0; color: #333; }
+        .v3 { background: #d63031; }
+        .intro-phrase { background: #00cec9; }
+        .wh-word { background: #e84393; }
+        .if-clause { background: #fdcb6e; color: #333; }
+        .main-clause { background: #55efc4; color: #333; }
+        
+
+        .examples { background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 10px; margin-top: 15px; }
+        .examples p { margin-bottom: 8px; font-size: 1rem; color: var(--text-primary); }
+        .examples p.english { font-weight: bold; }
+        .structure-card .examples .uzbek {
+            color: var(--uzbek-text);
+            font-style: italic;
+            padding-left: 10px; 
+            border-left: 3px solid #764ba2; 
+            margin-top: 5px; 
+        }
+
+
+        .examples-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px; margin-top: 25px;
+        }
+
+        .example-category {
+            background: var(--example-category-bg); padding: 25px;
+            border-radius: 15px; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        .example-category h3 {
+            color: var(--text-primary); margin-bottom: 20px; font-size: 1.4rem; text-align: center;
+            padding-bottom: 10px; border-bottom: 2px solid var(--rule-section-border-left);
+        }
+
+        .example-item {
+            background: var(--example-item-bg); padding: 15px; border-radius: 10px; margin-bottom: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease;
+        }
+        .example-item:hover { transform: translateX(5px); }
+        .english { color: var(--english-text); font-weight: 500; margin-bottom: 8px; font-size: 1.05rem; }
+        .uzbek { color: var(--uzbek-text); font-style: italic; padding-left: 20px; border-left: 3px solid var(--rule-section-border-left); }
+
+        .exercise-nav {
+            display: flex; justify-content: center; margin-bottom: 30px;
+            gap: 10px; flex-wrap: wrap;
+        }
+        .exercise-btn {
+            background: var(--exercise-btn-bg); color: white; border: none;
+            padding: 12px 20px; border-radius: 10px; cursor: pointer; transition: background 0.3s, transform 0.2s;
+            font-size: 14px; font-weight: 500; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .exercise-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); }
+        .exercise-btn.active {
+            background: var(--exercise-btn-active-bg);
+            box-shadow: 0 6px 20px rgba(0, 184, 148, 0.3);
+        }
+
+        .exercise-content { display: none; }
+        .exercise-content.active { display: block; animation: fadeIn 0.5s ease-in-out; }
+        .exercise-content h3 { color: var(--text-primary); margin-bottom: 25px; font-size: 1.6rem; text-align: center; }
+
+        .quiz-container, .fill-exercise, .combine-exercise, .correct-exercise, .omission-exercise, .order-exercise { margin-bottom: 25px; }
+        .question, .fill-question, .combine-question, .correct-question, .omission-question, .order-question {
+            background: var(--example-item-bg); padding: 20px; border-radius: 15px; margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); border-left: 5px solid var(--rule-section-border-left);
+        }
+        .question p, .fill-question p, .combine-question p, .correct-question p, .omission-question p, .order-question p {
+            font-size: 1.2rem; margin-bottom: 15px; color: var(--english-text); font-weight: 500;
+        }
+        .correct-question p.incorrect { text-decoration: line-through; color: var(--wrong-color);}
+
+        .options { display: flex; flex-direction: column; gap: 10px; }
+        .options label {
+            display: flex; align-items: center; padding: 10px; border-radius: 8px;
+            background: var(--input-bg); cursor: pointer; transition: background 0.3s ease; font-size: 1rem;
+            color: var(--text-primary);
+        }
+        .options label:hover { background: var(--rule-section-bg); }
+        .options input[type="radio"] { margin-right: 10px; transform: scale(1.2); }
+
+        .fill-input, .combine-input, .correct-input, .transform-input {
+            width: 100%; background: var(--input-bg); border: 2px solid var(--input-border);
+            border-radius: 8px; padding: 12px; font-size: 1rem; transition: border-color 0.3s ease;
+            color: var(--text-primary);
+            box-sizing: border-box;
+        }
+        .fill-input:focus, .combine-input:focus, .correct-input:focus, .transform-input:focus {
+            outline: none; border-color: var(--rule-section-border-left); box-shadow: 0 0 0 3px var(--input-focus-shadow);
+        }
+
+        .check-btn {
+            background: var(--exercise-btn-active-bg); color: white; border: none;
+            padding: 15px 30px; border-radius: 10px; cursor: pointer; font-size: 1.1rem;
+            font-weight: 500; transition: transform 0.2s; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: block; margin: 10px auto;
+        }
+        .check-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); }
+
+        .check-btn:active { transform: translateY(0); }
+
+        .result {
+            margin-top: 20px; padding: 15px; border-radius: 10px; text-align: center;
+            font-size: 1.2rem; font-weight: 500; background: var(--result-bg);
+            color: var(--result-color); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .correct-answer { color: var(--correct-color); margin: 5px 0; }
+        .wrong-answer { color: var(--wrong-color); margin: 5px 0; }
+        .final-score { margin-top: 10px; padding: 10px; background: var(--input-bg); border-radius: 5px; color: var(--text-primary); }
+
+        /* Yangi stil: Izohlar uchun */
+        .explanation {
+            background: var(--input-bg);
+            border-left: 4px solid var(--rule-section-border-left);
+            padding: 10px;
+            margin: 10px 0 0 0;
+            border-radius: 0 8px 8px 0;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            text-align: left;
+        }
+
+        /* Word Order Exercise Specifics */
+        .word-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: var(--input-bg);
+            border-radius: 10px;
+            min-height: 60px; /* Ensure visibility even if empty */
+        }
+
+        .word {
+            background: var(--word-bg);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            font-weight: 500;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: inline-block; /* Ensure display is correct */
+            user-select: none;
+        }
+
+        .word:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .drop-zone {
+            min-height: 60px;
+            border: 2px dashed var(--drop-zone-border);
+            border-radius: 10px;
+            padding: 15px;
+            background: var(--drop-zone-bg);
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            gap: 10px;
+            transition: border-color 0.3s ease;
+            color: var(--text-primary);
+        }
+
+        .drop-zone:hover, .word-container:hover {
+            border-color: var(--rule-section-border-left);
+            background: var(--drop-zone-hover-bg);
+        }
+
+        .drop-zone .word {
+             background: var(--exercise-btn-active-bg);
+        }
+
+        /* --- Styles for Sentence Transformation Exercise (START) --- */
+        .transform-question {
+            background: var(--example-item-bg);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--structure-card-border);
+            transition: transform 0.3s ease;
+        }
+
+        .transform-question:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        }
+
+        .transform-question p {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .transform-question p b {
+            color: var(--header-text);
+            background: var(--word-bg);
+            padding: 3px 9px;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .transform-input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .transform-input-wrapper .fa-pen-to-square {
+            position: absolute;
+            left: 15px;
+            color: var(--uzbek-text);
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+            z-index: 1;
+        }
+
+        .transform-input {
+            padding-left: 45px; /* Make space for the icon */
+            background-image: linear-gradient(to right, var(--input-bg), var(--card-bg));
+            font-weight: 500;
+        }
+
+        .transform-input:focus {
+            background-image: none;
+        }
+
+        .transform-input-wrapper:hover .fa-pen-to-square {
+            color: var(--rule-section-border-left);
+        }
+        /* --- Styles for Sentence Transformation Exercise (END) --- */
+        
+        /* --- Styles for Muhim Qoidalar Section (FIXED) --- */
+        .error-section {
+            background: var(--rule-section-bg);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-left: 5px solid var(--wrong-color);
+        }
+
+        .error-title {
+            color: var(--wrong-color);
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .wrong-example {
+            background: rgba(220, 53, 69, 0.1);
+            border: 2px solid var(--wrong-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 30px 0 10px 0; /* FIX: Added top margin */
+            position: relative;
+            color: var(--text-primary);
+        }
+
+        .wrong-example::before {
+            content: "❌ NOTO'G'RI";
+            position: absolute;
+            top: -14px;
+            left: 15px;
+            background: var(--wrong-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 10;
+        }
+
+        .correct-example {
+            background: rgba(40, 167, 69, 0.1);
+            border: 2px solid var(--correct-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 30px 0 10px 0; /* FIX: Added top margin */
+            position: relative;
+            color: var(--text-primary);
+        }
+
+        .correct-example::before {
+            content: "✅ TO'G'RI";
+            position: absolute;
+            top: -14px;
+            left: 15px;
+            background: var(--correct-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 10;
+        }
+
+        .explanation .explanation-title {
+            color: var(--rule-section-border-left);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .rule-box {
+            background: var(--exercise-btn-bg);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-weight: 500;
+        }
+
+        .situation-example {
+            background: var(--example-item-bg);
+            border: 1px solid var(--input-border);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            color: var(--text-primary);
+        }
+
+        .context {
+            color: var(--correct-color);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .error-section.general-tips {
+             border-left-color: var(--correct-color);
+        }
+        .error-section.general-tips .error-title {
+             color: var(--correct-color);
+        }
+        .error-section.general-tips .rule-box {
+            background: var(--exercise-btn-active-bg);
+        }
+        /* --- Styles for Muhim Qoidalar Section (END) --- */
+
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header h1 { font-size: 2rem; }
+            .card h2 { font-size: 1.8rem; }
+            .structure-grid, .examples-grid { grid-template-columns: 1fr; }
+            .nav-tabs, .exercise-nav { flex-direction: column; gap: 5px; }
+            .tab-btn, .exercise-btn { width: 100%; text-align: center; }
+            .theme-switch { top: 10px; right: 10px; }
+        }
+
+        @media (max-width: 480px) {
+            .header { padding: 20px; }
+            .header h1 { font-size: 1.5rem; }
+            .card { padding: 15px; }
+            .structure-card { padding: 20px; }
+            .example-category { padding: 20px; }
+            .question { padding: 15px; }
+            .word { padding: 6px 12px; font-size: 14px; }
+            .diff-table { min-width: 400px; } /* Adjust for very small screens */
+        }
+
+        /* Animation Effects */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .check-btn:hover { animation: bounce 0.6s ease; }
+
+        /* Scroll Animations */
+        .card {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideUp 0.6s ease forwards;
+        }
+
+        @keyframes slideUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(135deg, #764ba2, #667eea); }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Mixed Conditionals (Aralash Shart Gaplar) - Mukammal Qo'llanma</h1>
+            <p>O'tgan zamon shartlarining hozirgi natijasi va aksincha</p>
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar">
+                    <span class="progress-text">0%</span>
+                </div>
+            </div>
+
+            <div class="theme-switch">
+                <i class="fas fa-sun icon sun"></i>
+                <input type="checkbox" id="themeToggle">
+                <label for="themeToggle"></label>
+                <i class="fas fa-moon icon moon"></i>
+            </div>
+        </div>
+
+        <nav class="nav-tabs">
+            <button class="tab-btn active" data-tab="rules">Qoidalar</button>
+            <button class="tab-btn" data-tab="diffs">Farqlar</button>
+            <button class="tab-btn" data-tab="structure">Strukturalar</button>
+            <button class="tab-btn" data-tab="examples">Misollar</button>
+            <button class="tab-btn" data-tab="exercises">Mashqlar</button>
+            <button class="tab-btn" data-tab="errors">Muhim Qoidalar va Xatolar</button>
+        </nav>
+
+        <div id="rules" class="tab-content active">
+             <div class="card">
+                <h2>Aralash Shart Gaplar Qoidalari</h2>
+                <div class="rule-section">
+                    <h3>Mixed Conditional nima?</h3>
+                    <p><strong>Mixed Conditionals</strong> - bu Shart Gaplarning 2- va 3-turlari qismlarini birlashtirib, o'tgan zamondagi shartni hozirgi zamon natijasi bilan yoki hozirgi zamondagi shartni o'tgan zamon natijasi bilan bog'laydigan gaplardir.</p>
+                </div>
+                <div class="rule-section">
+                    <h3>1-Turi: O'tgan zamon sharti &rarr; Hozirgi zamon natijasi</h3>
+                    <p><strong>Ishlatilishi:</strong> O'tmishda sodir bo'lmagan (xayoliy) biror harakatning <strong>hozirgi kundagi</strong> natijasini tasavvur qilish uchun ishlatiladi. "Agar o'tmishda shunday bo'lganida edi, hozir boshqacha bo'lar edi" degan ma'noni beradi.</p>
+                    <p><strong>Formula:</strong> <code>If + Past Perfect, ... would + V1</code></p>
+                    <p><strong>Kalit so'zlar:</strong> Natija qismida ko'pincha <code>now</code>, <code>today</code>, <code>at the moment</code> kabi hozirgi zamonga ishora qiluvchi so'zlar keladi.</p>
+                     <div class="example">
+                        <p>If you <strong>had studied</strong> last night, you <strong>would know</strong> the answer <strong>now</strong>. (Agar kecha o'qiganingda edi, hozir javobni bilgan bo'larding).</p>
+                    </div>
+                </div>
+                 <div class="rule-section">
+                    <h3>2-Turi: Hozirgi zamon sharti &rarr; O'tgan zamon natijasi</h3>
+                    <p><strong>Ishlatilishi:</strong> Hozirgi kundagi biror (xayoliy) holat yoki shartning <strong>o'tgan zamondagi</strong> natijasini tasavvur qilish uchun ishlatiladi. "Agar hozir shunday bo'lganimda edi, o'tmishda boshqacha qilgan bo'lar edim" degan ma'noni beradi.</p>
+                    <p><strong>Formula:</strong> <code>If + Past Simple, ... would + have + V3</code></p>
+                    <p><strong>Kalit so'zlar:</strong> Natija qismida ko'pincha <code>yesterday</code>, <code>last week</code>, <code>a long time ago</code> kabi o'tgan zamonga ishora qiluvchi so'zlar keladi.</p>
+                    <div class="example">
+                        <p>If I <strong>weren't</strong> afraid of flying, I <strong>would have visited</strong> you in California <strong>a long time ago</strong>. (Agar uchishdan qo'rqmaganimda, men anchadan beri Kaliforniyadagi siznikiga tashrif buyurgan bo'lar edim).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="diffs" class="tab-content">
+            <div class="card">
+                <h2>Shart Gap Turlari O'rtasidagi Farqlar</h2>
+                <div class="diff-section">
+                    <h3>1. Real vs. Noreal Shartlar (Type 1 vs. Type 2)</h3>
+                    <p>Asosiy farq vaziyatning realligidadir.</p>
+                     <ul>
+                        <li><strong>Type 1 (Real Ehtimol):</strong> Kelajakda sodir bo'lishi <strong>mumkin</strong>.</li>
+                        <li><strong>Type 2 (Noreal Xayolot):</strong> Hozir sodir bo'lishi <strong>deyarli imkonsiz</strong>.</li>
+                    </ul>
+                    <div class="example-item">
+                        <p class="english"><strong>Type 1:</strong> If I <strong>win</strong> the lottery, I <strong>will buy</strong> a new car. (Agar lotereya yutsam, yangi mashina sotib olaman - Bu real reja).</p>
+                        <p class="english"><strong>Type 2:</strong> If I <strong>won</strong> the lottery, I <strong>would buy</strong> a new car. (Agar lotereya yutganimda edi, yangi mashina sotib olardim - Bu shunchaki orzu, yutishimga ishonmayman).</p>
+                    </div>
+                </div>
+
+                <div class="diff-section">
+                     <h3>2. Hozirgi Xayolot (Type 2) vs. O'tmishdagi Afsus (Type 3)</h3>
+                    <p>Bu ikki noreal shart gapning asosiy farqi ular ishora qilayotgan vaqtdadir.</p>
+                     <ul>
+                        <li><strong>Type 2 (Hozirgi/Kelajak):</strong> "Agar <strong>hozir</strong> shunday bo'lganda edi..." degan ma'noni beradi.</li>
+                        <li><strong>Type 3 (O'tmish):</strong> "Agar <strong>o'tmishda</strong> shunday bo'lganida edi..." degan ma'noni beradi.</li>
+                    </ul>
+                    <div class="example-item">
+                        <p class="english"><strong>Type 2:</strong> If I <strong>spoke</strong> French, I <strong>would apply</strong> for that job. (Agar fransuzcha gapira olganimda edi, o'sha ishga ariza topshirardim - lekin hozir gapira olmayman).</p>
+                        <p class="english"><strong>Type 3:</strong> If I <strong>had spoken</strong> French, I <strong>would have applied</strong> for that job. (Agar fransuzcha gapira olganimda edi, o'sha ishga ariza topshirgan bo'lardim - o'tmishda shunday imkoniyat bo'lgan, lekin til bilmaganim uchun topshirmaganman).</p>
+                    </div>
+                </div>
+                 <div class="diff-section">
+                    <h3>3. Oddiy (Type 3) vs. Aralash (Mixed) Shart Gaplar</h3>
+                    <p>Oddiy shart gaplarda zamonlar bir xil bo'ladi (o'tmish sharti-o'tmish natijasi), aralash shart gaplarda esa zamonlar aralashadi.</p>
+                    <div class="example-item">
+                        <p class="english"><strong>Type 3:</strong> If she <strong>had warned</strong> me, I <strong>wouldn't have been</strong> surprised. (Agar u meni ogohlantirganida edi, men hayron qolmagan bo'lardim - o'tmish &rarr; o'tmish).</p>
+                        <p class="english"><strong>Mixed:</strong> If she <strong>had warned</strong> me, I <strong>wouldn't be</strong> surprised now. (Agar u meni ogohlantirganida edi, men hozir hayron qolmayotgan bo'lardim - o'tmish &rarr; hozir).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="structure" class="tab-content">
+            <div class="card">
+                <h2>Aralash Shart Gap Tuzilmalari</h2>
+                <div class="structure-grid">
+                    <div class="structure-card">
+                        <h3>O'tgan Zamon Sharti &rarr; Hozirgi Zamon Natijasi</h3>
+                        <div class="formula"><span class="if-clause">If + S + had + V3</span>, <span class="main-clause">S + would + V1</span>.</div>
+                        <div class="formula"><span class="if-clause">If + S + hadn't + V3</span>, <span class="main-clause">S + wouldn't be...</span>.</div>
+                        <div class="examples">
+                            <p class="english">If I <strong>had studied</strong> last night, I <strong>would know</strong> the answer now.</p>
+                            <p class="uzbek">Agar siz o'tgan tunda o'qiganingizda, siz hozir savolga javobni bilardik.</p>
+                            <p class="english">If he <strong>had left</strong> immediately, he <strong>would be</strong> here now.</p>
+                            <p class="uzbek">Agar u tezda tark etgan bo'lganida, u hozir bu yerda bo'lardi.</p>
+                        </div>
+                    </div>
+                    <div class="structure-card">
+                        <h3>Hozirgi Zamon Sharti &rarr; O'tgan Zamon Natijasi</h3>
+                        <div class="formula"><span class="if-clause">If + S + Past Simple</span>, <span class="main-clause">S + would have + V3</span>.</div>
+                        <div class="formula"><span class="if-clause">If + S + weren't...</span>, <span class="main-clause">S + would have + V3</span>.</div>
+                         <div class="examples">
+                            <p class="english">If I <strong>weren't</strong> afraid of flying, I <strong>would have visited</strong> you in California a long time ago.</p>
+                            <p class="uzbek">Agar uchishdan qo'rqmaganimda, men ancha vaqt oldin Kaliforniyaga siznikiga tashrif buyurgan bo'lar edim.</p>
+                            <p class="english">If she <strong>loved</strong> him, she <strong>wouldn't have left</strong> him.</p>
+                            <p class="uzbek">Agar u uni sevganida, u uni tashlab ketmagan bo'lar edi.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="examples" class="tab-content">
+            <div class="card">
+                <h2>Misollar bilan tanishing</h2>
+                <div class="examples-grid">
+                    <div class="example-category">
+                        <h3>O'tmishdagi Shart &rarr; Hozirgi Natija</h3>
+                        <div class="example-item">
+                            <p class="english">If she <strong>hadn't missed</strong> her flight yesterday, she <strong>would be</strong> here today.</p>
+                            <p class="uzbek">Agar u kecha reysini o'tkazib yubormaganida, u bugun shu yerda bo'lar edi.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">If I <strong>had studied</strong> hard when I was young, I <strong>wouldn't be</strong> a porter now.</p>
+                            <p class="uzbek">Agar yoshligimda qattiq o'qiganimda, men hozir hammol bo'lmas edim.</p>
+                        </div>
+                         <div class="example-item">
+                            <p class="english">If you <strong>hadn't eaten</strong> my chocolate, I <strong>wouldn't be</strong> angry.</p>
+                            <p class="uzbek">Agar shokoladimni yegan bo'lganingda, meni jahlim chiqardi.</p>
+                        </div>
+                    </div>
+                    <div class="example-category">
+                        <h3>Hozirgi Shart &rarr; O'tmishdagi Natija</h3>
+                        <div class="example-item">
+                            <p class="english">If he <strong>weren't</strong> so lazy, he <strong>would have passed</strong> the exam.</p>
+                            <p class="uzbek">Agar u bunchalik dangasa bo'lmaganida, imtihondan o'tgan bo'lar edi.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">If I <strong>wasn't</strong> a good cook, I <strong>wouldn't have tried</strong> to make this cake.</p>
+                            <p class="uzbek">Agar yaxshi oshpaz bo'lganimda, men bu keksni pishirishga urinmagan bo'lar edim.</p>
+                        </div>
+                         <div class="example-item">
+                            <p class="english">If Tom <strong>had</strong> known about the sale, he <strong>would shop</strong> with us.</p>
+                            <p class="uzbek">Agar Tom chegirmalar haqida bilganida edi, u biz bilan xarid qilardi.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<div id="exercises" class="tab-content">
+    <div class="card">
+      <h2>Mashqlar (Mixed Conditionals)</h2>
+                <nav class="exercise-nav">
+                    <button class="exercise-btn active" data-exercise="test">Test</button>
+                    <button class="exercise-btn" data-exercise="fill">Bo'sh joyni to'ldirish</button>
+                    <button class="exercise-btn" data-exercise="correction">Xatolarni Tuzatish</button>
+                    <button class="exercise-btn" data-exercise="order">So'zlarni Tartiblash</button>
+                    <button class="exercise-btn" data-exercise="transform">Vaziyatga mos gap tuzish</button>
+                </nav>
+
+                <div id="test" class="exercise-content active">
+                    <h3>To'g'ri variantni tanlang</h3>
+                    <div class="quiz-container">
+                        <div class="question" data-answer="b" data-explanation="O'tgan zamon sharti ('had listened') hozirgi natijaga ('wouldn't be') ta'sir qilmoqda."><p>1. If I had listened to your advice, I ___ in this mess now.</p><div class="options"><label><input type="radio" name="q1" value="a">a) wouldn't have been</label><label><input type="radio" name="q1" value="b">b) wouldn't be</label><label><input type="radio" name="q1" value="c">c) am not</label></div></div>
+                        <div class="question" data-answer="c" data-explanation="Hozirgi shart ('if I were') o'tgan natijaga ('would have gone') ta'sir qilmoqda."><p>2. If I were a good student, I ___ for the exam yesterday.</p><div class="options"><label><input type="radio" name="q2" value="a">a) would study</label><label><input type="radio" name="q2" value="b">b) studied</label><label><input type="radio" name="q2" value="c">c) would have studied</label></div></div>
+                        <div class="question" data-answer="a" data-explanation="O'tgan shart ('hadn't missed') hozirgi natijaga ('would be') ta'sir qilmoqda."><p>3. If she ___ her flight yesterday, she would be here now.</p><div class="options"><label><input type="radio" name="q3" value="a">a) hadn't missed</label><label><input type="radio" name="q3" value="b">b) didn't miss</label><label><input type="radio" name="q3" value="c">c) wouldn't miss</label></div></div>
+                        <div class="question" data-answer="b" data-explanation="Hozirgi shart ('if she spoke') o'tgan natijaga ('could have gotten') ta'sir qilmoqda."><p>4. If she spoke French, she ___ that job in Paris last year.</p><div class="options"><label><input type="radio" name="q4" value="a">a) could get</label><label><input type="radio" name="q4" value="b">b) could have gotten</label><label><input type="radio" name="q4" value="c">c) had gotten</label></div></div>
+                        <div class="question" data-answer="c" data-explanation="O'tgan shart ('had taken') hozirgi natijaga ('would be') ta'sir qilmoqda."><p>5. If I ___ that job, I would be miserable now.</p><div class="options"><label><input type="radio" name="q5" value="a">a) took</label><label><input type="radio" name="q5" value="b">b) take</label><label><input type="radio" name="q5" value="c">c) had taken</label></div></div>
+                        <div class="question" data-answer="a" data-explanation="Hozirgi shart ('if I weren't') o'tgan natijaga ('would have helped') ta'sir qilmoqda."><p>6. If I weren't so busy, I ___ you with your project yesterday.</p><div class="options"><label><input type="radio" name="q6" value="a">a) would have helped</label><label><input type="radio" name="q6" value="b">b) would help</label><label><input type="radio" name="q6" value="c">c) helped</label></div></div>
+                        <div class="question" data-answer="b" data-explanation="O'tgan shart ('had been born') hozirgi natijaga ('would speak') ta'sir qilmoqda."><p>7. If I ___ in Spain, I would speak Spanish.</p><div class="options"><label><input type="radio" name="q7" value="a">a) was born</label><label><input type="radio" name="q7" value="b">b) had been born</label><label><input type="radio" name="q7" value="c">c) would be born</label></div></div>
+                        <div class="question" data-answer="b" data-explanation="Hozirgi shart ('if I had') o'tgan natijaga ('would have finished') ta'sir qilmoqda."><p>8. If I had more experience, I ___ the project on time last month.</p><div class="options"><label><input type="radio" name="q8" value="a">a) would finish</label><label><input type="radio" name="q8" value="b">b) would have finished</label><label><input type="radio" name="q8" value="c">c) finished</label></div></div>
+                        <div class="question" data-answer="c" data-explanation="O'tgan shart ('hadn't eaten') hozirgi natijaga ('wouldn't feel') ta'sir qilmoqda."><p>9. If I ___ so much cake last night, I wouldn't feel sick now.</p><div class="options"><label><input type="radio" name="q9" value="a">a) didn't eat</label><label><input type="radio" name="q9" value="b">b) ate</label><label><input type="radio" name="q9" value="c">c) hadn't eaten</label></div></div>
+                        <div class="question" data-answer="a" data-explanation="Hozirgi shart ('if I knew') o'tgan natijaga ('would have told') ta'sir qilmoqda."><p>10. If I knew the truth, I ___ you yesterday.</p><div class="options"><label><input type="radio" name="q10" value="a">a) would have told</label><label><input type="radio" name="q10" value="b">b) told</label><label><input type="radio" name="q10" value="c">c) would tell</label></div></div>
+                    </div>
+                    <button class="check-btn" onclick="checkTest()">Tekshirish</button>
+                    <div id="testResult" class="result"></div>
+                </div>
+
+                <div id="fill" class="exercise-content">
+                    <h3>Bo'sh joyni fe'lning to'g'ri shakli bilan to'ldiring.</h3>
+                    <div class="fill-exercise">
+                        <div class="fill-question"><p>1. If I had gone to bed earlier last night, I ___ so tired now. (not/be)</p><input type="text" class="fill-input" data-answer="would not be|wouldn't be" data-explanation="O'tgan shart &rarr; hozirgi natija." autocomplete="off"></div>
+                        <div class="fill-question"><p>2. If she weren't so shy, she ___ to him at the party yesterday. (speak)</p><input type="text" class="fill-input" data-answer="would have spoken" data-explanation="Hozirgi shart &rarr; o'tgan natija." autocomplete="off"></div>
+                        <div class="fill-question"><p>3. If you ___ me about the problem, I would be able to help you now. (tell)</p><input type="text" class="fill-input" data-answer="had told" data-explanation="O'tgan shart &rarr; hozirgi natija." autocomplete="off"></div>
+                        <div class="fill-question"><p>4. If I spoke Japanese, I ___ for that job in Tokyo last year. (apply)</p><input type="text" class="fill-input" data-answer="would have applied" data-explanation="Hozirgi shart &rarr; o'tgan natija." autocomplete="off"></div>
+                        <div class="fill-question"><p>5. If they ___ the house, they would be very poor now. (not/sell)</p><input type="text" class="fill-input" data-answer="hadn't sold" data-explanation="O'tgan shart &rarr; hozirgi natija." autocomplete="off"></div>
+                        <div class="fill-question"><p>6. If I were you, I ___ that opportunity last week. (not/miss)</p><input type="text" class="fill-input" data-answer="would not have missed|wouldn't have missed" data-explanation="Hozirgi shart &rarr; o'tgan natija." autocomplete="off"></div>
+                        <div class="fill-question"><p>7. If he had been born in the US, he ___ a visa to work there. (not/need)</p><input type="text" class="fill-input" data-answer="would not need|wouldn't need" data-explanation="O'tgan shart &rarr; hozirgi natija." autocomplete="off"></div>
+                        <div class="fill-question"><p>8. If I had more free time, I ___ that book you gave me last month. (read)</p><input type="text" class="fill-input" data-answer="would have read" data-explanation="Hozirgi shart &rarr; o'tgan natija." autocomplete="off"></div>
+                        <div class="fill-question"><p>9. If I ___ that last piece of pizza, I wouldn't be so hungry now. (eat)</p><input type="text" class="fill-input" data-answer="had eaten" data-explanation="O'tgan shart &rarr; hozirgi natija." autocomplete="off"></div>
+                        <div class="fill-question"><p>10. If he ___ a better driver, he wouldn't have crashed his car. (be)</p><input type="text" class="fill-input" data-answer="were" data-explanation="Hozirgi shart &rarr; o'tgan natija." autocomplete="off"></div>
+                    </div>
+                    <button class="check-btn" onclick="checkFill()">Tekshirish</button>
+                    <div id="fillResult" class="result"></div>
+                </div>
+
+                <div id="correction" class="exercise-content">
+                    <h3>Xatolarni Tuzatish</h3>
+                    <div class="correct-exercise">
+                        <div class="correct-question"><p class="incorrect">1. If I would have money, I would buy a house.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="If I had money, I would buy a house." data-explanation="'If' qismida 'would' ishlatilmaydi. Type 2 da Past Simple kerak." autocomplete="off"></div>
+                        <div class="correct-question"><p class="incorrect">2. If she had studied, she would pass.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="If she had studied, she would have passed." data-explanation="Bu Type 3. Tense'lar aralashib ketgan. Bosh gapda 'would have + V3' bo'lishi kerak." autocomplete="off"></div>
+                        <div class="correct-question"><p class="incorrect">3. If I was you, I would tell the truth.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="If I were you, I would tell the truth." data-explanation="Type 2 da maslahat berish uchun 'If I were you...' qolipi ishlatiladi." autocomplete="off"></div>
+                        <div class="correct-question"><p class="incorrect">4. If he came earlier, we would have met him.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="If he had come earlier, we would have met him." data-explanation="Bu Type 3. 'If' qismida Past Simple emas, Past Perfect ('had come') ishlatiladi." autocomplete="off"></div>
+                        <div class="correct-question"><p class="incorrect">5. If I had known, I would tell you.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="If I had known, I would have told you." data-explanation="Type 3 da bosh gap 'would have + V3' bo'ladi." autocomplete="off"></div>
+                    </div>
+                    <button class="check-btn" onclick="checkCorrection()">Tekshirish</button>
+                    <div id="correctionResult" class="result"></div>
+                </div>
+                
+                <div id="order" class="exercise-content">
+                    <h3>So'zlarni to'g'ri tartibda joylashtiring</h3>
+                    <div class="order-exercise">
+                        <div class="order-question"><p>1. (if / I / you / I / were / wouldn't go)</p><div class="word-container"><div class="word">were</div><div class="word">wouldn't go</div><div class="word">if</div><div class="word">you</div><div class="word">I</div><div class="word">I</div></div><div class="drop-zone" data-answer="if I were you I wouldn't go"></div></div>
+                        <div class="order-question"><p>2. (had / you / if / me / asked / I / would have / helped)</p><div class="word-container"><div class="word">had</div><div class="word">helped</div><div class="word">you</div><div class="word">me</div><div class="word">I</div><div class="word">if</div><div class="word">asked</div><div class="word">would have</div></div><div class="drop-zone" data-answer="if you had asked me I would have helped"></div></div>
+                        <div class="order-question"><p>3. (a million / had / dollars / I / I / would travel / if)</p><div class="word-container"><div class="word">if</div><div class="word">I</div><div class="word">dollars</div><div class="word">a million</div><div class="word">I</div><div class="word">would travel</div><div class="word">had</div></div><div class="drop-zone" data-answer="if I had a million dollars I would travel"></div></div>
+                        <div class="order-question"><p>4. (hadn't / it / if / rained / we / would have gone / to the beach)</p><div class="word-container"><div class="word">it</div><div class="word">if</div><div class="word">we</div><div class="word">would have gone</div><div class="word">hadn't</div><div class="word">to the beach</div><div class="word">rained</div></div><div class="drop-zone" data-answer="if it hadn't rained we would have gone to the beach"></div></div>
+                        <div class="order-question"><p>5. (would / you / if / what / do / you / were / me)</p><div class="word-container"><div class="word">were</div><div class="word">do</div><div class="word">if</div><div class="word">you</div><div class="word">what</div><div class="word">you</div><div class="word">me</div><div class="word">would</div></div><div class="drop-zone" data-answer="what would you do if you were me"></div></div>
+                    </div>
+                    <button class="check-btn" onclick="checkOrder()">Tekshirish</button>
+                    <button class="check-btn" onclick="resetOrder()">Qayta tiklash</button>
+                    <div id="orderResult" class="result"></div>
+                </div>
+
+                <div id="transform" class="exercise-content">
+                    <h3>Vaziyatga mos shart gap tuzing</h3>
+                    <div class="transform-exercise">
+                        <div class="transform-question"><p>1. I don't have money, so I can't buy that car. &rarr; (Use: <b>Type 2</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Shart gap tuzing..." data-answer="If I had money, I would buy that car.|If I had money, I could buy that car." data-explanation="Hozirgi noreal vaziyat uchun Type 2." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>2. I didn't study for the test, so I failed. &rarr; (Use: <b>Type 3</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Shart gap tuzing..." data-answer="If I had studied for the test, I wouldn't have failed.|If I had studied for the test, I would have passed." data-explanation="O'tmishdagi afsus uchun Type 3." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>3. I am not you, so I can't give advice. &rarr; (Use: <b>Type 2</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Shart gap tuzing..." data-answer="If I were you, I would give advice." data-explanation="Maslahat berish uchun Type 2 ('If I were you...')." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>4. It rained yesterday, so we didn't go to the park. &rarr; (Use: <b>Type 3</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Shart gap tuzing..." data-answer="If it hadn't rained yesterday, we would have gone to the park." data-explanation="O'tmishdagi amalga oshmagan harakat uchun Type 3." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>5. He doesn't know the answer, so he can't help you. &rarr; (Use: <b>Type 2</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Shart gap tuzing..." data-answer="If he knew the answer, he could help you." data-explanation="Hozirgi noreal vaziyat uchun Type 2." autocomplete="off"></div></div>
+                    </div>
+                    <button class="check-btn" onclick="checkTransform()">Tekshirish</button>
+                    <div id="transformResult" class="result"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="errors" class="tab-content">
+             <div class="card">
+                <h2>Muhim Qoidalar va Xatolar (Conditionals 2, 3 & Mixed)</h2>
+                
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 1: `if` ergash gapida `would` ishlatish</div>
+                    <div class="wrong-example">If I <strong>would have</strong> more time, I would travel.</div>
+                    <div class="correct-example">If I <strong>had</strong> more time, I would travel.</div>
+                    <div class="explanation"><p><strong>Eng asosiy qoida:</strong> `if` bilan boshlangan shart qismida hech qachon `would` yoki `would have` ishlatilmaydi.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 2: Type 2 va Type 3 ni aralashtirish</div>
+                    <div class="wrong-example">If she <strong>had studied</strong>, she <strong>would pass</strong>.</div>
+                    <div class="correct-example">If she <strong>had studied</strong>, she <strong>would have passed</strong>.</div>
+                    <div class="explanation"><p><strong>Qoida:</strong> Agar `if` qismida Past Perfect (had + V3) bo'lsa va natija ham o'tmishda bo'lsa (Type 3), bosh gapda ham unga mos ravishda `would have + V3` bo'lishi kerak.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 3: Type 2 da 'was' o'rniga 'were'</div>
+                    <div class="wrong-example">If I <strong>was</strong> you, I would apologize.</div>
+                    <div class="correct-example">If I <strong>were</strong> you, I would apologize.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> Type 2 da maslahat berishda yoki xayoliy vaziyatlarda barcha shaxslar uchun `to be` fe'lining `were` shaklini ishlatish grammatik jihatdan to'g'riroq hisoblanadi.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 4: Type 3 da `have` ni unutish</div>
+                    <div class="wrong-example">If I had known, I would <strong>gone</strong>.</div>
+                    <div class="correct-example">If I had known, I would <strong>have gone</strong>.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> Type 3 ning bosh gapida `would` va `V3` o'rtasida `have` yordamchi fe'li bo'lishi shart.</p></div>
+                </div>
+                
+                 <div class="error-section">
+                    <div class="error-title">🚫 XATO 5: Type 1 va Type 2 ni adashtirish</div>
+                    <div class="wrong-example">If I <strong>have</strong> a million dollars, I would quit my job.</div>
+                    <div class="correct-example">If I <strong>had</strong> a million dollars, I would quit my job.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> Bosh gapda 'would' kelishi bilan bu xayoliy vaziyat (Type 2) ekanligi ma'lum bo'ladi. Shuning uchun 'if' qismida Present Simple emas, Past Simple ishlatilishi kerak.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 6: Og'zaki nutqdagi xato ('would of')</div>
+                    <div class="wrong-example">We would <strong>of</strong> gone if you had called.</div>
+                    <div class="correct-example">We would <strong>have</strong> gone if you had called.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> Og'zaki nutqda `would've` (would have) ning qisqartmasi `would of` kabi eshitilishi mumkin, lekin yozuvda bu jiddiy xato. Har doim `would have` deb yoziladi.</p></div>
+                </div>
+                
+                 <div class="error-section">
+                    <div class="error-title">🚫 XATO 7: Type 3 da V3 ni unutish</div>
+                    <div class="wrong-example">If he had left earlier, he would have <strong>catch</strong> the train.</div>
+                    <div class="correct-example">If he had left earlier, he would have <strong>caught</strong> the train.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> Type 3 ning bosh gapida 'would have' dan keyin fe'lning 3-shakli (Past Participle - V3) kelishi shart.</p></div>
+                </div>
+                
+                 <div class="error-section">
+                    <div class="error-title">🚫 XATO 8: Ikkala qismda `would` ishlatish</div>
+                    <div class="wrong-example">If she <strong>would have invited</strong> me, I <strong>would have come</strong>.</div>
+                    <div class="correct-example">If she <strong>had invited</strong> me, I <strong>would have come</strong>.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> Bu keng tarqalgan xato. Yodda tuting: 'would' faqat natijani bildiruvchi bosh gapda keladi, 'if' bilan boshlangan shart qismida emas.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 9: `had had` strukturasidan qo'rqish</div>
+                    <div class="wrong-example">If I <strong>had</strong> a map, I wouldn't have gotten lost.</div>
+                    <div class="correct-example">If I <strong>had had</strong> a map, I wouldn't have gotten lost.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> Type 3 da "ega bo'lmoq" (to have) fe'li ishlatilsa, uning Past Perfect shakli `had had` bo'ladi. Birinchi `had` - yordamchi fe'l, ikkinchisi - `have` ning V3 shakli.</p></div>
+                </div>
+                
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 10: `could/might` bilan `have` ni unutish</div>
+                    <div class="wrong-example">If I had studied, I <strong>might pass</strong> the exam.</div>
+                    <div class="correct-example">If I had studied, I <strong>might have passed</strong> the exam.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> Type 3 ning bosh gapida `would` o'rniga `could` yoki `might` ishlatilishi mumkin. Lekin ulardan keyin ham `have + V3` strukturasi saqlanib qolishi shart.</p></div>
+                </div>
+                
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 11: Aralash shart gapni adashtirish</div>
+                    <div class="wrong-example">If I had taken the job, I <strong>would have been</strong> rich now.</div>
+                    <div class="correct-example">If I had taken the job, I <strong>would be</strong> rich now.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> Agar natija hozirgi kunga (`now`) taalluqli bo'lsa, bu Aralash Shart Gap (Mixed Conditional) bo'ladi va bosh gap Type 2 ga o'xshab `would be` bilan yasaladi.</p></div>
+                </div>
+                
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 12: So'roq shaklida xato</div>
+                    <div class="wrong-example">What <strong>would you have did</strong> if you had seen him?</div>
+                    <div class="correct-example">What <strong>would you have done</strong> if you had seen him?</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> So'roq gaplarda ham fe'lning 3-shakli (V3) ishlatiladi. `do` fe'lining V3 shakli `done`.</p></div>
+                </div>
+                
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 13: Inversiya (teskari so'z tartibi)da xato qilish</div>
+                    <div class="wrong-example"><strong>Had I would have known</strong>, I would have come.</div>
+                    <div class="correct-example"><strong>Had I known</strong>, I would have come.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> Type 3 da `if` o'rniga inversiya qilish mumkin. Bunda `Had` ega oldiga o'tadi va `if` tushib qoladi. Boshqa o'zgarish bo'lmaydi.</p></div>
+                </div>
+                 
+                 <div class="error-section">
+                    <div class="error-title">🚫 XATO 14: Type 3 da `would` ni unutish</div>
+                    <div class="wrong-example">If I had known, I <strong>had come</strong>.</div>
+                    <div class="correct-example">If I had known, I <strong>would have come</strong>.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> Natijani bildiruvchi bosh gapda har doim 'would' (yoki could/might) modal fe'li bo'lishi kerak. 'had come' faqat 'if' qismida keladi.</p></div>
+                </div>
+                
+                 <div class="error-section">
+                    <div class="error-title">🚫 XATO 15: Faqat 'if' so'ziga yopishib olish</div>
+                    <div class="wrong-example">I would have helped <strong>if</strong> I was there.</div>
+                    <div class="correct-example">I would have helped <strong>if I had been</strong> there. <br/> I would help <strong>if I were</strong> there.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> Gapning ikkinchi qismidagi 'would have helped' (Type 3 natijasi) yoki 'would help' (Type 2 natijasi) qaysi tur ekanligini belgilab beradi. 'If' qismini ham o'sha turga moslash kerak.</p></div>
+                </div>
+
+             </div>
+        </div>
+        
+    </div>
+
+    <script>
+        // Progress tracking
+        let completedSections = 0;
+        const totalSections = 6; // Qoidalar, Farqlar, Strukturalar, Misollar, Mashqlar, Xatolar
+
+        // Tab functionality
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetTab = btn.dataset.tab;
+                
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                btn.classList.add('active');
+                document.getElementById(targetTab).classList.add('active');
+                
+                updateProgress();
+            });
+        });
+
+        // Exercise navigation
+        document.querySelectorAll('.exercise-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetExercise = btn.dataset.exercise;
+                
+                document.querySelectorAll('.exercise-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.exercise-content').forEach(c => c.classList.remove('active'));
+                
+                btn.classList.add('active');
+                document.getElementById(targetExercise).classList.add('active');
+
+                if (targetExercise === 'order') {
+                    resetOrder();
+                }
+            });
+        });
+
+        function normalizeAnswer(answer) {
+            if (typeof answer !== 'string') return '';
+            return answer.toLowerCase().trim()
+                .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")
+                .replace(/\s+/g, ' ');
+        }
+
+        function checkAnswerMatch(userAnswer, correctAnswer) {
+            const normalizedUser = normalizeAnswer(userAnswer);
+            const correctAnswers = correctAnswer.split('|').map(ans => normalizeAnswer(ans));
+            return correctAnswers.includes(normalizedUser);
+        }
+
+        function checkTest() {
+            const questions = document.querySelectorAll('#test .question');
+            let score = 0;
+            let resultHTML = '';
+            questions.forEach((question, index) => {
+                const qNum = index + 1;
+                const correctAnswer = question.dataset.answer;
+                const explanation = question.dataset.explanation;
+                
+                // Fixed: Scope selector to the specific question
+                const selected = question.querySelector('input[type="radio"]:checked');
+
+                if (selected && selected.value === correctAnswer) {
+                    score++;
+                    resultHTML += `<div class="correct-answer">✓ ${qNum}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    resultHTML += `<div class="wrong-answer">✗ ${qNum}-savol: Noto'g'ri. <div class="explanation">${explanation}</div></div>`;
+                }
+            });
+            resultHTML += `<div class="final-score"><strong>Natija: ${score}/${questions.length} (${Math.round((score/questions.length)*100)}%)</strong></div>`;
+            document.getElementById('testResult').innerHTML = resultHTML;
+        }
+
+        function checkFill() {
+            const inputs = document.querySelectorAll('#fill .fill-input');
+            let correct = 0;
+            let resultHTML = '';
+            inputs.forEach((input, index) => {
+                const answer = input.dataset.answer;
+                const explanation = input.dataset.explanation;
+                if (checkAnswerMatch(input.value, answer)) {
+                    input.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                    resultHTML += `<div class="correct-answer">✓ ${index + 1}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    input.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savol: Noto'g'ri. To'g'ri javob: <strong>${answer.split('|')[0]}</strong> <div class="explanation">${explanation}</div></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${inputs.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('fillResult').innerHTML = resultHTML;
+        }
+
+        function checkCorrection() {
+            const inputs = document.querySelectorAll('#correction .correct-input');
+            let correct = 0;
+            let resultHTML = '';
+            inputs.forEach((input, index) => {
+                const answer = input.dataset.answer;
+                 const explanation = input.dataset.explanation;
+                if (checkAnswerMatch(input.value, answer)) {
+                    input.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                     resultHTML += `<div class="correct-answer">✓ ${index + 1}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    input.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savol: Noto'g'ri. To'g'ri javob: <strong>${answer.split('|')[0]}</strong> <div class="explanation">${explanation}</div></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${inputs.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('correctionResult').innerHTML = resultHTML;
+        }
+
+        function checkOrder() {
+            const dropZones = document.querySelectorAll('#order .drop-zone');
+            let correct = 0;
+            let resultHTML = '';
+            dropZones.forEach((zone, index) => {
+                const answer = zone.dataset.answer;
+                const userAnswer = Array.from(zone.children).map(child => child.textContent).join(' ');
+                if (checkAnswerMatch(userAnswer, answer)) {
+                    zone.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                } else {
+                    zone.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savolning to'g'ri javobi: <strong>${answer.split('|')[0]}</strong></div>`;
+                }
+            });
+            // Fixed: changed inputs.length to dropZones.length
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${dropZones.length} (${Math.round((correct/dropZones.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('orderResult').innerHTML = resultHTML;
+        }
+
+        function checkTransform() {
+            const inputs = document.querySelectorAll('#transform .transform-input');
+            let correct = 0;
+            let resultHTML = '';
+            inputs.forEach((input, index) => {
+                const answer = input.dataset.answer;
+                const explanation = input.dataset.explanation;
+                if (checkAnswerMatch(input.value, answer)) {
+                    input.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                     resultHTML += `<div class="correct-answer">✓ ${index + 1}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    input.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savol: Noto'g'ri. To'g'ri javob: <strong>${answer.split('|')[0]}</strong> <div class="explanation">${explanation}</div></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${inputs.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('transformResult').innerHTML = resultHTML;
+        }
+
+        // Click-based word order functionality
+        function handleWordClick(event) {
+            const word = event.target;
+            if (word.classList.contains('word')) {
+                const currentContainer = word.parentElement;
+                let targetContainer;
+
+                if (currentContainer.classList.contains('word-container')) {
+                    targetContainer = currentContainer.nextElementSibling;
+                } else if (currentContainer.classList.contains('drop-zone')) {
+                    targetContainer = currentContainer.previousElementSibling;
+                }
+
+                if (targetContainer) {
+                    targetContainer.appendChild(word);
+                }
+            }
+        }
+        document.getElementById('order').addEventListener('click', handleWordClick);
+
+        // So'zlarni aralashtirish funksiyasi
+        function shuffleChildren(parent) {
+            let children = Array.from(parent.children);
+            for (let i = children.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [children[i], children[j]] = [children[j], children[i]];
+            }
+            children.forEach(child => parent.appendChild(child));
+        }
+
+        // So'zlarni tartiblash mashqini qayta tiklash
+        function resetOrder() {
+            document.querySelectorAll('#order .order-question').forEach(question => {
+                const wordContainer = question.querySelector('.word-container');
+                const dropZone = question.querySelector('.drop-zone');
+                
+                // Barcha so'zlarni wordContainer ga qaytarish
+                Array.from(dropZone.children).forEach(child => wordContainer.appendChild(child));
+                
+                // So'zlarni aralashtirish
+                shuffleChildren(wordContainer);
+
+                dropZone.style.border = '2px dashed var(--drop-zone-border)';
+            });
+            document.getElementById('orderResult').innerHTML = '';
+        }
+
+        // Progressni yangilash
+        function updateProgress() {
+            const tabStates = { 'rules': 1, 'diffs': 2, 'structure': 3, 'examples': 4, 'exercises': 5, 'errors': 6 };
+            const activeTab = document.querySelector('.tab-btn.active').dataset.tab;
+            completedSections = tabStates[activeTab] || 0;
+            const percentage = (completedSections / totalSections) * 100;
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = percentage + '%';
+            progressBar.querySelector('.progress-text').textContent = Math.round(percentage) + '%';
+        }
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            themeToggle.checked = true;
+        }
+        themeToggle.addEventListener('change', () => {
+            if (themeToggle.checked) {
+                body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Sahifa yuklanganda
+        document.addEventListener('DOMContentLoaded', () => {
+            updateProgress();
+            resetOrder(); // So'zlarni birinchi yuklashda aralashtirish
+        });
+    </script>
+</body>
+</html>
