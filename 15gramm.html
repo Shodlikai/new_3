@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mixed Conditionals (Aralash Shart Gaplar) - Mukammal Qo'llanma</title>
+    <title>Conditional Sentences (Type 0 & 1) - Mukammal Qo'llanma</title>
     <style>
         /* Umumiy stilizatsiya */
         :root {
@@ -99,7 +99,7 @@
             color: var(--text-primary);
             line-height: 1.6;
             margin: 0;
-            /* Performance Fix: Only animate essential properties */
+            /* Performance Fix: Removed 'all' transition */
             transition: background 0.3s ease, color 0.3s ease;
         }
 
@@ -398,7 +398,7 @@
         }
 
         .noun, .pronoun, .verb, .subject, .object, .adjective, .adverb, .clause, .infinitive, .gerund, .v3, .intro-phrase, .wh-word, .if-clause, .main-clause {
-            padding: 5px 10px; border-radius: 5px; margin: 0 5px; color: white; display: inline-block;
+            padding: 5px 10px; border-radius: 5px; margin: 0 5px; color: white;
         }
         .noun { background: #fd79a8; }
         .pronoun { background: #0984e3; }
@@ -420,6 +420,7 @@
         .examples { background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 10px; margin-top: 15px; }
         .examples p { margin-bottom: 8px; font-size: 1rem; color: var(--text-primary); }
         .examples p.english { font-weight: bold; }
+        /* Added for Uzbek translations in Structure section */
         .structure-card .examples .uzbek {
             color: var(--uzbek-text);
             font-style: italic;
@@ -668,7 +669,7 @@
             border: 2px solid var(--wrong-color);
             border-radius: 8px;
             padding: 15px;
-            margin: 30px 0 10px 0; /* FIX: Top margin */
+            margin: 30px 0 10px 0; /* Margin yuqoridan oshirildi */
             position: relative;
             color: var(--text-primary);
         }
@@ -692,7 +693,7 @@
             border: 2px solid var(--correct-color);
             border-radius: 8px;
             padding: 15px;
-            margin: 30px 0 10px 0; /* FIX: Top margin */
+            margin: 30px 0 10px 0; /* Margin yuqoridan oshirildi */
             position: relative;
             color: var(--text-primary);
         }
@@ -808,8 +809,8 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Mixed Conditionals (Aralash Shart Gaplar) - Mukammal Qo'llanma</h1>
-            <p>O'tgan zamon shartlarining hozirgi natijasi va aksincha</p>
+            <h1>Conditional Sentences (Type 0 & 1) - Mukammal Qo'llanma</h1>
+            <p>Haqiqatlar, odatlar va kelajakdagi real ehtimollar uchun shart gaplar</p>
             <div class="progress-container">
                 <div class="progress-bar" id="progressBar">
                     <span class="progress-text">0%</span>
@@ -835,66 +836,57 @@
 
         <div id="rules" class="tab-content active">
              <div class="card">
-                <h2>Aralash Shart Gaplar Qoidalari</h2>
+                <h2>Shart Ergash Gaplar Qoidalari (Type 0 & 1)</h2>
                 <div class="rule-section">
-                    <h3>Mixed Conditional nima?</h3>
-                    <p><strong>Mixed Conditionals</strong> - bu Shart Gaplarning 2- va 3-turlari qismlarini birlashtirib, o'tgan zamondagi shartni hozirgi zamon natijasi bilan yoki hozirgi zamondagi shartni o'tgan zamon natijasi bilan bog'laydigan gaplardir.</p>
+                    <h3>Conditional Type 0 (Zero Conditional)</h3>
+                    <p><strong>Ishlatilishi:</strong> 100% aniq bo'lgan, doimiy takrorlanadigan, o'zgarmas qonuniyatlar, ilmiy faktlar va umumiy haqiqatlar uchun ishlatiladi. "Agar shunday bo'lsa, doim bunday bo'ladi" degan ma'noni beradi.</p>
+                    <p><strong>Formula:</strong> <code>If + Present Simple, ... Present Simple</code></p>
+                     <div class="example">
+                        <p><strong>If you heat water to 100°</strong>, it boils. (Agar suvni 100° gacha qizdirsangiz, u qaynaydi - bu ilmiy fakt).</p>
+                        <p><strong>If it rains</strong>, the streets get wet. (Agar yomg'ir yog'sa, ko'chalar ho'l bo'ladi - bu doimiy qonuniyat).</p>
+                    </div>
                 </div>
                 <div class="rule-section">
-                    <h3>1-Turi: O'tgan zamon sharti &rarr; Hozirgi zamon natijasi</h3>
-                    <p><strong>Ishlatilishi:</strong> O'tmishda sodir bo'lmagan (xayoliy) biror harakatning <strong>hozirgi kundagi</strong> natijasini tasavvur qilish uchun ishlatiladi. "Agar o'tmishda shunday bo'lganida edi, hozir boshqacha bo'lar edi" degan ma'noni beradi.</p>
-                    <p><strong>Formula:</strong> <code>If + Past Perfect, ... would + V1</code></p>
-                    <p><strong>Kalit so'zlar:</strong> Natija qismida ko'pincha <code>now</code>, <code>today</code>, <code>at the moment</code> kabi hozirgi zamonga ishora qiluvchi so'zlar keladi.</p>
-                     <div class="example">
-                        <p>If you <strong>had studied</strong> last night, you <strong>would know</strong> the answer <strong>now</strong>. (Agar kecha o'qiganingda edi, hozir javobni bilgan bo'larding).</p>
+                    <h3>Conditional Type 1 (First Conditional)</h3>
+                    <p><strong>Ishlatilishi:</strong> Kelajakda sodir bo'lishi mumkin bo'lgan, real va ehtimoli yuqori bo'lgan voqea-hodisalar uchun ishlatiladi. "Agar shunday bo'lsa, shunday bo'ladi/bo'lishi mumkin" degan ma'noni beradi.</p>
+                    <p><strong>Asosiy Formula:</strong> <code>If + Present Simple, ... will + V1</code></p>
+                    <div class="example">
+                        <p><strong>If I finish work early</strong>, I will come home. (Agar ishni erta tugatsam, uyga kelaman - bu real ehtimol).</p>
+                        <p><strong>If he runs</strong>, he'll get there in time. (Agar u yugursa, u yerga vaqtida yetib boradi).</p>
                     </div>
                 </div>
                  <div class="rule-section">
-                    <h3>2-Turi: Hozirgi zamon sharti &rarr; O'tgan zamon natijasi</h3>
-                    <p><strong>Ishlatilishi:</strong> Hozirgi kundagi biror (xayoliy) holat yoki shartning <strong>o'tgan zamondagi</strong> natijasini tasavvur qilish uchun ishlatiladi. "Agar hozir shunday bo'lganimda edi, o'tmishda boshqacha qilgan bo'lar edim" degan ma'noni beradi.</p>
-                    <p><strong>Formula:</strong> <code>If + Past Simple, ... would + have + V3</code></p>
-                    <p><strong>Kalit so'zlar:</strong> Natija qismida ko'pincha <code>yesterday</code>, <code>last week</code>, <code>a long time ago</code> kabi o'tgan zamonga ishora qiluvchi so'zlar keladi.</p>
-                    <div class="example">
-                        <p>If I <strong>weren't</strong> afraid of flying, I <strong>would have visited</strong> you in California <strong>a long time ago</strong>. (Agar uchishdan qo'rqmaganimda, men anchadan beri Kaliforniyadagi siznikiga tashrif buyurgan bo'lar edim).</p>
-                    </div>
+                    <h3>Type 1 ning boshqa ko'rinishlari</h3>
+                    <p>Bosh gapda (natija qismida) <code>will</code> o'rniga boshqa strukturalar ham kelishi mumkin:</p>
+                    <ul>
+                        <li><strong>Modal Fe'llar (may, might, can, must, should):</strong> Ehtimollik, imkoniyat, majburiyatni bildirish uchun.<br/><i>If it stops snowing, we <strong>can</strong> go out. (Agar qor yog'ishi to'xtasa, biz tashqariga chiqa olamiz).</i></li>
+                        <li><strong>Buyruq mayli (Imperative):</strong> Maslahat yoki buyruq berish uchun.<br/><i>If you see Tom tomorrow, <strong>tell</strong> him to ring me. (Agar ertaga Tomni ko'rsang, unga qo'ng'iroq qilishimni ayt).</i></li>
+                        <li><strong>Present Continuous/Perfect:</strong> Shart qismida hozir davom etayotgan yoki yaqinda tugagan harakatni bildirish uchun.<br/><i>If you <strong>are looking for</strong> Peter, you'll find him upstairs. (Agar siz Peterni qidirayotgan bo'lsangiz, uni yuqoridan topasiz).</i></li>
+                    </ul>
                 </div>
             </div>
         </div>
 
         <div id="diffs" class="tab-content">
             <div class="card">
-                <h2>Shart Gap Turlari O'rtasidagi Farqlar</h2>
+                <h2>Type 0 va Type 1 o'rtasidagi farqlar</h2>
                 <div class="diff-section">
-                    <h3>1. Real vs. Noreal Shartlar (Type 1 vs. Type 2)</h3>
-                    <p>Asosiy farq vaziyatning realligidadir.</p>
-                     <ul>
-                        <li><strong>Type 1 (Real Ehtimol):</strong> Kelajakda sodir bo'lishi <strong>mumkin</strong>.</li>
-                        <li><strong>Type 2 (Noreal Xayolot):</strong> Hozir sodir bo'lishi <strong>deyarli imkonsiz</strong>.</li>
-                    </ul>
+                    <h3>Asosiy farq: Aniq Fakt vs. Real Ehtimol</h3>
+                    <p>Bu ikki tur shart gapning asosiy farqi ularning ifodalaydigan ma'no darajasida yotadi: biri 100% aniq, ikkinchisi esa ehtimoliy.</p>
+                     <h4>Conditional Type 0 (Zero Conditional)</h4>
+                    <p>Bu turdagi shart gaplar **doimiy haqiqat** haqida gapiradi. Agar shart bajarilsa, natija har doim bir xil va muqarrar bo'ladi. Bu umumiy qoida, odat yoki ilmiy qonuniyatdir.</p>
                     <div class="example-item">
-                        <p class="english"><strong>Type 1:</strong> If I <strong>win</strong> the lottery, I <strong>will buy</strong> a new car. (Agar lotereya yutsam, yangi mashina sotib olaman - Bu real reja).</p>
-                        <p class="english"><strong>Type 2:</strong> If I <strong>won</strong> the lottery, I <strong>would buy</strong> a new car. (Agar lotereya yutganimda edi, yangi mashina sotib olardim - Bu shunchaki orzu, yutishimga ishonmayman).</p>
+                        <p class="english">If you <strong>don't water</strong> plants, they <strong>die</strong>.</p>
+                        <p class="uzbek">Agar o'simliklarni sug'ormasangiz, ular o'ladi. (Bu biologik qonun, har doim shunday bo'ladi).</p>
                     </div>
                 </div>
 
                 <div class="diff-section">
-                     <h3>2. Hozirgi Xayolot (Type 2) vs. O'tmishdagi Afsus (Type 3)</h3>
-                    <p>Bu ikki noreal shart gapning asosiy farqi ular ishora qilayotgan vaqtdadir.</p>
-                     <ul>
-                        <li><strong>Type 2 (Hozirgi/Kelajak):</strong> "Agar <strong>hozir</strong> shunday bo'lganda edi..." degan ma'noni beradi.</li>
-                        <li><strong>Type 3 (O'tmish):</strong> "Agar <strong>o'tmishda</strong> shunday bo'lganida edi..." degan ma'noni beradi.</li>
-                    </ul>
+                     <h4>Conditional Type 1 (First Conditional)</h4>
+                    <p>Bu turdagi shart gaplar esa **kelajakdagi real ehtimol** haqida gapiradi. Agar shart bajarilsa, natijaning sodir bo'lish ehtimoli yuqori, lekin 100% kafolatlanmagan. Bu ma'lum bir vaziyatga xos bashorat, va'da yoki ogohlantirishdir.</p>
                     <div class="example-item">
-                        <p class="english"><strong>Type 2:</strong> If I <strong>spoke</strong> French, I <strong>would apply</strong> for that job. (Agar fransuzcha gapira olganimda edi, o'sha ishga ariza topshirardim - lekin hozir gapira olmayman).</p>
-                        <p class="english"><strong>Type 3:</strong> If I <strong>had spoken</strong> French, I <strong>would have applied</strong> for that job. (Agar fransuzcha gapira olganimda edi, o'sha ishga ariza topshirgan bo'lardim - o'tmishda shunday imkoniyat bo'lgan, lekin til bilmaganim uchun topshirmaganman).</p>
-                    </div>
-                </div>
-                 <div class="diff-section">
-                    <h3>3. Oddiy (Type 3) vs. Aralash (Mixed) Shart Gaplar</h3>
-                    <p>Oddiy shart gaplarda zamonlar bir xil bo'ladi (o'tmish sharti-o'tmish natijasi), aralash shart gaplarda esa zamonlar aralashadi.</p>
-                    <div class="example-item">
-                        <p class="english"><strong>Type 3:</strong> If she <strong>had warned</strong> me, I <strong>wouldn't have been</strong> surprised. (Agar u meni ogohlantirganida edi, men hayron qolmagan bo'lardim - o'tmish &rarr; o'tmish).</p>
-                        <p class="english"><strong>Mixed:</strong> If she <strong>had warned</strong> me, I <strong>wouldn't be</strong> surprised now. (Agar u meni ogohlantirganida edi, men hozir hayron qolmayotgan bo'lardim - o'tmish &rarr; hozir).</p>
+                        <p class="english">If you <strong>don't water</strong> these plants, they <strong>will die</strong>.</p>
+                        <p class="uzbek">Agar mana bu o'simliklarni sug'ormasangiz, ular o'ladi. (Bu umumiy qonun emas, aynan mana shu vaziyatga xos ogohlantirish).</p>
                     </div>
                 </div>
             </div>
@@ -902,28 +894,46 @@
 
         <div id="structure" class="tab-content">
             <div class="card">
-                <h2>Aralash Shart Gap Tuzilmalari</h2>
+                <h2>Shart Ergash Gap Tuzilmalari</h2>
                 <div class="structure-grid">
                     <div class="structure-card">
-                        <h3>O'tgan Zamon Sharti &rarr; Hozirgi Zamon Natijasi</h3>
-                        <div class="formula"><span class="if-clause">If + S + had + V3</span>, <span class="main-clause">S + would + V1</span>.</div>
-                        <div class="formula"><span class="if-clause">If + S + hadn't + V3</span>, <span class="main-clause">S + wouldn't be...</span>.</div>
+                        <h3>Conditional Type 0</h3>
+                        <div class="formula"><span class="if-clause">If + S + Present Simple</span>, <span class="main-clause">S + Present Simple</span>.</div>
                         <div class="examples">
-                            <p class="english">If I <strong>had studied</strong> last night, I <strong>would know</strong> the answer now.</p>
-                            <p class="uzbek">Agar siz o'tgan tunda o'qiganingizda, siz hozir savolga javobni bilardik.</p>
-                            <p class="english">If he <strong>had left</strong> immediately, he <strong>would be</strong> here now.</p>
-                            <p class="uzbek">Agar u tezda tark etgan bo'lganida, u hozir bu yerda bo'lardi.</p>
+                            <p class="english">If you heat ice, it turns to water.</p>
+                            <p class="uzbek">Agar muzni isitsangiz, u suvga aylanadi.</p>
+                            <p class="english">If I get up early, my father takes me to school.</p>
+                            <p class="uzbek">Agar men erta uyg'onsam, mening otam meni maktabga olib boradi.</p>
                         </div>
                     </div>
                     <div class="structure-card">
-                        <h3>Hozirgi Zamon Sharti &rarr; O'tgan Zamon Natijasi</h3>
-                        <div class="formula"><span class="if-clause">If + S + Past Simple</span>, <span class="main-clause">S + would have + V3</span>.</div>
-                        <div class="formula"><span class="if-clause">If + S + weren't...</span>, <span class="main-clause">S + would have + V3</span>.</div>
+                        <h3>Conditional Type 1 (Future)</h3>
+                        <div class="formula"><span class="if-clause">If + S + Present Simple</span>, <span class="main-clause">S + will + V1</span>.</div>
                          <div class="examples">
-                            <p class="english">If I <strong>weren't</strong> afraid of flying, I <strong>would have visited</strong> you in California a long time ago.</p>
-                            <p class="uzbek">Agar uchishdan qo'rqmaganimda, men ancha vaqt oldin Kaliforniyaga siznikiga tashrif buyurgan bo'lar edim.</p>
-                            <p class="english">If she <strong>loved</strong> him, she <strong>wouldn't have left</strong> him.</p>
-                            <p class="uzbek">Agar u uni sevganida, u uni tashlab ketmagan bo'lar edi.</p>
+                            <p class="english">If I finish work early, I'll get home fast.</p>
+                            <p class="uzbek">Agar ishni erta tugatsam, uyga tez yetib boraman.</p>
+                            <p class="english">If he runs, he'll get there in time.</p>
+                            <p class="uzbek">Agar u yugursa, u yerga vaqtida yetib boradi.</p>
+                        </div>
+                    </div>
+                    <div class="structure-card">
+                        <h3>Conditional Type 1 (Modal Verbs)</h3>
+                        <div class="formula"><span class="if-clause">If + S + Present Simple</span>, <span class="main-clause">S + modal + V1</span>.</div>
+                        <div class="examples">
+                            <p class="english">If it stops snowing, we can go out.</p>
+                            <p class="uzbek">Agar qor yog'ishi to'xtasa, biz tashqariga chiqishimiz mumkin.</p>
+                            <p class="english">If you want to lose weight, you must/should eat less bread.</p>
+                            <p class="uzbek">Agar sen vazn yo'qotishni xohlasang, kamroq non yeyishing kerak.</p>
+                        </div>
+                    </div>
+                    <div class="structure-card">
+                        <h3>Conditional Type 1 (Imperative)</h3>
+                        <div class="formula"><span class="if-clause">If + S + Present Simple</span>, <span class="main-clause">V1 ... !</span>.</div>
+                        <div class="examples">
+                            <p class="english">If you see Tom tomorrow, tell him to ring me.</p>
+                            <p class="uzbek">Agar ertaga Tomni ko'rsang, unga qo'ng'iroq qilishimni so'ray.</p>
+                            <p class="english">If you lose the keys, don't open the door.</p>
+                            <p class="uzbek">Agar kalitlarni yo'qotsangiz, eshikni ochmang.</p>
                         </div>
                     </div>
                 </div>
@@ -935,33 +945,33 @@
                 <h2>Misollar bilan tanishing</h2>
                 <div class="examples-grid">
                     <div class="example-category">
-                        <h3>O'tmishdagi Shart &rarr; Hozirgi Natija</h3>
+                        <h3>Conditional Type 0 (Faktlar va odatlar)</h3>
                         <div class="example-item">
-                            <p class="english">If she <strong>hadn't missed</strong> her flight yesterday, she <strong>would be</strong> here today.</p>
-                            <p class="uzbek">Agar u kecha reysini o'tkazib yubormaganida, u bugun shu yerda bo'lar edi.</p>
+                            <p class="english">If you heat water to 100°, it boils.</p>
+                            <p class="uzbek">Agar suvni 100° ga isitsa, u qaynaydi.</p>
                         </div>
                         <div class="example-item">
-                            <p class="english">If I <strong>had studied</strong> hard when I was young, I <strong>wouldn't be</strong> a porter now.</p>
-                            <p class="uzbek">Agar yoshligimda qattiq o'qiganimda, men hozir hammol bo'lmas edim.</p>
+                            <p class="english">If a person is a vegetarian, he/she doesn't eat meat.</p>
+                            <p class="uzbek">Agar biror shaxs vegetarian bo'lsa, u go'sht yemaydi.</p>
                         </div>
-                         <div class="example-item">
-                            <p class="english">If you <strong>hadn't eaten</strong> my chocolate, I <strong>wouldn't be</strong> angry.</p>
-                            <p class="uzbek">Agar shokoladimni yegan bo'lganingda, meni jahlim chiqardi.</p>
+                        <div class="example-item">
+                            <p class="english">The dog is happy if it sees its master.</p>
+                            <p class="uzbek">Agar it o'z xo'jayinini ko'rsa, baxtli bo'ladi.</p>
                         </div>
                     </div>
                     <div class="example-category">
-                        <h3>Hozirgi Shart &rarr; O'tmishdagi Natija</h3>
+                        <h3>Conditional Type 1 (Kelajakdagi ehtimollar)</h3>
                         <div class="example-item">
-                            <p class="english">If he <strong>weren't</strong> so lazy, he <strong>would have passed</strong> the exam.</p>
-                            <p class="uzbek">Agar u bunchalik dangasa bo'lmaganida, imtihondan o'tgan bo'lar edi.</p>
+                            <p class="english">If you try harder, you will succeed in your exams.</p>
+                            <p class="uzbek">Agar qattiqroq harakat qilsang, imtihonlaringda muvaffaqiyatga erishasan.</p>
                         </div>
                         <div class="example-item">
-                            <p class="english">If I <strong>wasn't</strong> a good cook, I <strong>wouldn't have tried</strong> to make this cake.</p>
-                            <p class="uzbek">Agar yaxshi oshpaz bo'lganimda, men bu keksni pishirishga urinmagan bo'lar edim.</p>
+                            <p class="english">If you lose your credit card, you will notify the police.</p>
+                            <p class="uzbek">Agar kredit kartangni yo'qotsang, politsiyaga xabar berasan.</p>
                         </div>
                          <div class="example-item">
-                            <p class="english">If Tom <strong>had</strong> known about the sale, he <strong>would shop</strong> with us.</p>
-                            <p class="uzbek">Agar Tom chegirmalar haqida bilganida edi, u biz bilan xarid qilardi.</p>
+                            <p class="english">If Matthew enters the race, he'll probably win it.</p>
+                            <p class="uzbek">Agar Metyu poygaga qatnashsa, ehtimol u yutadi.</p>
                         </div>
                     </div>
                 </div>
@@ -970,28 +980,28 @@
 
 <div id="exercises" class="tab-content">
     <div class="card">
-      <h2>Mashqlar (Mixed Conditionals)</h2>
+      <h2>Mashqlar (Conditional Type 0 & 1)</h2>
                 <nav class="exercise-nav">
                     <button class="exercise-btn active" data-exercise="test">Test</button>
                     <button class="exercise-btn" data-exercise="fill">Bo'sh joyni to'ldirish</button>
                     <button class="exercise-btn" data-exercise="correction">Xatolarni Tuzatish</button>
                     <button class="exercise-btn" data-exercise="order">So'zlarni Tartiblash</button>
-                    <button class="exercise-btn" data-exercise="transform">Vaziyatga mos gap tuzish</button>
+                    <button class="exercise-btn" data-exercise="transform">Gaplarni Birlashtirish</button>
                 </nav>
 
                 <div id="test" class="exercise-content active">
                     <h3>To'g'ri variantni tanlang</h3>
                     <div class="quiz-container">
-                        <div class="question" data-answer="b" data-explanation="O'tgan zamon sharti ('had listened') hozirgi natijaga ('wouldn't be') ta'sir qilmoqda."><p>1. If I had listened to your advice, I ___ in this mess now.</p><div class="options"><label><input type="radio" name="q1" value="a">a) wouldn't have been</label><label><input type="radio" name="q1" value="b">b) wouldn't be</label><label><input type="radio" name="q1" value="c">c) am not</label></div></div>
-                        <div class="question" data-answer="c" data-explanation="Hozirgi shart ('if I were') o'tgan natijaga ('would have gone') ta'sir qilmoqda."><p>2. If I were a good student, I ___ for the exam yesterday.</p><div class="options"><label><input type="radio" name="q2" value="a">a) would study</label><label><input type="radio" name="q2" value="b">b) studied</label><label><input type="radio" name="q2" value="c">c) would have studied</label></div></div>
-                        <div class="question" data-answer="a" data-explanation="O'tgan shart ('hadn't missed') hozirgi natijaga ('would be') ta'sir qilmoqda."><p>3. If she ___ her flight yesterday, she would be here now.</p><div class="options"><label><input type="radio" name="q3" value="a">a) hadn't missed</label><label><input type="radio" name="q3" value="b">b) didn't miss</label><label><input type="radio" name="q3" value="c">c) wouldn't miss</label></div></div>
-                        <div class="question" data-answer="b" data-explanation="Hozirgi shart ('if she spoke') o'tgan natijaga ('could have gotten') ta'sir qilmoqda."><p>4. If she spoke French, she ___ that job in Paris last year.</p><div class="options"><label><input type="radio" name="q4" value="a">a) could get</label><label><input type="radio" name="q4" value="b">b) could have gotten</label><label><input type="radio" name="q4" value="c">c) had gotten</label></div></div>
-                        <div class="question" data-answer="c" data-explanation="O'tgan shart ('had taken') hozirgi natijaga ('would be') ta'sir qilmoqda."><p>5. If I ___ that job, I would be miserable now.</p><div class="options"><label><input type="radio" name="q5" value="a">a) took</label><label><input type="radio" name="q5" value="b">b) take</label><label><input type="radio" name="q5" value="c">c) had taken</label></div></div>
-                        <div class="question" data-answer="a" data-explanation="Hozirgi shart ('if I weren't') o'tgan natijaga ('would have helped') ta'sir qilmoqda."><p>6. If I weren't so busy, I ___ you with your project yesterday.</p><div class="options"><label><input type="radio" name="q6" value="a">a) would have helped</label><label><input type="radio" name="q6" value="b">b) would help</label><label><input type="radio" name="q6" value="c">c) helped</label></div></div>
-                        <div class="question" data-answer="b" data-explanation="O'tgan shart ('had been born') hozirgi natijaga ('would speak') ta'sir qilmoqda."><p>7. If I ___ in Spain, I would speak Spanish.</p><div class="options"><label><input type="radio" name="q7" value="a">a) was born</label><label><input type="radio" name="q7" value="b">b) had been born</label><label><input type="radio" name="q7" value="c">c) would be born</label></div></div>
-                        <div class="question" data-answer="b" data-explanation="Hozirgi shart ('if I had') o'tgan natijaga ('would have finished') ta'sir qilmoqda."><p>8. If I had more experience, I ___ the project on time last month.</p><div class="options"><label><input type="radio" name="q8" value="a">a) would finish</label><label><input type="radio" name="q8" value="b">b) would have finished</label><label><input type="radio" name="q8" value="c">c) finished</label></div></div>
-                        <div class="question" data-answer="c" data-explanation="O'tgan shart ('hadn't eaten') hozirgi natijaga ('wouldn't feel') ta'sir qilmoqda."><p>9. If I ___ so much cake last night, I wouldn't feel sick now.</p><div class="options"><label><input type="radio" name="q9" value="a">a) didn't eat</label><label><input type="radio" name="q9" value="b">b) ate</label><label><input type="radio" name="q9" value="c">c) hadn't eaten</label></div></div>
-                        <div class="question" data-answer="a" data-explanation="Hozirgi shart ('if I knew') o'tgan natijaga ('would have told') ta'sir qilmoqda."><p>10. If I knew the truth, I ___ you yesterday.</p><div class="options"><label><input type="radio" name="q10" value="a">a) would have told</label><label><input type="radio" name="q10" value="b">b) told</label><label><input type="radio" name="q10" value="c">c) would tell</label></div></div>
+                        <div class="question" data-answer="a" data-explanation="Type 0, ilmiy fakt. Ikkala qismda ham Present Simple ishlatiladi."><p>1. If you ___ ice, it melts.</p><div class="options"><label><input type="radio" name="q1" value="a">a) heat</label><label><input type="radio" name="q1" value="b">b) will heat</label><label><input type="radio" name="q1" value="c">c) heated</label></div></div>
+                        <div class="question" data-answer="b" data-explanation="Type 1, real kelajak ehtimoli. If-clause da Present Simple, Main-clause da Future Simple."><p>2. If it rains tomorrow, we ___ the picnic.</p><div class="options"><label><input type="radio" name="q2" value="a">a) cancel</label><label><input type="radio" name="q2" value="b">b) will cancel</label><label><input type="radio" name="q2" value="c">c) would cancel</label></div></div>
+                        <div class="question" data-answer="c" data-explanation="Type 0, umumiy haqiqat. 'you' birlikda bo'lgani uchun 'press' fe'li to'g'ri."><p>3. If you ___ this button, the computer turns on.</p><div class="options"><label><input type="radio" name="q3" value="a">a) will press</label><label><input type="radio" name="q3" value="b">b) presses</label><label><input type="radio" name="q3" value="c">c) press</label></div></div>
+                        <div class="question" data-answer="a" data-explanation="Type 1, real kelajak ehtimoli. If-clause da Present Simple, ya'ni 'don't hurry'."><p>4. If you ___, you will miss the bus.</p><div class="options"><label><input type="radio" name="q4" value="a">a) don't hurry</label><label><input type="radio" name="q4" value="b">b) will not hurry</label><label><input type="radio" name="q4" value="c">c) won't hurry</label></div></div>
+                        <div class="question" data-answer="b" data-explanation="Type 1, maslahat. Bosh gapda buyruq mayli ('call me') ishlatilmoqda."><p>5. If you need help, ___ me.</p><div class="options"><label><input type="radio" name="q5" value="a">a) you will call</label><label><input type="radio" name="q5" value="b">b) call</label><label><input type="radio" name="q5" value="c">c) you call</label></div></div>
+                        <div class="question" data-answer="c" data-explanation="Type 1, imkoniyat. Bosh gapda modal fe'l 'can' ishlatilmoqda."><p>6. If Nick arrives a bit early, he ___ get things ready.</p><div class="options"><label><input type="radio" name="q6" value="a">a) will</label><label><input type="radio" name="q6" value="b">b) is</label><label><input type="radio" name="q6" value="c">c) can</label></div></div>
+                        <div class="question" data-answer="a" data-explanation="Type 0, odat. Ikkala qismda ham Present Simple."><p>7. When it ___, the streets are wet.</p><div class="options"><label><input type="radio" name="q7" value="a">a) rains</label><label><input type="radio" name="q7" value="b">b) will rain</label><label><input type="radio" name="q7" value="c">c) is raining</label></div></div>
+                        <div class="question" data-answer="b" data-explanation="Type 1. If-clause da Present Simple 'if I find'."><p>8. If I find your keys, I ___ you.</p><div class="options"><label><input type="radio" name="q8" value="a">a) am calling</label><label><input type="radio" name="q8" value="b">b) will call</label><label><input type="radio" name="q8" value="c">c) call</label></div></div>
+                        <div class="question" data-answer="c" data-explanation="Type 1, If + Present Continuous. Bosh gapda Future Tense."><p>9. If you ___ for Peter, you'll find him upstairs.</p><div class="options"><label><input type="radio" name="q9" value="a">a) look</label><label><input type="radio" name="q9" value="b">b) will look</label><label><input type="radio" name="q9" value="c">c) are looking</label></div></div>
+                        <div class="question" data-answer="a" data-explanation="Type 0. Ikkala qismda ham Present Simple."><p>10. Plants die if they ___ enough water.</p><div class="options"><label><input type="radio" name="q10" value="a">a) don't get</label><label><input type="radio" name="q10" value="b">b) won't get</label><label><input type="radio" name="q10" value="c">c) didn't get</label></div></div>
                     </div>
                     <button class="check-btn" onclick="checkTest()">Tekshirish</button>
                     <div id="testResult" class="result"></div>
@@ -1000,16 +1010,16 @@
                 <div id="fill" class="exercise-content">
                     <h3>Bo'sh joyni fe'lning to'g'ri shakli bilan to'ldiring.</h3>
                     <div class="fill-exercise">
-                        <div class="fill-question"><p>1. If I had gone to bed earlier last night, I ___ so tired now. (not/be)</p><input type="text" class="fill-input" data-answer="would not be|wouldn't be" data-explanation="O'tgan shart &rarr; hozirgi natija." autocomplete="off"></div>
-                        <div class="fill-question"><p>2. If she weren't so shy, she ___ to him at the party yesterday. (speak)</p><input type="text" class="fill-input" data-answer="would have spoken" data-explanation="Hozirgi shart &rarr; o'tgan natija." autocomplete="off"></div>
-                        <div class="fill-question"><p>3. If you ___ me about the problem, I would be able to help you now. (tell)</p><input type="text" class="fill-input" data-answer="had told" data-explanation="O'tgan shart &rarr; hozirgi natija." autocomplete="off"></div>
-                        <div class="fill-question"><p>4. If I spoke Japanese, I ___ for that job in Tokyo last year. (apply)</p><input type="text" class="fill-input" data-answer="would have applied" data-explanation="Hozirgi shart &rarr; o'tgan natija." autocomplete="off"></div>
-                        <div class="fill-question"><p>5. If they ___ the house, they would be very poor now. (not/sell)</p><input type="text" class="fill-input" data-answer="hadn't sold" data-explanation="O'tgan shart &rarr; hozirgi natija." autocomplete="off"></div>
-                        <div class="fill-question"><p>6. If I were you, I ___ that opportunity last week. (not/miss)</p><input type="text" class="fill-input" data-answer="would not have missed|wouldn't have missed" data-explanation="Hozirgi shart &rarr; o'tgan natija." autocomplete="off"></div>
-                        <div class="fill-question"><p>7. If he had been born in the US, he ___ a visa to work there. (not/need)</p><input type="text" class="fill-input" data-answer="would not need|wouldn't need" data-explanation="O'tgan shart &rarr; hozirgi natija." autocomplete="off"></div>
-                        <div class="fill-question"><p>8. If I had more free time, I ___ that book you gave me last month. (read)</p><input type="text" class="fill-input" data-answer="would have read" data-explanation="Hozirgi shart &rarr; o'tgan natija." autocomplete="off"></div>
-                        <div class="fill-question"><p>9. If I ___ that last piece of pizza, I wouldn't be so hungry now. (eat)</p><input type="text" class="fill-input" data-answer="had eaten" data-explanation="O'tgan shart &rarr; hozirgi natija." autocomplete="off"></div>
-                        <div class="fill-question"><p>10. If he ___ a better driver, he wouldn't have crashed his car. (be)</p><input type="text" class="fill-input" data-answer="were" data-explanation="Hozirgi shart &rarr; o'tgan natija." autocomplete="off"></div>
+                        <div class="fill-question"><p>1. If you freeze water, it ___ into ice. (turn)</p><input type="text" class="fill-input" data-answer="turns" data-explanation="Type 0: ilmiy fakt. Present Simple."></div>
+                        <div class="fill-question"><p>2. I ___ you if I need your help. (call)</p><input type="text" class="fill-input" data-answer="will call" data-explanation="Type 1: real kelajak. Future Simple."></div>
+                        <div class="fill-question"><p>3. If I ___ late for work, my boss gets angry. (be)</p><input type="text" class="fill-input" data-answer="am" data-explanation="Type 0: odat, takrorlanuvchi holat. Present Simple."></div>
+                        <div class="fill-question"><p>4. If he gets a job in Liverpool, he ___ to move. (have)</p><input type="text" class="fill-input" data-answer="will have" data-explanation="Type 1: real kelajak. Future Simple."></div>
+                        <div class="fill-question"><p>5. If you don't wear a sweater, you ___ cold. (get)</p><input type="text" class="fill-input" data-answer="will get" data-explanation="Type 1: ogohlantirish, real kelajak."></div>
+                        <div class="fill-question"><p>6. If you want to lose weight, you ___ eat less bread. (must)</p><input type="text" class="fill-input" data-answer="must" data-explanation="Type 1: modal fe'l bilan maslahat."></div>
+                        <div class="fill-question"><p>7. The dog barks if a stranger ___ near the house. (come)</p><input type="text" class="fill-input" data-answer="comes" data-explanation="Type 0: odat. Present Simple."></div>
+                        <div class="fill-question"><p>8. If you ___ finished the book, please return it to me. (have)</p><input type="text" class="fill-input" data-answer="have" data-explanation="Type 1: If + Present Perfect, buyruq mayli bilan."></div>
+                        <div class="fill-question"><p>9. If it stops snowing, we ___ go for a walk. (can)</p><input type="text" class="fill-input" data-answer="can" data-explanation="Type 1: modal fe'l bilan imkoniyat."></div>
+                        <div class="fill-question"><p>10. Don't worry if I ___ a little late. (be)</p><input type="text" class="fill-input" data-answer="am" data-explanation="Type 1: buyruq mayli bilan. If-clause da Present Simple."></div>
                     </div>
                     <button class="check-btn" onclick="checkFill()">Tekshirish</button>
                     <div id="fillResult" class="result"></div>
@@ -1018,11 +1028,16 @@
                 <div id="correction" class="exercise-content">
                     <h3>Xatolarni Tuzatish</h3>
                     <div class="correct-exercise">
-                        <div class="correct-question"><p class="incorrect">1. If I would have money, I would buy a house.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="If I had money, I would buy a house." data-explanation="'If' qismida 'would' ishlatilmaydi. Type 2 da Past Simple kerak." autocomplete="off"></div>
-                        <div class="correct-question"><p class="incorrect">2. If she had studied, she would pass.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="If she had studied, she would have passed." data-explanation="Bu Type 3. Tense'lar aralashib ketgan. Bosh gapda 'would have + V3' bo'lishi kerak." autocomplete="off"></div>
-                        <div class="correct-question"><p class="incorrect">3. If I was you, I would tell the truth.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="If I were you, I would tell the truth." data-explanation="Type 2 da maslahat berish uchun 'If I were you...' qolipi ishlatiladi." autocomplete="off"></div>
-                        <div class="correct-question"><p class="incorrect">4. If he came earlier, we would have met him.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="If he had come earlier, we would have met him." data-explanation="Bu Type 3. 'If' qismida Past Simple emas, Past Perfect ('had come') ishlatiladi." autocomplete="off"></div>
-                        <div class="correct-question"><p class="incorrect">5. If I had known, I would tell you.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="If I had known, I would have told you." data-explanation="Type 3 da bosh gap 'would have + V3' bo'ladi." autocomplete="off"></div>
+                        <div class="correct-question"><p class="incorrect">1. If I will be late, my friends will be angry.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="If I am late, my friends will be angry." data-explanation="Eng asosiy xato: 'If' bilan boshlangan ergash gapda 'will' ishlatilmaydi."></div>
+                        <div class="correct-question"><p class="incorrect">2. If you will press this button, the machine will start.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="If you press this button, the machine will start." data-explanation="'If' qismida 'will' ishlatilmaydi."></div>
+                        <div class="correct-question"><p class="incorrect">3. When the water will boil, you can add the pasta.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="When the water boils, you can add the pasta." data-explanation="Shart/vaqt ergash gaplarida ('if', 'when', 'as soon as') kelasi zamon o'rniga hozirgi zamon ishlatiladi."></div>
+                        <div class="correct-question"><p class="incorrect">4. If he studied hard, he will pass the exam.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="If he studies hard, he will pass the exam." data-explanation="Type 1 da 'if' qismida Present Simple ishlatiladi."></div>
+                        <div class="correct-question"><p class="incorrect">5. If ice will get warm, it melts.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="If ice gets warm, it melts." data-explanation="Bu Type 0 (fakt). 'If' qismida 'will' ishlatilmaydi."></div>
+                        <div class="correct-question"><p class="incorrect">6. You get tired if you won't sleep enough.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="You get tired if you don't sleep enough." data-explanation="Bu Type 0 (umumiy haqiqat). 'If' qismida 'will' (won't) ishlatilmaydi."></div>
+                        <div class="correct-question"><p class="incorrect">7. I'll call you when I will arrive.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I'll call you when I arrive." data-explanation="'when' bilan boshlangan vaqt ergash gapida kelasi zamon o'rniga hozirgi zamon ishlatiladi."></div>
+                        <div class="correct-question"><p class="incorrect">8. If I will have time, I help you.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="If I have time, I will help you." data-explanation="If-clause da 'will' ishlatilmaydi. Bosh gapda 'will' bo'lishi kerak."></div>
+                        <div class="correct-question"><p class="incorrect">9. What happens if you will mix red and blue?</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="What happens if you mix red and blue?" data-explanation="Bu Type 0 (fakt). 'If' qismida 'will' ishlatilmaydi."></div>
+                        <div class="correct-question"><p class="incorrect">10. If he is calling me, I don't answer.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="If he calls me, I won't answer." data-explanation="Bu kelajakdagi real ehtimol (Type 1). Shuning uchun bosh gapda 'will not' (won't) ishlatiladi."></div>
                     </div>
                     <button class="check-btn" onclick="checkCorrection()">Tekshirish</button>
                     <div id="correctionResult" class="result"></div>
@@ -1031,11 +1046,16 @@
                 <div id="order" class="exercise-content">
                     <h3>So'zlarni to'g'ri tartibda joylashtiring</h3>
                     <div class="order-exercise">
-                        <div class="order-question"><p>1. (if / I / you / I / were / wouldn't go)</p><div class="word-container"><div class="word">were</div><div class="word">wouldn't go</div><div class="word">if</div><div class="word">you</div><div class="word">I</div><div class="word">I</div></div><div class="drop-zone" data-answer="if I were you I wouldn't go"></div></div>
-                        <div class="order-question"><p>2. (had / you / if / me / asked / I / would have / helped)</p><div class="word-container"><div class="word">had</div><div class="word">helped</div><div class="word">you</div><div class="word">me</div><div class="word">I</div><div class="word">if</div><div class="word">asked</div><div class="word">would have</div></div><div class="drop-zone" data-answer="if you had asked me I would have helped"></div></div>
-                        <div class="order-question"><p>3. (a million / had / dollars / I / I / would travel / if)</p><div class="word-container"><div class="word">if</div><div class="word">I</div><div class="word">dollars</div><div class="word">a million</div><div class="word">I</div><div class="word">would travel</div><div class="word">had</div></div><div class="drop-zone" data-answer="if I had a million dollars I would travel"></div></div>
-                        <div class="order-question"><p>4. (hadn't / it / if / rained / we / would have gone / to the beach)</p><div class="word-container"><div class="word">it</div><div class="word">if</div><div class="word">we</div><div class="word">would have gone</div><div class="word">hadn't</div><div class="word">to the beach</div><div class="word">rained</div></div><div class="drop-zone" data-answer="if it hadn't rained we would have gone to the beach"></div></div>
-                        <div class="order-question"><p>5. (would / you / if / what / do / you / were / me)</p><div class="word-container"><div class="word">were</div><div class="word">do</div><div class="word">if</div><div class="word">you</div><div class="word">what</div><div class="word">you</div><div class="word">me</div><div class="word">would</div></div><div class="drop-zone" data-answer="what would you do if you were me"></div></div>
+                        <div class="order-question"><p>1. (if / rains / it / I / stay / will / home)</p><div class="word-container"><div class="word">home</div><div class="word">rains</div><div class="word">will</div><div class="word">it</div><div class="word">I</div><div class="word">if</div><div class="word">stay</div></div><div class="drop-zone" data-answer="if it rains I will stay home"></div></div>
+                        <div class="order-question"><p>2. (you / it / if / boils / heat / water)</p><div class="word-container"><div class="word">water</div><div class="word">it</div><div class="word">heat</div><div class="word">if</div><div class="word">you</div><div class="word">boils</div></div><div class="drop-zone" data-answer="if you heat water it boils"></div></div>
+                        <div class="order-question"><p>3. (call / if / you / help / me / need)</p><div class="word-container"><div class="word">call</div><div class="word">help</div><div class="word">if</div><div class="word">me</div><div class="word">you</div><div class="word">need</div></div><div class="drop-zone" data-answer="if you need help call me"></div></div>
+                        <div class="order-question"><p>4. (we / the bus / hurry / won't / if / we / miss)</p><div class="word-container"><div class="word">we</div><div class="word">won't</div><div class="word">the bus</div><div class="word">miss</div><div class="word">if</div><div class="word">hurry</div><div class="word">we</div></div><div class="drop-zone" data-answer="if we don't hurry we will miss the bus"></div></div>
+                        <div class="order-question"><p>5. (get / wet / you / in the rain / you / if / stand)</p><div class="word-container"><div class="word">you</div><div class="word">get</div><div class="word">in the rain</div><div class="word">if</div><div class="word">wet</div><div class="word">stand</div><div class="word">you</div></div><div class="drop-zone" data-answer="if you stand in the rain you get wet"></div></div>
+                        <div class="order-question"><p>6. (if / your exams / pass / you / you / study / will)</p><div class="word-container"><div class="word">you</div><div class="word">if</div><div class="word">your exams</div><div class="word">will</div><div class="word">pass</div><div class="word">study</div><div class="word">you</div></div><div class="drop-zone" data-answer="if you study you will pass your exams"></div></div>
+                        <div class="order-question"><p>7. (if / I / I / will / get up / early / am / late / won't be)</p><div class="word-container"><div class="word">am</div><div class="word">I</div><div class="word">won't be</div><div class="word">late</div><div class="word">if</div><div class="word">I</div><div class="word">early</div><div class="word">get up</div></div><div class="drop-zone" data-answer="if I get up early I won't be late"></div></div>
+                        <div class="order-question"><p>8. (the party / if / time / have / I / I'll / come / to)</p><div class="word-container"><div class="word">if</div><div class="word">have</div><div class="word">I</div><div class="word">time</div><div class="word">to</div><div class="word">I'll</div><div class="word">the party</div><div class="word">come</div></div><div class="drop-zone" data-answer="if I have time I'll come to the party"></div></div>
+                        <div class="order-question"><p>9. (turn / if / you / on / the lights / the switch / press)</p><div class="word-container"><div class="word">the switch</div><div class="word">turn</div><div class="word">on</div><div class="word">you</div><div class="word">the lights</div><div class="word">if</div><div class="word">press</div></div><div class="drop-zone" data-answer="if you press the switch the lights turn on"></div></div>
+                        <div class="order-question"><p>10. (he / pass / if / doesn't / the test / he / study / won't)</p><div class="word-container"><div class="word">the test</div><div class="word">study</div><div class="word">won't</div><div class="word">he</div><div class="word">pass</div><div class="word">he</div><div class="word">if</div><div class="word">doesn't</div></div><div class="drop-zone" data-answer="if he doesn't study he won't pass the test"></div></div>
                     </div>
                     <button class="check-btn" onclick="checkOrder()">Tekshirish</button>
                     <button class="check-btn" onclick="resetOrder()">Qayta tiklash</button>
@@ -1043,13 +1063,18 @@
                 </div>
 
                 <div id="transform" class="exercise-content">
-                    <h3>Vaziyatga mos shart gap tuzing</h3>
+                    <h3>Gaplarni birlashtiring (Type 0 yoki Type 1)</h3>
                     <div class="transform-exercise">
-                        <div class="transform-question"><p>1. I don't have money, so I can't buy that car. &rarr; (Use: <b>Type 2</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Shart gap tuzing..." data-answer="If I had money, I would buy that car.|If I had money, I could buy that car." data-explanation="Hozirgi noreal vaziyat uchun Type 2." autocomplete="off"></div></div>
-                        <div class="transform-question"><p>2. I didn't study for the test, so I failed. &rarr; (Use: <b>Type 3</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Shart gap tuzing..." data-answer="If I had studied for the test, I wouldn't have failed.|If I had studied for the test, I would have passed." data-explanation="O'tmishdagi afsus uchun Type 3." autocomplete="off"></div></div>
-                        <div class="transform-question"><p>3. I am not you, so I can't give advice. &rarr; (Use: <b>Type 2</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Shart gap tuzing..." data-answer="If I were you, I would give advice." data-explanation="Maslahat berish uchun Type 2 ('If I were you...')." autocomplete="off"></div></div>
-                        <div class="transform-question"><p>4. It rained yesterday, so we didn't go to the park. &rarr; (Use: <b>Type 3</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Shart gap tuzing..." data-answer="If it hadn't rained yesterday, we would have gone to the park." data-explanation="O'tmishdagi amalga oshmagan harakat uchun Type 3." autocomplete="off"></div></div>
-                        <div class="transform-question"><p>5. He doesn't know the answer, so he can't help you. &rarr; (Use: <b>Type 2</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Shart gap tuzing..." data-answer="If he knew the answer, he could help you." data-explanation="Hozirgi noreal vaziyat uchun Type 2." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>1. Heat the ice. It will turn to water. &rarr; (Use: <b>If...</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="If you heat ice, it turns to water." data-explanation="Bu ilmiy fakt, shuning uchun Type 0 ishlatiladi." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>2. I might finish work early. Then I will call you. &rarr; (Use: <b>If...</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="If I finish work early, I will call you." data-explanation="Bu kelajakdagi real ehtimol, shuning uchun Type 1 ishlatiladi." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>3. Don't touch that wire. You will get an electric shock. &rarr; (Use: <b>If...</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="If you touch that wire, you will get an electric shock." data-explanation="Bu ogohlantirish, real ehtimol - Type 1." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>4. She may not pass the exam. She doesn't study. &rarr; (Use: <b>If...</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="If she doesn't study, she won't pass the exam." data-explanation="Bu real natija, shuning uchun Type 1." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>5. Press the button. The door opens. &rarr; (Use: <b>If...</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="If you press the button, the door opens." data-explanation="Bu avtomatik jarayon, shuning uchun Type 0." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>6. Maybe it will rain tomorrow. Then we can't play tennis. &rarr; (Use: <b>If...</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="If it rains tomorrow, we can't play tennis." data-explanation="Kelajakdagi ehtimol va imkoniyat, shuning uchun Type 1 (modal fe'l bilan)." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>7. You need my help. Call this number. &rarr; (Use: <b>If...</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="If you need my help, call this number." data-explanation="Bu maslahat/buyruq, shuning uchun Type 1 (buyruq mayli bilan)." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>8. People eat too much. They get fat. &rarr; (Use: <b>If...</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="If people eat too much, they get fat." data-explanation="Bu umumiy haqiqat, shuning uchun Type 0." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>9. I will probably go to the party. I will see you there. &rarr; (Use: <b>If...</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="If I go to the party, I will see you there." data-explanation="Kelajakdagi ehtimoliy reja, shuning uchun Type 1." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>10. I might have enough money. Then I will buy a new phone. &rarr; (Use: <b>If...</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Birlashtirilgan gapni kiriting..." data-answer="If I have enough money, I will buy a new phone." data-explanation="Kelajakdagi ehtimol, shuning uchun Type 1." autocomplete="off"></div></div>
                     </div>
                     <button class="check-btn" onclick="checkTransform()">Tekshirish</button>
                     <div id="transformResult" class="result"></div>
@@ -1059,113 +1084,75 @@
         
         <div id="errors" class="tab-content">
              <div class="card">
-                <h2>Muhim Qoidalar va Xatolar (Conditionals 2, 3 & Mixed)</h2>
+                <h2>Muhim Qoidalar va Xatolar (Conditionals 0 & 1)</h2>
                 
                 <div class="error-section">
-                    <div class="error-title">🚫 XATO 1: `if` ergash gapida `would` ishlatish</div>
-                    <div class="wrong-example">If I <strong>would have</strong> more time, I would travel.</div>
-                    <div class="correct-example">If I <strong>had</strong> more time, I would travel.</div>
-                    <div class="explanation"><p><strong>Eng asosiy qoida:</strong> `if` bilan boshlangan shart qismida hech qachon `would` yoki `would have` ishlatilmaydi.</p></div>
+                    <div class="error-title">🚫 XATO 1: `if` ergash gapida `will` ishlatish</div>
+                    <div class="wrong-example">If it <strong>will rain</strong> tomorrow, I will stay at home.</div>
+                    <div class="correct-example">If it <strong>rains</strong> tomorrow, I will stay at home.</div>
+                    <div class="explanation"><p><strong>Eng asosiy qoida:</strong> `if` bilan boshlangan shart qismida hech qachon kelasi zamon (`will`) ishlatilmaydi. Uning o'rniga hozirgi zamon (Present Simple) qo'yiladi.</p></div>
                 </div>
 
                 <div class="error-section">
-                    <div class="error-title">🚫 XATO 2: Type 2 va Type 3 ni aralashtirish</div>
-                    <div class="wrong-example">If she <strong>had studied</strong>, she <strong>would pass</strong>.</div>
-                    <div class="correct-example">If she <strong>had studied</strong>, she <strong>would have passed</strong>.</div>
-                    <div class="explanation"><p><strong>Qoida:</strong> Agar `if` qismida Past Perfect (had + V3) bo'lsa va natija ham o'tmishda bo'lsa (Type 3), bosh gapda ham unga mos ravishda `would have + V3` bo'lishi kerak.</p></div>
+                    <div class="error-title">🚫 XATO 2: Type 0 va Type 1 ni adashtirish</div>
+                    <div class="wrong-example">If you heat water, it <strong>will boil</strong>.</div>
+                    <div class="correct-example">If you heat water, it <strong>boils</strong>.</div>
+                    <div class="explanation"><p><strong>Qoida:</strong> Ilmiy faktlar, o'zgarmas qonuniyatlar uchun har doim Type 0 (Present + Present) ishlatiladi.</p></div>
                 </div>
 
                 <div class="error-section">
-                    <div class="error-title">🚫 XATO 3: Type 2 da 'was' o'rniga 'were'</div>
-                    <div class="wrong-example">If I <strong>was</strong> you, I would apologize.</div>
-                    <div class="correct-example">If I <strong>were</strong> you, I would apologize.</div>
-                     <div class="explanation"><p><strong>Qoida:</strong> Type 2 da maslahat berishda yoki xayoliy vaziyatlarda barcha shaxslar uchun `to be` fe'lining `were` shaklini ishlatish grammatik jihatdan to'g'riroq hisoblanadi.</p></div>
+                    <div class="error-title">🚫 XATO 3: Vaqt ergash gaplarida `will` ishlatish</div>
+                    <div class="wrong-example">I will call you when I <strong>will arrive</strong>.</div>
+                    <div class="correct-example">I will call you when I <strong>arrive</strong>.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> `if` kabi `when`, `as soon as`, `before`, `after`, `until` kabi vaqt bog'lovchilaridan keyin ham kelasi zamon (`will`) o'rniga hozirgi zamon ishlatiladi.</p></div>
                 </div>
 
                 <div class="error-section">
-                    <div class="error-title">🚫 XATO 4: Type 3 da `have` ni unutish</div>
-                    <div class="wrong-example">If I had known, I would <strong>gone</strong>.</div>
-                    <div class="correct-example">If I had known, I would <strong>have gone</strong>.</div>
-                     <div class="explanation"><p><strong>Qoida:</strong> Type 3 ning bosh gapida `would` va `V3` o'rtasida `have` yordamchi fe'li bo'lishi shart.</p></div>
+                    <div class="error-title">🚫 XATO 4: Noto'g'ri vergul qo'yish</div>
+                    <div class="wrong-example">I will go to the party, if I have time.</div>
+                    <div class="correct-example">I will go to the party if I have time.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> Agar gap `if` ergash gapi bilan boshlansa, undan keyin vergul qo'yiladi. Agar gap bosh gap bilan boshlanib, `if` o'rtada kelsa, vergul qo'yilmaydi.</p></div>
                 </div>
-                
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 5: Fe'l tuslanishida xato</div>
+                    <div class="wrong-example">If he <strong>don't study</strong>, he will fail.</div>
+                    <div class="correct-example">If he <strong>doesn't study</strong>, he will fail.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> `If` qismida Present Simple qoidalariga to'liq rioya qilish kerak. `he/she/it` uchun `doesn't` ishlatiladi.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 6: `Unless` bilan qo'sh inkor</div>
+                    <div class="wrong-example">You won't pass the exam unless you <strong>don't</strong> study.</div>
+                    <div class="correct-example">You won't pass the exam unless you <strong>study</strong>.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> `Unless` so'zining o'zi "if ... not" (agar ... -masa) degan inkor ma'noni beradi. Shuning uchun undan keyingi gapda `don't` yoki `not` ishlatish ortiqcha.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 7: Type 1 o'rniga Type 0 ishlatish</div>
+                    <div class="wrong-example">If I miss the bus, I <strong>am</strong> late for work.</div>
+                    <div class="correct-example">If I miss the bus, I <strong>will be</strong> late for work.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> Bu umumiy odat emas, balki kelajakdagi aniq bir vaziyatga (bugun avtobusni o'tkazib yuborish) bog'liq ehtimoliy natija. Shuning uchun Type 1 ishlatiladi.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 8: Buyruq maylida `will` ishlatish</div>
+                    <div class="wrong-example">If you see him, you <strong>will tell</strong> him to call me.</div>
+                    <div class="correct-example">If you see him, <strong>tell</strong> him to call me.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> Agar bosh gapda buyruq, iltimos yoki maslahat berilayotgan bo'lsa, `will` ishlatilmaydi, to'g'ridan-to'g'ri fe'lning o'zi (buyruq mayli) ishlatiladi.</p></div>
+                </div>
                  <div class="error-section">
-                    <div class="error-title">🚫 XATO 5: Type 1 va Type 2 ni adashtirish</div>
-                    <div class="wrong-example">If I <strong>have</strong> a million dollars, I would quit my job.</div>
-                    <div class="correct-example">If I <strong>had</strong> a million dollars, I would quit my job.</div>
-                     <div class="explanation"><p><strong>Qoida:</strong> Bosh gapda 'would' kelishi bilan bu xayoliy vaziyat (Type 2) ekanligi ma'lum bo'ladi. Shuning uchun 'if' qismida Present Simple emas, Past Simple ishlatilishi kerak.</p></div>
+                    <div class="error-title">🚫 XATO 9: `if` va `when` ma'nosini adashtirish</div>
+                    <div class="wrong-example"><strong>When</strong> I pass my exams, I will celebrate. (agar o'tishimga ishonchim komil bo'lmasa)</div>
+                    <div class="correct-example"><strong>If</strong> I pass my exams, I will celebrate.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> `if` - agar (ehtimol bor). `when` - qachonki (sodir bo'lishi aniq). Agar imtihondan o'tishingizga hali ishonchingiz komil bo'lmasa, `if` ishlatgan ma'qul.</p></div>
                 </div>
-
-                <div class="error-section">
-                    <div class="error-title">🚫 XATO 6: Og'zaki nutqdagi xato ('would of')</div>
-                    <div class="wrong-example">We would <strong>of</strong> gone if you had called.</div>
-                    <div class="correct-example">We would <strong>have</strong> gone if you had called.</div>
-                     <div class="explanation"><p><strong>Qoida:</strong> Og'zaki nutqda `would've` (would have) ning qisqartmasi `would of` kabi eshitilishi mumkin, lekin yozuvda bu jiddiy xato. Har doim `would have` deb yoziladi.</p></div>
-                </div>
-                
                  <div class="error-section">
-                    <div class="error-title">🚫 XATO 7: Type 3 da V3 ni unutish</div>
-                    <div class="wrong-example">If he had left earlier, he would have <strong>catch</strong> the train.</div>
-                    <div class="correct-example">If he had left earlier, he would have <strong>caught</strong> the train.</div>
-                     <div class="explanation"><p><strong>Qoida:</strong> Type 3 ning bosh gapida 'would have' dan keyin fe'lning 3-shakli (Past Participle - V3) kelishi shart.</p></div>
+                    <div class="error-title">🚫 XATO 10: Ikkala qismda `will` ishlatish</div>
+                    <div class="wrong-example">If you <strong>will help</strong> me, I <strong>will help</strong> you.</div>
+                    <div class="correct-example">If you <strong>help</strong> me, I <strong>will help</strong> you.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> Bu eng keng tarqalgan xato. Shuni yodda tuting: `if` ergash gapida kelasi zamon shakli ishlatilmaydi, faqat bosh gapda ishlatiladi.</p></div>
                 </div>
-                
-                 <div class="error-section">
-                    <div class="error-title">🚫 XATO 8: Ikkala qismda `would` ishlatish</div>
-                    <div class="wrong-example">If she <strong>would have invited</strong> me, I <strong>would have come</strong>.</div>
-                    <div class="correct-example">If she <strong>had invited</strong> me, I <strong>would have come</strong>.</div>
-                     <div class="explanation"><p><strong>Qoida:</strong> Bu keng tarqalgan xato. Yodda tuting: 'would' faqat natijani bildiruvchi bosh gapda keladi, 'if' bilan boshlangan shart qismida emas.</p></div>
-                </div>
-
-                <div class="error-section">
-                    <div class="error-title">🚫 XATO 9: `had had` strukturasidan qo'rqish</div>
-                    <div class="wrong-example">If I <strong>had</strong> a map, I wouldn't have gotten lost.</div>
-                    <div class="correct-example">If I <strong>had had</strong> a map, I wouldn't have gotten lost.</div>
-                     <div class="explanation"><p><strong>Qoida:</strong> Type 3 da "ega bo'lmoq" (to have) fe'li ishlatilsa, uning Past Perfect shakli `had had` bo'ladi. Birinchi `had` - yordamchi fe'l, ikkinchisi - `have` ning V3 shakli.</p></div>
-                </div>
-                
-                <div class="error-section">
-                    <div class="error-title">🚫 XATO 10: `could/might` bilan `have` ni unutish</div>
-                    <div class="wrong-example">If I had studied, I <strong>might pass</strong> the exam.</div>
-                    <div class="correct-example">If I had studied, I <strong>might have passed</strong> the exam.</div>
-                     <div class="explanation"><p><strong>Qoida:</strong> Type 3 ning bosh gapida `would` o'rniga `could` yoki `might` ishlatilishi mumkin. Lekin ulardan keyin ham `have + V3` strukturasi saqlanib qolishi shart.</p></div>
-                </div>
-                
-                <div class="error-section">
-                    <div class="error-title">🚫 XATO 11: Aralash shart gapni adashtirish</div>
-                    <div class="wrong-example">If I had taken the job, I <strong>would have been</strong> rich now.</div>
-                    <div class="correct-example">If I had taken the job, I <strong>would be</strong> rich now.</div>
-                     <div class="explanation"><p><strong>Qoida:</strong> Agar natija hozirgi kunga (`now`) taalluqli bo'lsa, bu Aralash Shart Gap (Mixed Conditional) bo'ladi va bosh gap Type 2 ga o'xshab `would be` bilan yasaladi.</p></div>
-                </div>
-                
-                <div class="error-section">
-                    <div class="error-title">🚫 XATO 12: So'roq shaklida xato</div>
-                    <div class="wrong-example">What <strong>would you have did</strong> if you had seen him?</div>
-                    <div class="correct-example">What <strong>would you have done</strong> if you had seen him?</div>
-                     <div class="explanation"><p><strong>Qoida:</strong> So'roq gaplarda ham fe'lning 3-shakli (V3) ishlatiladi. `do` fe'lining V3 shakli `done`.</p></div>
-                </div>
-                
-                <div class="error-section">
-                    <div class="error-title">🚫 XATO 13: Inversiya (teskari so'z tartibi)da xato qilish</div>
-                    <div class="wrong-example"><strong>Had I would have known</strong>, I would have come.</div>
-                    <div class="correct-example"><strong>Had I known</strong>, I would have come.</div>
-                     <div class="explanation"><p><strong>Qoida:</strong> Type 3 da `if` o'rniga inversiya qilish mumkin. Bunda `Had` ega oldiga o'tadi va `if` tushib qoladi. Boshqa o'zgarish bo'lmaydi.</p></div>
-                </div>
-                 
-                 <div class="error-section">
-                    <div class="error-title">🚫 XATO 14: Type 3 da `would` ni unutish</div>
-                    <div class="wrong-example">If I had known, I <strong>had come</strong>.</div>
-                    <div class="correct-example">If I had known, I <strong>would have come</strong>.</div>
-                     <div class="explanation"><p><strong>Qoida:</strong> Natijani bildiruvchi bosh gapda har doim 'would' (yoki could/might) modal fe'li bo'lishi kerak. 'had come' faqat 'if' qismida keladi.</p></div>
-                </div>
-                
-                 <div class="error-section">
-                    <div class="error-title">🚫 XATO 15: Faqat 'if' so'ziga yopishib olish</div>
-                    <div class="wrong-example">I would have helped <strong>if</strong> I was there.</div>
-                    <div class="correct-example">I would have helped <strong>if I had been</strong> there. <br/> I would help <strong>if I were</strong> there.</div>
-                     <div class="explanation"><p><strong>Qoida:</strong> Gapning ikkinchi qismidagi 'would have helped' (Type 3 natijasi) yoki 'would help' (Type 2 natijasi) qaysi tur ekanligini belgilab beradi. 'If' qismini ham o'sha turga moslash kerak.</p></div>
-                </div>
-
              </div>
         </div>
         
@@ -1230,7 +1217,7 @@
                 const correctAnswer = question.dataset.answer;
                 const explanation = question.dataset.explanation;
                 
-                // Fixed: Scope selector to the specific question
+                // Fixed: Scope selector to specific question
                 const selected = question.querySelector('input[type="radio"]:checked');
 
                 if (selected && selected.value === correctAnswer) {
