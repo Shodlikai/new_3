@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WISH Clauses (Istak-Mayli) - Mukammal Qo'llanma</title>
+    <style>
+        /* Umumiy stilizatsiya */
+        :root {
+            --bg-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --text-primary: #333;
+            --header-bg: rgba(255, 255, 255, 0.15);
+            --header-text: white;
+            --card-bg: rgba(255, 255, 255, 0.98); /* 0.98 ga oshirildi (kamroq yuklama) */
+            --card-border: rgba(255, 255, 255, 0.2);
+            --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            --h2-text-gradient: linear-gradient(135deg, #667eea, #764ba2);
+            --rule-section-bg: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            --rule-section-border-left: #667eea;
+            --code-bg: #e2e8f0;
+            --code-color: #c53030;
+            --table-th-bg: #e9ecef;
+            --table-th-color: #495057;
+            --table-td-bg: #fff;
+            --structure-card-bg: linear-gradient(135deg, #e0eafc, #cfdef3);
+            --structure-card-border: #667eea;
+            --formula-bg: white;
+            --example-category-bg: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            --example-item-bg: white;
+            --english-text: #2d3436;
+            --uzbek-text: #636e72;
+            --input-bg: #f8f9fa;
+            --input-border: #dee2e6;
+            --input-focus-shadow: rgba(102, 126, 234, 0.1);
+            --result-bg: linear-gradient(135deg, #ddd6fe, #c4b5fd);
+            --result-color: #5b21b6;
+            --correct-color: #28a745;
+            --wrong-color: #dc3545;
+            --progress-bg: rgba(255, 255, 255, 0.2);
+            --progress-bar-gradient: linear-gradient(90deg, #4CAF50, #45a049);
+            --tab-btn-bg: rgba(255, 255, 255, 0.2);
+            --tab-btn-hover-bg: rgba(255, 255, 255, 0.3);
+            --tab-btn-active-bg: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            --exercise-btn-bg: linear-gradient(135deg, #74b9ff, #0984e3);
+            --exercise-btn-active-bg: linear-gradient(135deg, #00b894, #00a085);
+            --word-bg: linear-gradient(135deg, #667eea, #764ba2);
+            --drop-zone-border: #dee2e6;
+            --drop-zone-bg: #f8f9fa;
+            --drop-zone-hover-bg: rgba(102, 126, 234, 0.1);
+        }
+
+        .dark-mode {
+            --bg-primary: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            --text-primary: #ecf0f1;
+            --header-bg: rgba(0, 0, 0, 0.3);
+            --header-text: #ecf0f1;
+            --card-bg: #3b506b;
+            --card-border: rgba(255, 255, 255, 0.1);
+            --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            --h2-text-gradient: linear-gradient(135deg, #a2ccff, #82b1ff);
+            --rule-section-bg: #4a6280;
+            --rule-section-border-left: #82b1ff;
+            --code-bg: #2f4358;
+            --code-color: #ff8c8c;
+            --table-th-bg: #4a6280;
+            --table-th-color: #ecf0f1;
+            --table-td-bg: #3b506b;
+            --structure-card-bg: linear-gradient(135deg, #4a6280, #5a7490);
+            --structure-card-border: #82b1ff;
+            --formula-bg: #2f4358;
+            --example-category-bg: #4a6280;
+            --example-item-bg: #3b506b;
+            --english-text: #ecf0f1;
+            --uzbek-text: #bdc3c7;
+            --input-bg: #2f4358;
+            --input-border: #5a7490;
+            --input-focus-shadow: rgba(130, 177, 255, 0.2);
+            --result-bg: linear-gradient(135deg, #4a2c7a, #6a3a9a);
+            --result-color: #e0e0e0;
+            --correct-color: #5cb85c;
+            --wrong-color: #d9534f;
+            --progress-bg: rgba(0, 0, 0, 0.3);
+            --progress-bar-gradient: linear-gradient(90deg, #5cb85c, #4cae4c);
+            --tab-btn-bg: rgba(0, 0, 0, 0.3);
+            --tab-btn-hover-bg: rgba(0, 0, 0, 0.4);
+            --tab-btn-active-bg: linear-gradient(135deg, #e74c3c, #c0392b);
+            --exercise-btn-bg: linear-gradient(135deg, #3498db, #2980b9);
+            --exercise-btn-active-bg: linear-gradient(135deg, #2ecc71, #27ae60);
+            --word-bg: linear-gradient(135deg, #3498db, #2980b9);
+            --drop-zone-border: #5a7490;
+            --drop-zone-bg: #2f4358;
+            --drop-zone-hover-bg: rgba(52, 152, 219, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            min-height: 100vh;
+            color: var(--text-primary);
+            line-height: 1.6;
+            margin: 0;
+            /* Performance Fix: Removed 'all', specific transitions only */
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Sarlavha qismi */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: var(--header-bg);
+            /* Performance Fix: Reduced blur */
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--card-border);
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            color: var(--header-text);
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: bold;
+        }
+
+        .header p {
+            color: var(--header-text);
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Progress Bar */
+        .progress-container {
+            background: var(--progress-bg);
+            border-radius: 25px;
+            padding: 5px;
+            margin-bottom: 30px;
+        }
+
+        .progress-bar {
+            background: var(--progress-bar-gradient);
+            height: 30px;
+            border-radius: 20px;
+            transition: width 0.8s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 0%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-text {
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Theme Toggle Switch */
+        .theme-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .theme-switch input[type="checkbox"] {
+            height: 0;
+            width: 0;
+            visibility: hidden;
+        }
+
+        .theme-switch label {
+            cursor: pointer;
+            text-indent: -9999px;
+            width: 60px;
+            height: 30px;
+            background: #ccc;
+            display: block;
+            border-radius: 100px;
+            position: relative;
+            transition: background-color 0.3s ease;
+        }
+
+        .theme-switch label:after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background: #fff;
+            border-radius: 90px;
+            transition: 0.3s;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+
+        .theme-switch input:checked + label {
+            background: #82b1ff; 
+        }
+
+        .theme-switch input:checked + label:after {
+            left: calc(100% - 3px);
+            transform: translateX(-100%);
+            background: #f1c40f; 
+        }
+
+        .theme-switch .icon {
+            font-size: 1.5rem;
+            color: var(--header-text);
+            transition: color 0.3s ease;
+        }
+        .theme-switch input:checked ~ .icon.moon { display: block; }
+        .theme-switch input:not(:checked) ~ .icon.moon { display: none; }
+        .theme-switch input:checked ~ .icon.sun { display: none; }
+        .theme-switch input:not(:checked) ~ .icon.sun { display: block; }
+        .theme-switch .icon.sun { color: #f39c12; }
+        .theme-switch .icon.moon { color: #a2ccff; }
+
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            background: var(--header-bg);
+            /* Performance: Removed blur */
+            border-radius: 15px;
+            padding: 10px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: var(--tab-btn-bg);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            color: var(--header-text);
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            font-size: 16px;
+            font-weight: 500;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .tab-btn:hover {
+            background: var(--tab-btn-hover-bg);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .tab-btn.active {
+            background: var(--tab-btn-active-bg);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Card Styles */
+        .card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--card-border);
+            will-change: opacity, transform;
+        }
+
+        .card h2 {
+            color: var(--text-primary);
+            margin-bottom: 25px;
+            font-size: 2.2rem;
+            text-align: center;
+            background: var(--h2-text-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Rules Section */
+        .rule-section, .diff-section {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: var(--rule-section-bg);
+            border-radius: 15px;
+            border-left: 5px solid var(--rule-section-border-left);
+        }
+
+        .rule-section h3, .diff-section h3 {
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .rule-section h4, .diff-section h4 {
+             color: var(--text-primary);
+             font-size: 1.2rem;
+             margin-top: 20px;
+             padding-bottom: 5px;
+             border-bottom: 2px solid var(--rule-section-border-left);
+        }
+
+        .rule-section p, .rule-section li, .diff-section p, .diff-section li {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        
+        .rule-section code, .diff-section code {
+            background-color: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--code-color);
+        }
+
+        .diff-table-container { 
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch; 
+        }
+
+        .diff-table {
+            width: 100%;
+            min-width: 600px;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        .diff-table th, .diff-table td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            text-align: left;
+            color: var(--text-primary); 
+        }
+        .diff-table th {
+            background-color: var(--table-th-bg);
+            color: var(--table-th-color);
+        }
+        .diff-table td { background-color: var(--table-td-bg); }
+        .ok { color: var(--correct-color); font-weight: bold; }
+        .not-ok { color: var(--wrong-color); font-weight: bold; }
+
+
+        .structure-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .structure-card {
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            background: var(--structure-card-bg);
+            border: 2px solid var(--structure-card-border);
+        }
+        .structure-card:hover { transform: translateY(-5px); }
+
+        .structure-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            text-align: center;
+            color: var(--text-primary);
+        }
+
+        .formula {
+            background: var(--formula-bg); padding: 10px; border-radius: 8px;
+            margin-bottom: 10px; text-align: left; font-size: 1rem;
+            font-weight: 500; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            color: var(--text-primary);
+        }
+
+        .noun, .pronoun, .verb, .subject, .object, .adjective, .adverb, .clause, .infinitive, .gerund, .v3, .intro-phrase, .wh-word, .if-clause, .main-clause {
+            padding: 5px 10px; border-radius: 5px; margin: 0 5px; color: white;
+        }
+        .noun { background: #fd79a8; }
+        .pronoun { background: #0984e3; }
+        .verb { background: #00b894; }
+        .subject { background: #ffeaa7; color: #333;}
+        .object { background: #6c5ce7; }
+        .adjective { background: #f39c12; }
+        .adverb { background: #e74c3c; }
+        .clause { background: linear-gradient(135deg, #a29bfe, #6c5ce7); border: 1px solid white;}
+        .infinitive { background: #81ecec; color: #333; }
+        .gerund { background: #fab1a0; color: #333; }
+        .v3 { background: #d63031; }
+        .intro-phrase { background: #00cec9; }
+        .wh-word { background: #e84393; }
+        .if-clause { background: #fdcb6e; color: #333; }
+        .main-clause { background: #55efc4; color: #333; }
+        
+
+        .examples { background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 10px; margin-top: 15px; }
+        .examples p { margin-bottom: 8px; font-size: 1rem; color: var(--text-primary); }
+        .examples p.english { font-weight: bold; }
+        .structure-card .examples .uzbek {
+            color: var(--uzbek-text);
+            font-style: italic;
+            padding-left: 10px; 
+            border-left: 3px solid #764ba2; 
+            margin-top: 5px; 
+        }
+
+
+        .examples-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px; margin-top: 25px;
+        }
+
+        .example-category {
+            background: var(--example-category-bg); padding: 25px;
+            border-radius: 15px; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        .example-category h3 {
+            color: var(--text-primary); margin-bottom: 20px; font-size: 1.4rem; text-align: center;
+            padding-bottom: 10px; border-bottom: 2px solid var(--rule-section-border-left);
+        }
+
+        .example-item {
+            background: var(--example-item-bg); padding: 15px; border-radius: 10px; margin-bottom: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease;
+        }
+        .example-item:hover { transform: translateX(5px); }
+        .english { color: var(--english-text); font-weight: 500; margin-bottom: 8px; font-size: 1.05rem; }
+        .uzbek { color: var(--uzbek-text); font-style: italic; padding-left: 20px; border-left: 3px solid var(--rule-section-border-left); }
+
+        .exercise-nav {
+            display: flex; justify-content: center; margin-bottom: 30px;
+            gap: 10px; flex-wrap: wrap;
+        }
+        .exercise-btn {
+            background: var(--exercise-btn-bg); color: white; border: none;
+            padding: 12px 20px; border-radius: 10px; cursor: pointer; transition: background 0.3s, transform 0.2s;
+            font-size: 14px; font-weight: 500; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .exercise-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); }
+        .exercise-btn.active {
+            background: var(--exercise-btn-active-bg);
+            box-shadow: 0 6px 20px rgba(0, 184, 148, 0.3);
+        }
+
+        .exercise-content { display: none; }
+        .exercise-content.active { display: block; animation: fadeIn 0.5s ease-in-out; }
+        .exercise-content h3 { color: var(--text-primary); margin-bottom: 25px; font-size: 1.6rem; text-align: center; }
+
+        .quiz-container, .fill-exercise, .combine-exercise, .correct-exercise, .omission-exercise, .order-exercise { margin-bottom: 25px; }
+        .question, .fill-question, .combine-question, .correct-question, .omission-question, .order-question {
+            background: var(--example-item-bg); padding: 20px; border-radius: 15px; margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); border-left: 5px solid var(--rule-section-border-left);
+        }
+        .question p, .fill-question p, .combine-question p, .correct-question p, .omission-question p, .order-question p {
+            font-size: 1.2rem; margin-bottom: 15px; color: var(--english-text); font-weight: 500;
+        }
+        .correct-question p.incorrect { text-decoration: line-through; color: var(--wrong-color);}
+
+        .options { display: flex; flex-direction: column; gap: 10px; }
+        .options label {
+            display: flex; align-items: center; padding: 10px; border-radius: 8px;
+            background: var(--input-bg); cursor: pointer; transition: background 0.3s ease; font-size: 1rem;
+            color: var(--text-primary);
+        }
+        .options label:hover { background: var(--rule-section-bg); }
+        .options input[type="radio"] { margin-right: 10px; transform: scale(1.2); }
+
+        .fill-input, .combine-input, .correct-input, .transform-input {
+            width: 100%; background: var(--input-bg); border: 2px solid var(--input-border);
+            border-radius: 8px; padding: 12px; font-size: 1rem; transition: border-color 0.3s ease;
+            color: var(--text-primary);
+            box-sizing: border-box;
+        }
+        .fill-input:focus, .combine-input:focus, .correct-input:focus, .transform-input:focus {
+            outline: none; border-color: var(--rule-section-border-left); box-shadow: 0 0 0 3px var(--input-focus-shadow);
+        }
+
+        .check-btn {
+            background: var(--exercise-btn-active-bg); color: white; border: none;
+            padding: 15px 30px; border-radius: 10px; cursor: pointer; font-size: 1.1rem;
+            font-weight: 500; transition: transform 0.2s; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: block; margin: 10px auto;
+        }
+        .check-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); }
+
+        .check-btn:active { transform: translateY(0); }
+
+        .result {
+            margin-top: 20px; padding: 15px; border-radius: 10px; text-align: center;
+            font-size: 1.2rem; font-weight: 500; background: var(--result-bg);
+            color: var(--result-color); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .correct-answer { color: var(--correct-color); margin: 5px 0; }
+        .wrong-answer { color: var(--wrong-color); margin: 5px 0; }
+        .final-score { margin-top: 10px; padding: 10px; background: var(--input-bg); border-radius: 5px; color: var(--text-primary); }
+
+        /* Yangi stil: Izohlar uchun */
+        .explanation {
+            background: var(--input-bg);
+            border-left: 4px solid var(--rule-section-border-left);
+            padding: 10px;
+            margin: 10px 0 0 0;
+            border-radius: 0 8px 8px 0;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            text-align: left;
+        }
+
+        /* Word Order Exercise Specifics */
+        .word-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: var(--input-bg);
+            border-radius: 10px;
+            min-height: 60px; /* Ensure visibility even if empty */
+        }
+
+        .word {
+            background: var(--word-bg);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            font-weight: 500;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: inline-block; /* Ensure display is correct */
+            user-select: none;
+        }
+
+        .word:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .drop-zone {
+            min-height: 60px;
+            border: 2px dashed var(--drop-zone-border);
+            border-radius: 10px;
+            padding: 15px;
+            background: var(--drop-zone-bg);
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            gap: 10px;
+            transition: border-color 0.3s ease;
+            color: var(--text-primary);
+        }
+
+        .drop-zone:hover, .word-container:hover {
+            border-color: var(--rule-section-border-left);
+            background: var(--drop-zone-hover-bg);
+        }
+
+        .drop-zone .word {
+             background: var(--exercise-btn-active-bg);
+        }
+
+        /* --- Styles for Sentence Transformation Exercise (START) --- */
+        .transform-question {
+            background: var(--example-item-bg);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--structure-card-border);
+            transition: transform 0.3s ease;
+        }
+
+        .transform-question:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        }
+
+        .transform-question p {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .transform-question p b {
+            color: var(--header-text);
+            background: var(--word-bg);
+            padding: 3px 9px;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .transform-input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .transform-input-wrapper .fa-pen-to-square {
+            position: absolute;
+            left: 15px;
+            color: var(--uzbek-text);
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+            z-index: 1;
+        }
+
+        .transform-input {
+            padding-left: 45px; /* Make space for the icon */
+            background-image: linear-gradient(to right, var(--input-bg), var(--card-bg));
+            font-weight: 500;
+        }
+
+        .transform-input:focus {
+            background-image: none;
+        }
+
+        .transform-input-wrapper:hover .fa-pen-to-square {
+            color: var(--rule-section-border-left);
+        }
+        /* --- Styles for Sentence Transformation Exercise (END) --- */
+        
+        /* --- Styles for Muhim Qoidalar Section (FIXED) --- */
+        .error-section {
+            background: var(--rule-section-bg);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-left: 5px solid var(--wrong-color);
+        }
+
+        .error-title {
+            color: var(--wrong-color);
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .wrong-example {
+            background: rgba(220, 53, 69, 0.1);
+            border: 2px solid var(--wrong-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 30px 0 10px 0; /* FIX: Added top margin */
+            position: relative;
+            color: var(--text-primary);
+        }
+
+        .wrong-example::before {
+            content: "❌ NOTO'G'RI";
+            position: absolute;
+            top: -14px;
+            left: 15px;
+            background: var(--wrong-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 10;
+        }
+
+        .correct-example {
+            background: rgba(40, 167, 69, 0.1);
+            border: 2px solid var(--correct-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 30px 0 10px 0; /* FIX: Added top margin */
+            position: relative;
+            color: var(--text-primary);
+        }
+
+        .correct-example::before {
+            content: "✅ TO'G'RI";
+            position: absolute;
+            top: -14px;
+            left: 15px;
+            background: var(--correct-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 10;
+        }
+
+        .explanation .explanation-title {
+            color: var(--rule-section-border-left);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .rule-box {
+            background: var(--exercise-btn-bg);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-weight: 500;
+        }
+
+        .situation-example {
+            background: var(--example-item-bg);
+            border: 1px solid var(--input-border);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            color: var(--text-primary);
+        }
+
+        .context {
+            color: var(--correct-color);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .error-section.general-tips {
+             border-left-color: var(--correct-color);
+        }
+        .error-section.general-tips .error-title {
+             color: var(--correct-color);
+        }
+        .error-section.general-tips .rule-box {
+            background: var(--exercise-btn-active-bg);
+        }
+        /* --- Styles for Muhim Qoidalar Section (END) --- */
+
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header h1 { font-size: 2rem; }
+            .card h2 { font-size: 1.8rem; }
+            .structure-grid, .examples-grid { grid-template-columns: 1fr; }
+            .nav-tabs, .exercise-nav { flex-direction: column; gap: 5px; }
+            .tab-btn, .exercise-btn { width: 100%; text-align: center; }
+            .theme-switch { top: 10px; right: 10px; }
+        }
+
+        @media (max-width: 480px) {
+            .header { padding: 20px; }
+            .header h1 { font-size: 1.5rem; }
+            .card { padding: 15px; }
+            .structure-card { padding: 20px; }
+            .example-category { padding: 20px; }
+            .question { padding: 15px; }
+            .word { padding: 6px 12px; font-size: 14px; }
+            .diff-table { min-width: 400px; } /* Adjust for very small screens */
+        }
+
+        /* Animation Effects */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .check-btn:hover { animation: bounce 0.6s ease; }
+
+        /* Scroll Animations */
+        .card {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideUp 0.6s ease forwards;
+        }
+
+        @keyframes slideUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(135deg, #764ba2, #667eea); }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>WISH Clauses (Istak-Mayli) - Mukammal Qo'llanma</h1>
+            <p>Hozirgi va o'tgan zamondagi afsuslar, istaklar va shikoyatlar</p>
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar">
+                    <span class="progress-text">0%</span>
+                </div>
+            </div>
+
+            <div class="theme-switch">
+                <i class="fas fa-sun icon sun"></i>
+                <input type="checkbox" id="themeToggle">
+                <label for="themeToggle"></label>
+                <i class="fas fa-moon icon moon"></i>
+            </div>
+        </div>
+
+        <nav class="nav-tabs">
+            <button class="tab-btn active" data-tab="rules">Qoidalar</button>
+            <button class="tab-btn" data-tab="diffs">Farqlar</button>
+            <button class="tab-btn" data-tab="structure">Strukturalar</button>
+            <button class="tab-btn" data-tab="examples">Misollar</button>
+            <button class="tab-btn" data-tab="exercises">Mashqlar</button>
+            <button class="tab-btn" data-tab="errors">Muhim Qoidalar va Xatolar</button>
+        </nav>
+
+        <div id="rules" class="tab-content active">
+             <div class="card">
+                <h2>Istak-Mayl (Wish) Qoidalari</h2>
+                <div class="rule-section">
+                    <h3><code>WISH + Past Simple</code> (Hozirgi zamon afsusi)</h3>
+                    <p><strong>Ishlatilishi:</strong> Hozirgi zamondagi noreal, biz o'zgartirishni xohlaydigan vaziyatlar haqida afsuslanish yoki istak bildirish uchun ishlatiladi. Gap o'tgan zamonda tuzilsa ham, ma'nosi hozirgi zamonga tegishli bo'ladi.</p>
+                    <p><strong>Ma'nosi:</strong> "Qaniydi hozir shunday bo'lsa/bo'lmasa".</p>
+                     <div class="example">
+                        <p>I wish I <strong>knew</strong> English. (Qaniydi, men ingliz tilini bilganimda. - Lekin bilmayman)</p>
+                        <p>I wish it <strong>weren't</strong> snowing now. (Qaniydi, hozir qor yog'mayotgan bo'lganda. - Lekin yoqyapti)</p>
+                        <p><strong>Muhim:</strong> Bu strukturada <code>I/he/she/it</code> uchun ham `was` o'rniga `were` ishlatilishi odatiy holdir: I wish I <strong>were</strong> a doctor.</p>
+                    </div>
+                </div>
+                <div class="rule-section">
+                    <h3><code>WISH + Past Perfect</code> (O'tgan zamon afsusi)</h3>
+                    <p><strong>Ishlatilishi:</strong> O'tgan zamonda sodir bo'lgan yoki bo'lmagan ish-harakatlar haqida afsuslanish uchun ishlatiladi. Bu o'zgartirib bo'lmaydigan o'tmish haqidagi afsusdir.</p>
+                    <p><strong>Ma'nosi:</strong> "Qaniydi o'shanda shunday qilganimda/qilmaganimda".</p>
+                    <div class="example">
+                        <p>I wish I <strong>had studied</strong> harder at school. (Qaniydi, maktabda qattiqroq o'qiganimda. - Lekin qattiq o'qimaganman)</p>
+                        <p>I wish I <strong>hadn't eaten</strong> at the Chinese restaurant. (Qaniydi, Xitoy restoranida ovqatlanmaganimda)</p>
+                    </div>
+                </div>
+                 <div class="rule-section">
+                    <h3><code>WISH + would</code> (Shikoyat va norozilik)</h3>
+                    <p><strong>Ishlatilishi:</strong> Boshqa biror shaxsning takrorlanadigan, bizga yoqmaydigan odati yoki harakatidan norozilikni, shikoyatni bildirish uchun ishlatiladi. Biz bu vaziyat o'zgarishini xohlaymiz.</p>
+                    <p><strong>Ma'nosi:</strong> "Qaniydi, ...ni bas qilsa/qilsa edi".</p>
+                    <div class="example">
+                        <p>I wish you <strong>would put</strong> those shelves up soon. (Qaniydi, siz anavi tokchalarni devorga tezda o'rnatsangiz)</p>
+                        <p>Tom wishes his neighbours <strong>wouldn't make</strong> so much noise. (Tom qo'shnilari bunchalik shovqin solmasligini xohlaydi)</p>
+                    </div>
+                </div>
+                <div class="rule-section">
+                    <h3><code>WISH + could</code> (Qobiliyatsizlikdan afsuslanish)</h3>
+                    <p><strong>Ishlatilishi:</strong> Hozirgi yoki kelajakda biror ishni bajara olmaslikdan (qobiliyat yoki imkoniyat yo'qligidan) afsuslanishni bildiradi.</p>
+                    <p><strong>Ma'nosi:</strong> "Qaniydi, ... qila olsam".</p>
+                    <div class="example">
+                        <p>I wish I <strong>could</strong> drive. (Qaniydi, mashina haydashni bilsam)</p>
+                        <p>I wish I <strong>could</strong> go to the party. (Qaniydi, ziyofatga bora olsam)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="diffs" class="tab-content">
+            <div class="card">
+                <h2>`WISH` Strukturalari O'rtasidagi Farqlar</h2>
+                <div class="diff-section">
+                    <h3>1. Hozirgi Afsus (<code>Wish + Past Simple</code>) vs. O'tgan Zamondagi Afsus (<code>Wish + Past Perfect</code>)</h3>
+                    <p>Asosiy farq — afsuslanayotgan vaziyatning **qaysi zamonga tegishli** ekanligida.</p>
+                     <ul>
+                        <li><strong>Wish + Past Simple:</strong> Afsus **hozirgi** vaziyat haqida. Gapda `now`, `today` kabi so'zlar bo'lishi yoki kontekstdan hozirgi zamon tushunilishi kerak.</li>
+                        <li><strong>Wish + Past Perfect:</strong> Afsus **o'tgan** zamondagi vaziyat haqida. Gapda `yesterday`, `last year` kabi so'zlar bo'lishi yoki kontekstdan o'tgan zamon tushunilishi kerak.</li>
+                    </ul>
+                    <div class="example-item">
+                        <p class="english">I wish I <strong>knew</strong> his name. (Qaniydi, uning ismini bilsam - **hozir** bilmayman).</p>
+                        <p class="english">I wish I <strong>had known</strong> his name at the party yesterday. (Qaniydi, kecha ziyofatda uning ismini bilganimda - **kecha** bilmaganman).</p>
+                    </div>
+                </div>
+
+                <div class="diff-section">
+                     <h3>2. Shikoyat (<code>Wish + would</code>) vs. Qobiliyatsizlik (<code>Wish + could</code>)</h3>
+                    <p>Bu ikki struktura ham istakni bildiradi, lekin urg'u har xil narsaga qaratiladi.</p>
+                     <ul>
+                        <li><strong>Wish + would:</strong> Siz **boshqa birovning harakatidan** norozisiz va u o'zgarishini xohlaysiz. Bu shikoyatga yaqin.</li>
+                        <li><strong>Wish + could:</strong> Siz **o'zingizning qobiliyatsizligingizdan** afsusdasiz. Bu imkoniyat yo'qligidan afsuslanish.</li>
+                    </ul>
+                    <div class="example-item">
+                        <p class="english">I wish my brother <strong>would stop</strong> smoking. (Qaniydi, akam chekishni tashlasa - Men uning harakatidan noroziman).</p>
+                        <p class="english">I wish I <strong>could stop</strong> smoking. (Qaniydi, chekishni tashlay olsam - Men o'zimning qobiliyatsizligimdan afsusdaman).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="structure" class="tab-content">
+            <div class="card">
+                <h2>Istak-Mayl Gap Tuzilmalari</h2>
+                <div class="structure-grid">
+                    <div class="structure-card">
+                        <h3>Hozirgi Zamon Istagi/Afsusi</h3>
+                        <div class="formula"><span class="intro-phrase">I wish</span> + <span class="subject">S</span> + <span class="past-simple">Past Simple (V2/ed)</span>.</div>
+                        <div class="examples">
+                            <p class="english">I wish I knew English.</p>
+                            <p class="uzbek">Qaniydi, men ingliz tilini bilganimda.</p>
+                            <p class="english">I wish I were a doctor.</p>
+                            <p class="uzbek">Qaniydi, men doktor bo'lganimda.</p>
+                        </div>
+                    </div>
+                    <div class="structure-card">
+                        <h3>O'tgan Zamon Afsusi</h3>
+                        <div class="formula"><span class="intro-phrase">I wish</span> + <span class="subject">S</span> + <span class="past-perfect">Past Perfect (had + V3)</span>.</div>
+                         <div class="examples">
+                            <p class="english">I wish I had studied harder at school.</p>
+                            <p class="uzbek">Qaniydi, maktabda qattiqroq o'qiganimda.</p>
+                            <p class="english">I wish I hadn't eaten at the Chinese restaurant.</p>
+                            <p class="uzbek">Qaniydi, Xitoy restoranida ovqatlanmaganimda.</p>
+                        </div>
+                    </div>
+                    <div class="structure-card">
+                        <h3>Shikoyat / Norozilik</h3>
+                        <div class="formula"><span class="intro-phrase">I wish</span> + <span class="subject">S</span> + <span class="main-clause">would(n't) + V1</span>.</div>
+                        <div class="examples">
+                            <p class="english">I wish you would obey this rule.</p>
+                            <p class="uzbek">Qaniydi, siz bu qoidaga bo'ysunsangiz.</p>
+                            <p class="english">Tom wishes his neighbours wouldn't make so much noise.</p>
+                            <p class="uzbek">Tom qo'shnilari bunchalik shovqin solmasligini xohlaydi.</p>
+                        </div>
+                    </div>
+                    <div class="structure-card">
+                        <h3>Qobiliyatsizlikdan Afsuslanish</h3>
+                        <div class="formula"><span class="intro-phrase">I wish</span> + <span class="subject">S</span> + <span class="main-clause">could(n't) + V1</span>.</div>
+                        <div class="examples">
+                            <p class="english">I wish I could drive.</p>
+                            <p class="uzbek">Qaniydi, mashina boshqara olganimda.</p>
+                            <p class="english">I wish I could go to the party.</p>
+                            <p class="uzbek">Qaniydi, ziyofatga bora olsam.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="examples" class="tab-content">
+            <div class="card">
+                <h2>Misollar bilan tanishing</h2>
+                <div class="examples-grid">
+                    <div class="example-category">
+                        <h3>Hozirgi zamon afsusi (<code>wish + Past Simple</code>)</h3>
+                        <div class="example-item">
+                            <p class="english">I wish I had a fast car.</p>
+                            <p class="uzbek">Qaniydi, menda tezkor mashina bo'lganida.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">I wish I were a teacher.</p>
+                            <p class="uzbek">Qaniydi, men o'qituvchi bo'lganimda.</p>
+                        </div>
+                    </div>
+                    <div class="example-category">
+                        <h3>O'tgan zamon afsusi (<code>wish + Past Perfect</code>)</h3>
+                        <div class="example-item">
+                            <p class="english">I wish I hadn't eaten so much. (Men juda ko'p yeb qo'yganimdan afsusdaman)</p>
+                            <p class="uzbek">Qaniydi, buncha ko'p yemaganimda.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">I wish I hadn't gone to Thailand.</p>
+                            <p class="uzbek">Qaniydi, Tailandga bormaganimda.</p>
+                        </div>
+                    </div>
+                    <div class="example-category">
+                        <h3>Shikoyat (<code>wish + would</code>)</h3>
+                        <div class="example-item">
+                            <p class="english">I wish she wouldn't write this letter.</p>
+                            <p class="uzbek">Qaniydi, u bu xatni yozmasa.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">I wish you would stop making that noise. (Jahlimni chiqarayotgan shovqinni to'xtatishingni xohlayman)</p>
+                            <p class="uzbek">Qaniydi, shu shovqinni to'xtatsangiz.</p>
+                        </div>
+                    </div>
+                    <div class="example-category">
+                        <h3>Qobiliyatsizlikdan afsus (<code>wish + could</code>)</h3>
+                        <div class="example-item">
+                            <p class="english">I feel so helpless. I wish I could speak this language.</p>
+                            <p class="uzbek">O'zimni juda noiloj his qilyapman. Qaniydi, men shu tilda gapira olsam.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">I wish I could play the piano.</p>
+                            <p class="uzbek">Qaniydi, pianino chala olganimda.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<div id="exercises" class="tab-content">
+    <div class="card">
+      <h2>Mashqlar (WISH Clauses)</h2>
+                <nav class="exercise-nav">
+                    <button class="exercise-btn active" data-exercise="test">Test</button>
+                    <button class="exercise-btn" data-exercise="fill">Bo'sh joyni to'ldirish</button>
+                    <button class="exercise-btn" data-exercise="correction">Xatolarni Tuzatish</button>
+                    <button class="exercise-btn" data-exercise="order">So'zlarni Tartiblash</button>
+                    <button class="exercise-btn" data-exercise="transform">Vaziyatga mos gap tuzish</button>
+                </nav>
+
+                <div id="test" class="exercise-content active">
+                    <h3>To'g'ri variantni tanlang</h3>
+                    <div class="quiz-container">
+                        <div class="question" data-answer="b" data-explanation="Hozirgi zamondagi noreal istak uchun 'wish' dan keyin Past Simple ishlatiladi."><p>1. I don't have a car. I wish I ___ a car.</p><div class="options"><label><input type="radio" name="q1" value="a">a) have</label><label><input type="radio" name="q1" value="b">b) had</label><label><input type="radio" name="q1" value="c">c) had had</label></div></div>
+                        <div class="question" data-answer="c" data-explanation="O'tgan zamondagi afsus uchun 'wish' dan keyin Past Perfect ishlatiladi."><p>2. I ate too much yesterday. I wish I ___ so much.</p><div class="options"><label><input type="radio" name="q2" value="a">a) didn't eat</label><label><input type="radio" name="q2" value="b">b) wouldn't eat</label><label><input type="radio" name="q2" value="c">c) hadn't eaten</label></div></div>
+                        <div class="question" data-answer="a" data-explanation="Boshqa birovning odatidan shikoyat qilish uchun 'would' ishlatiladi."><p>3. My neighbors are so noisy. I wish they ___ so much noise.</p><div class="options"><label><input type="radio" name="q3" value="a">a) wouldn't make</label><label><input type="radio" name="q3" value="b">b) didn't make</label><label><input type="radio" name="q3" value="c">c) hadn't made</label></div></div>
+                        <div class="question" data-answer="b" data-explanation="Hozirgi zamondagi qobiliyatsizlikdan afsuslanish uchun 'could' ishlatiladi."><p>4. I can't speak Japanese. I wish I ___ speak it.</p><div class="options"><label><input type="radio" name="q4" value="a">a) can</label><label><input type="radio" name="q4" value="b">b) could</label><label><input type="radio" name="q4" value="c">c) would</label></div></div>
+                        <div class="question" data-answer="c" data-explanation="Hozirgi noreal vaziyat ('boy emasman') uchun 'wish' dan keyin 'were' ishlatiladi."><p>5. I'm not rich. I wish I ___ rich.</p><div class="options"><label><input type="radio" name="q5" value="a">a) am</label><label><input type="radio" name="q5" value="b">b) was</label><label><input type="radio" name="q5" value="c">c) were</label></div></div>
+                        <div class="question" data-answer="b" data-explanation="O'tgan zamon ('last week') haqida afsuslanish uchun Past Perfect ('had gone') kerak."><p>6. I didn't go to the party last week. I wish I ___.</p><div class="options"><label><input type="radio" name="q6" value="a">a) went</label><label><input type="radio" name="q6" value="b">b) had gone</label><label><input type="radio" name="q6" value="c">c) would go</label></div></div>
+                        <div class="question" data-answer="a" data-explanation="'It's raining' hozirgi vaziyat. Buni o'zgartirishni xohlash 'I wish it would stop raining' (shikoyat) orqali ifodalanadi."><p>7. It's raining. I wish it ___ raining.</p><div class="options"><label><input type="radio" name="q7" value="a">a) would stop</label><label><input type="radio" name="q7" value="b">b) stopped</label><label><input type="radio" name="q7" value="c">c) had stopped</label></div></div>
+                        <div class="question" data-answer="c" data-explanation="O'tmishdagi qobiliyatsizlikdan afsuslanish uchun 'could have + V3' ishlatiladi."><p>8. I couldn't help you yesterday. I wish I ___ you.</p><div class="options"><label><input type="radio" name="q8" value="a">a) could help</label><label><input type="radio" name="q8" value="b">b) helped</label><label><input type="radio" name="q8" value="c">c) could have helped</label></div></div>
+                        <div class="question" data-answer="a" data-explanation="Hozirgi vaziyatdan norozilik uchun Past Simple ishlatiladi."><p>9. This problem is difficult. I wish it ___ so difficult.</p><div class="options"><label><input type="radio" name="q9" value="a">a) weren't</label><label><input type="radio" name="q9" value="b">b) isn't</label><label><input type="radio" name="q9" value="c">c) hadn't been</label></div></div>
+                        <div class="question" data-answer="b" data-explanation="O'tmish haqidagi afsus. 'hadn't said' to'g'ri."><p>10. I said something stupid. I wish I ___ that.</p><div class="options"><label><input type="radio" name="q10" value="a">a) didn't say</label><label><input type="radio" name="q10" value="b">b) hadn't said</label><label><input type="radio" name="q10" value="c">c) wouldn't say</label></div></div>
+                    </div>
+                    <button class="check-btn" onclick="checkTest()">Tekshirish</button>
+                    <div id="testResult" class="result"></div>
+                </div>
+
+                <div id="fill" class="exercise-content">
+                    <h3>Bo'sh joyni fe'lning to'g'ri shakli bilan to'ldiring.</h3>
+                    <div class="fill-exercise">
+                        <div class="fill-question"><p>1. It's so cold today. I wish it ___ warmer. (be)</p><input type="text" class="fill-input" data-answer="were" data-explanation="Hozirgi noreal istak."></div>
+                        <div class="fill-question"><p>2. I missed my flight. I wish I ___ earlier. (leave)</p><input type="text" class="fill-input" data-answer="had left" data-explanation="O'tgan zamon afsusi."></div>
+                        <div class="fill-question"><p>3. My car is very old. I wish I ___ a new one. (have)</p><input type="text" class="fill-input" data-answer="had" data-explanation="Hozirgi noreal istak."></div>
+                        <div class="fill-question"><p>4. You are making too much noise. I wish you ___ quiet. (be)</p><input type="text" class="fill-input" data-answer="would be|were" data-explanation="Shikoyat (would be) yoki noreal holat istagi (were)."></div>
+                        <div class="fill-question"><p>5. I'm sorry I can't help you. I wish I ___ help you. (can)</p><input type="text" class="fill-input" data-answer="could" data-explanation="Qobiliyatsizlikdan afsuslanish."></div>
+                        <div class="fill-question"><p>6. He failed the test. He wishes he ___ harder. (study)</p><input type="text" class="fill-input" data-answer="had studied" data-explanation="O'tgan zamon afsusi."></div>
+                        <div class="fill-question"><p>7. I don't know what to do. I wish I ___ what to do. (know)</p><input type="text" class="fill-input" data-answer="knew" data-explanation="Hozirgi noreal istak."></div>
+                        <div class="fill-question"><p>8. The weather was bad yesterday. I wish it ___ so bad. (not/be)</p><input type="text" class="fill-input" data-answer="hadn't been" data-explanation="O'tgan zamon afsusi."></div>
+                        <div class="fill-question"><p>9. The bus is late again. I wish it ___ on time. (come)</p><input type="text" class="fill-input" data-answer="would come" data-explanation="Vaziyatdan shikoyat qilish."></div>
+                        <div class="fill-question"><p>10. I can't afford that dress. I wish I ___ afford it. (can)</p><input type="text" class="fill-input" data-answer="could" data-explanation="Qobiliyatsizlikdan afsuslanish."></div>
+                    </div>
+                    <button class="check-btn" onclick="checkFill()">Tekshirish</button>
+                    <div id="fillResult" class="result"></div>
+                </div>
+
+                <div id="correction" class="exercise-content">
+                    <h3>Xatolarni Tuzatish</h3>
+                    <div class="correct-exercise">
+                        <div class="correct-question"><p class="incorrect">1. I wish I am taller.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I wish I were taller." data-explanation="Hozirgi istak uchun Past Simple (to be fe'li uchun 'were') ishlatiladi."></div>
+                        <div class="correct-question"><p class="incorrect">2. I wish I didn't ate so much yesterday.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I wish I hadn't eaten so much yesterday." data-explanation="O'tgan zamon afsusi uchun Past Perfect ishlatiladi."></div>
+                        <div class="correct-question"><p class="incorrect">3. I wish you will stop shouting.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I wish you would stop shouting." data-explanation="Shikoyat bildirish uchun 'would' ishlatiladi, 'will' emas."></div>
+                        <div class="correct-question"><p class="incorrect">4. I wish I would be a doctor.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I wish I were a doctor.|I wish I could be a doctor." data-explanation="O'z-o'ziga shikoyat qilib bo'lmaydi. Hozirgi istak uchun 'were' yoki qobiliyat uchun 'could' ishlatiladi."></div>
+                        <div class="correct-question"><p class="incorrect">5. She wishes she can come to the party.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="She wishes she could come to the party." data-explanation="Imkoniyat/qobiliyat haqidagi istak uchun 'could' ishlatiladi."></div>
+                        <div class="correct-question"><p class="incorrect">6. I wish I didn't spoke English.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I wish I didn't speak English.|I wish I spoke English." data-explanation="Past Simple da 'did' bo'lsa, asosiy fe'l V1 bo'lishi kerak yoki inkorni olib tashlab 'I wish I spoke English' qilinishi kerak."></div>
+                        <div class="correct-question"><p class="incorrect">7. We wish we didn't miss the bus today.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="We wish we hadn't missed the bus today." data-explanation="O'tgan zamon (missed the bus) uchun Past Perfect ishlatiladi."></div>
+                        <div class="correct-question"><p class="incorrect">8. I wish my car will be faster.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I wish my car were faster.|I wish my car was faster." data-explanation="Noreal holat uchun 'were' yoki 'was' ishlatiladi. 'will' ishlatilmaydi."></div>
+                        <div class="correct-question"><p class="incorrect">9. I wish I was a king.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I wish I were a king." data-explanation="Noreal istakda 'to be' fe'li uchun 'were' afzal."></div>
+                        <div class="correct-question"><p class="incorrect">10. I wish you wouldn't talk to me right now.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="I wish you weren't talking to me right now." data-explanation="Hozirgi davomli harakatdan norozilik uchun Past Continuous ishlatiladi, 'would' odat tusiga kirgan harakatlar uchun."></div>
+                    </div>
+                    <button class="check-btn" onclick="checkCorrection()">Tekshirish</button>
+                    <div id="correctionResult" class="result"></div>
+                </div>
+                
+                <div id="order" class="exercise-content">
+                    <h3>So'zlarni to'g'ri tartibda joylashtiring</h3>
+                    <div class="order-exercise">
+                        <div class="order-question"><p>1. (I / wish / had / more / I / time)</p><div class="word-container"><div class="word">I</div><div class="word">wish</div><div class="word">had</div><div class="word">more</div><div class="word">I</div><div class="word">time</div></div><div class="drop-zone" data-answer="I wish I had more time"></div></div>
+                        <div class="order-question"><p>2. (you / wish / I / had / the exam / passed)</p><div class="word-container"><div class="word">the exam</div><div class="word">you</div><div class="word">had</div><div class="word">I</div><div class="word">wish</div><div class="word">passed</div></div><div class="drop-zone" data-answer="I wish you had passed the exam"></div></div>
+                        <div class="order-question"><p>3. (I / would / he / wish / stop / talking)</p><div class="word-container"><div class="word">I</div><div class="word">would</div><div class="word">he</div><div class="word">stop</div><div class="word">wish</div><div class="word">talking</div></div><div class="drop-zone" data-answer="I wish he would stop talking"></div></div>
+                        <div class="order-question"><p>4. (could / I / wish / I / fly)</p><div class="word-container"><div class="word">fly</div><div class="word">I</div><div class="word">wish</div><div class="word">I</div><div class="word">could</div></div><div class="drop-zone" data-answer="I wish I could fly"></div></div>
+                        <div class="order-question"><p>5. (I / were / a millionaire / wish / I)</p><div class="word-container"><div class="word">I</div><div class="word">a millionaire</div><div class="word">I</div><div class="word">wish</div><div class="word">were</div></div><div class="drop-zone" data-answer="I wish I were a millionaire"></div></div>
+                        <div class="order-question"><p>6. (had / I / wish / saved / money / I / more)</p><div class="word-container"><div class="word">I</div><div class="word">wish</div><div class="word">had</div><div class="word">saved</div><div class="word">money</div><div class="word">I</div><div class="word">more</div></div><div class="drop-zone" data-answer="I wish I had saved more money"></div></div>
+                        <div class="order-question"><p>7. (wouldn't / wish / stop / I / they / shouting)</p><div class="word-container"><div class="word">I</div><div class="word">wish</div><div class="word">they</div><div class="word">wouldn't</div><div class="word">stop</div><div class="word">shouting</div></div><div class="drop-zone" data-answer="I wish they wouldn't stop shouting"></div></div>
+                        <div class="order-question"><p>8. (I / time / had / had / I / wish / more / last week)</p><div class="word-container"><div class="word">I</div><div class="word">wish</div><div class="word">I</div><div class="word">had</div><div class="word">had</div><div class="word">more</div><div class="word">time</div><div class="word">last week</div></div><div class="drop-zone" data-answer="I wish I had had more time last week"></div></div>
+                        <div class="order-question"><p>9. (were / wish / I / the boss / I)</p><div class="word-container"><div class="word">I</div><div class="word">wish</div><div class="word">I</div><div class="word">were</div><div class="word">the boss</div></div><div class="drop-zone" data-answer="I wish I were the boss"></div></div>
+                        <div class="order-question"><p>10. (wish / the / could / they / concert / afford / to / go / to)</p><div class="word-container"><div class="word">I</div><div class="word">wish</div><div class="word">they</div><div class="word">could</div><div class="word">afford</div><div class="word">to</div><div class="word">go</div><div class="word">to</div><div class="word">the</div><div class="word">concert</div></div><div class="drop-zone" data-answer="I wish they could afford to go to the concert"></div></div>
+                    </div>
+                    <button class="check-btn" onclick="checkOrder()">Tekshirish</button>
+                    <button class="check-btn" onclick="resetOrder()">Qayta tiklash</button>
+                    <div id="orderResult" class="result"></div>
+                </div>
+
+                <div id="transform" class="exercise-content">
+                    <h3>Vaziyatga mos `wish` gapi tuzing</h3>
+                    <div class="transform-exercise">
+                        <div class="transform-question"><p>1. I don't know English. I can't get a good job. &rarr; (Use: <b>I wish...</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Istak gapi tuzing..." data-answer="I wish I knew English." data-explanation="Hozirgi noreal vaziyat uchun 'wish + Past Simple'." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>2. I didn't go to the party last night. I regret it now. &rarr; (Use: <b>I wish...</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Istak gapi tuzing..." data-answer="I wish I had gone to the party last night." data-explanation="O'tgan zamon afsusi uchun 'wish + Past Perfect'." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>3. My brother plays loud music. I don't like it. &rarr; (Use: <b>I wish...</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Istak gapi tuzing..." data-answer="I wish my brother wouldn't play loud music." data-explanation="Shikoyat bildirish uchun 'wish + would'." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>4. I can't come with you. I have to work. &rarr; (Use: <b>I wish...</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Istak gapi tuzing..." data-answer="I wish I could come with you." data-explanation="Imkoniyat yo'qligidan afsuslanish uchun 'wish + could'." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>5. It's a pity I am not on holiday. &rarr; (Use: <b>I wish...</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Istak gapi tuzing..." data-answer="I wish I were on holiday." data-explanation="Hozirgi noreal vaziyat uchun 'wish + Past Simple (were)'." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>6. It rained all day during our holiday. I regret it. &rarr; (Use: <b>We wish...</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Istak gapi tuzing..." data-answer="We wish it hadn't rained all day during our holiday." data-explanation="O'tgan zamon afsusi uchun 'wish + Past Perfect'." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>7. My computer is always breaking down. It's annoying. &rarr; (Use: <b>I wish...</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Istak gapi tuzing..." data-answer="I wish my computer wouldn't break down all the time." data-explanation="Qaytariladigan harakatdan shikoyat qilish uchun 'wish + would'." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>8. I can't play the guitar. &rarr; (Use: <b>I wish...</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Istak gapi tuzing..." data-answer="I wish I could play the guitar." data-explanation="Qobiliyatsizlikdan afsuslanish uchun 'wish + could'." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>9. The train left before I arrived at the station. &rarr; (Use: <b>I wish...</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Istak gapi tuzing..." data-answer="I wish the train hadn't left before I arrived at the station." data-explanation="O'tgan zamon afsusi uchun 'wish + Past Perfect'." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>10. I am too busy right now. &rarr; (Use: <b>I wish...</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Istak gapi tuzing..." data-answer="I wish I weren't too busy right now." data-explanation="Hozirgi noreal holat uchun 'wish + Past Simple (were)'." autocomplete="off"></div></div>
+                    </div>
+                    <button class="check-btn" onclick="checkTransform()">Tekshirish</button>
+                    <div id="transformResult" class="result"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="errors" class="tab-content">
+             <div class="card">
+                <h2>Muhim Qoidalar va Xatolar (WISH)</h2>
+                
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 1: Hozirgi zamon istagi uchun hozirgi zamonni ishlatish</div>
+                    <div class="wrong-example">I wish I <strong>have</strong> a new car.</div>
+                    <div class="correct-example">I wish I <strong>had</strong> a new car.</div>
+                    <div class="explanation"><p><strong>Qoida:</strong> Hozirgi zamon haqidagi noreal istak/afsus uchun `wish` dan keyin har doim **Past Simple** (o'tgan oddiy zamon) ishlatiladi.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 2: O'tgan zamon afsusi uchun Past Simple ishlatish</div>
+                    <div class="wrong-example">I wish I <strong>didn't eat</strong> so much yesterday.</div>
+                    <div class="correct-example">I wish I <strong>hadn't eaten</strong> so much yesterday.</div>
+                    <div class="explanation"><p><strong>Qoida:</strong> O'tgan zamon haqidagi afsuslar uchun har doim **Past Perfect** (`had + V3`) ishlatiladi.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 3: Shikoyat uchun `will` ishlatish</div>
+                    <div class="wrong-example">I wish you <strong>will stop</strong> making noise.</div>
+                    <div class="correct-example">I wish you <strong>would stop</strong> making noise.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> Boshqa birovning harakatidan norozilikni yoki o'zgarishini xohlayotganimizni bildirish uchun `wish` dan keyin **would** ishlatiladi, `will` emas.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 4: O'z-o'ziga shikoyat qilish (`I wish I would`)</div>
+                    <div class="wrong-example">I wish I <strong>would</strong> stop smoking.</div>
+                    <div class="correct-example">I wish I <strong>could</strong> stop smoking.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> Odam o'z-o'ziga nisbatan `wish + would` ishlatmaydi. O'z qobiliyatsizligidan afsuslanish uchun `wish + could` ishlatiladi.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 5: `wish` va `hope` ni adashtirish</div>
+                    <div class="wrong-example">I <strong>wish</strong> you will have a great holiday. (kelajakdagi real istak)</div>
+                    <div class="correct-example">I <strong>hope</strong> you have a great holiday.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> Kelajakda sodir bo'lishi mumkin bo'lgan real istaklar uchun `hope` ishlatiladi. `wish` esa faqat noreal yoki imkonsiz holatlar uchun.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 6: Hozirgi zamon istagi uchun `was` ishlatish</div>
+                    <div class="wrong-example">I wish I <strong>was</strong> a millionaire.</div>
+                    <div class="correct-example">I wish I <strong>were</strong> a millionaire.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> Hozirgi zamon haqidagi noreal istaklarda `to be` fe'li barcha shaxslar uchun odatda `were` shaklida ishlatiladi. Bu grammatik jihatdan to'g'riroq hisoblanadi.</p></div>
+                </div>
+                
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 7: `could` o'rniga `can` ishlatish</div>
+                    <div class="wrong-example">I wish I <strong>can</strong> fly.</div>
+                    <div class="correct-example">I wish I <strong>could</strong> fly.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> Hozirgi zamondagi qobiliyatsizlikdan afsuslanishni bildirishda 'can' ning o'tgan zamon shakli 'could' ishlatiladi.</p></div>
+                </div>
+                
+                 <div class="error-section">
+                    <div class="error-title">🚫 XATO 8: O'tgan zamon afsusida `have` ishlatish</div>
+                    <div class="wrong-example">I wish I <strong>have studied</strong> harder last year.</div>
+                    <div class="correct-example">I wish I <strong>had studied</strong> harder last year.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> O'tgan zamon afsuslari uchun faqat Past Perfect (`had + V3`) ishlatiladi, Present Perfect (`have + V3`) emas.</p></div>
+                </div>
+                
+                 <div class="error-section">
+                    <div class="error-title">🚫 XATO 9: `would have` ni noto'g'ri ishlatish</div>
+                    <div class="wrong-example">I wish you <strong>would have come</strong> to the party yesterday.</div>
+                    <div class="correct-example">I wish you <strong>had come</strong> to the party yesterday.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> O'tgan zamon afsuslarida (boshqa birovga nisbatan bo'lsa ham) `would have` ishlatilmaydi. Faqat `had + V3` strukturasi to'g'ri keladi.</p></div>
+                </div>
+                
+                 <div class="error-section">
+                    <div class="error-title">🚫 XATO 10: O'zgarmas holatlarda `would` ishlatish</div>
+                    <div class="wrong-example">I wish the weather <strong>would be</strong> sunny.</div>
+                    <div class="correct-example">I wish the weather <strong>were</strong> sunny.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> `would` odatda o'zgartirish mumkin bo'lgan harakatlar yoki odatlarga nisbatan shikoyat uchun ishlatiladi. Ob-havo kabi biz o'zgartira olmaydigan holatlarga nisbatan `Past Simple` (bu yerda `were`) ishlatilgani ma'qul.</p></div>
+                </div>
+                
+                 <div class="error-section">
+                    <div class="error-title">🚫 XATO 11: `wish` dan keyin to'g'ridan-to'g'ri infinitive</div>
+                    <div class="wrong-example">I wish <strong>to go</strong> home.</div>
+                    <div class="correct-example">I <strong>want to go</strong> home.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> `wish` dan keyin darhol `to + infinitive` kelmaydi. Bu holatda "xohlamoq" ma'nosini `want` beradi. `wish` dan keyin doim ergash gap (clause) kelishi kerak.</p></div>
+                </div>
+                
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 12: `I wish I didn't have to...` o'rniga `I wish I wouldn't...`</div>
+                    <div class="wrong-example">I wish I <strong>wouldn't</strong> have to go to school tomorrow.</div>
+                    <div class="correct-example">I wish I <strong>didn't have to</strong> go to school tomorrow.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> Kelajakdagi majburiyatdan norozilikni bildirish uchun `wouldn't` emas, balki `didn't have to` ishlatiladi.</p></div>
+                </div>
+                
+                <div class="error-section">
+                    <div class="error-title">🚫 XATO 13: Savol shaklida xato</div>
+                    <div class="wrong-example">Do you wish you <strong>would be</strong> taller?</div>
+                    <div class="correct-example">Do you wish you <strong>were</strong> taller?</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> Savol shaklida ham `wish` dan keyingi qismning zamoni o'zgarmaydi. Hozirgi zamon istagi bo'lgani uchun Past Simple (`were`) kerak.</p></div>
+                </div>
+                
+                 <div class="error-section">
+                    <div class="error-title">🚫 XATO 14: Boshqa shaxs uchun `could` ishlatish</div>
+                    <div class="wrong-example">I wish my father <strong>could</strong> stop smoking.</div>
+                    <div class="correct-example">I wish my father <strong>would</strong> stop smoking.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> Boshqa shaxsning o'zgartirishini xohlaydigan odati yoki harakati uchun `would` ishlatiladi. `could` esa o'sha shaxsning qobiliyati haqida bo'lardi.</p></div>
+                </div>
+                
+                 <div class="error-section">
+                    <div class="error-title">🚫 XATO 15: `that` ni tushirib qoldirmaslik</div>
+                    <div class="wrong-example">I wish <strong>that</strong> I had more time. (Xato emas, lekin kam ishlatiladi)</div>
+                    <div class="correct-example">I wish I had more time.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> `wish` dan keyin `that` bog'lovchisini ishlatish grammatik jihatdan xato emas, lekin zamonaviy ingliz tilida deyarli har doim tushirib qoldiriladi.</p></div>
+                </div>
+
+             </div>
+        </div>
+        
+    </div>
+
+    <script>
+        // Progress tracking
+        let completedSections = 0;
+        const totalSections = 6; // Qoidalar, Farqlar, Strukturalar, Misollar, Mashqlar, Xatolar
+
+        // Tab functionality
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetTab = btn.dataset.tab;
+                
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                btn.classList.add('active');
+                document.getElementById(targetTab).classList.add('active');
+                
+                updateProgress();
+            });
+        });
+
+        // Exercise navigation
+        document.querySelectorAll('.exercise-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetExercise = btn.dataset.exercise;
+                
+                document.querySelectorAll('.exercise-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.exercise-content').forEach(c => c.classList.remove('active'));
+                
+                btn.classList.add('active');
+                document.getElementById(targetExercise).classList.add('active');
+
+                if (targetExercise === 'order') {
+                    resetOrder();
+                }
+            });
+        });
+
+        function normalizeAnswer(answer) {
+            if (typeof answer !== 'string') return '';
+            return answer.toLowerCase().trim()
+                .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")
+                .replace(/\s+/g, ' ');
+        }
+
+        function checkAnswerMatch(userAnswer, correctAnswer) {
+            const normalizedUser = normalizeAnswer(userAnswer);
+            const correctAnswers = correctAnswer.split('|').map(ans => normalizeAnswer(ans));
+            return correctAnswers.includes(normalizedUser);
+        }
+
+        // TEST QISMI FUNKSIYASI (Optimallashtirilgan)
+        function checkTest() {
+            const questions = document.querySelectorAll('#test .question');
+            let score = 0;
+            let resultHTML = '';
+            
+            // forEach o'rniga oddiy for tsikli eng tezkor variantlardan biri hisoblanadi.
+            for (let index = 0; index < questions.length; index++) {
+                const question = questions[index];
+                const qNum = index + 1;
+                const correctAnswer = question.dataset.answer;
+                const explanation = question.dataset.explanation;
+                
+                // Name atributi q1, q2, q3 kabi nomlangan bo'lishi kerak
+                const selected = question.querySelector(`input[name="q${qNum}"]:checked`); 
+
+                if (selected && selected.value === correctAnswer) {
+                    score++;
+                    resultHTML += `<div class="correct-answer">✓ ${qNum}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    resultHTML += `<div class="wrong-answer">✗ ${qNum}-savol: Noto'g'ri. <div class="explanation">${explanation}</div></div>`;
+                }
+            }
+            
+            resultHTML += `<div class="final-score"><strong>Natija: ${score}/${questions.length} (${Math.round((score/questions.length)*100)}%)</strong></div>`;
+            
+            const resultElement = document.getElementById('testResult');
+            // DOMni faqat bir marta o'zgartirish
+            resultElement.innerHTML = resultHTML;
+            
+            // Sahifani avtomatik pastga tushirish (scrollIntoView) O'CHIRILDI.
+        }
+
+        function checkFill() {
+            const inputs = document.querySelectorAll('#fill .fill-input');
+            let correct = 0;
+            let resultHTML = '';
+             for (let index = 0; index < inputs.length; index++) {
+                const input = inputs[index];
+                const answer = input.dataset.answer;
+                const explanation = input.dataset.explanation;
+                if (checkAnswerMatch(input.value, answer)) {
+                    input.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                    resultHTML += `<div class="correct-answer">✓ ${index + 1}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    input.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savol: Noto'g'ri. To'g'ri javob: <strong>${answer.split('|')[0]}</strong> <div class="explanation">${explanation}</div></div>`;
+                }
+            }
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${inputs.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('fillResult').innerHTML = resultHTML;
+            // Sahifani avtomatik pastga tushirish (scrollIntoView) O'CHIRILDI.
+        }
+
+        function checkCorrection() {
+            const inputs = document.querySelectorAll('#correction .correct-input');
+            let correct = 0;
+            let resultHTML = '';
+             for (let index = 0; index < inputs.length; index++) {
+                const input = inputs[index];
+                const answer = input.dataset.answer;
+                 const explanation = input.dataset.explanation;
+                if (checkAnswerMatch(input.value, answer)) {
+                    input.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                     resultHTML += `<div class="correct-answer">✓ ${index + 1}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    input.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savol: Noto'g'ri. To'g'ri javob: <strong>${answer.split('|')[0]}</strong> <div class="explanation">${explanation}</div></div>`;
+                }
+            }
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${inputs.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('correctionResult').innerHTML = resultHTML;
+            // Sahifani avtomatik pastga tushirish (scrollIntoView) O'CHIRILDI.
+        }
+
+        function checkOrder() {
+            const dropZones = document.querySelectorAll('#order .drop-zone');
+            let correct = 0;
+            let resultHTML = '';
+            for (let index = 0; index < dropZones.length; index++) {
+                const zone = dropZones[index];
+                const answer = zone.dataset.answer;
+                const userAnswer = Array.from(zone.children).map(child => child.textContent).join(' ');
+                if (checkAnswerMatch(userAnswer, answer)) {
+                    zone.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                } else {
+                    zone.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savolning to'g'ri javobi: <strong>${answer.split('|')[0]}</strong></div>`;
+                }
+            }
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${dropZones.length} (${Math.round((correct/dropZones.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('orderResult').innerHTML = resultHTML;
+            // Sahifani avtomatik pastga tushirish (scrollIntoView) O'CHIRILDI.
+        }
+
+        function checkTransform() {
+            const inputs = document.querySelectorAll('#transform .transform-input');
+            let correct = 0;
+            let resultHTML = '';
+            for (let index = 0; index < inputs.length; index++) {
+                const input = inputs[index];
+                const answer = input.dataset.answer;
+                const explanation = input.dataset.explanation;
+                if (checkAnswerMatch(input.value, answer)) {
+                    input.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                     resultHTML += `<div class="correct-answer">✓ ${index + 1}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    input.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savol: Noto'g'ri. To'g'ri javob: <strong>${answer.split('|')[0]}</strong> <div class="explanation">${explanation}</div></div>`;
+                }
+            }
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${inputs.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('transformResult').innerHTML = resultHTML;
+            // Sahifani avtomatik pastga tushirish (scrollIntoView) O'CHIRILDI.
+        }
+
+        // Click-based word order functionality
+        function handleWordClick(event) {
+            const word = event.target;
+            if (word.classList.contains('word')) {
+                const currentContainer = word.parentElement;
+                let targetContainer;
+
+                if (currentContainer.classList.contains('word-container')) {
+                    targetContainer = currentContainer.nextElementSibling;
+                } else if (currentContainer.classList.contains('drop-zone')) {
+                    targetContainer = currentContainer.previousElementSibling;
+                }
+
+                if (targetContainer) {
+                    targetContainer.appendChild(word);
+                }
+            }
+        }
+        document.getElementById('order').addEventListener('click', handleWordClick);
+
+        // So'zlarni aralashtirish funksiyasi
+        function shuffleChildren(parent) {
+            let children = Array.from(parent.children);
+            for (let i = children.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [children[i], children[j]] = [children[j], children[i]];
+            }
+            children.forEach(child => parent.appendChild(child));
+        }
+
+        // So'zlarni tartiblash mashqini qayta tiklash
+        function resetOrder() {
+            document.querySelectorAll('#order .order-question').forEach(question => {
+                const wordContainer = question.querySelector('.word-container');
+                const dropZone = question.querySelector('.drop-zone');
+                
+                // Barcha so'zlarni wordContainer ga qaytarish
+                Array.from(dropZone.children).forEach(child => wordContainer.appendChild(child));
+                
+                // So'zlarni aralashtirish
+                shuffleChildren(wordContainer);
+
+                dropZone.style.border = '2px dashed var(--drop-zone-border)';
+            });
+            document.getElementById('orderResult').innerHTML = '';
+        }
+
+        // Progressni yangilash
+        function updateProgress() {
+            const tabStates = { 'rules': 1, 'diffs': 2, 'structure': 3, 'examples': 4, 'exercises': 5, 'errors': 6 };
+            const activeTab = document.querySelector('.tab-btn.active').dataset.tab;
+            completedSections = tabStates[activeTab] || 0;
+            const percentage = (completedSections / totalSections) * 100;
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = percentage + '%';
+            progressBar.querySelector('.progress-text').textContent = Math.round(percentage) + '%';
+        }
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            themeToggle.checked = true;
+        }
+        themeToggle.addEventListener('change', () => {
+            if (themeToggle.checked) {
+                body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Sahifa yuklanganda
+        document.addEventListener('DOMContentLoaded', () => {
+            updateProgress();
+            resetOrder(); // So'zlarni birinchi yuklashda aralashtirish
+        });
+    </script>
+</body>
+</html>
