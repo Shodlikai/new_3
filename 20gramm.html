@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conjunctions (Bog'lovchilar) - Mukammal Qo'llanma</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Umumiy stilizatsiya */
+        :root {
+            --bg-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --text-primary: #333;
+            --header-bg: rgba(255, 255, 255, 0.15);
+            --header-text: white;
+            --card-bg: rgba(255, 255, 255, 0.98); /* 0.98 ga oshirildi (kamroq yuklama) */
+            --card-border: rgba(255, 255, 255, 0.2);
+            --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            --h2-text-gradient: linear-gradient(135deg, #667eea, #764ba2);
+            --rule-section-bg: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            --rule-section-border-left: #667eea;
+            --code-bg: #e2e8f0;
+            --code-color: #c53030;
+            --table-th-bg: #e9ecef;
+            --table-th-color: #495057;
+            --table-td-bg: #fff;
+            --structure-card-bg: linear-gradient(135deg, #e0eafc, #cfdef3);
+            --structure-card-border: #667eea;
+            --formula-bg: white;
+            --example-category-bg: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            --example-item-bg: white;
+            --english-text: #2d3436;
+            --uzbek-text: #636e72;
+            --input-bg: #f8f9fa;
+            --input-border: #dee2e6;
+            --input-focus-shadow: rgba(102, 126, 234, 0.1);
+            --result-bg: linear-gradient(135deg, #ddd6fe, #c4b5fd);
+            --result-color: #5b21b6;
+            --correct-color: #28a745;
+            --wrong-color: #dc3545;
+            --progress-bg: rgba(255, 255, 255, 0.2);
+            --progress-bar-gradient: linear-gradient(90deg, #4CAF50, #45a049);
+            --tab-btn-bg: rgba(255, 255, 255, 0.2);
+            --tab-btn-hover-bg: rgba(255, 255, 255, 0.3);
+            --tab-btn-active-bg: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            --exercise-btn-bg: linear-gradient(135deg, #74b9ff, #0984e3);
+            --exercise-btn-active-bg: linear-gradient(135deg, #00b894, #00a085);
+            --word-bg: linear-gradient(135deg, #667eea, #764ba2);
+            --drop-zone-border: #dee2e6;
+            --drop-zone-bg: #f8f9fa;
+            --drop-zone-hover-bg: rgba(102, 126, 234, 0.1);
+        }
+
+        .dark-mode {
+            --bg-primary: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            --text-primary: #ecf0f1;
+            --header-bg: rgba(0, 0, 0, 0.3);
+            --header-text: #ecf0f1;
+            --card-bg: #3b506b;
+            --card-border: rgba(255, 255, 255, 0.1);
+            --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            --h2-text-gradient: linear-gradient(135deg, #a2ccff, #82b1ff);
+            --rule-section-bg: #4a6280;
+            --rule-section-border-left: #82b1ff;
+            --code-bg: #2f4358;
+            --code-color: #ff8c8c;
+            --table-th-bg: #4a6280;
+            --table-th-color: #ecf0f1;
+            --table-td-bg: #3b506b;
+            --structure-card-bg: linear-gradient(135deg, #4a6280, #5a7490);
+            --structure-card-border: #82b1ff;
+            --formula-bg: #2f4358;
+            --example-category-bg: #4a6280;
+            --example-item-bg: #3b506b;
+            --english-text: #ecf0f1;
+            --uzbek-text: #bdc3c7;
+            --input-bg: #2f4358;
+            --input-border: #5a7490;
+            --input-focus-shadow: rgba(130, 177, 255, 0.2);
+            --result-bg: linear-gradient(135deg, #4a2c7a, #6a3a9a);
+            --result-color: #e0e0e0;
+            --correct-color: #5cb85c;
+            --wrong-color: #d9534f;
+            --progress-bg: rgba(0, 0, 0, 0.3);
+            --progress-bar-gradient: linear-gradient(90deg, #5cb85c, #4cae4c);
+            --tab-btn-bg: rgba(0, 0, 0, 0.3);
+            --tab-btn-hover-bg: rgba(0, 0, 0, 0.4);
+            --tab-btn-active-bg: linear-gradient(135deg, #e74c3c, #c0392b);
+            --exercise-btn-bg: linear-gradient(135deg, #3498db, #2980b9);
+            --exercise-btn-active-bg: linear-gradient(135deg, #2ecc71, #27ae60);
+            --word-bg: linear-gradient(135deg, #3498db, #2980b9);
+            --drop-zone-border: #5a7490;
+            --drop-zone-bg: #2f4358;
+            --drop-zone-hover-bg: rgba(52, 152, 219, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            min-height: 100vh;
+            color: var(--text-primary);
+            line-height: 1.6;
+            margin: 0;
+            /* Performance Fix: Removed 'all', specific transitions only */
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Sarlavha qismi */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: var(--header-bg);
+            /* Performance Fix: Reduced blur */
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--card-border);
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            color: var(--header-text);
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: bold;
+        }
+
+        .header p {
+            color: var(--header-text);
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Progress Bar */
+        .progress-container {
+            background: var(--progress-bg);
+            border-radius: 25px;
+            padding: 5px;
+            margin-bottom: 30px;
+        }
+
+        .progress-bar {
+            background: var(--progress-bar-gradient);
+            height: 30px;
+            border-radius: 20px;
+            transition: width 0.8s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 0%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-text {
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Theme Toggle Switch */
+        .theme-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .theme-switch input[type="checkbox"] {
+            height: 0;
+            width: 0;
+            visibility: hidden;
+        }
+
+        .theme-switch label {
+            cursor: pointer;
+            text-indent: -9999px;
+            width: 60px;
+            height: 30px;
+            background: #ccc;
+            display: block;
+            border-radius: 100px;
+            position: relative;
+            transition: background-color 0.3s ease;
+        }
+
+        .theme-switch label:after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background: #fff;
+            border-radius: 90px;
+            transition: 0.3s;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+
+        .theme-switch input:checked + label {
+            background: #82b1ff; 
+        }
+
+        .theme-switch input:checked + label:after {
+            left: calc(100% - 3px);
+            transform: translateX(-100%);
+            background: #f1c40f; 
+        }
+
+        .theme-switch .icon {
+            font-size: 1.5rem;
+            color: var(--header-text);
+            transition: color 0.3s ease;
+        }
+        .theme-switch input:checked ~ .icon.moon { display: block; }
+        .theme-switch input:not(:checked) ~ .icon.moon { display: none; }
+        .theme-switch input:checked ~ .icon.sun { display: none; }
+        .theme-switch input:not(:checked) ~ .icon.sun { display: block; }
+        .theme-switch .icon.sun { color: #f39c12; }
+        .theme-switch .icon.moon { color: #a2ccff; }
+
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            background: var(--header-bg);
+            /* Performance: Removed blur */
+            border-radius: 15px;
+            padding: 10px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: var(--tab-btn-bg);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            color: var(--header-text);
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            font-size: 16px;
+            font-weight: 500;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .tab-btn:hover {
+            background: var(--tab-btn-hover-bg);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .tab-btn.active {
+            background: var(--tab-btn-active-bg);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Card Styles */
+        .card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--card-border);
+            will-change: opacity, transform;
+        }
+
+        .card h2 {
+            color: var(--text-primary);
+            margin-bottom: 25px;
+            font-size: 2.2rem;
+            text-align: center;
+            background: var(--h2-text-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Rules Section */
+        .rule-section, .diff-section {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: var(--rule-section-bg);
+            border-radius: 15px;
+            border-left: 5px solid var(--rule-section-border-left);
+        }
+
+        .rule-section h3, .diff-section h3 {
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .rule-section h4, .diff-section h4 {
+             color: var(--text-primary);
+             font-size: 1.2rem;
+             margin-top: 20px;
+             padding-bottom: 5px;
+             border-bottom: 2px solid var(--rule-section-border-left);
+        }
+
+        .rule-section p, .rule-section li, .diff-section p, .diff-section li {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        
+        .rule-section code, .diff-section code {
+            background-color: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--code-color);
+        }
+
+        .diff-table-container { 
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch; 
+        }
+
+        .diff-table {
+            width: 100%;
+            min-width: 600px;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        .diff-table th, .diff-table td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            text-align: left;
+            color: var(--text-primary); 
+        }
+        .diff-table th {
+            background-color: var(--table-th-bg);
+            color: var(--table-th-color);
+        }
+        .diff-table td { background-color: var(--table-td-bg); }
+        .ok { color: var(--correct-color); font-weight: bold; }
+        .not-ok { color: var(--wrong-color); font-weight: bold; }
+
+
+        .structure-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .structure-card {
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            background: var(--structure-card-bg);
+            border: 2px solid var(--structure-card-border);
+        }
+        .structure-card:hover { transform: translateY(-5px); }
+
+        .structure-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            text-align: center;
+            color: var(--text-primary);
+        }
+
+        .formula {
+            background: var(--formula-bg); padding: 10px; border-radius: 8px;
+            margin-bottom: 10px; text-align: left; font-size: 1rem;
+            font-weight: 500; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            color: var(--text-primary);
+        }
+
+        .noun, .pronoun, .verb, .subject, .object, .adjective, .adverb, .clause, .infinitive, .gerund, .v3, .intro-phrase, .wh-word, .if-clause, .main-clause {
+            padding: 5px 10px; border-radius: 5px; margin: 0 5px; color: white;
+        }
+        .noun { background: #fd79a8; }
+        .pronoun { background: #0984e3; }
+        .verb { background: #00b894; }
+        .subject { background: #ffeaa7; color: #333;}
+        .object { background: #6c5ce7; }
+        .adjective { background: #f39c12; }
+        .adverb { background: #e74c3c; }
+        .clause { background: linear-gradient(135deg, #a29bfe, #6c5ce7); border: 1px solid white;}
+        .infinitive { background: #81ecec; color: #333; }
+        .gerund { background: #fab1a0; color: #333; }
+        .v3 { background: #d63031; }
+        .intro-phrase { background: #00cec9; }
+        .wh-word { background: #e84393; }
+        .if-clause { background: #fdcb6e; color: #333; }
+        .main-clause { background: #55efc4; color: #333; }
+        
+
+        .examples { background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 10px; margin-top: 15px; }
+        .examples p { margin-bottom: 8px; font-size: 1rem; color: var(--text-primary); }
+        .examples p.english { font-weight: bold; }
+        .structure-card .examples .uzbek {
+            color: var(--uzbek-text);
+            font-style: italic;
+            padding-left: 10px; 
+            border-left: 3px solid #764ba2; 
+            margin-top: 5px; 
+        }
+
+
+        .examples-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px; margin-top: 25px;
+        }
+
+        .example-category {
+            background: var(--example-category-bg); padding: 25px;
+            border-radius: 15px; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        .example-category h3 {
+            color: var(--text-primary); margin-bottom: 20px; font-size: 1.4rem; text-align: center;
+            padding-bottom: 10px; border-bottom: 2px solid var(--rule-section-border-left);
+        }
+
+        .example-item {
+            background: var(--example-item-bg); padding: 15px; border-radius: 10px; margin-bottom: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease;
+        }
+        .example-item:hover { transform: translateX(5px); }
+        .english { color: var(--english-text); font-weight: 500; margin-bottom: 8px; font-size: 1.05rem; }
+        .uzbek { color: var(--uzbek-text); font-style: italic; padding-left: 20px; border-left: 3px solid var(--rule-section-border-left); }
+
+        .exercise-nav {
+            display: flex; justify-content: center; margin-bottom: 30px;
+            gap: 10px; flex-wrap: wrap;
+        }
+        .exercise-btn {
+            background: var(--exercise-btn-bg); color: white; border: none;
+            padding: 12px 20px; border-radius: 10px; cursor: pointer; transition: background 0.3s, transform 0.2s;
+            font-size: 14px; font-weight: 500; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .exercise-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); }
+        .exercise-btn.active {
+            background: var(--exercise-btn-active-bg);
+            box-shadow: 0 6px 20px rgba(0, 184, 148, 0.3);
+        }
+
+        .exercise-content { display: none; }
+        .exercise-content.active { display: block; animation: fadeIn 0.5s ease-in-out; }
+        .exercise-content h3 { color: var(--text-primary); margin-bottom: 25px; font-size: 1.6rem; text-align: center; }
+
+        .quiz-container, .fill-exercise, .combine-exercise, .correct-exercise, .omission-exercise, .order-exercise { margin-bottom: 25px; }
+        .question, .fill-question, .combine-question, .correct-question, .omission-question, .order-question {
+            background: var(--example-item-bg); padding: 20px; border-radius: 15px; margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); border-left: 5px solid var(--rule-section-border-left);
+        }
+        .question p, .fill-question p, .combine-question p, .correct-question p, .omission-question p, .order-question p {
+            font-size: 1.2rem; margin-bottom: 15px; color: var(--english-text); font-weight: 500;
+        }
+        .correct-question p.incorrect { text-decoration: line-through; color: var(--wrong-color);}
+
+        .options { display: flex; flex-direction: column; gap: 10px; }
+        .options label {
+            display: flex; align-items: center; padding: 10px; border-radius: 8px;
+            background: var(--input-bg); cursor: pointer; transition: background 0.3s ease; font-size: 1rem;
+            color: var(--text-primary);
+        }
+        .options label:hover { background: var(--rule-section-bg); }
+        .options input[type="radio"] { margin-right: 10px; transform: scale(1.2); }
+
+        .fill-input, .combine-input, .correct-input, .transform-input {
+            width: 100%; background: var(--input-bg); border: 2px solid var(--input-border);
+            border-radius: 8px; padding: 12px; font-size: 1rem; transition: border-color 0.3s ease;
+            color: var(--text-primary);
+            box-sizing: border-box;
+        }
+        .fill-input:focus, .combine-input:focus, .correct-input:focus, .transform-input:focus {
+            outline: none; border-color: var(--rule-section-border-left); box-shadow: 0 0 0 3px var(--input-focus-shadow);
+        }
+
+        .check-btn {
+            background: var(--exercise-btn-active-bg); color: white; border: none;
+            padding: 15px 30px; border-radius: 10px; cursor: pointer; font-size: 1.1rem;
+            font-weight: 500; transition: transform 0.2s; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: block; margin: 10px auto;
+        }
+        .check-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); }
+
+        .check-btn:active { transform: translateY(0); }
+
+        .result {
+            margin-top: 20px; padding: 15px; border-radius: 10px; text-align: center;
+            font-size: 1.2rem; font-weight: 500; background: var(--result-bg);
+            color: var(--result-color); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .correct-answer { color: var(--correct-color); margin: 5px 0; }
+        .wrong-answer { color: var(--wrong-color); margin: 5px 0; }
+        .final-score { margin-top: 10px; padding: 10px; background: var(--input-bg); border-radius: 5px; color: var(--text-primary); }
+
+        /* Yangi stil: Izohlar uchun */
+        .explanation {
+            background: var(--input-bg);
+            border-left: 4px solid var(--rule-section-border-left);
+            padding: 10px;
+            margin: 10px 0 0 0;
+            border-radius: 0 8px 8px 0;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            text-align: left;
+        }
+
+        /* Word Order Exercise Specifics */
+        .word-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: var(--input-bg);
+            border-radius: 10px;
+            min-height: 60px; /* Ensure visibility even if empty */
+        }
+
+        .word {
+            background: var(--word-bg);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            font-weight: 500;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: inline-block; /* Ensure display is correct */
+            user-select: none;
+        }
+
+        .word:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .drop-zone {
+            min-height: 60px;
+            border: 2px dashed var(--drop-zone-border);
+            border-radius: 10px;
+            padding: 15px;
+            background: var(--drop-zone-bg);
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            gap: 10px;
+            transition: border-color 0.3s ease;
+            color: var(--text-primary);
+        }
+
+        .drop-zone:hover, .word-container:hover {
+            border-color: var(--rule-section-border-left);
+            background: var(--drop-zone-hover-bg);
+        }
+
+        .drop-zone .word {
+             background: var(--exercise-btn-active-bg);
+        }
+
+        /* --- Styles for Sentence Transformation Exercise (START) --- */
+        .transform-question {
+            background: var(--example-item-bg);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--structure-card-border);
+            transition: transform 0.3s ease;
+        }
+
+        .transform-question:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        }
+
+        .transform-question p {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .transform-question p b {
+            color: var(--header-text);
+            background: var(--word-bg);
+            padding: 3px 9px;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .transform-input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .transform-input-wrapper .fa-pen-to-square {
+            position: absolute;
+            left: 15px;
+            color: var(--uzbek-text);
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+            z-index: 1;
+        }
+
+        .transform-input {
+            padding-left: 45px; /* Make space for the icon */
+            background-image: linear-gradient(to right, var(--input-bg), var(--card-bg));
+            font-weight: 500;
+        }
+
+        .transform-input:focus {
+            background-image: none;
+        }
+
+        .transform-input-wrapper:hover .fa-pen-to-square {
+            color: var(--rule-section-border-left);
+        }
+        /* --- Styles for Sentence Transformation Exercise (END) --- */
+        
+        /* --- Styles for Muhim Qoidalar Section (FIXED) --- */
+        .error-section {
+            background: var(--rule-section-bg);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-left: 5px solid var(--wrong-color);
+        }
+
+        .error-title {
+            color: var(--wrong-color);
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .wrong-example {
+            background: rgba(220, 53, 69, 0.1);
+            border: 2px solid var(--wrong-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 30px 0 10px 0; /* FIX: Added top margin */
+            position: relative;
+            color: var(--text-primary);
+        }
+
+        .wrong-example::before {
+            content: "❌ NOTO'G'RI";
+            position: absolute;
+            top: -14px;
+            left: 15px;
+            background: var(--wrong-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 10;
+        }
+
+        .correct-example {
+            background: rgba(40, 167, 69, 0.1);
+            border: 2px solid var(--correct-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 30px 0 10px 0; /* FIX: Added top margin */
+            position: relative;
+            color: var(--text-primary);
+        }
+
+        .correct-example::before {
+            content: "✅ TO'G'RI";
+            position: absolute;
+            top: -14px;
+            left: 15px;
+            background: var(--correct-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 10;
+        }
+
+        .explanation .explanation-title {
+            color: var(--rule-section-border-left);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .rule-box {
+            background: var(--exercise-btn-bg);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-weight: 500;
+        }
+
+        .situation-example {
+            background: var(--example-item-bg);
+            border: 1px solid var(--input-border);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            color: var(--text-primary);
+        }
+
+        .context {
+            color: var(--correct-color);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .error-section.general-tips {
+             border-left-color: var(--correct-color);
+        }
+        .error-section.general-tips .error-title {
+             color: var(--correct-color);
+        }
+        .error-section.general-tips .rule-box {
+            background: var(--exercise-btn-active-bg);
+        }
+        /* --- Styles for Muhim Qoidalar Section (END) --- */
+
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header h1 { font-size: 2rem; }
+            .card h2 { font-size: 1.8rem; }
+            .structure-grid, .examples-grid { grid-template-columns: 1fr; }
+            .nav-tabs, .exercise-nav { flex-direction: column; gap: 5px; }
+            .tab-btn, .exercise-btn { width: 100%; text-align: center; }
+            .theme-switch { top: 10px; right: 10px; }
+        }
+
+        @media (max-width: 480px) {
+            .header { padding: 20px; }
+            .header h1 { font-size: 1.5rem; }
+            .card { padding: 15px; }
+            .structure-card { padding: 20px; }
+            .example-category { padding: 20px; }
+            .question { padding: 15px; }
+            .word { padding: 6px 12px; font-size: 14px; }
+            .diff-table { min-width: 400px; } /* Adjust for very small screens */
+        }
+
+        /* Animation Effects */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .check-btn:hover { animation: bounce 0.6s ease; }
+
+        /* Scroll Animations */
+        .card {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideUp 0.6s ease forwards;
+        }
+
+        @keyframes slideUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(135deg, #764ba2, #667eea); }
+    </style>
+ </head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Conjunctions (Bog'lovchilar)</h1>
+            <p>Gaplar va gap bo'laklarini bog'lovchi so'zlar: And, But, Or, So that, As soon as...</p>
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar">
+                    <span class="progress-text">0%</span>
+                </div>
+            </div>
+
+            <div class="theme-switch">
+                <i class="fas fa-sun icon sun"></i>
+                <input type="checkbox" id="themeToggle">
+                <label for="themeToggle"></label>
+                <i class="fas fa-moon icon moon"></i>
+            </div>
+        </div>
+
+        <nav class="nav-tabs">
+            <button class="tab-btn active" data-tab="rules">Qoidalar</button>
+            <button class="tab-btn" data-tab="diffs">Farqlar</button>
+            <button class="tab-btn" data-tab="structure">Strukturalar</button>
+            <button class="tab-btn" data-tab="examples">Misollar</button>
+            <button class="tab-btn" data-tab="exercises">Mashqlar</button>
+            <button class="tab-btn" data-tab="errors">10 Ta Xato</button>
+        </nav>
+
+        <div id="rules" class="tab-content active">
+             <div class="card">
+                <h2>Bog'lovchilar Qoidalari</h2>
+                <div class="rule-section">
+                    <h3>Bog'lovchi (Conjunction) nima?</h3>
+                    <p>Gaplarni va gap bo'laklarini bir-biri bilan bog'lash uchun ishlatiladigan so'zlarga <strong>bog'lovchilar</strong> deyiladi.</p>
+                </div>
+                <div class="rule-section">
+                    <h3>1. Teng Bog'lovchilar (Coordinating Conjunctions)</h3>
+                    <p>Bu bog'lovchilar teng huquqli gap bo'laklarini yoki gaplarni bog'laydi.</p>
+                    <ul>
+                        <li><strong>But (Lekin/Ammo):</strong> Zidlash, qarama-qarshi fikrni bildirish uchun ishlatiladi. <br><em>Ex: The sun has set, <strong>but</strong> it is still light.</em></li>
+                        <li><strong>And (Va):</strong> Fikrlarni qo'shish, ketma-ketlikni bildirish uchun ishlatiladi. <br><em>Ex: She loves to read, <strong>and</strong> she spends hours in the library.</em></li>
+                        <li><strong>Or (Yoki):</strong> Tanlov imkoniyatini bildirish uchun ishlatiladi. <br><em>Ex: You can choose pizza <strong>or</strong> pasta.</em></li>
+                    </ul>
+                </div>
+                 <div class="rule-section">
+                    <h3>2. Qo'shma Bog'lovchilar (Compound/Subordinating)</h3>
+                    <p>Murakkabroq ma'nolarni (maqsad, vaqt, qo'shimcha) ifodalash uchun ishlatiladi.</p>
+                    <ul>
+                        <li><strong>As well as (Ham, shuningdek):</strong> "And" ga o'xshash, qo'shimcha ma'lumot qo'shadi. <br><em>Ex: He is a skilled musician, <strong>as well as</strong> a talented songwriter.</em></li>
+                        <li><strong>So that / In order that (...uchun, maqsadda):</strong> Harakatning maqsadini bildiradi. <br><em>Ex: She studied diligently <strong>so that</strong> she could pass her exam.</em></li>
+                        <li><strong>As soon as (...gach, ...bilanoq):</strong> Vaqtni bildiradi, bir ish tugashi bilan ikkinchisi boshlanishini anglatadi. <br><em>Ex: <strong>As soon as</strong> the snow melts, the hiking trails become accessible.</em></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="diffs" class="tab-content">
+            <div class="card">
+                <h2>Bog'lovchilar O'rtasidagi Farqlar</h2>
+                <div class="diff-section">
+                    <h3>1. And vs. But vs. Or</h3>
+                    <p>Eng ko'p ishlatiladigan uchta bog'lovchining asosiy farqi mantiqiy bog'liqlikdadir.</p>
+                     <ul>
+                        <li><strong>And (Qo'shish):</strong> Fikrlarni "plyus" (+) qiladi. (A + B)</li>
+                        <li><strong>But (Zidlash):</strong> Fikrlarni "minus" (-) yoki kutilmagan holatga buradi. (A <-> B)</li>
+                        <li><strong>Or (Tanlash):</strong> Alternativ taklif qiladi. (A / B)</li>
+                    </ul>
+                    <div class="example-item">
+                        <p class="english"><strong>And:</strong> The car is reliable, <strong>and</strong> it's fuel-efficient. (Ikkala sifat ham bor).</p>
+                        <p class="english"><strong>But:</strong> The car is fast, <strong>but</strong> it's expensive. (Tezligi yaxshi, lekin narxi yomon tomoni).</p>
+                        <p class="english"><strong>Or:</strong> We can visit Paris <strong>or</strong> Rome. (Faqat bittasini tanlaymiz).</p>
+                    </div>
+                </div>
+
+                <div class="diff-section">
+                     <h3>2. So that vs. In order to/that</h3>
+                    <p>Maqsadni ifodalashda ishlatiladi, lekin strukturasida farq bo'lishi mumkin.</p>
+                     <ul>
+                        <li><strong>So that:</strong> O'zidan keyin to'liq gap (Ega + Kesim) talab qiladi. Ko'pincha <em>can/could/would</em> modal fe'llari bilan keladi.</li>
+                        <li><strong>In order that:</strong> <em>So that</em> bilan bir xil ma'noda (rasmiyroq), to'liq gap keladi.</li>
+                    </ul>
+                    <div class="example-item">
+                        <p class="english"><strong>So that:</strong> He watered the plants <strong>so that</strong> they would thrive.</p>
+                        <p class="english"><strong>In order that:</strong> She practiced public speaking <strong>in order that</strong> she could overcome her fear.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="structure" class="tab-content">
+            <div class="card">
+                <h2>Gap Tuzilmalari (Structures)</h2>
+                <div class="structure-grid">
+                    <div class="structure-card">
+                        <h3>But / And / Or (Teng bog'lovchilar)</h3>
+                        <div class="formula"><span class="main-clause">Gap 1</span>, + <span class="wh-word">but/and/or</span> + <span class="main-clause">Gap 2</span>.</div>
+                        <div class="examples">
+                            <p class="english">The weather was beautiful, <strong>but</strong> we forgot to bring sunscreen.</p>
+                            <p class="uzbek">Ob-havo ajoyib edi, lekin biz quyosh kremini olib kelishni unutdik.</p>
+                            <p class="english">He's intelligent, <strong>and</strong> he's incredibly creative.</p>
+                            <p class="uzbek">U aqlli va u nihoyatda ijodkor.</p>
+                        </div>
+                    </div>
+                    <div class="structure-card">
+                        <h3>So that / In order that (Maqsad)</h3>
+                        <div class="formula"><span class="main-clause">Main Action</span> + <span class="wh-word">so that</span> + <span class="subject">S</span> + <span class="verb">can/could/would</span> + <span class="verb">V1</span>.</div>
+                         <div class="examples">
+                            <p class="english">They set an early alarm <strong>so that</strong> they wouldn't miss their flight.</p>
+                            <p class="uzbek">Ular parvozni o'tkazib yubormasliklari uchun erta budilnik qo'yishdi.</p>
+                            <p class="english">He wore protective gear <strong>in order that</strong> he wouldn't get injured.</p>
+                            <p class="uzbek">U jarohatlanmaslik uchun himoya kiyimini kiyib oldi.</p>
+                        </div>
+                    </div>
+                     <div class="structure-card">
+                        <h3>As soon as (Vaqt)</h3>
+                        <div class="formula"><span class="wh-word">As soon as</span> + <span class="subject">Harakat 1</span>, <span class="main-clause">Harakat 2</span>.</div>
+                         <div class="examples">
+                            <p class="english"><strong>As soon as</strong> the teacher assigns homework, students should start working on it.</p>
+                            <p class="uzbek">O'qituvchi uy vazifasini berishi bilanoq, talabalar uning ustida ishlashlari kerak.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="examples" class="tab-content">
+            <div class="card">
+                <h2>Rasmlardan Olingan Misollar</h2>
+                <div class="examples-grid">
+                    <div class="example-category">
+                        <h3>BUT (Lekin)</h3>
+                        <div class="example-item">
+                            <p class="english">I wanted to buy the shoes, <strong>but</strong> they didn't have my size.</p>
+                            <p class="uzbek">Men oyoq kiyimlarni sotib olishni xohlagandim, lekin ular mening o'lchamimda emas edi.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">The hotel is luxurious, <strong>but</strong> it's too expensive for us.</p>
+                            <p class="uzbek">Mehmonxona hashamatli, lekin u biz uchun juda qimmat.</p>
+                        </div>
+                         <div class="example-item">
+                            <p class="english">He's a talented musician, <strong>but</strong> he's incredibly shy.</p>
+                            <p class="uzbek">U iqtidorli musiqachi, lekin juda ham uyatchan.</p>
+                        </div>
+                    </div>
+                    <div class="example-category">
+                        <h3>AS WELL AS / OR / AND</h3>
+                        <div class="example-item">
+                            <p class="english">The library has a vast collection of books, <strong>as well as</strong> online resources.</p>
+                            <p class="uzbek">Kutubxona onlayn resurslar kabi katta ko'lamdagi kitoblarga ega.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">You can have the blue shirt <strong>or</strong> the red one.</p>
+                            <p class="uzbek">Siz moviy yoki qizil ko'ylakli egalik qila olasiz.</p>
+                        </div>
+                         <div class="example-item">
+                            <p class="english">They are a loving couple, <strong>and</strong> they have been married for 20 years.</p>
+                            <p class="uzbek">Ular sevishgan juftlik va ular turmush qurishganiga 20 yil bo'ldi.</p>
+                        </div>
+                    </div>
+                    <div class="example-category">
+                        <h3>SO THAT / IN ORDER THAT (Maqsad)</h3>
+                         <div class="example-item">
+                            <p class="english">She studied diligently <strong>so that</strong> she could pass her exam.</p>
+                            <p class="uzbek">U shijoat bilan o'qigan, shuning uchun imtihondan o'ta oldi.</p>
+                        </div>
+                        <div class="example-item">
+                            <p class="english">They budgeted their expenses meticulously <strong>so that</strong> they could save for a new car.</p>
+                            <p class="uzbek">Ular yangi mashina uchun pul tejab qolish maqsadida xarajatlarini e'tibor bilan nazorat qilishdi.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="exercises" class="tab-content">
+            <div class="card">
+                <h2>Mashqlar (Conjunctions)</h2>
+                <nav class="exercise-nav">
+                    <button class="exercise-btn active" data-exercise="test">Test</button>
+                    <button class="exercise-btn" data-exercise="fill">Bo'sh joyni to'ldirish</button>
+                    <button class="exercise-btn" data-exercise="correction">Xatolarni Tuzatish</button>
+                    <button class="exercise-btn" data-exercise="order">So'zlarni Tartiblash</button>
+                    <button class="exercise-btn" data-exercise="transform">Gaplarni Bog'lash</button>
+                </nav>
+
+                <div id="test" class="exercise-content active">
+                    <h3>To'g'ri bog'lovchini tanlang</h3>
+                    <div class="quiz-container">
+                        <div class="question" data-answer="b" data-explanation="Zidlash ma'nosi bor: juda charchagan, lekin uxlay olmayapti."><p>1. I'm tired, ___ I can't go to sleep just yet.</p><div class="options"><label><input type="radio" name="q1" value="a">a) and</label><label><input type="radio" name="q1" value="b">b) but</label><label><input type="radio" name="q1" value="c">c) so that</label></div></div>
+                        <div class="question" data-answer="a" data-explanation="Maqsad ma'nosi: parvozni o'tkazib yubormaslik uchun signal qo'yishdi."><p>2. They set an early alarm ___ they wouldn't miss their flight.</p><div class="options"><label><input type="radio" name="q2" value="a">a) so that</label><label><input type="radio" name="q2" value="b">b) but</label><label><input type="radio" name="q2" value="c">c) or</label></div></div>
+                        <div class="question" data-answer="c" data-explanation="Tanlov ma'nosi: ko'k yoki qizil ko'ylak."><p>3. You can choose the blue shirt ___ the red one.</p><div class="options"><label><input type="radio" name="q3" value="a">a) as soon as</label><label><input type="radio" name="q3" value="b">b) in order to</label><label><input type="radio" name="q3" value="c">c) or</label></div></div>
+                        <div class="question" data-answer="b" data-explanation="Qo'shimcha ma'lumot: ispancha va fransuzcha (ham)."><p>4. She's fluent in English, ___ Spanish and French.</p><div class="options"><label><input type="radio" name="q4" value="a">a) but</label><label><input type="radio" name="q4" value="b">b) as well as</label><label><input type="radio" name="q4" value="c">c) so that</label></div></div>
+                        <div class="question" data-answer="a" data-explanation="Vaqt ma'nosi: qor erishi bilanoq."><p>5. ___ the snow melts, the hiking trails become accessible.</p><div class="options"><label><input type="radio" name="q5" value="a">a) As soon as</label><label><input type="radio" name="q5" value="b">b) But</label><label><input type="radio" name="q5" value="c">c) So that</label></div></div>
+                        <div class="question" data-answer="b" data-explanation="Zidlash: restaran zo'r, lekin ovqat yomon."><p>6. The restaurant had great reviews, ___ the food was disappointing.</p><div class="options"><label><input type="radio" name="q6" value="a">a) and</label><label><input type="radio" name="q6" value="b">b) but</label><label><input type="radio" name="q6" value="c">c) or</label></div></div>
+                        <div class="question" data-answer="c" data-explanation="Qo'shimcha/Bog'lash: shirin juftlik va 20 yillik turmush."><p>7. They are a loving couple, ___ they have been married for 20 years.</p><div class="options"><label><input type="radio" name="q7" value="a">a) but</label><label><input type="radio" name="q7" value="b">b) or</label><label><input type="radio" name="q7" value="c">c) and</label></div></div>
+                        <div class="question" data-answer="a" data-explanation="Maqsad: chiroyli gullashi uchun gul ekdi. (They = gullar)."><p>8. She planted flowers in the garden ___ they would bloom beautifully.</p><div class="options"><label><input type="radio" name="q8" value="a">a) so that</label><label><input type="radio" name="q8" value="b">b) but</label><label><input type="radio" name="q8" value="c">c) as well as</label></div></div>
+                        <div class="question" data-answer="b" data-explanation="Zidlash: U vegetarian, lekin baliq yeydi."><p>9. She's a vegetarian, ___ she occasionally eats fish.</p><div class="options"><label><input type="radio" name="q9" value="a">a) so that</label><label><input type="radio" name="q9" value="b">b) but</label><label><input type="radio" name="q9" value="c">c) and</label></div></div>
+                        <div class="question" data-answer="a" data-explanation="Vaqt: kelishuvga erishishi bilanoq."><p>10. ___ the political leaders reach an agreement, it could lead to peace talks.</p><div class="options"><label><input type="radio" name="q10" value="a">a) As soon as</label><label><input type="radio" name="q10" value="b">b) But</label><label><input type="radio" name="q10" value="c">c) Or</label></div></div>
+                    </div>
+                    <button class="check-btn" onclick="checkTest()">Tekshirish</button>
+                    <div id="testResult" class="result"></div>
+                </div>
+
+                <div id="fill" class="exercise-content">
+                    <h3>Bo'sh joyni mos bog'lovchi bilan to'ldiring (and, but, or, so that, as soon as, as well as)</h3>
+                    <div class="fill-exercise">
+                        <div class="fill-question"><p>1. The cake looks delicious, ___ I can't have any because of my diet.</p><input type="text" class="fill-input" data-answer="but" data-explanation="Shirin ko'rinadi, LEKIN yeya olmayman (Zidlash)." autocomplete="off"></div>
+                        <div class="fill-question"><p>2. He exercised every day ___ he could stay in good shape.</p><input type="text" class="fill-input" data-answer="so that" data-explanation="Maqsad: formada qolish UCHUN." autocomplete="off"></div>
+                        <div class="fill-question"><p>3. We can eat at the Italian restaurant ___ the Mexican one.</p><input type="text" class="fill-input" data-answer="or" data-explanation="Tanlov: Italiyancha YOKI Meksikancha." autocomplete="off"></div>
+                        <div class="fill-question"><p>4. The package includes a laptop, ___ a tablet and a smartphone.</p><input type="text" class="fill-input" data-answer="as well as" data-explanation="Qo'shimcha: noutbuk, HAMDA planshet va telefon." autocomplete="off"></div>
+                        <div class="fill-question"><p>5. ___ the deadline approaches, stress levels tend to rise.</p><input type="text" class="fill-input" data-answer="as soon as" data-explanation="Vaqt: muddat yaqinlashishi BILANOQ." autocomplete="off"></div>
+                        <div class="fill-question"><p>6. He spoke slowly ___ everyone in the audience could understand.</p><input type="text" class="fill-input" data-answer="so that" data-explanation="Maqsad: tushunishlari UCHUN." autocomplete="off"></div>
+                        <div class="fill-question"><p>7. The car is reliable, ___ it's also fuel-efficient.</p><input type="text" class="fill-input" data-answer="and" data-explanation="Qo'shish: ishonchli VA tejamkor." autocomplete="off"></div>
+                        <div class="fill-question"><p>8. He's very intelligent, ___ he lacks common sense.</p><input type="text" class="fill-input" data-answer="but" data-explanation="Zidlash: aqlli, LEKIN tajribasi yo'q." autocomplete="off"></div>
+                        <div class="fill-question"><p>9. ___ the legal team reviews the case, they will prepare for trial.</p><input type="text" class="fill-input" data-answer="as soon as" data-explanation="Vaqt: ko'rib chiqishi BILANOQ." autocomplete="off"></div>
+                        <div class="fill-question"><p>10. She packed her umbrella ___ she wouldn't get caught in the rain.</p><input type="text" class="fill-input" data-answer="so that" data-explanation="Maqsad: yomg'irda qolmaslik UCHUN." autocomplete="off"></div>
+                    </div>
+                    <button class="check-btn" onclick="checkFill()">Tekshirish</button>
+                    <div id="fillResult" class="result"></div>
+                </div>
+
+                <div id="correction" class="exercise-content">
+                    <h3>Mantiqiy yoki grammatik xatoni tuzating</h3>
+                    <div class="correct-exercise">
+                        <div class="correct-question"><p class="incorrect">1. I studied hard, but I passed the exam.</p><input type="text" class="correct-input" placeholder="To'g'ri bog'lovchi qo'ying..." data-answer="I studied hard, and I passed the exam.|I studied hard so that I passed the exam." data-explanation="'But' zidlash uchun. Bu yerda natija ijobiy va kutilgan, shuning uchun 'and' yoki 'so' ishlatiladi." autocomplete="off"></div>
+                        <div class="correct-question"><p class="incorrect">2. He arrived early so that prepare his presentation.</p><input type="text" class="correct-input" placeholder="To'g'ri gapni yozing..." data-answer="He arrived early so that he could prepare his presentation." data-explanation="'So that' dan keyin har doim to'liq gap (ega + kesim) kelishi kerak: 'he could prepare'." autocomplete="off"></div>
+                        <div class="correct-question"><p class="incorrect">3. You can have tea but coffee.</p><input type="text" class="correct-input" placeholder="To'g'ri bog'lovchi qo'ying..." data-answer="You can have tea or coffee." data-explanation="Tanlov bildirish uchun 'or' ishlatiladi." autocomplete="off"></div>
+                        <div class="correct-question"><p class="incorrect">4. As soon as I will arrive, I will call you.</p><input type="text" class="correct-input" placeholder="Zamonni to'g'rilang..." data-answer="As soon as I arrive, I will call you." data-explanation="Vaqt ergash gaplarida (As soon as) kelasi zamon (will) ishlatilmaydi, Present Simple ishlatiladi." autocomplete="off"></div>
+                        <div class="correct-question"><p class="incorrect">5. She is beautiful but she is smart.</p><input type="text" class="correct-input" placeholder="To'g'ri bog'lovchi qo'ying..." data-answer="She is beautiful and she is smart.|She is beautiful as well as smart." data-explanation="Bu ikkalasi ham ijobiy sifat, bir-biriga zid emas. 'And' yoki 'As well as' mos keladi." autocomplete="off"></div>
+                    </div>
+                    <button class="check-btn" onclick="checkCorrection()">Tekshirish</button>
+                    <div id="correctionResult" class="result"></div>
+                </div>
+                
+                <div id="order" class="exercise-content">
+                    <h3>So'zlarni to'g'ri tartibda joylashtiring</h3>
+                    <div class="order-exercise">
+                        <div class="order-question"><p>1. (but / beautiful / weather / sunscreen / was / we / the / forgot / to / bring)</p><div class="word-container"><div class="word">we</div><div class="word">forgot</div><div class="word">but</div><div class="word">sunscreen</div><div class="word">to</div><div class="word">bring</div><div class="word">weather</div><div class="word">the</div><div class="word">was</div><div class="word">beautiful</div></div><div class="drop-zone" data-answer="the weather was beautiful but we forgot to bring sunscreen"></div></div>
+                        
+                        <div class="order-question"><p>2. (so that / could / she / studied / she / pass / diligently / her / exam)</p><div class="word-container"><div class="word">she</div><div class="word">pass</div><div class="word">studied</div><div class="word">so that</div><div class="word">diligently</div><div class="word">could</div><div class="word">she</div><div class="word">her</div><div class="word">exam</div></div><div class="drop-zone" data-answer="she studied diligently so that she could pass her exam"></div></div>
+                        
+                        <div class="order-question"><p>3. (as well as / musician / a / he's / songwriter / talented / skilled)</p><div class="word-container"><div class="word">songwriter</div><div class="word">talented</div><div class="word">a</div><div class="word">skilled</div><div class="word">he's</div><div class="word">musician</div><div class="word">as well as</div><div class="word">a</div></div><div class="drop-zone" data-answer="he's a skilled musician as well as a talented songwriter"></div></div>
+                        
+                        <div class="order-question"><p>4. (melts / the / as soon as / hiking / trails / accessible / become / snow)</p><div class="word-container"><div class="word">as soon as</div><div class="word">trails</div><div class="word">melts</div><div class="word">hiking</div><div class="word">snow</div><div class="word">the</div><div class="word">become</div><div class="word">accessible</div><div class="word">the</div></div><div class="drop-zone" data-answer="as soon as the snow melts the hiking trails become accessible"></div></div>
+                        
+                        <div class="order-question"><p>5. (party / to / wanted / go / to / I / but / had / study / I / the)</p><div class="word-container"><div class="word">I</div><div class="word">had</div><div class="word">to</div><div class="word">party</div><div class="word">wanted</div><div class="word">study</div><div class="word">but</div><div class="word">I</div><div class="word">to</div><div class="word">go</div><div class="word">the</div></div><div class="drop-zone" data-answer="I wanted to go to the party but I had to study"></div></div>
+                    </div>
+                    <button class="check-btn" onclick="checkOrder()">Tekshirish</button>
+                    <button class="check-btn" onclick="resetOrder()">Qayta tiklash</button>
+                    <div id="orderResult" class="result"></div>
+                </div>
+
+                <div id="transform" class="exercise-content">
+                    <h3>Ikki gapni berilgan bog'lovchi bilan birlashtiring</h3>
+                    <div class="transform-exercise">
+                        <div class="transform-question"><p>1. He watered the plants. He wanted them to thrive. &rarr; (Use: <b>so that</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Gap tuzing..." data-answer="He watered the plants so that they would thrive." data-explanation="Maqsadni bildirish uchun 'so that' qo'shiladi." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>2. The car is fast. It is also expensive. &rarr; (Use: <b>but</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Gap tuzing..." data-answer="The car is fast, but it is also expensive.|The car is fast, but it's also expensive." data-explanation="Ijobiy sifat (fast) va salbiy sifat (expensive) zidlanmoqda." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>3. She researched travel destinations. She could plan her vacation. &rarr; (Use: <b>in order that</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Gap tuzing..." data-answer="She researched travel destinations in order that she could plan her vacation." data-explanation="Rasmiy maqsad bog'lovchisi." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>4. The movie ended. We left the cinema immediately. &rarr; (Use: <b>As soon as</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Gap tuzing..." data-answer="As soon as the movie ended, we left the cinema.|We left the cinema as soon as the movie ended." data-explanation="Ketma-ket sodir bo'lgan tezkor harakatlar." autocomplete="off"></div></div>
+                        <div class="transform-question"><p>5. He is intelligent. He lacks common sense. &rarr; (Use: <b>but</b>)</p><div class="transform-input-wrapper"><i class="fas fa-pen-to-square"></i><input type="text" class="transform-input" placeholder="Gap tuzing..." data-answer="He is intelligent, but he lacks common sense.|He's intelligent, but he lacks common sense." data-explanation="Zidlash." autocomplete="off"></div></div>
+                    </div>
+                    <button class="check-btn" onclick="checkTransform()">Tekshirish</button>
+                    <div id="transformResult" class="result"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="errors" class="tab-content">
+             <div class="card">
+                <h2>Eng Ko'p Uchraydigan 10 Ta Xato</h2>
+                
+                <div class="error-section">
+                    <div class="error-title">🚫 1. `So that` dan keyin fe'lning o'zini ishlatish</div>
+                    <div class="wrong-example">I study hard <strong>so that pass</strong> the exam.</div>
+                    <div class="correct-example">I study hard <strong>so that I can pass</strong> the exam.</div>
+                    <div class="explanation"><p><strong>Qoida:</strong> `So that` dan keyin har doim yangi ega (Subject) va kesim (Verb) kelishi kerak.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 2. `But` dan oldin vergul qo'ymaslik</div>
+                    <div class="wrong-example">The car is fast but it is expensive.</div>
+                    <div class="correct-example">The car is fast, but it is expensive.</div>
+                    <div class="explanation"><p><strong>Qoida:</strong> Agar `but` ikkita to'liq gapni (Ega + Kesim) bog'lasa, undan oldin vergul qo'yiladi.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 3. `As soon as` da kelasi zamon ishlatish</div>
+                    <div class="wrong-example">As soon as I <strong>will arrive</strong>, I will call you.</div>
+                    <div class="correct-example">As soon as I <strong>arrive</strong>, I will call you.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> Vaqtni bildiruvchi ergash gaplarda (Time Clauses) kelasi zamon o'rniga hozirgi zamon (Present Simple) ishlatiladi.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 4. `In order to` va `In order that` ni adashtirish</div>
+                    <div class="wrong-example">I went there <strong>in order that buy</strong> bread.</div>
+                    <div class="correct-example">I went there <strong>in order to buy</strong> bread.</div>
+                     <div class="explanation"><p><strong>Qoida:</strong> `In order TO` dan keyin fe'l (V1) keladi. `In order THAT` dan keyin esa to'liq gap (Ega + Kesim) keladi.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 5. `Although` va `But` ni birga ishlatish</div>
+                    <div class="wrong-example"><strong>Although</strong> it rained, <strong>but</strong> we went out.</div>
+                    <div class="correct-example"><strong>Although</strong> it rained, we went out.</div>
+                    <div class="correct-example">It rained, <strong>but</strong> we went out.</div>
+                    <div class="explanation"><p><strong>Qoida:</strong> Bitta gapda ikkita zidlovchi bog'lovchi ishlatilmaydi. Yo `Although` yo `But` tanlanadi.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 6. `Because` va `So` ni birga ishlatish</div>
+                    <div class="wrong-example"><strong>Because</strong> he was tired, <strong>so</strong> he went to bed.</div>
+                    <div class="correct-example"><strong>Because</strong> he was tired, he went to bed.</div>
+                    <div class="correct-example">He was tired, <strong>so</strong> he went to bed.</div>
+                    <div class="explanation"><p><strong>Qoida:</strong> Sabab (Because) va Natija (So) bog'lovchilari bir vaqtda ishlatilmaydi.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 7. `Both` bilan `Or` ishlatish</div>
+                    <div class="wrong-example">I like <strong>both</strong> coffee <strong>or</strong> tea.</div>
+                    <div class="correct-example">I like <strong>both</strong> coffee <strong>and</strong> tea.</div>
+                    <div class="explanation"><p><strong>Qoida:</strong> `Both` har doim `and` bilan keladi. `Or` esa `Either` bilan ishlatiladi.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 8. `During` dan keyin gap ishlatish</div>
+                    <div class="wrong-example">I fell asleep <strong>during</strong> I was watching TV.</div>
+                    <div class="correct-example">I fell asleep <strong>while</strong> I was watching TV.</div>
+                    <div class="correct-example">I fell asleep <strong>during</strong> the movie.</div>
+                    <div class="explanation"><p><strong>Qoida:</strong> `During` dan keyin OT (noun) keladi. `While` dan keyin esa GAP (ega+kesim) keladi.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 9. `Unless` dan keyin inkor ishlatish</div>
+                    <div class="wrong-example">I won't go <strong>unless</strong> you <strong>don't</strong> come.</div>
+                    <div class="correct-example">I won't go <strong>unless</strong> you come.</div>
+                    <div class="explanation"><p><strong>Qoida:</strong> `Unless` o'zi "agar ...masa" (if not) degan ma'noni bildiradi, shuning uchun ikkinchi inkor (double negative) kerak emas.</p></div>
+                </div>
+
+                <div class="error-section">
+                    <div class="error-title">🚫 10. `Despite` dan keyin to'liq gap ishlatish</div>
+                    <div class="wrong-example"><strong>Despite</strong> he is rich, he is unhappy.</div>
+                    <div class="correct-example"><strong>Despite being</strong> rich, he is unhappy.</div>
+                    <div class="correct-example"><strong>Although</strong> he is rich, he is unhappy.</div>
+                    <div class="explanation"><p><strong>Qoida:</strong> `Despite` dan keyin ot yoki gerund (V+ing) keladi. Agar to'liq gap kerak bo'lsa, `Although` ishlatiladi.</p></div>
+                </div>
+             </div>
+        </div>
+        
+    </div>
+
+    <script>
+        // Progress tracking
+        let completedSections = 0;
+        const totalSections = 6; 
+
+        // Tab functionality
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetTab = btn.dataset.tab;
+                
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                btn.classList.add('active');
+                document.getElementById(targetTab).classList.add('active');
+                
+                updateProgress();
+            });
+        });
+
+        // Exercise navigation
+        document.querySelectorAll('.exercise-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetExercise = btn.dataset.exercise;
+                
+                document.querySelectorAll('.exercise-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.exercise-content').forEach(c => c.classList.remove('active'));
+                
+                btn.classList.add('active');
+                document.getElementById(targetExercise).classList.add('active');
+
+                if (targetExercise === 'order') {
+                    resetOrder();
+                }
+            });
+        });
+
+        function normalizeAnswer(answer) {
+            if (typeof answer !== 'string') return '';
+            return answer.toLowerCase().trim()
+                .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")
+                .replace(/\s+/g, ' ');
+        }
+
+        function checkAnswerMatch(userAnswer, correctAnswer) {
+            const normalizedUser = normalizeAnswer(userAnswer);
+            const correctAnswers = correctAnswer.split('|').map(ans => normalizeAnswer(ans));
+            return correctAnswers.includes(normalizedUser);
+        }
+
+        function checkTest() {
+            const questions = document.querySelectorAll('#test .question');
+            let score = 0;
+            let resultHTML = '';
+            questions.forEach((question, index) => {
+                const qNum = index + 1;
+                const correctAnswer = question.dataset.answer;
+                const explanation = question.dataset.explanation;
+                
+                const selected = question.querySelector('input[type="radio"]:checked');
+
+                if (selected && selected.value === correctAnswer) {
+                    score++;
+                    resultHTML += `<div class="correct-answer">✓ ${qNum}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    resultHTML += `<div class="wrong-answer">✗ ${qNum}-savol: Noto'g'ri. <div class="explanation">${explanation}</div></div>`;
+                }
+            });
+            resultHTML += `<div class="final-score"><strong>Natija: ${score}/${questions.length} (${Math.round((score/questions.length)*100)}%)</strong></div>`;
+            document.getElementById('testResult').innerHTML = resultHTML;
+        }
+
+        function checkFill() {
+            const inputs = document.querySelectorAll('#fill .fill-input');
+            let correct = 0;
+            let resultHTML = '';
+            inputs.forEach((input, index) => {
+                const answer = input.dataset.answer;
+                const explanation = input.dataset.explanation;
+                if (checkAnswerMatch(input.value, answer)) {
+                    input.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                    resultHTML += `<div class="correct-answer">✓ ${index + 1}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    input.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savol: Noto'g'ri. To'g'ri javob: <strong>${answer.split('|')[0]}</strong> <div class="explanation">${explanation}</div></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${inputs.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('fillResult').innerHTML = resultHTML;
+        }
+
+        function checkCorrection() {
+            const inputs = document.querySelectorAll('#correction .correct-input');
+            let correct = 0;
+            let resultHTML = '';
+            inputs.forEach((input, index) => {
+                const answer = input.dataset.answer;
+                 const explanation = input.dataset.explanation;
+                if (checkAnswerMatch(input.value, answer)) {
+                    input.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                     resultHTML += `<div class="correct-answer">✓ ${index + 1}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    input.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savol: Noto'g'ri. To'g'ri javob: <strong>${answer.split('|')[0]}</strong> <div class="explanation">${explanation}</div></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${inputs.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('correctionResult').innerHTML = resultHTML;
+        }
+
+        function checkOrder() {
+            const dropZones = document.querySelectorAll('#order .drop-zone');
+            let correct = 0;
+            let resultHTML = '';
+            dropZones.forEach((zone, index) => {
+                const answer = zone.dataset.answer;
+                const userAnswer = Array.from(zone.children).map(child => child.textContent).join(' ');
+                if (checkAnswerMatch(userAnswer, answer)) {
+                    zone.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                } else {
+                    zone.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savolning to'g'ri javobi: <strong>${answer.split('|')[0]}</strong></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${dropZones.length} (${Math.round((correct/dropZones.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('orderResult').innerHTML = resultHTML;
+        }
+
+        function checkTransform() {
+            const inputs = document.querySelectorAll('#transform .transform-input');
+            let correct = 0;
+            let resultHTML = '';
+            inputs.forEach((input, index) => {
+                const answer = input.dataset.answer;
+                const explanation = input.dataset.explanation;
+                if (checkAnswerMatch(input.value, answer)) {
+                    input.style.border = '2px solid var(--correct-color)';
+                    correct++;
+                     resultHTML += `<div class="correct-answer">✓ ${index + 1}-savol: To'g'ri! <div class="explanation">${explanation}</div></div>`;
+                } else {
+                    input.style.border = '2px solid var(--wrong-color)';
+                    resultHTML += `<div class="wrong-answer">✗ ${index + 1}-savol: Noto'g'ri. To'g'ri javob: <strong>${answer.split('|')[0]}</strong> <div class="explanation">${explanation}</div></div>`;
+                }
+            });
+            resultHTML = `<div class="final-score"><strong>Natija: ${correct}/${inputs.length} (${Math.round((correct/inputs.length)*100)}%)</strong></div>` + resultHTML;
+            document.getElementById('transformResult').innerHTML = resultHTML;
+        }
+
+        // Click-based word order functionality
+        function handleWordClick(event) {
+            const word = event.target;
+            if (word.classList.contains('word')) {
+                const currentContainer = word.parentElement;
+                let targetContainer;
+
+                if (currentContainer.classList.contains('word-container')) {
+                    targetContainer = currentContainer.nextElementSibling;
+                } else if (currentContainer.classList.contains('drop-zone')) {
+                    targetContainer = currentContainer.previousElementSibling;
+                }
+
+                if (targetContainer) {
+                    targetContainer.appendChild(word);
+                }
+            }
+        }
+        document.getElementById('order').addEventListener('click', handleWordClick);
+
+        function shuffleChildren(parent) {
+            let children = Array.from(parent.children);
+            for (let i = children.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [children[i], children[j]] = [children[j], children[i]];
+            }
+            children.forEach(child => parent.appendChild(child));
+        }
+
+        function resetOrder() {
+            document.querySelectorAll('#order .order-question').forEach(question => {
+                const wordContainer = question.querySelector('.word-container');
+                const dropZone = question.querySelector('.drop-zone');
+                Array.from(dropZone.children).forEach(child => wordContainer.appendChild(child));
+                shuffleChildren(wordContainer);
+                dropZone.style.border = '2px dashed var(--drop-zone-border)';
+            });
+            document.getElementById('orderResult').innerHTML = '';
+        }
+
+        function updateProgress() {
+            const tabStates = { 'rules': 1, 'diffs': 2, 'structure': 3, 'examples': 4, 'exercises': 5, 'errors': 6 };
+            const activeTab = document.querySelector('.tab-btn.active').dataset.tab;
+            completedSections = tabStates[activeTab] || 0;
+            const percentage = (completedSections / totalSections) * 100;
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = percentage + '%';
+            progressBar.querySelector('.progress-text').textContent = Math.round(percentage) + '%';
+        }
+
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            themeToggle.checked = true;
+        }
+        themeToggle.addEventListener('change', () => {
+            if (themeToggle.checked) {
+                body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateProgress();
+            resetOrder();
+        });
+    </script>
+</body>
+</html>
